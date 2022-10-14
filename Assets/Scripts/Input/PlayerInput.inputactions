@@ -2,7 +2,7 @@
     "name": "PlayerInput",
     "maps": [
         {
-            "name": "FirstPlayer",
+            "name": "Player",
             "id": "b4448d25-f64e-4166-aade-5c4c1b22e07c",
             "actions": [
                 {
@@ -60,7 +60,7 @@
                     "path": "<Keyboard>/a",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard1",
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -71,7 +71,7 @@
                     "path": "<Keyboard>/d",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard1",
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
@@ -82,7 +82,7 @@
                     "path": "<Keyboard>/w",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard1",
                     "action": "Acceleration",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -93,7 +93,7 @@
                     "path": "<Keyboard>/space",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard1",
                     "action": "FirstShoot",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -104,7 +104,7 @@
                     "path": "<Keyboard>/leftCtrl",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard1",
                     "action": "SecondShoot",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -112,13 +112,13 @@
             ]
         },
         {
-            "name": "SecondPlayer",
-            "id": "17e5fe21-936d-4fa5-a664-637fe7fce430",
+            "name": "Player1",
+            "id": "8d86c365-4762-4c19-b82c-391c53d2b1c8",
             "actions": [
                 {
                     "name": "Rotate",
                     "type": "Value",
-                    "id": "1875887b-367f-477b-8df7-5fc4c5f93403",
+                    "id": "dc2a1460-6bd1-47ed-bd10-89fa2b87d1f2",
                     "expectedControlType": "Axis",
                     "processors": "",
                     "interactions": "",
@@ -127,7 +127,7 @@
                 {
                     "name": "Acceleration",
                     "type": "Button",
-                    "id": "b6d914c1-1e6e-486a-8596-20fdbc076bd8",
+                    "id": "89ef0f53-7921-41bd-9fb5-461252846c6c",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -136,7 +136,7 @@
                 {
                     "name": "FirstShoot",
                     "type": "Button",
-                    "id": "49a3a4c1-1871-410c-96c0-4e95b6ff8801",
+                    "id": "b3c2cf41-3b62-4d07-9b35-3bda26ce2446",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -145,7 +145,7 @@
                 {
                     "name": "SecondShoot",
                     "type": "Button",
-                    "id": "530b1f9a-2497-44a2-acf5-a529f30c0b41",
+                    "id": "bb7b7ab9-0e3f-4374-befe-a0d96189b034",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -155,7 +155,7 @@
             "bindings": [
                 {
                     "name": "1D Axis",
-                    "id": "b5c90004-7424-4261-a6f6-789dbd8d051c",
+                    "id": "fb7d4243-d487-447f-926e-76e97b54a524",
                     "path": "1DAxis",
                     "interactions": "",
                     "processors": "",
@@ -166,56 +166,56 @@
                 },
                 {
                     "name": "negative",
-                    "id": "defd43d8-4e09-4d02-90d0-60e4392c217d",
+                    "id": "edd49104-3820-44b9-abad-0652217e2d79",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard2",
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "positive",
-                    "id": "e0b303e9-4d9d-4aa4-a7d2-650c0a54c67a",
+                    "id": "5c6bea2b-2cc1-43b5-ab70-1ce28fbefc11",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard2",
                     "action": "Rotate",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
                 {
                     "name": "",
-                    "id": "4e74d225-837b-4cc4-8833-016a729e549c",
+                    "id": "09d35a9c-469a-436d-9a5a-5d99691948e5",
                     "path": "<Keyboard>/upArrow",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
+                    "groups": "Keyboard2",
                     "action": "Acceleration",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "622bec10-89e1-4a0a-906e-e59a2125c380",
-                    "path": "<Keyboard>/rightAlt",
+                    "id": "d5ba40ec-54b3-4839-b055-88fa19c87324",
+                    "path": "<Keyboard>/numpad0",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "FirstShoot",
+                    "groups": "Keyboard2",
+                    "action": "SecondShoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
-                    "id": "538d3952-ddea-428c-a9c8-d30dbd4b51c1",
+                    "id": "449ba353-2f4c-4de8-86e7-ebc55eac7583",
                     "path": "<Keyboard>/rightCtrl",
                     "interactions": "",
                     "processors": "",
-                    "groups": "",
-                    "action": "SecondShoot",
+                    "groups": "Keyboard2",
+                    "action": "FirstShoot",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -224,12 +224,23 @@
     ],
     "controlSchemes": [
         {
-            "name": "KeyBoard",
-            "bindingGroup": "KeyBoard",
+            "name": "Keyboard1",
+            "bindingGroup": "Keyboard1",
             "devices": [
                 {
                     "devicePath": "<Keyboard>",
-                    "isOptional": false,
+                    "isOptional": true,
+                    "isOR": false
+                }
+            ]
+        },
+        {
+            "name": "Keyboard2",
+            "bindingGroup": "Keyboard2",
+            "devices": [
+                {
+                    "devicePath": "<Keyboard>",
+                    "isOptional": true,
                     "isOR": false
                 }
             ]

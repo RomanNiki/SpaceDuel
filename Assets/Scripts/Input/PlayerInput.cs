@@ -24,7 +24,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     ""name"": ""PlayerInput"",
     ""maps"": [
         {
-            ""name"": ""FirstPlayer"",
+            ""name"": ""Player"",
             ""id"": ""b4448d25-f64e-4166-aade-5c4c1b22e07c"",
             ""actions"": [
                 {
@@ -82,7 +82,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/a"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard1"",
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -93,7 +93,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/d"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard1"",
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
@@ -104,7 +104,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/w"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard1"",
                     ""action"": ""Acceleration"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -115,7 +115,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/space"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard1"",
                     ""action"": ""FirstShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -126,7 +126,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""path"": ""<Keyboard>/leftCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard1"",
                     ""action"": ""SecondShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -134,13 +134,13 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             ]
         },
         {
-            ""name"": ""SecondPlayer"",
-            ""id"": ""17e5fe21-936d-4fa5-a664-637fe7fce430"",
+            ""name"": ""Player1"",
+            ""id"": ""8d86c365-4762-4c19-b82c-391c53d2b1c8"",
             ""actions"": [
                 {
                     ""name"": ""Rotate"",
                     ""type"": ""Value"",
-                    ""id"": ""1875887b-367f-477b-8df7-5fc4c5f93403"",
+                    ""id"": ""dc2a1460-6bd1-47ed-bd10-89fa2b87d1f2"",
                     ""expectedControlType"": ""Axis"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -149,7 +149,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""Acceleration"",
                     ""type"": ""Button"",
-                    ""id"": ""b6d914c1-1e6e-486a-8596-20fdbc076bd8"",
+                    ""id"": ""89ef0f53-7921-41bd-9fb5-461252846c6c"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -158,7 +158,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""FirstShoot"",
                     ""type"": ""Button"",
-                    ""id"": ""49a3a4c1-1871-410c-96c0-4e95b6ff8801"",
+                    ""id"": ""b3c2cf41-3b62-4d07-9b35-3bda26ce2446"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -167,7 +167,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 {
                     ""name"": ""SecondShoot"",
                     ""type"": ""Button"",
-                    ""id"": ""530b1f9a-2497-44a2-acf5-a529f30c0b41"",
+                    ""id"": ""bb7b7ab9-0e3f-4374-befe-a0d96189b034"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
@@ -177,7 +177,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             ""bindings"": [
                 {
                     ""name"": ""1D Axis"",
-                    ""id"": ""b5c90004-7424-4261-a6f6-789dbd8d051c"",
+                    ""id"": ""fb7d4243-d487-447f-926e-76e97b54a524"",
                     ""path"": ""1DAxis"",
                     ""interactions"": """",
                     ""processors"": """",
@@ -188,56 +188,56 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": ""negative"",
-                    ""id"": ""defd43d8-4e09-4d02-90d0-60e4392c217d"",
+                    ""id"": ""edd49104-3820-44b9-abad-0652217e2d79"",
                     ""path"": ""<Keyboard>/leftArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard2"",
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": ""positive"",
-                    ""id"": ""e0b303e9-4d9d-4aa4-a7d2-650c0a54c67a"",
+                    ""id"": ""5c6bea2b-2cc1-43b5-ab70-1ce28fbefc11"",
                     ""path"": ""<Keyboard>/rightArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard2"",
                     ""action"": ""Rotate"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
                 },
                 {
                     ""name"": """",
-                    ""id"": ""4e74d225-837b-4cc4-8833-016a729e549c"",
+                    ""id"": ""09d35a9c-469a-436d-9a5a-5d99691948e5"",
                     ""path"": ""<Keyboard>/upArrow"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
+                    ""groups"": ""Keyboard2"",
                     ""action"": ""Acceleration"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""622bec10-89e1-4a0a-906e-e59a2125c380"",
-                    ""path"": ""<Keyboard>/rightAlt"",
+                    ""id"": ""d5ba40ec-54b3-4839-b055-88fa19c87324"",
+                    ""path"": ""<Keyboard>/numpad0"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""FirstShoot"",
+                    ""groups"": ""Keyboard2"",
+                    ""action"": ""SecondShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""538d3952-ddea-428c-a9c8-d30dbd4b51c1"",
+                    ""id"": ""449ba353-2f4c-4de8-86e7-ebc55eac7583"",
                     ""path"": ""<Keyboard>/rightCtrl"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""SecondShoot"",
+                    ""groups"": ""Keyboard2"",
+                    ""action"": ""FirstShoot"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -246,30 +246,41 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     ],
     ""controlSchemes"": [
         {
-            ""name"": ""KeyBoard"",
-            ""bindingGroup"": ""KeyBoard"",
+            ""name"": ""Keyboard1"",
+            ""bindingGroup"": ""Keyboard1"",
             ""devices"": [
                 {
                     ""devicePath"": ""<Keyboard>"",
-                    ""isOptional"": false,
+                    ""isOptional"": true,
+                    ""isOR"": false
+                }
+            ]
+        },
+        {
+            ""name"": ""Keyboard2"",
+            ""bindingGroup"": ""Keyboard2"",
+            ""devices"": [
+                {
+                    ""devicePath"": ""<Keyboard>"",
+                    ""isOptional"": true,
                     ""isOR"": false
                 }
             ]
         }
     ]
 }");
-        // FirstPlayer
-        m_FirstPlayer = asset.FindActionMap("FirstPlayer", throwIfNotFound: true);
-        m_FirstPlayer_Rotate = m_FirstPlayer.FindAction("Rotate", throwIfNotFound: true);
-        m_FirstPlayer_Acceleration = m_FirstPlayer.FindAction("Acceleration", throwIfNotFound: true);
-        m_FirstPlayer_FirstShoot = m_FirstPlayer.FindAction("FirstShoot", throwIfNotFound: true);
-        m_FirstPlayer_SecondShoot = m_FirstPlayer.FindAction("SecondShoot", throwIfNotFound: true);
-        // SecondPlayer
-        m_SecondPlayer = asset.FindActionMap("SecondPlayer", throwIfNotFound: true);
-        m_SecondPlayer_Rotate = m_SecondPlayer.FindAction("Rotate", throwIfNotFound: true);
-        m_SecondPlayer_Acceleration = m_SecondPlayer.FindAction("Acceleration", throwIfNotFound: true);
-        m_SecondPlayer_FirstShoot = m_SecondPlayer.FindAction("FirstShoot", throwIfNotFound: true);
-        m_SecondPlayer_SecondShoot = m_SecondPlayer.FindAction("SecondShoot", throwIfNotFound: true);
+        // Player
+        m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
+        m_Player_Rotate = m_Player.FindAction("Rotate", throwIfNotFound: true);
+        m_Player_Acceleration = m_Player.FindAction("Acceleration", throwIfNotFound: true);
+        m_Player_FirstShoot = m_Player.FindAction("FirstShoot", throwIfNotFound: true);
+        m_Player_SecondShoot = m_Player.FindAction("SecondShoot", throwIfNotFound: true);
+        // Player1
+        m_Player1 = asset.FindActionMap("Player1", throwIfNotFound: true);
+        m_Player1_Rotate = m_Player1.FindAction("Rotate", throwIfNotFound: true);
+        m_Player1_Acceleration = m_Player1.FindAction("Acceleration", throwIfNotFound: true);
+        m_Player1_FirstShoot = m_Player1.FindAction("FirstShoot", throwIfNotFound: true);
+        m_Player1_SecondShoot = m_Player1.FindAction("SecondShoot", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -326,44 +337,44 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         return asset.FindBinding(bindingMask, out action);
     }
 
-    // FirstPlayer
-    private readonly InputActionMap m_FirstPlayer;
-    private IFirstPlayerActions m_FirstPlayerActionsCallbackInterface;
-    private readonly InputAction m_FirstPlayer_Rotate;
-    private readonly InputAction m_FirstPlayer_Acceleration;
-    private readonly InputAction m_FirstPlayer_FirstShoot;
-    private readonly InputAction m_FirstPlayer_SecondShoot;
-    public struct FirstPlayerActions
+    // Player
+    private readonly InputActionMap m_Player;
+    private IPlayerActions m_PlayerActionsCallbackInterface;
+    private readonly InputAction m_Player_Rotate;
+    private readonly InputAction m_Player_Acceleration;
+    private readonly InputAction m_Player_FirstShoot;
+    private readonly InputAction m_Player_SecondShoot;
+    public struct PlayerActions
     {
         private @PlayerInput m_Wrapper;
-        public FirstPlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Rotate => m_Wrapper.m_FirstPlayer_Rotate;
-        public InputAction @Acceleration => m_Wrapper.m_FirstPlayer_Acceleration;
-        public InputAction @FirstShoot => m_Wrapper.m_FirstPlayer_FirstShoot;
-        public InputAction @SecondShoot => m_Wrapper.m_FirstPlayer_SecondShoot;
-        public InputActionMap Get() { return m_Wrapper.m_FirstPlayer; }
+        public PlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Rotate => m_Wrapper.m_Player_Rotate;
+        public InputAction @Acceleration => m_Wrapper.m_Player_Acceleration;
+        public InputAction @FirstShoot => m_Wrapper.m_Player_FirstShoot;
+        public InputAction @SecondShoot => m_Wrapper.m_Player_SecondShoot;
+        public InputActionMap Get() { return m_Wrapper.m_Player; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(FirstPlayerActions set) { return set.Get(); }
-        public void SetCallbacks(IFirstPlayerActions instance)
+        public static implicit operator InputActionMap(PlayerActions set) { return set.Get(); }
+        public void SetCallbacks(IPlayerActions instance)
         {
-            if (m_Wrapper.m_FirstPlayerActionsCallbackInterface != null)
+            if (m_Wrapper.m_PlayerActionsCallbackInterface != null)
             {
-                @Rotate.started -= m_Wrapper.m_FirstPlayerActionsCallbackInterface.OnRotate;
-                @Rotate.performed -= m_Wrapper.m_FirstPlayerActionsCallbackInterface.OnRotate;
-                @Rotate.canceled -= m_Wrapper.m_FirstPlayerActionsCallbackInterface.OnRotate;
-                @Acceleration.started -= m_Wrapper.m_FirstPlayerActionsCallbackInterface.OnAcceleration;
-                @Acceleration.performed -= m_Wrapper.m_FirstPlayerActionsCallbackInterface.OnAcceleration;
-                @Acceleration.canceled -= m_Wrapper.m_FirstPlayerActionsCallbackInterface.OnAcceleration;
-                @FirstShoot.started -= m_Wrapper.m_FirstPlayerActionsCallbackInterface.OnFirstShoot;
-                @FirstShoot.performed -= m_Wrapper.m_FirstPlayerActionsCallbackInterface.OnFirstShoot;
-                @FirstShoot.canceled -= m_Wrapper.m_FirstPlayerActionsCallbackInterface.OnFirstShoot;
-                @SecondShoot.started -= m_Wrapper.m_FirstPlayerActionsCallbackInterface.OnSecondShoot;
-                @SecondShoot.performed -= m_Wrapper.m_FirstPlayerActionsCallbackInterface.OnSecondShoot;
-                @SecondShoot.canceled -= m_Wrapper.m_FirstPlayerActionsCallbackInterface.OnSecondShoot;
+                @Rotate.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
+                @Rotate.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
+                @Rotate.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnRotate;
+                @Acceleration.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAcceleration;
+                @Acceleration.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAcceleration;
+                @Acceleration.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnAcceleration;
+                @FirstShoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFirstShoot;
+                @FirstShoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFirstShoot;
+                @FirstShoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnFirstShoot;
+                @SecondShoot.started -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondShoot;
+                @SecondShoot.performed -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondShoot;
+                @SecondShoot.canceled -= m_Wrapper.m_PlayerActionsCallbackInterface.OnSecondShoot;
             }
-            m_Wrapper.m_FirstPlayerActionsCallbackInterface = instance;
+            m_Wrapper.m_PlayerActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Rotate.started += instance.OnRotate;
@@ -381,46 +392,46 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             }
         }
     }
-    public FirstPlayerActions @FirstPlayer => new FirstPlayerActions(this);
+    public PlayerActions @Player => new PlayerActions(this);
 
-    // SecondPlayer
-    private readonly InputActionMap m_SecondPlayer;
-    private ISecondPlayerActions m_SecondPlayerActionsCallbackInterface;
-    private readonly InputAction m_SecondPlayer_Rotate;
-    private readonly InputAction m_SecondPlayer_Acceleration;
-    private readonly InputAction m_SecondPlayer_FirstShoot;
-    private readonly InputAction m_SecondPlayer_SecondShoot;
-    public struct SecondPlayerActions
+    // Player1
+    private readonly InputActionMap m_Player1;
+    private IPlayer1Actions m_Player1ActionsCallbackInterface;
+    private readonly InputAction m_Player1_Rotate;
+    private readonly InputAction m_Player1_Acceleration;
+    private readonly InputAction m_Player1_FirstShoot;
+    private readonly InputAction m_Player1_SecondShoot;
+    public struct Player1Actions
     {
         private @PlayerInput m_Wrapper;
-        public SecondPlayerActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Rotate => m_Wrapper.m_SecondPlayer_Rotate;
-        public InputAction @Acceleration => m_Wrapper.m_SecondPlayer_Acceleration;
-        public InputAction @FirstShoot => m_Wrapper.m_SecondPlayer_FirstShoot;
-        public InputAction @SecondShoot => m_Wrapper.m_SecondPlayer_SecondShoot;
-        public InputActionMap Get() { return m_Wrapper.m_SecondPlayer; }
+        public Player1Actions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
+        public InputAction @Rotate => m_Wrapper.m_Player1_Rotate;
+        public InputAction @Acceleration => m_Wrapper.m_Player1_Acceleration;
+        public InputAction @FirstShoot => m_Wrapper.m_Player1_FirstShoot;
+        public InputAction @SecondShoot => m_Wrapper.m_Player1_SecondShoot;
+        public InputActionMap Get() { return m_Wrapper.m_Player1; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
         public bool enabled => Get().enabled;
-        public static implicit operator InputActionMap(SecondPlayerActions set) { return set.Get(); }
-        public void SetCallbacks(ISecondPlayerActions instance)
+        public static implicit operator InputActionMap(Player1Actions set) { return set.Get(); }
+        public void SetCallbacks(IPlayer1Actions instance)
         {
-            if (m_Wrapper.m_SecondPlayerActionsCallbackInterface != null)
+            if (m_Wrapper.m_Player1ActionsCallbackInterface != null)
             {
-                @Rotate.started -= m_Wrapper.m_SecondPlayerActionsCallbackInterface.OnRotate;
-                @Rotate.performed -= m_Wrapper.m_SecondPlayerActionsCallbackInterface.OnRotate;
-                @Rotate.canceled -= m_Wrapper.m_SecondPlayerActionsCallbackInterface.OnRotate;
-                @Acceleration.started -= m_Wrapper.m_SecondPlayerActionsCallbackInterface.OnAcceleration;
-                @Acceleration.performed -= m_Wrapper.m_SecondPlayerActionsCallbackInterface.OnAcceleration;
-                @Acceleration.canceled -= m_Wrapper.m_SecondPlayerActionsCallbackInterface.OnAcceleration;
-                @FirstShoot.started -= m_Wrapper.m_SecondPlayerActionsCallbackInterface.OnFirstShoot;
-                @FirstShoot.performed -= m_Wrapper.m_SecondPlayerActionsCallbackInterface.OnFirstShoot;
-                @FirstShoot.canceled -= m_Wrapper.m_SecondPlayerActionsCallbackInterface.OnFirstShoot;
-                @SecondShoot.started -= m_Wrapper.m_SecondPlayerActionsCallbackInterface.OnSecondShoot;
-                @SecondShoot.performed -= m_Wrapper.m_SecondPlayerActionsCallbackInterface.OnSecondShoot;
-                @SecondShoot.canceled -= m_Wrapper.m_SecondPlayerActionsCallbackInterface.OnSecondShoot;
+                @Rotate.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnRotate;
+                @Rotate.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnRotate;
+                @Rotate.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnRotate;
+                @Acceleration.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnAcceleration;
+                @Acceleration.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnAcceleration;
+                @Acceleration.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnAcceleration;
+                @FirstShoot.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnFirstShoot;
+                @FirstShoot.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnFirstShoot;
+                @FirstShoot.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnFirstShoot;
+                @SecondShoot.started -= m_Wrapper.m_Player1ActionsCallbackInterface.OnSecondShoot;
+                @SecondShoot.performed -= m_Wrapper.m_Player1ActionsCallbackInterface.OnSecondShoot;
+                @SecondShoot.canceled -= m_Wrapper.m_Player1ActionsCallbackInterface.OnSecondShoot;
             }
-            m_Wrapper.m_SecondPlayerActionsCallbackInterface = instance;
+            m_Wrapper.m_Player1ActionsCallbackInterface = instance;
             if (instance != null)
             {
                 @Rotate.started += instance.OnRotate;
@@ -438,24 +449,33 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
             }
         }
     }
-    public SecondPlayerActions @SecondPlayer => new SecondPlayerActions(this);
-    private int m_KeyBoardSchemeIndex = -1;
-    public InputControlScheme KeyBoardScheme
+    public Player1Actions @Player1 => new Player1Actions(this);
+    private int m_Keyboard1SchemeIndex = -1;
+    public InputControlScheme Keyboard1Scheme
     {
         get
         {
-            if (m_KeyBoardSchemeIndex == -1) m_KeyBoardSchemeIndex = asset.FindControlSchemeIndex("KeyBoard");
-            return asset.controlSchemes[m_KeyBoardSchemeIndex];
+            if (m_Keyboard1SchemeIndex == -1) m_Keyboard1SchemeIndex = asset.FindControlSchemeIndex("Keyboard1");
+            return asset.controlSchemes[m_Keyboard1SchemeIndex];
         }
     }
-    public interface IFirstPlayerActions
+    private int m_Keyboard2SchemeIndex = -1;
+    public InputControlScheme Keyboard2Scheme
+    {
+        get
+        {
+            if (m_Keyboard2SchemeIndex == -1) m_Keyboard2SchemeIndex = asset.FindControlSchemeIndex("Keyboard2");
+            return asset.controlSchemes[m_Keyboard2SchemeIndex];
+        }
+    }
+    public interface IPlayerActions
     {
         void OnRotate(InputAction.CallbackContext context);
         void OnAcceleration(InputAction.CallbackContext context);
         void OnFirstShoot(InputAction.CallbackContext context);
         void OnSecondShoot(InputAction.CallbackContext context);
     }
-    public interface ISecondPlayerActions
+    public interface IPlayer1Actions
     {
         void OnRotate(InputAction.CallbackContext context);
         void OnAcceleration(InputAction.CallbackContext context);
