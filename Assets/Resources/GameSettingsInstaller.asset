@@ -12,8 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5757db74320847f89d23cf8fa84d7988, type: 3}
   m_Name: GameSettingsInstaller
   m_EditorClassIdentifier: 
+  _targetFrameRate: 200
   _player:
-    PlayerMoveHandler:
-      MoveSpeed: 10
-      RotationSpeed: 90
-      SlowDownSpeed: 2
+    PlayerModel:
+      MaxHealth: 100
+      MaxEnergy: 100
+    PlayerMover:
+      MoveSpeed: 14
+      RotationSpeed: 80
+      RotationCost: 0.05
+      MoveCost: 0.08
+    DamageHandler:
+      HitSound: {fileID: 8300000, guid: f9517356afb533a41b9e7cb6f155031e, type: 3}
+      HitSoundVolume: 1
+    DefaultGun:
+      ShootSound: {fileID: 8300000, guid: 34c638d8d99ccfd44a261f13505ab317, type: 3}
+      ShootSoundVolume: 1
+    Bullet:
+      StartEnergy: 100
+      Damage: 10

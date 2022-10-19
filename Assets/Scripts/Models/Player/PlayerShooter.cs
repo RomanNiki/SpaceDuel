@@ -1,5 +1,6 @@
-﻿using Player.Weapon;
+﻿using Models.Player.Weapon;
 using UnityEngine.InputSystem;
+using Zenject;
 
 namespace Models.Player
 {
@@ -8,7 +9,7 @@ namespace Models.Player
         private readonly DefaultGun _firstWeapon;
         private readonly DefaultGun _secondWeapon;
 
-        public PlayerShooter(DefaultGun firstWeapon, DefaultGun secondWeapon)
+        public PlayerShooter([Inject (Id = WeaponEnum.Primary)]DefaultGun firstWeapon, [Inject (Id = WeaponEnum.Secondary)] DefaultGun secondWeapon)
         {
             _firstWeapon = firstWeapon;
             _secondWeapon = secondWeapon;

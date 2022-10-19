@@ -1,28 +1,32 @@
 ﻿using System;
 using Models.Player;
-using Player;
+using Models.Player.Weapon;
+using Models.Player.Weapon.Bullets;
 using UnityEngine;
 using Zenject;
 
 namespace Installers
 {
-    [CreateAssetMenu(menuName = "Space Duel/Game Settings")]
+    //[CreateAssetMenu(menuName = "Space Duel/Game Settings")]
     public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInstaller>
     {
        // public EnemySpawner.Settings EnemySpawner;
        // public GameRestartHandler.Settings GameRestartHandler;
        // public GameInstaller.Settings GameInstaller;
+        [SerializeField] private int _targetFrameRate = 200;
         [SerializeField] private PlayerSettings _player;
+     
         public PlayerSettings Player => _player;
         
 
         [Serializable]
         public class PlayerSettings
         {
-            public PlayerMover.Settings PlayerMoveHandler;
-            /*public PlayerShootHandler.Settings PlayerShootHandler;
-            public PlayerDamageHandler.Settings PlayerCollisionHandler;
-            public PlayerHealthWatcher.Settings PlayerHealthWatcher;*/
+            public PlayerModel.Settings PlayerModel;
+            public PlayerMover.Settings PlayerMover;
+            public DamageHandler.Settings DamageHandler;
+            public DefaultGun.Settings DefaultGun;
+            public BulletModel.Settings Bullet;
         }
         
         public override void InstallBindings()
@@ -31,11 +35,12 @@ namespace Installers
             /*Container.BindInstance(EnemySpawner).IfNotBound();
             Container.BindInstance(GameRestartHandler).IfNotBound();
             Container.BindInstance(GameInstaller).IfNotBound();*/
-
-            Container.BindInstance(_player.PlayerMoveHandler).IfNotBound();
-            /*Container.BindInstance(_player.PlayerShootHandler).IfNotBound();
-            Container.BindInstance(_player.PlayerCollisionHandler).IfNotBound();
-            Container.BindInstance(_player.PlayerHealthWatcher).IfNotBound();*/
+            Application.targetFrameRate = _targetFrameRate;
+            Container.BindInstance(_player.PlayerModel).IfNotBound();
+            Container.BindInstance(_player.PlayerMover).IfNotBound();
+            Container.BindInstance(_player.DamageHandler).IfNotBound();
+            Container.BindInstance(_player.DefaultGun).IfNotBound();
+            Container.BindInstance(_player.Bullet).IfNotBound();
         }
     }
 }

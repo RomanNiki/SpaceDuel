@@ -19,18 +19,23 @@ namespace Models.Player
 
         public void FixedTick()
         {
-            var deltaTime = Time.fixedDeltaTime;
-            
-            if (_inputRouter.Accelerate)
+            if (_player.Energy.Value > 0 && _player.Dead.Value == false)
             {
-                _player.AddForce(_player.LookDir * _settings.MoveSpeed);
+                var deltaTime = Time.fixedDeltaTime;
+                if (_inputRouter.Accelerate)
+                {
+                    _player.AddForce(_player.LookDir * _settings.MoveSpeed);
+                    _player.SpendEnergy(_settings.MoveCost);
+                }
+
+                if (MathF.Abs(_inputRouter.Rotation) > 0.1f)
+                {
+                    Rotate(_inputRouter.Rotation, deltaTime);
+                    _player.SpendEnergy(_settings.RotationCost);
+                }
             }
 
-            if (MathF.Abs(_inputRouter.Rotation) > 0.1f)
-            {
-                Rotate(_inputRouter.Rotation, deltaTime);
-            }
-            Move();
+            LoopedMove();
         }
 
         protected override void Rotate(float direction, float deltaTime)
@@ -48,7 +53,8 @@ namespace Models.Player
         {
             public float MoveSpeed;
             public float RotationSpeed;
-            public float SlowDownSpeed;
+            public float RotationCost;
+            public float MoveCost;
         }
     }
 }

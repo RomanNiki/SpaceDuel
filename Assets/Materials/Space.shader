@@ -17,20 +17,37 @@
        _OffsetY("OffsetY" ,float) = 0.300
         
     }
+    
+     HLSLINCLUDE
+
+    #pragma target 4
+    #pragma only_renderers d3d11 playstation xboxone xboxseries vulkan metal switch
+    ENDHLSL
+    
     SubShader
     {
-        Tags { "RenderType"="Opaque" }
+        Tags {   "RenderPipeline"="HDRenderPipeline"
+            "RenderType"="HDUnlitShader"
+            "Queue"="Geometry+0"
+            "ShaderGraphShader"="true"
+            "ShaderGraphTargetId"="HDUnlitSubTarget"}
         LOD 100
 
         Pass
         {
-            CGPROGRAM
+            Cull Off
+            ZWrite On
+            HLSLPROGRAM
+            #pragma only_renderers d3d11 playstation xboxone xboxseries vulkan metal switch
+            //enable GPU instancing support
+            #pragma multi_compile_instancing
+            #pragma multi_compile _ DOTS_INSTANCING_ON
+
             #include "UnityCG.cginc"
             #pragma vertex vert
             #pragma fragment frag
-           
+            #pragma editor_sync_compilation
             #define volsteps 20 //dotTouch
-            
             #define iResolution _ScreenParams
             #define iTime _Time.y
             
@@ -72,23 +89,16 @@
                 return x-y*floor(x/y);
             }
 
-            fixed4 frag (v2f i) : SV_Target
+            float4 frag (v2f i) : SV_Target
             {
                 float2 uv = i.uv;///iResolution.xy-.5;
+                
                 uv.y*=iResolution.y/iResolution.x;
                 float3 dir=float3(uv * _Zoom,1.);
-                float a1=.5+_OffsetX/iResolution.x*2.;
-	            float a2=.8+_OffsetY/iResolution.y*2.;
-	            float2x2 rot1=fixed2x2(cos(a1),sin(a1),-sin(a1),cos(a1));
-	            float2x2 rot2=fixed2x2(cos(a2),sin(a2),-sin(a2),cos(a2));
-                dir.xz = mul(rot1, dir.xz) ;
-                dir.xy = mul(rot2, dir.xy) ;
-
                 
                 float time=iTime*_Speed+.25;
                 time = fmod(time, 10.);
-
-
+                
                 float3 from=float3(1.,.5,0.5);
                 from+=float3(time*2.,time,-2.);
 
@@ -113,11 +123,10 @@
                     s+=_StepSize;
                 }
                 v=lerp(length(v),v,_Saturation); 
-                float4 fragColor = float4(v*.01,1.);	
-
-                return fragColor * _Color;
+                return  float4(v*.01,1.) * _Color;
             }
-            ENDCG
+        
+            ENDHLSL
         }
     }
 }

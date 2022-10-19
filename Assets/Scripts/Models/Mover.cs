@@ -13,7 +13,7 @@ namespace Models
             _camera = camera;
         }
         
-        protected void Move()
+        protected void LoopedMove()
         {
             var nextPosition = _camera.WorldToViewportPoint(_transformable.Position) ;
             nextPosition.y = Mathf.Repeat(nextPosition.y, 1);
