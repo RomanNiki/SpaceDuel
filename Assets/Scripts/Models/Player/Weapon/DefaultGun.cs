@@ -1,35 +1,30 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Models.Player.Weapon
 {
-    public class DefaultGun
+    public abstract class DefaultGun
     {
-        private readonly AudioSource _audioSource;
-        private readonly Settings _settings;
+        protected readonly AudioSource AudioSource;
+        protected float LastFireTime;
+        protected readonly PlayerModel PlayerModel;
 
-        public DefaultGun(AudioSource audioSource, Settings settings)
+        protected DefaultGun(AudioSource audioSource, PlayerModel playerModel)
         {
-            _audioSource = audioSource;
-            _settings = settings;
-        }
-        
-        public virtual bool CanShoot()
-        {
-            throw new System.NotImplementedException();
+            AudioSource = audioSource;
+            PlayerModel = playerModel;
         }
 
-        public virtual void Shoot()
+        public abstract bool CanShoot();
+
+        public void Shoot()
         {
-            _audioSource.PlayOneShot(_settings.ShootSound, _settings.ShootSoundVolume);
-            throw new System.NotImplementedException();
+            PlaySound();
+            InitBullet();
+            LastFireTime = Time.realtimeSinceStartup;
         }
-        
-        [Serializable]
-        public class Settings
-        {
-            public AudioClip ShootSound;
-            public float ShootSoundVolume;
-        }
+
+        protected abstract void PlaySound();
+
+        protected abstract void InitBullet();
     }
 }

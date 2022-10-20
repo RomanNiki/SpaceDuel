@@ -22,7 +22,7 @@ namespace Installers
             Container.Bind<AudioSource>().FromInstance(_settings.AudioSource);
             Container.Bind<PlayerModel>().AsSingle()
                 .WithArguments(_settings.Rigidbody, _settings.MeshRenderer, _settings.Team);
-            Container.Bind<DefaultGun>().WithId(WeaponEnum.Primary).To<DefaultGun>().AsSingle();
+            Container.Bind<DefaultGun>().WithId(WeaponEnum.Primary).To<BulletGun>().AsSingle();
             Container.Bind<DefaultGun>().WithId(WeaponEnum.Secondary).To<MineGun>().AsSingle();
             Container.Bind<DamageHandler>().AsSingle();
             Container.Bind<PlayerShooter>().AsSingle();

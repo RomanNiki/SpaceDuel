@@ -5,7 +5,7 @@ namespace Models.Player.Weapon.Bullets
 {
     public class BulletEnergySpender : ITickable
     {
-        private BulletModel _bullet;
+        private readonly BulletModel _bullet;
 
         public BulletEnergySpender(BulletModel bullet)
         {

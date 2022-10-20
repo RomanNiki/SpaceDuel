@@ -5,7 +5,7 @@ namespace Models.Player.Weapon.Bullets
 {
     public class BulletMover : Mover, IFixedTickable
     {
-        private BulletModel _bullet;
+        private readonly BulletModel _bullet;
         
         public BulletMover(BulletModel bullet, Camera camera) : base(bullet, camera)
         {
@@ -14,14 +14,13 @@ namespace Models.Player.Weapon.Bullets
         
         protected override void Rotate(float direction, float deltaTime)
         {
-            _bullet.Rotation = direction;
+            _bullet.Rotation = Mathf.Atan2(_bullet.Velocity.y, _bullet.Velocity.x) * Mathf.Rad2Deg + 90f;
         }
 
         public void FixedTick()
         {
            LoopedMove();
-           
-           Rotate(Vector3.Angle(_bullet.Position, _bullet.Position + _bullet.Velocity), Time.deltaTime);
+           Rotate(_bullet.Velocity.x, Time.deltaTime);
         }
     }
 }

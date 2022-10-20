@@ -133,7 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 18467831}
   - component: {fileID: 18467832}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Reflection Proxy Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -585,7 +585,7 @@ PointEffector2D:
   m_UseColliderMask: 1
   m_ColliderMask:
     serializedVersion: 2
-    m_Bits: 1024
+    m_Bits: 1088
   m_ForceMagnitude: -20
   m_ForceVariation: 0
   m_DistanceScale: 0.8
@@ -605,7 +605,7 @@ GameObject:
   - component: {fileID: 498487403}
   - component: {fileID: 498487404}
   - component: {fileID: 498487405}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: DeathTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -730,7 +730,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 5500
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 1.02e-43, y: 0.000000008658667, z: 4.5904e-41, w: 0}
+  m_BoundingSphereOverride: {x: 4.5905e-41, y: -8.98526e-38, z: 4.5905e-41, w: 9.403955e-38}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -1373,7 +1373,7 @@ GameObject:
   - component: {fileID: 936384750}
   - component: {fileID: 936384749}
   - component: {fileID: 936384751}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SunLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1574,7 +1574,7 @@ Light:
   m_BounceIntensity: 0
   m_ColorTemperature: 6500
   m_UseColorTemperature: 1
-  m_BoundingSphereOverride: {x: 0, y: 0, z: 0, w: 19.219763}
+  m_BoundingSphereOverride: {x: 0, y: 1e-45, z: 9.1837e-41, w: 1.7410775e+25}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 14
@@ -1761,7 +1761,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1680116556770284292, guid: f7775c23ae0ca204e986bab3ab297608, type: 3}
       propertyPath: m_Mass
-      value: 3.1415927
+      value: 3.1415923
       objectReference: {fileID: 0}
     - target: {fileID: 1680116556770284292, guid: f7775c23ae0ca204e986bab3ab297608, type: 3}
       propertyPath: m_UseAutoMass
@@ -1846,7 +1846,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1311626075}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ReflexionProbes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1979,6 +1979,7 @@ Transform:
   m_Children:
   - {fileID: 223021056}
   - {fileID: 1357629858}
+  - {fileID: 1482045998}
   m_Father: {fileID: 2094420983}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1999,6 +2000,7 @@ MonoBehaviour:
   _monoInstallers:
   - {fileID: 223021057}
   - {fileID: 1357629859}
+  - {fileID: 1482045999}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -2016,6 +2018,52 @@ MonoBehaviour:
   _parentNewObjectsUnderSceneContext: 0
   _contractNames: []
   _parentContractNames: []
+--- !u!1 &1482045997
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1482045998}
+  - component: {fileID: 1482045999}
+  m_Layer: 0
+  m_Name: GameInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1482045998
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482045997}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1407978353}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1482045999
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1482045997}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d6c772876c054acdbc85da5a15232e3b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _settings:
+    BulletPrefab: {fileID: 7113131982927379651, guid: c5baf7dcf21e50b41b9a1a4b6ae8f0e3, type: 3}
 --- !u!114 &1528103235 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1680116556770284293, guid: f7775c23ae0ca204e986bab3ab297608, type: 3}
@@ -2224,7 +2272,7 @@ GameObject:
   - component: {fileID: 2050107239}
   - component: {fileID: 2050107238}
   - component: {fileID: 2050107237}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: ReflexionProbe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7087,7 +7135,7 @@ GameObject:
   - component: {fileID: 2129929874}
   - component: {fileID: 2129929873}
   - component: {fileID: 2129929872}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SunEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

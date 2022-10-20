@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6931185969395380474}
   - component: {fileID: 6931185969395380472}
   - component: {fileID: 6931185969395380473}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 6931185969923768293}
   - component: {fileID: 6931185969923768294}
   - component: {fileID: 4036066048963194874}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: PlayerUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -267,7 +267,7 @@ GameObject:
   - component: {fileID: 6931185970428442002}
   - component: {fileID: 6931185970428442000}
   - component: {fileID: 6931185970428442001}
-  m_Layer: 10
+  m_Layer: 5
   m_Name: Energy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
