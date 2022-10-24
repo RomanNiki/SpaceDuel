@@ -1,5 +1,4 @@
-﻿using System;
-using Presenters;
+﻿using Presenters;
 using UnityEngine;
 
 namespace Models.Player.Weapon
@@ -27,18 +26,9 @@ namespace Models.Player.Weapon
 
         protected override void InitBullet()
         {
-            var spawnPosition = PlayerModel.Position + PlayerModel.LookDir * _settings.BulletOffset;
-            _factory.Create(_settings.StartBulletSpeed, spawnPosition, PlayerModel.LookDir);
-        }
-        
-        [Serializable]
-        public class Settings
-        {
-            public AudioClip ShootSound;
-            public float ShootSoundVolume;
-            public float StartBulletSpeed;
-            public float MaxShootInterval;
-            public float BulletOffset;
+            var spawnPosition = PlayerModel.Position + PlayerModel.LookDir * _settings.SpawnOffset;
+            _factory.Create(_settings.StartForce, spawnPosition, PlayerModel.LookDir);
+            PlayerModel.SpendEnergy(_settings.EnergyCost);
         }
     }
 }

@@ -12,6 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5757db74320847f89d23cf8fa84d7988, type: 3}
   m_Name: GameSettingsInstaller
   m_EditorClassIdentifier: 
+  _gameInstaller:
+    BulletPrefab: {fileID: 7113131982927379651, guid: c5baf7dcf21e50b41b9a1a4b6ae8f0e3, type: 3}
   _targetFrameRate: 200
   _player:
     PlayerModel:
@@ -27,15 +29,18 @@ MonoBehaviour:
       HitSoundVolume: 1
     BulletGun:
       ShootSound: {fileID: 8300000, guid: 34c638d8d99ccfd44a261f13505ab317, type: 3}
+      EnergyCost: 1.5
       ShootSoundVolume: 1
-      StartBulletSpeed: 300
+      StartForce: 900
       MaxShootInterval: 0.15
-      BulletOffset: 2
+      SpawnOffset: 1.5
     MinGun:
-      BombPlaceSound: {fileID: 8300000, guid: aa66f043685a31e4bb90d0b6128bc3e1, type: 3}
-      BombPlaceSoundVolume: 1
-      MaxBombPlaceInterval: 0.3
-      BulletOffset: -5
+      ShootSound: {fileID: 0}
+      EnergyCost: 5
+      ShootSoundVolume: 1
+      StartForce: 0
+      MaxShootInterval: 1
+      SpawnOffset: -2
     Bullet:
-      StartEnergy: 100
+      StartEnergy: 4
       Damage: 10

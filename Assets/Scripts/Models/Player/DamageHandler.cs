@@ -8,20 +8,19 @@ namespace Models.Player
     {
         private readonly AudioSource _audioPlayer;
         private readonly Settings _settings;
-        private readonly PlayerModel _player;
-
-
-        public DamageHandler(PlayerModel player, Settings settings, AudioSource audioPlayer)
+        private readonly IDamageable _damageable;
+        
+        public DamageHandler(IDamageable damageable, Settings settings, AudioSource audioPlayer)
         {
             _audioPlayer = audioPlayer;
             _settings = settings;
-            _player = player;
+            _damageable = damageable;
         }
 
         public void TakeDamage(float damage)
         {
             _audioPlayer.PlayOneShot(_settings.HitSound, _settings.HitSoundVolume);
-            _player.TakeDamage(damage);
+            _damageable.TakeDamage(damage);
         }
 
         [Serializable]

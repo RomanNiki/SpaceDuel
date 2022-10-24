@@ -10,14 +10,15 @@ namespace Installers
     //[CreateAssetMenu(menuName = "Space Duel/Game Settings")]
     public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInstaller>
     {
-       // public EnemySpawner.Settings EnemySpawner;
-       // public GameRestartHandler.Settings GameRestartHandler;
-       // public GameInstaller.Settings GameInstaller;
+        // public EnemySpawner.Settings EnemySpawner;
+        // public GameRestartHandler.Settings GameRestartHandler;
         [SerializeField] private int _targetFrameRate = 200;
+        [SerializeField] private GameInstaller.Settings _gameInstaller;
         [SerializeField] private PlayerSettings _player;
-     
+
         public PlayerSettings Player => _player;
-        
+        public GameInstaller.Settings GameInstaller => _gameInstaller;
+
 
         [Serializable]
         public class PlayerSettings
@@ -25,11 +26,11 @@ namespace Installers
             public PlayerModel.Settings PlayerModel;
             public PlayerMover.Settings PlayerMover;
             public DamageHandler.Settings DamageHandler;
-            public BulletGun.Settings BulletGun;
-            public MineGun.Settings MinGun;
-            public BulletModel.Settings Bullet;
+            public DefaultGun.Settings BulletGun;
+            public DefaultGun.Settings MinGun;
+            public DamagerModel.Settings Bullet;
         }
-        
+
         public override void InstallBindings()
         {
             // Use IfNotBound to allow overriding for eg. from play mode tests
@@ -43,6 +44,7 @@ namespace Installers
             Container.BindInstance(_player.BulletGun).IfNotBound();
             Container.BindInstance(_player.MinGun).IfNotBound();
             Container.BindInstance(_player.Bullet).IfNotBound();
+            Container.BindInstance(GameInstaller).IfNotBound();
         }
     }
 }

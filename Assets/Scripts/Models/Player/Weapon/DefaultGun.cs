@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Models.Player.Weapon
 {
@@ -26,5 +27,16 @@ namespace Models.Player.Weapon
         protected abstract void PlaySound();
 
         protected abstract void InitBullet();
+        
+        [Serializable]
+        public class Settings
+        {
+            public AudioClip ShootSound;
+            public float EnergyCost;
+            public float ShootSoundVolume;
+            public float StartForce;
+            public float MaxShootInterval;
+            public float SpawnOffset;
+        }
     }
 }

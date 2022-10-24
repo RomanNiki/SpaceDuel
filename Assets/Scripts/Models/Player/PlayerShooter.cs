@@ -25,7 +25,7 @@ namespace Models.Player
             TryShoot(_secondWeapon);
         }
         
-        private void TryShoot(DefaultGun gun)
+        private static void TryShoot(DefaultGun gun)
         {
             if (gun.CanShoot())
                 gun.Shoot();

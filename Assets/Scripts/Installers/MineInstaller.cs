@@ -5,15 +5,14 @@ using Zenject;
 
 namespace Installers
 {
-    public class BulletInstaller : MonoInstaller<BulletInstaller>
+    public class MineInstaller : MonoInstaller<MineInstaller>
     {
         [SerializeField] private Settings _settings;
 
         public override void InstallBindings()
         {
-            Container.Bind<DamagerModel>().AsSingle().WithArguments(_settings.Rigidbody);
-            Container.BindInterfacesTo<BulletMover>().AsSingle();
-            Container.Bind<EnergySpender>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DamagerModel>().AsSingle().WithArguments(_settings.Rigidbody);
+            Container.BindInterfacesTo<EnergySpender>().AsSingle();
         }
 
         [Serializable]

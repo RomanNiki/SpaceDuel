@@ -14,27 +14,17 @@ namespace Models.Player.Weapon
 
         public override bool CanShoot()
         {
-            return Time.realtimeSinceStartup - LastFireTime > _settings.MaxBombPlaceInterval;
+            return Time.realtimeSinceStartup - LastFireTime > _settings.MaxShootInterval;
         }
         
         protected override void PlaySound()
         {
-            AudioSource.PlayOneShot(_settings.BombPlaceSound, _settings.BombPlaceSoundVolume);
+            AudioSource.PlayOneShot(_settings.ShootSound, _settings.ShootSoundVolume);
         }
 
         protected override void InitBullet()
         {
             throw new NotImplementedException();
-        }
-
-
-        [Serializable]
-        public class Settings
-        {
-            public AudioClip BombPlaceSound;
-            public float BombPlaceSoundVolume;
-            public float MaxBombPlaceInterval;
-            public float BulletOffset;
         }
     }
 }

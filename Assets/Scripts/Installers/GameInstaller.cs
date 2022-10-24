@@ -7,25 +7,35 @@ namespace Installers
 {
     public class GameInstaller : MonoInstaller
     {
-        [SerializeField] private Settings _settings;
-        
+        [Inject] private Settings _settings;
+
         public override void InstallBindings()
         {
+            Container.BindInterfacesAndSelfTo<PlayerInput>().AsSingle();
             Container.BindFactory<float, Vector3, Vector3, BulletPresenter, BulletPresenter.Factory>()
                 .FromPoolableMemoryPool<float, Vector3, Vector3, BulletPresenter, BulletPool>(poolBinder =>
                     poolBinder.WithInitialSize(20).FromSubContainerResolve()
                         .ByNewContextPrefab(_settings.BulletPrefab).UnderTransformGroup("Bullets"));
+            Container.BindFactory<Vector3, MinePresenter, MinePresenter.Factory>()
+                .FromPoolableMemoryPool<Vector3, MinePresenter, MinePoo>(poolBinder =>
+                    poolBinder.WithInitialSize(10).FromSubContainerResolve()
+                        .ByNewContextPrefab(_settings.BulletPrefab).UnderTransformGroup("Mines"));
         }
 
 
         private class BulletPool : MonoPoolableMemoryPool<float, Vector3, Vector3, IMemoryPool, BulletPresenter>
         {
         }
-        
+
+        private class MinePoo : MonoPoolableMemoryPool<Vector3, IMemoryPool, MinePresenter>
+        {
+        }
+
         [Serializable]
         public class Settings
         {
             public GameObject BulletPrefab;
+            public GameObject MinePrefab;
         }
     }
 }

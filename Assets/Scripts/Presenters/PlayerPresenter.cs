@@ -1,7 +1,6 @@
 ﻿using Models.Player;
 using Models.Player.Interfaces;
 using Models.Player.Weapon.Bullets;
-using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -16,7 +15,7 @@ namespace Presenters
         {
             if (col.transform.TryGetComponent<IDamageVisitor>(out var player))
             {
-                var health = player.Health();
+                var health = player.Health;
                 player.Visit(_playerModel);
                 TakeDamage(health);
             }
@@ -27,14 +26,13 @@ namespace Presenters
             _damageHandler.TakeDamage(value);
         }
         
-        public IReadOnlyReactiveProperty<float> HealthProperty => _playerModel.Health;
-        public IReadOnlyReactiveProperty<float> EnergyProperty => _playerModel.Energy;
         public Vector3 Position => _playerModel.Position;
-        public float Health() => HealthProperty.Value;
+        public float Health => _playerModel.Health.Value;
+        public PlayerModel Model => _playerModel;
 
-        public void Visit(BulletModel bullet)
+        public void Visit(DamagerModel damager)
         {
-            TakeDamage(bullet.Damage);
+            TakeDamage(damager.Damage);
         }
 
         public void Visit(PlayerModel playerModel)

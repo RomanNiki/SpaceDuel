@@ -1,25 +1,24 @@
-using TMPro;
 using UniRx;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Presenters
 {
     public class PlayerGuiPresenter : MonoBehaviour
     {
         private readonly CompositeDisposable _disposable = new();
-        [SerializeField] private TMP_Text _healthText;
-        [SerializeField] private string _healthTextTemplate;
-
-        [SerializeField] private TMP_Text _energyText;
-        [SerializeField] private string _energyTextTemplate;
+        [SerializeField] private Slider _healthSlider;
+        [SerializeField] private Slider _energySlider;
 
         [SerializeField] private Vector3 _offSet;
         [SerializeField] private PlayerPresenter _playerPresenter;
 
         private void Start()
         {
-            _playerPresenter.HealthProperty.Subscribe(OnHealthChanged);
-            _playerPresenter.EnergyProperty.Subscribe(OnEnergyChanged);
+            _playerPresenter.Model.Health.Subscribe(OnHealthChanged);
+            _playerPresenter.Model.Energy.Subscribe(OnEnergyChanged);
+            _energySlider.maxValue = _playerPresenter.Model.Health.Value;
+            _healthSlider.maxValue = _playerPresenter.Model.Energy.Value;
             Observable.EveryFixedUpdate().Subscribe(_ =>
             {
                 transform.position = _playerPresenter.Position + _offSet;
@@ -33,12 +32,14 @@ namespace Presenters
 
         private void OnEnergyChanged(float value)
         {
-            _energyText.text = value.ToString(_energyTextTemplate);
+            //  _energyText.text = Vector3.Angle(_playerPresenter.transform.forward, Vector3.zero - _playerPresenter.Position ).ToString(CultureInfo.InvariantCulture);
+            _energySlider.value = Mathf.Clamp(value, _energySlider.minValue,  _energySlider.maxValue);
         }
+        
 
         private void OnHealthChanged(float value)
         {
-            _healthText.text = value.ToString(_healthTextTemplate);
+            _healthSlider.value = Mathf.Clamp(value, _energySlider.minValue, _energySlider.maxValue);
         }
     }
 }

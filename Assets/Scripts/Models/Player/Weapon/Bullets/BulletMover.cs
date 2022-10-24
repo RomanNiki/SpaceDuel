@@ -5,22 +5,22 @@ namespace Models.Player.Weapon.Bullets
 {
     public class BulletMover : Mover, IFixedTickable
     {
-        private readonly BulletModel _bullet;
+        private readonly DamagerModel _damager;
         
-        public BulletMover(BulletModel bullet, Camera camera) : base(bullet, camera)
+        public BulletMover(DamagerModel damager, Camera camera) : base(damager, camera)
         {
-            _bullet = bullet;
+            _damager = damager;
         }
         
         protected override void Rotate(float direction, float deltaTime)
         {
-            _bullet.Rotation = Mathf.Atan2(_bullet.Velocity.y, _bullet.Velocity.x) * Mathf.Rad2Deg + 90f;
+            _damager.Rotation = Mathf.Atan2(_damager.Velocity.y, _damager.Velocity.x) * Mathf.Rad2Deg + 90f;
         }
 
         public void FixedTick()
         {
            LoopedMove();
-           Rotate(_bullet.Velocity.x, Time.deltaTime);
+           Rotate(_damager.Velocity.x, Time.deltaTime);
         }
     }
 }

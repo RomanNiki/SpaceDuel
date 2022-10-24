@@ -7,36 +7,33 @@ using Zenject;
 
 namespace Models.Player
 {
-    public class PlayerModel : Transformable, IDamageable
+    public class PlayerModel : Transformable, IDamageable, IEnergyContainer
     {
-        private readonly MeshRenderer _renderer;
+        private readonly ReactiveProperty<float> _energy;
+        private readonly ReactiveProperty<float> _health;
 
-        public PlayerModel(Settings settings, Rigidbody2D rigidBody,
-            MeshRenderer renderer, Team team, IDyingPolicy dyingPolicy, SignalBus signalBus) : base(rigidBody)
+        public PlayerModel(Settings settings, Rigidbody2D rigidBody, Team team, IDyingPolicy dyingPolicy, SignalBus signalBus) : base(rigidBody)
         {
-            Health = new ReactiveProperty<float>(settings.MaxHealth);
-            Energy = new ReactiveProperty<float>(settings.MaxEnergy);
-            _renderer = renderer;
+            _health = new ReactiveProperty<float>(settings.MaxHealth);
+            _energy = new ReactiveProperty<float>(settings.MaxEnergy);
             Team = team;
             Dead = Health.Select(dyingPolicy.Died).ToReactiveProperty();
-            Dead.Where(x => x).Subscribe(_ => { signalBus.Fire(new PlayerDiedMessage() {Team = Team}); });
+            Dead.Where(x => x).Subscribe(_ => { signalBus.Fire(new PlayerDiedMessage {Team = Team}); });
         }
 
-        public ReactiveProperty<float> Health { get; private set; }
-        public ReactiveProperty<float> Energy { get; private set; }
-        public IReadOnlyReactiveProperty<bool> Dead { get; private set; }
-        public Team Team { get; private set; }
-
-        public MeshRenderer Renderer => _renderer;
+        public IReadOnlyReactiveProperty<float> Health => _health;
+        public IReadOnlyReactiveProperty<float> Energy => _energy;
+        public IReadOnlyReactiveProperty<bool> Dead { get; }
+        public Team Team { get; }
 
         public void TakeDamage(float healthLoss)
         {
-            Health.Value = Mathf.Max(0.0f, Health.Value - healthLoss);
+            _health.Value = Mathf.Max(0.0f, Health.Value - healthLoss);
         }
-
+        
         public void SpendEnergy(float energyLoss)
         {
-            Energy.Value = Mathf.Max(0.0f, Energy.Value - energyLoss);
+            _energy.Value = Mathf.Max(0.0f, Energy.Value - energyLoss);
         }
 
         [Serializable]
