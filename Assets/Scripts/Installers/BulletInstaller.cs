@@ -11,9 +11,9 @@ namespace Installers
 
         public override void InstallBindings()
         {
-            Container.Bind<DamagerModel>().AsSingle().WithArguments(_settings.Rigidbody);
+            Container.BindInterfacesAndSelfTo<DamagerModel>().AsSingle().WithArguments(_settings.Rigidbody);
             Container.BindInterfacesTo<BulletMover>().AsSingle();
-            Container.Bind<EnergySpender>().AsSingle();
+            Container.BindInterfacesTo<EnergySpender>().AsSingle();
         }
 
         [Serializable]

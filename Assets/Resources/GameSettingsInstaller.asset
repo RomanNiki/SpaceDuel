@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5757db74320847f89d23cf8fa84d7988, type: 3}
   m_Name: GameSettingsInstaller
   m_EditorClassIdentifier: 
+  _targetFrameRate: 200
   _gameInstaller:
     BulletPrefab: {fileID: 7113131982927379651, guid: c5baf7dcf21e50b41b9a1a4b6ae8f0e3, type: 3}
-  _targetFrameRate: 200
+    MinePrefab: {fileID: 8862172488318726591, guid: fe5ed7c715c94894fbd195c8bc6cf337, type: 3}
   _player:
     PlayerModel:
       MaxHealth: 100
@@ -22,21 +23,26 @@ MonoBehaviour:
     PlayerMover:
       MoveSpeed: 14
       RotationSpeed: 80
-      RotationCost: 0.05
-      MoveCost: 0.08
+      RotationCost: 0.1
+      MoveCost: 0.16
     DamageHandler:
       HitSound: {fileID: 8300000, guid: f9517356afb533a41b9e7cb6f155031e, type: 3}
       HitSoundVolume: 1
+    SolarCharger:
+      SunPosition: {x: 0, y: 0, z: 0}
+      ChargeAmount: 0.25
+      MaxChargeDistance: 21
+      MinChargeDistance: 0
     BulletGun:
       ShootSound: {fileID: 8300000, guid: 34c638d8d99ccfd44a261f13505ab317, type: 3}
-      EnergyCost: 1.5
+      EnergyCost: 2
       ShootSoundVolume: 1
       StartForce: 900
       MaxShootInterval: 0.15
       SpawnOffset: 1.5
     MinGun:
-      ShootSound: {fileID: 0}
-      EnergyCost: 5
+      ShootSound: {fileID: 8300000, guid: aa66f043685a31e4bb90d0b6128bc3e1, type: 3}
+      EnergyCost: 7
       ShootSoundVolume: 1
       StartForce: 0
       MaxShootInterval: 1

@@ -11,7 +11,7 @@ namespace Models
             _rigidBody = rigidBody;
         }
         
-        public Vector3 LookDir => _rigidBody.transform.forward;
+        public Vector3 LookDir => _rigidBody.transform.up * -1;
         
         public float Rotation
         {

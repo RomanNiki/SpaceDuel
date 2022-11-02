@@ -27,17 +27,22 @@ namespace Models.Player.Weapon.Bullets
         public void SpendEnergy(float count)
         {
             _energy.Value = Mathf.Max(0.0f, Energy.Value - count);
+            Debug.Log(_energy.Value);
             if (Energy.Value == 0f)
             {
                 EnergyEnded?.Invoke();
             }
         }
 
+        public void ChargeEnergy(float count)
+        {
+            throw new NotImplementedException();
+        }
+
         public void Reset()
         {
             _energy.Value = _settings.StartEnergy;
             _rigidbody2D.velocity = Vector2.zero;
-            _rigidbody2D.position = Vector2.up * 40;
         }
 
         [Serializable]

@@ -7,15 +7,17 @@ using Zenject;
 
 namespace Models.Player
 {
-    public class PlayerModel : Transformable, IDamageable, IEnergyContainer
+    public sealed class PlayerModel : Transformable, IDamageable, IEnergyContainer
     {
         private readonly ReactiveProperty<float> _energy;
         private readonly ReactiveProperty<float> _health;
+        private readonly Settings _settings;
 
         public PlayerModel(Settings settings, Rigidbody2D rigidBody, Team team, IDyingPolicy dyingPolicy, SignalBus signalBus) : base(rigidBody)
         {
             _health = new ReactiveProperty<float>(settings.MaxHealth);
             _energy = new ReactiveProperty<float>(settings.MaxEnergy);
+            _settings = settings;
             Team = team;
             Dead = Health.Select(dyingPolicy.Died).ToReactiveProperty();
             Dead.Where(x => x).Subscribe(_ => { signalBus.Fire(new PlayerDiedMessage {Team = Team}); });
@@ -34,6 +36,11 @@ namespace Models.Player
         public void SpendEnergy(float energyLoss)
         {
             _energy.Value = Mathf.Max(0.0f, Energy.Value - energyLoss);
+        }
+        
+        public void ChargeEnergy(float energyLoss)
+        {
+            _energy.Value = Mathf.Min(_settings.MaxEnergy, Energy.Value + energyLoss);
         }
 
         [Serializable]

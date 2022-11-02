@@ -3,7 +3,7 @@ using UnityEngine.InputSystem;
 
 namespace Models.Player
 {
-    public class PlayerInputRouter : IDisposable
+    public sealed class PlayerInputRouter : IDisposable
     {
         private readonly PlayerShooter _shooter;
         private readonly InputActionMap _input;

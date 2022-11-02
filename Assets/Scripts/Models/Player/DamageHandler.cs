@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Models.Player
 {
-    public class DamageHandler : IDamageable
+    public sealed class DamageHandler : IDamageable
     {
         private readonly AudioSource _audioPlayer;
         private readonly Settings _settings;

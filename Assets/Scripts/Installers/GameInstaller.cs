@@ -17,9 +17,9 @@ namespace Installers
                     poolBinder.WithInitialSize(20).FromSubContainerResolve()
                         .ByNewContextPrefab(_settings.BulletPrefab).UnderTransformGroup("Bullets"));
             Container.BindFactory<Vector3, MinePresenter, MinePresenter.Factory>()
-                .FromPoolableMemoryPool<Vector3, MinePresenter, MinePoo>(poolBinder =>
+                .FromPoolableMemoryPool<Vector3, MinePresenter, MinePool>(poolBinder =>
                     poolBinder.WithInitialSize(10).FromSubContainerResolve()
-                        .ByNewContextPrefab(_settings.BulletPrefab).UnderTransformGroup("Mines"));
+                        .ByNewContextPrefab(_settings.MinePrefab).UnderTransformGroup("Mines"));
         }
 
 
@@ -27,7 +27,7 @@ namespace Installers
         {
         }
 
-        private class MinePoo : MonoPoolableMemoryPool<Vector3, IMemoryPool, MinePresenter>
+        private class MinePool : MonoPoolableMemoryPool<Vector3, IMemoryPool, MinePresenter>
         {
         }
 

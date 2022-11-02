@@ -2,7 +2,7 @@ using Models.Player.Interfaces;
 
 namespace Models.Player.DyingPolicies
 {
-    public class StandardDyingPolicy : IDyingPolicy
+    public sealed class StandardDyingPolicy : IDyingPolicy
     {
         public bool Died(float value)
         {

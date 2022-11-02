@@ -1,15 +1,17 @@
-﻿using System;
+﻿using Presenters;
 using UnityEngine;
 
 namespace Models.Player.Weapon
 {
-    public class MineGun : DefaultGun
+    public sealed class MineGun : DefaultGun
     {
         private readonly Settings _settings;
+        private readonly MinePresenter.Factory _factory;
         
-        public MineGun(AudioSource audioSource, PlayerModel playerModel, Settings settings) : base(audioSource, playerModel)
+        public MineGun(AudioSource audioSource, PlayerModel playerModel, Settings settings, MinePresenter.Factory factory) : base(audioSource, playerModel)
         {
             _settings = settings;
+            _factory = factory;
         }
 
         public override bool CanShoot()
@@ -24,7 +26,9 @@ namespace Models.Player.Weapon
 
         protected override void InitBullet()
         {
-            throw new NotImplementedException();
+            var spawnPosition = PlayerModel.Position + PlayerModel.LookDir * _settings.SpawnOffset;
+            _factory.Create(spawnPosition);
+            PlayerModel.SpendEnergy(_settings.EnergyCost);
         }
     }
 }

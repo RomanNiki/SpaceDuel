@@ -27,13 +27,13 @@ namespace Presenters
         public void OnDespawned()
         {
             _bulletModel.EnergyEnded -= OnEnergyEnded;
-            _bulletModel.Reset();
             _pool = null;
         }
 
         public void OnSpawned(float force, Vector3 position, Vector3 dir, IMemoryPool pool)
         {
             _bulletModel.EnergyEnded += OnEnergyEnded;
+            _bulletModel.Reset();
             _bulletModel.Position = position;
             _pool = pool;
             _bulletModel.AddForce(dir * force);

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Models.Player.Weapon
 {
-    public class BulletGun : DefaultGun
+    public sealed class BulletGun : DefaultGun
     {
         private readonly BulletPresenter.Factory _factory;
         private readonly Settings _settings;

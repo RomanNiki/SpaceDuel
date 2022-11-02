@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Models.Player
 {
-    public class PlayerShooter
+    public sealed class PlayerShooter
     {
         private readonly DefaultGun _firstWeapon;
         private readonly DefaultGun _secondWeapon;

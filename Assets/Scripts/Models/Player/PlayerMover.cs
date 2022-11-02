@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Models.Player
 {
-    public class PlayerMover : Mover, IFixedTickable
+    public sealed class PlayerMover : Mover, IFixedTickable
     {
         private readonly Settings _settings;
         private readonly PlayerInputRouter _inputRouter;

@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 598e2d32e2c7b0c418e030c3236d663a, type: 3}
   m_Name: ChromaticAberration
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   quality:
     m_OverrideState: 0
     m_Value: 3
@@ -131,7 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   active: 1
   rotation:
-    m_OverrideState: 1
+    m_OverrideState: 0
     m_Value: 90
   skyIntensityMode:
     m_OverrideState: 1
@@ -144,10 +144,10 @@ MonoBehaviour:
     m_Value: 1
   upperHemisphereLuxValue:
     m_OverrideState: 1
-    m_Value: 0.4660715
+    m_Value: 3436.987
   upperHemisphereLuxColor:
     m_OverrideState: 1
-    m_Value: {x: 0.18750614, y: 0.29181972, z: 0.5}
+    m_Value: {x: 0.5, y: 0.4999944, z: 0.49395365}
   desiredLuxValue:
     m_OverrideState: 1
     m_Value: 25000
@@ -303,7 +303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d7593b3a9277ac4696b20006c21dde2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   skyType:
     m_OverrideState: 1
     m_Value: 1
@@ -474,7 +474,7 @@ MonoBehaviour:
   active: 1
   screenFadeDistance:
     m_OverrideState: 1
-    m_Value: 0.001
+    m_Value: 0.757
 --- !u!114 &5002876554434076654
 MonoBehaviour:
   m_ObjectHideFlags: 3

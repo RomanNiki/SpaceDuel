@@ -1,3 +1,4 @@
+using Models.Player;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,10 +20,8 @@ namespace Presenters
             _playerPresenter.Model.Energy.Subscribe(OnEnergyChanged);
             _energySlider.maxValue = _playerPresenter.Model.Health.Value;
             _healthSlider.maxValue = _playerPresenter.Model.Energy.Value;
-            Observable.EveryFixedUpdate().Subscribe(_ =>
-            {
-                transform.position = _playerPresenter.Position + _offSet;
-            }).AddTo(_disposable);
+            Observable.EveryFixedUpdate().Subscribe(_ => { transform.position = _playerPresenter.Position + _offSet; })
+                .AddTo(_disposable);
         }
 
         private void OnDestroy()
@@ -32,10 +31,8 @@ namespace Presenters
 
         private void OnEnergyChanged(float value)
         {
-            //  _energyText.text = Vector3.Angle(_playerPresenter.transform.forward, Vector3.zero - _playerPresenter.Position ).ToString(CultureInfo.InvariantCulture);
-            _energySlider.value = Mathf.Clamp(value, _energySlider.minValue,  _energySlider.maxValue);
+            _energySlider.value = Mathf.Clamp(value, _energySlider.minValue, _energySlider.maxValue);
         }
-        
 
         private void OnHealthChanged(float value)
         {

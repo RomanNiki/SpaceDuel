@@ -28,6 +28,7 @@ namespace Installers
             Container.Bind<PlayerShooter>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputRouter>().AsSingle();
             Container.BindInterfacesTo<PlayerMover>().AsSingle();
+            Container.BindInterfacesTo<SolarCharger>().AsSingle();
         }
 
         [Serializable]

@@ -3,7 +3,7 @@ using Zenject;
 
 namespace Models.Player.Weapon.Bullets
 {
-    public class BulletMover : Mover, IFixedTickable
+    public sealed class BulletMover : Mover, IFixedTickable
     {
         private readonly DamagerModel _damager;
         

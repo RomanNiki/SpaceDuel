@@ -13,9 +13,6 @@
        _FormUParam("FormUParam" ,float) = 0.53
        _StepSize("StepSize" ,range(0.1, 0.9)) = 0.1
        _DarkMatter("DarkMatter" ,range(-1, 1)) = 0.300
-       _OffsetX("OffsetX" ,float) = 0.300
-       _OffsetY("OffsetY" ,float) = 0.300
-        
     }
     
      HLSLINCLUDE
@@ -59,8 +56,6 @@
             float _FormUParam;
             float _StepSize;
             float _DarkMatter;
-            float _OffsetX;
-            float _OffsetY;
             int _Iterations;
             float4 _Color;
             struct appdata
