@@ -6,7 +6,7 @@ namespace Models.Player.Interfaces
     {
         float Health { get; }
         void Visit(DamagerModel damager);
-        void Visit(PlayerModel playerModel);
+        void Visit(IDamageVisitor playerModel);
         void Visit(Sun sun);
     }
 }

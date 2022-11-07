@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
-using Zenject;
 
 namespace Models.Player.Weapon.Bullets
 {
-    public sealed class BulletMover : Mover, IFixedTickable
+    public sealed class BulletMover : Mover
     {
         private readonly DamagerModel _damager;
         
@@ -12,15 +11,15 @@ namespace Models.Player.Weapon.Bullets
             _damager = damager;
         }
         
-        protected override void Rotate(float direction, float deltaTime)
+        protected override void Rotate()
         {
             _damager.Rotation = Mathf.Atan2(_damager.Velocity.y, _damager.Velocity.x) * Mathf.Rad2Deg + 90f;
         }
 
-        public void FixedTick()
+        protected override void Move()
         {
-           LoopedMove();
-           Rotate(_damager.Velocity.x, Time.deltaTime);
         }
+
+        protected override bool CanMove() => true;
     }
 }

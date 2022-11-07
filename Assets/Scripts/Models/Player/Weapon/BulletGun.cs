@@ -7,7 +7,7 @@ namespace Models.Player.Weapon
     {
         private readonly BulletPresenter.Factory _factory;
         private readonly Settings _settings;
-        
+
         public BulletGun(AudioSource audioSource, Settings settings, PlayerModel playerModel, BulletPresenter.Factory factory) : base(audioSource, playerModel)
         {
             _factory = factory;

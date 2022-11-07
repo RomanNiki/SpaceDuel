@@ -1,13 +1,15 @@
-﻿using Models.Player.Weapon;
+﻿using Models.Pause;
+using Models.Player.Weapon;
 using UnityEngine.InputSystem;
 using Zenject;
 
 namespace Models.Player
 {
-    public sealed class PlayerShooter
+    public sealed class PlayerShooter : IPauseHandler
     {
         private readonly DefaultGun _firstWeapon;
         private readonly DefaultGun _secondWeapon;
+        private bool _isPause;
 
         public PlayerShooter([Inject (Id = WeaponEnum.Primary)]DefaultGun firstWeapon, [Inject (Id = WeaponEnum.Secondary)] DefaultGun secondWeapon)
         {
@@ -25,10 +27,15 @@ namespace Models.Player
             TryShoot(_secondWeapon);
         }
         
-        private static void TryShoot(DefaultGun gun)
+        private void TryShoot(DefaultGun gun)
         {
-            if (gun.CanShoot())
+            if (gun.CanShoot() && _isPause == false)
                 gun.Shoot();
+        }
+
+        public void SetPaused(bool isPaused)
+        {
+            _isPause = isPaused;
         }
     }
 }

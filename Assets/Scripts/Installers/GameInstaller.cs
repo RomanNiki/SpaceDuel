@@ -1,4 +1,5 @@
 ﻿using System;
+using Models;
 using Presenters;
 using UnityEngine;
 using Zenject;
@@ -20,9 +21,11 @@ namespace Installers
                 .FromPoolableMemoryPool<Vector3, MinePresenter, MinePool>(poolBinder =>
                     poolBinder.WithInitialSize(10).FromSubContainerResolve()
                         .ByNewContextPrefab(_settings.MinePrefab).UnderTransformGroup("Mines"));
+            Container.BindInterfacesAndSelfTo<RestartGameHandler>().AsSingle();
+   
+            Time.timeScale = 1f;
         }
-
-
+        
         private class BulletPool : MonoPoolableMemoryPool<float, Vector3, Vector3, IMemoryPool, BulletPresenter>
         {
         }

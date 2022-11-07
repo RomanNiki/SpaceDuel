@@ -13,10 +13,10 @@ namespace Presenters
 
         private void OnCollisionEnter2D(Collision2D col)
         {
-            if (col.transform.TryGetComponent<IDamageVisitor>(out var player))
+            if (col.transform.TryGetComponent<IDamageVisitor>(out var damageVisitor))
             {
-                var health = player.Health;
-                player.Visit(_playerModel);
+                var health = damageVisitor.Health;
+                damageVisitor.Visit(this);
                 TakeDamage(health);
             }
         }
@@ -35,9 +35,9 @@ namespace Presenters
             TakeDamage(damager.Damage);
         }
 
-        public void Visit(PlayerModel playerModel)
+        public void Visit(IDamageVisitor playerModel)
         {
-            TakeDamage(playerModel.Health.Value);
+            TakeDamage(playerModel.Health);
         }
 
         public void Visit(Sun sun)

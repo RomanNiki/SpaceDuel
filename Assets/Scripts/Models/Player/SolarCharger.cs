@@ -1,13 +1,16 @@
 ﻿using System;
+using Models.Pause;
 using UnityEngine;
 using Zenject;
 
 namespace Models.Player
 {
-    public sealed class SolarCharger : ITickable
+    public sealed class SolarCharger : ITickable, IPauseHandler
+
     {
         private readonly PlayerModel _playerModel;
         private readonly Settings _settings;
+        private bool _isPause;
 
         public SolarCharger(PlayerModel playerModel, Settings settings)
         {
@@ -17,6 +20,8 @@ namespace Models.Player
 
         public void Tick()
         {
+            if (_isPause)
+                return;
             _playerModel.ChargeEnergy(CalculateChargeCoefficient() * _settings.ChargeAmount);
         }
 
@@ -41,6 +46,11 @@ namespace Models.Player
         private static float ScaleValue(float min, float max, float value)
         {
             return (value - max) / (min - max);
+        }
+
+        public void SetPaused(bool isPaused)
+        {
+            _isPause = isPaused;
         }
 
         [Serializable]

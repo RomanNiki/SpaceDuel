@@ -16,7 +16,7 @@ namespace Presenters
 
         private void Awake()
         {
-            _defaultMask = gameObject.layer;
+            _defaultMask.value = gameObject.layer;
         }
 
         private void OnTriggerEnter2D(Collider2D col)
@@ -35,7 +35,7 @@ namespace Presenters
 
         public void OnDespawned()
         {
-            gameObject.layer = _defaultMask;
+            gameObject.layer = _defaultMask.value;
             _mineModel.Reset();
             _mineModel.EnergyEnded -= OnEnergyEnded;
             _pool = null;
@@ -51,7 +51,7 @@ namespace Presenters
         private void OnEnergyEnded()
         {
             _energyEnded.Invoke();
-            gameObject.layer = _noEnergyMask;
+            gameObject.layer = _noEnergyMask.value;
         }
         
         public class Factory : PlaceholderFactory<Vector3, MinePresenter>

@@ -1,10 +1,9 @@
 ﻿using System;
 using UnityEngine;
-using Zenject;
 
 namespace Models.Player
 {
-    public sealed class PlayerMover : Mover, IFixedTickable
+    public sealed class PlayerMover : Mover
     {
         private readonly Settings _settings;
         private readonly PlayerInputRouter _inputRouter;
@@ -17,37 +16,34 @@ namespace Models.Player
             _player = player;
         }
 
-        public void FixedTick()
+        protected override bool CanMove()
         {
-            if (_player.Energy.Value > 0 && _player.Dead.Value == false)
-            {
-                var deltaTime = Time.fixedDeltaTime;
-                if (_inputRouter.Accelerate)
-                {
-                    _player.AddForce(_player.LookDir * _settings.MoveSpeed);
-                    _player.SpendEnergy(_settings.MoveCost);
-                }
-
-                if (MathF.Abs(_inputRouter.Rotation) > 0.1f)
-                {
-                    Rotate(_inputRouter.Rotation, deltaTime);
-                    _player.SpendEnergy(_settings.RotationCost);
-                }
-            }
-
-            LoopedMove();
+            return _player.Energy.Value > 0 && _player.Dead.Value == false;
         }
 
-        protected override void Rotate(float direction, float deltaTime)
+        protected override void Rotate()
         {
-            if (direction == 0)
-                throw new InvalidOperationException(nameof(direction));
-
-            direction = direction > 0 ? 1 : -1;
+            if (MathF.Abs(_inputRouter.Rotation) < 0.1f)
+                return;
             
-            _player.Rotate(direction * (_settings.RotationSpeed * deltaTime));
+            if (_inputRouter.Rotation == 0)
+                throw new InvalidOperationException(nameof(_inputRouter.Rotation));
+
+            var direction = _inputRouter.Rotation > 0 ? 1 : -1;
+            
+            _player.Rotate(direction * (_settings.RotationSpeed * Time.fixedDeltaTime));
+            _player.SpendEnergy(_settings.RotationCost);
         }
-        
+
+        protected override void Move()
+        {
+            if (_inputRouter.Accelerate)
+            {
+                _player.AddForce(_player.LookDir * _settings.MoveSpeed);
+                _player.SpendEnergy(_settings.MoveCost);
+            }
+        }
+
         [Serializable]
         public class Settings
         {

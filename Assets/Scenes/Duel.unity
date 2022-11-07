@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 112000000, guid: 7951a095ce86eb64781e6fcb4cb905f1, type: 2}
-  m_LightingSettings: {fileID: 4890085278179872738, guid: b1b363f220a8f0e44bd5e90b12a71010, type: 2}
+  m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -184,7 +184,7 @@ GameObject:
   m_Component:
   - component: {fileID: 118998312}
   - component: {fileID: 118998313}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerInstaller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1540,40 +1540,14 @@ GameObject:
   - component: {fileID: 1287644912}
   - component: {fileID: 1287644911}
   - component: {fileID: 1287644910}
-  - component: {fileID: 1287644909}
-  m_Layer: 0
+  - component: {fileID: 1287644917}
+  m_Layer: 7
   m_Name: RedPlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &1287644909
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1287644908}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.006207825, y: -0.3230626}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2.4217534, y: 1.7036732}
-  m_EdgeRadius: 0
 --- !u!114 &1287644910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1714,6 +1688,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!58 &1287644917
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1287644908}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.0049662604, y: -0.25845003}
+  serializedVersion: 2
+  m_Radius: 0.96870136
 --- !u!1 &1311626074
 GameObject:
   m_ObjectHideFlags: 0
@@ -1747,50 +1737,6 @@ Transform:
   m_Father: {fileID: 2129929874}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1357629857
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1357629858}
-  - component: {fileID: 1357629859}
-  m_Layer: 0
-  m_Name: SignalBusInstaller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1357629858
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1357629857}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1407978353}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1357629859
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1357629857}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d53e4b59a594da194d6d89575a153bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1377552972
 GameObject:
   m_ObjectHideFlags: 0
@@ -1855,7 +1801,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 223021056}
-  - {fileID: 1357629858}
   - {fileID: 1482045998}
   m_Father: {fileID: 2094420983}
   m_RootOrder: 1
@@ -1876,7 +1821,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: a4b71c1ebc1ad434dbd2515f3740e5e8, type: 2}
   _monoInstallers:
   - {fileID: 223021057}
-  - {fileID: 1357629859}
   - {fileID: 1482045999}
   _installerPrefabs: []
   _autoRun: 1
@@ -1925,7 +1869,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1407978353}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1482045999
 MonoBehaviour:
@@ -1968,6 +1912,7 @@ MonoBehaviour:
   m_Script: {fileID: 1767938029}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Entries: []
 --- !u!4 &1600893484
 Transform:
   m_ObjectHideFlags: 19
@@ -1993,7 +1938,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1761838585}
   - component: {fileID: 1761838584}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2219,7 +2164,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1970445731}
   - component: {fileID: 1970445732}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Audio Source
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4272,7 +4217,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2102510105}
   - component: {fileID: 2102510104}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: PlayerInstaller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4475,7 +4420,7 @@ GameObject:
   - component: {fileID: 3469287837994040444}
   - component: {fileID: 3469287837994040443}
   - component: {fileID: 3469287837994040448}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BluePlayer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4605,8 +4550,8 @@ MonoBehaviour:
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
---- !u!61 &3469287837994040448
-BoxCollider2D:
+--- !u!58 &3469287837994040448
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4618,19 +4563,9 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.006207825, y: -0.3230626}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_Offset: {x: -0.0049662604, y: -0.25845003}
   serializedVersion: 2
-  m_Size: {x: 2.4217534, y: 1.7036732}
-  m_EdgeRadius: 0
+  m_Radius: 0.96870136
 --- !u!1001 &6931185971367971003
 PrefabInstance:
   m_ObjectHideFlags: 0

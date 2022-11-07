@@ -1,4 +1,5 @@
-﻿using Zenject;
+﻿using Messages;
+using Zenject;
 
 namespace Installers
 {
@@ -6,6 +7,7 @@ namespace Installers
     {
         public override void InstallBindings()
         {
+            Container.DeclareSignal<PlayerDiedMessage>();
             SignalBusInstaller.Install(Container);
         }
     }

@@ -1,4 +1,3 @@
-using Models.Player;
 using UniRx;
 using UnityEngine;
 using UnityEngine.UI;

@@ -25,7 +25,11 @@ namespace Models
             set => _rigidBody.position = value;
         }
 
-        public Vector3 Velocity => _rigidBody.velocity;
+        public Vector2 Velocity
+        {
+            get => _rigidBody.velocity;
+            set => _rigidBody.velocity = value;
+        }
 
         public void AddForce(Vector3 force)
         {

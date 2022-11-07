@@ -27,7 +27,6 @@ namespace Models.Player.Weapon.Bullets
         public void SpendEnergy(float count)
         {
             _energy.Value = Mathf.Max(0.0f, Energy.Value - count);
-            Debug.Log(_energy.Value);
             if (Energy.Value == 0f)
             {
                 EnergyEnded?.Invoke();

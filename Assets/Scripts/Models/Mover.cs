@@ -1,19 +1,23 @@
-﻿using UnityEngine;
+﻿using Models.Pause;
+using UnityEngine;
+using Zenject;
 
 namespace Models
 {
-    public abstract class Mover
+    public abstract class Mover : IFixedTickable, IPauseHandler
     {
         private readonly Transformable _transformable;
         private readonly Camera _camera;
-
+        private bool _isPause;
+        private Vector2 _lastVelocity;
+        
         public Mover(Transformable transformable, Camera camera)
         {
             _transformable = transformable;
             _camera = camera;
         }
         
-        protected void LoopedMove()
+        private void LoopedMove()
         {
             var nextPosition = _camera.WorldToViewportPoint(_transformable.Position) ;
             nextPosition.y = Mathf.Repeat(nextPosition.y, 1);
@@ -22,6 +26,35 @@ namespace Models
             _transformable.Position = point;
         }
 
-        protected abstract void Rotate(float direction, float deltaTime);
+        protected abstract void Rotate();
+        protected abstract void Move();
+        protected abstract bool CanMove();
+
+        public void FixedTick()
+        {
+            if (_isPause)
+                return;
+            
+            if (CanMove())
+            {
+                Move();
+                Rotate();
+            }
+            
+            LoopedMove();
+        }
+
+        public void SetPaused(bool isPaused)
+        {
+            _isPause = isPaused;
+            if (isPaused)
+            {
+                _lastVelocity = _transformable.Velocity;
+                _transformable.Velocity = Vector2.zero;
+                return;
+            }
+
+            _transformable.Velocity = _lastVelocity;
+        }
     }
 }

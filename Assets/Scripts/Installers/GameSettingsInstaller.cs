@@ -1,4 +1,5 @@
 ﻿using System;
+using Models;
 using Models.Player;
 using Models.Player.Weapon;
 using Models.Player.Weapon.Bullets;
@@ -10,16 +11,21 @@ namespace Installers
     //[CreateAssetMenu(menuName = "Space Duel/Game Settings")]
     public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInstaller>
     {
-        // public EnemySpawner.Settings EnemySpawner;
-        // public GameRestartHandler.Settings GameRestartHandler;
         [SerializeField] private int _targetFrameRate = 200;
-        [SerializeField] private GameInstaller.Settings _gameInstaller;
+        [SerializeField] private GameSettings _gameInstaller;
         [SerializeField] private PlayerSettings _player;
 
         public PlayerSettings Player => _player;
-        public GameInstaller.Settings GameInstaller => _gameInstaller;
+        public GameSettings GameInstaller => _gameInstaller;
+       
 
+        [Serializable]
+        public class GameSettings
+        {
+            public GameInstaller.Settings GameInstaller;
+            public RestartGameHandler.Settings RestartGameHandler;
 
+        }
         [Serializable]
         public class PlayerSettings
         {
@@ -34,10 +40,6 @@ namespace Installers
 
         public override void InstallBindings()
         {
-            // Use IfNotBound to allow overriding for eg. from play mode tests
-            /*Container.BindInstance(EnemySpawner).IfNotBound();
-            Container.BindInstance(GameRestartHandler).IfNotBound();
-            Container.BindInstance(GameInstaller).IfNotBound();*/
             Application.targetFrameRate = _targetFrameRate;
             Container.BindInstance(_player.PlayerModel).IfNotBound();
             Container.BindInstance(_player.PlayerMover).IfNotBound();
@@ -46,7 +48,8 @@ namespace Installers
             Container.BindInstance(_player.BulletGun).IfNotBound();
             Container.BindInstance(_player.MinGun).IfNotBound();
             Container.BindInstance(_player.Bullet).IfNotBound();
-            Container.BindInstance(GameInstaller).IfNotBound();
+            Container.BindInstance(GameInstaller.GameInstaller).IfNotBound();
+            Container.BindInstance(GameInstaller.RestartGameHandler).IfNotBound();
         }
     }
 }

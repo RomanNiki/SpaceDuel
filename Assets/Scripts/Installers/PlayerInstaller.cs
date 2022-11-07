@@ -2,7 +2,6 @@
 using Models;
 using Models.Player;
 using Models.Player.DyingPolicies;
-using Models.Player.Interfaces;
 using Models.Player.Weapon;
 using Presenters;
 using UnityEngine;
@@ -24,8 +23,8 @@ namespace Installers
             Container.BindInterfacesAndSelfTo<PlayerModel>().AsSingle().WithArguments(_settings.Rigidbody, _settings.Team);
             Container.Bind<DefaultGun>().WithId(WeaponEnum.Primary).To<BulletGun>().AsSingle();
             Container.Bind<DefaultGun>().WithId(WeaponEnum.Secondary).To<MineGun>().AsSingle();
-            Container.Bind<DamageHandler>().AsSingle().WhenInjectedInto<PlayerPresenter>();
-            Container.Bind<PlayerShooter>().AsSingle();
+            Container.BindInterfacesAndSelfTo<DamageHandler>().AsSingle().WhenInjectedInto<PlayerPresenter>();
+            Container.BindInterfacesAndSelfTo<PlayerShooter>().AsSingle();
             Container.BindInterfacesAndSelfTo<PlayerInputRouter>().AsSingle();
             Container.BindInterfacesTo<PlayerMover>().AsSingle();
             Container.BindInterfacesTo<SolarCharger>().AsSingle();
