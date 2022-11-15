@@ -16,11 +16,11 @@ namespace Installers
             Container.BindFactory<float, Vector3, Vector3, BulletPresenter, BulletPresenter.Factory>()
                 .FromPoolableMemoryPool<float, Vector3, Vector3, BulletPresenter, BulletPool>(poolBinder =>
                     poolBinder.WithInitialSize(20).FromSubContainerResolve()
-                        .ByNewContextPrefab(_settings.BulletPrefab).UnderTransformGroup("Bullets"));
+                        .ByNewContextPrefab(_settings._bulletPrefab).UnderTransformGroup("Bullets"));
             Container.BindFactory<Vector3, MinePresenter, MinePresenter.Factory>()
                 .FromPoolableMemoryPool<Vector3, MinePresenter, MinePool>(poolBinder =>
                     poolBinder.WithInitialSize(10).FromSubContainerResolve()
-                        .ByNewContextPrefab(_settings.MinePrefab).UnderTransformGroup("Mines"));
+                        .ByNewContextPrefab(_settings._minePrefab).UnderTransformGroup("Mines"));
             Container.BindInterfacesAndSelfTo<RestartGameHandler>().AsSingle();
    
             Time.timeScale = 1f;
@@ -37,8 +37,8 @@ namespace Installers
         [Serializable]
         public class Settings
         {
-            public GameObject BulletPrefab;
-            public GameObject MinePrefab;
+            public GameObject _bulletPrefab;
+            public GameObject _minePrefab;
         }
     }
 }

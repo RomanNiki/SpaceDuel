@@ -6,6 +6,5 @@ namespace Models.Player.Interfaces
     {
         IReadOnlyReactiveProperty<float> Energy { get; }
         void SpendEnergy(float count);
-        void ChargeEnergy(float count);
     }
 }

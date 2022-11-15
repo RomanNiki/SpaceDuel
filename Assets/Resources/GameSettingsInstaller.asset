@@ -15,8 +15,8 @@ MonoBehaviour:
   _targetFrameRate: 200
   _gameInstaller:
     GameInstaller:
-      BulletPrefab: {fileID: 7113131982927379651, guid: c5baf7dcf21e50b41b9a1a4b6ae8f0e3, type: 3}
-      MinePrefab: {fileID: 8862172488318726591, guid: fe5ed7c715c94894fbd195c8bc6cf337, type: 3}
+      _bulletPrefab: {fileID: 7113131982927379651, guid: c5baf7dcf21e50b41b9a1a4b6ae8f0e3, type: 3}
+      _minePrefab: {fileID: 8862172488318726591, guid: fe5ed7c715c94894fbd195c8bc6cf337, type: 3}
     RestartGameHandler:
       RestartDelay: 3
   _player:
@@ -25,6 +25,7 @@ MonoBehaviour:
       MaxEnergy: 100
     PlayerMover:
       MoveSpeed: 14
+      SlowDown: 1
       RotationSpeed: 80
       RotationCost: 0.1
       MoveCost: 0.16

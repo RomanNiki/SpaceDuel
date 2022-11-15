@@ -1,5 +1,12 @@
 {
   "dependencies": {
+    "com.leopotam.ecs": {
+      "version": "https://github.com/Leopotam/ecs.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "4282b66549f2b6c4296958b5703a86b7c213db4a"
+    },
     "com.unity.burst": {
       "version": "1.6.6",
       "depth": 1,
@@ -19,7 +26,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.collab-proxy": {
-      "version": "1.17.6",
+      "version": "1.17.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -274,6 +281,13 @@
         "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
+    },
+    "com.voody.unileo": {
+      "version": "https://github.com/voody2506/UniLeo.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "bbaed2aec8231b6e79369eecd5c3a9f3b80a97e2"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

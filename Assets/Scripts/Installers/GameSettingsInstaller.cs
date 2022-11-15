@@ -45,8 +45,8 @@ namespace Installers
             Container.BindInstance(_player.PlayerMover).IfNotBound();
             Container.BindInstance(_player.DamageHandler).IfNotBound();
             Container.BindInstance(_player.SolarCharger).IfNotBound();
-            Container.BindInstance(_player.BulletGun).IfNotBound();
-            Container.BindInstance(_player.MinGun).IfNotBound();
+            Container.BindInstance(_player.BulletGun).WithId(WeaponEnum.Primary).IfNotBound();
+            Container.BindInstance(_player.MinGun).WithId(WeaponEnum.Secondary).IfNotBound();
             Container.BindInstance(_player.Bullet).IfNotBound();
             Container.BindInstance(GameInstaller.GameInstaller).IfNotBound();
             Container.BindInstance(GameInstaller.RestartGameHandler).IfNotBound();

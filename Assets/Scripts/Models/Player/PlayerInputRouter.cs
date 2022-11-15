@@ -5,38 +5,36 @@ namespace Models.Player
 {
     public sealed class PlayerInputRouter : IDisposable
     {
-        private readonly PlayerShooter _shooter;
         private readonly InputActionMap _input;
 
-        public PlayerInputRouter(PlayerShooter shooter, InputActionMap input)
+        public PlayerInputRouter(InputActionMap input)
         {
             _input = input;
             _input.Enable();
-            _shooter = shooter;
             Rotate = _input.FindAction(nameof(Rotate), throwIfNotFound: true);
             Acceleration = _input.FindAction(nameof(Acceleration), throwIfNotFound: true);
             FirstShoot = _input.FindAction(nameof(FirstShoot), throwIfNotFound: true);
             SecondShoot = _input.FindAction(nameof(SecondShoot), throwIfNotFound: true);
-            SecondShoot.performed += _shooter.FirstWeaponShoot;
-            FirstShoot.performed += _shooter.SecondaryWeaponShoot;
         }
 
-        public InputAction SecondShoot { get; set; }
+        public InputAction SecondShoot { get; private set; }
 
-        public InputAction FirstShoot { get; set; }
+        public InputAction FirstShoot { get; private set; }
 
-        public InputAction Rotate { get; set; }
+        public InputAction Rotate { get; private set; }
 
-        public InputAction Acceleration { get; set; }
+        public InputAction Acceleration { get; private set; }
 
         public float Rotation => Rotate.ReadValue<float>();
         public bool Accelerate => Acceleration.phase == InputActionPhase.Performed;
 
         public void Dispose()
         {
-            _input.Disable();
-            FirstShoot.performed -= _shooter.FirstWeaponShoot;
-            SecondShoot.performed -= _shooter.SecondaryWeaponShoot;
+            _input?.Dispose();
+            SecondShoot?.Dispose();
+            FirstShoot?.Dispose();
+            Rotate?.Dispose();
+            Acceleration?.Dispose();
         }
     }
 }
