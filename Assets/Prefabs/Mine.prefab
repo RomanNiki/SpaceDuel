@@ -58,10 +58,10 @@ GameObject:
   - component: {fileID: 565561378845149500}
   - component: {fileID: 8302356823289222555}
   - component: {fileID: 183589385993661751}
-  - component: {fileID: 2628015398048072205}
   - component: {fileID: 5739015251996936715}
   - component: {fileID: 6422184345312437341}
   - component: {fileID: 2949864341764781081}
+  - component: {fileID: 8756628678509515300}
   m_Layer: 0
   m_Name: Mine
   m_TagString: Untagged
@@ -153,24 +153,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2628015398048072205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8862172488318726591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c8856ad8baff421191c96d4c6562e5f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _noEnergyMask:
-    serializedVersion: 2
-    m_Bits: 1024
-  _energyEnded:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!50 &5739015251996936715
 Rigidbody2D:
   serializedVersion: 4
@@ -221,8 +203,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - {fileID: 2628015398048072205}
+  - {fileID: 8756628678509515300}
   _identifier: 
   _useSceneContext: 0
   _context: {fileID: 0}
   _bindType: 0
+--- !u!114 &8756628678509515300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8862172488318726591}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b738ec6d68544eaaa901a31c69df0b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

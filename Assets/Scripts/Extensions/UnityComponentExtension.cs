@@ -1,4 +1,7 @@
-﻿using UnityEngine;
+﻿using Components.Extensions;
+using Extensions.EntityToGameObject;
+using Leopotam.Ecs;
+using UnityEngine;
 
 namespace Extensions
 {
@@ -23,5 +26,19 @@ namespace Extensions
             var providerExist = gameObject.TryGetComponent<EcsUnityProvider>(out _);
             return providerExist;
         }
+        
+            public static void AddEventToStack<T>(in this EcsEntity entity)
+                where T : struct
+            {
+                var eventComponent = new T();
+                AddEventToStack(entity, eventComponent);
+            }
+
+            public static void AddEventToStack<T>(in this EcsEntity entity, in T eventComponent)
+                where T : struct
+            {
+                ref var containerComponents = ref entity.Get<ContainerComponents<T>>();
+                containerComponents.List.Add(eventComponent);
+            }
     }
 }

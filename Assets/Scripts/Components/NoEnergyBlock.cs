@@ -1,6 +1,8 @@
-﻿namespace Components
+﻿using Leopotam.Ecs;
+
+namespace Components
 {
-    public struct NoEnergyBlock
+    public struct NoEnergyBlock : IEcsIgnoreInFilter
     {
     }
 }

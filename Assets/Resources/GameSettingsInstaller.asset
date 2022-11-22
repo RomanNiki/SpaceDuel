@@ -19,19 +19,16 @@ MonoBehaviour:
       _minePrefab: {fileID: 8862172488318726591, guid: fe5ed7c715c94894fbd195c8bc6cf337, type: 3}
     RestartGameHandler:
       RestartDelay: 3
+    Friction:
+      FrictionCoefficient: 0.3
   _player:
-    PlayerModel:
-      MaxHealth: 100
-      MaxEnergy: 100
-    PlayerMover:
-      MoveSpeed: 14
-      SlowDown: 1
-      RotationSpeed: 80
+    Move:
+      MoveForce: 19
+    Rotate:
+      RotationSpeed: 90
+    Energy:
       RotationCost: 0.1
-      MoveCost: 0.16
-    DamageHandler:
-      HitSound: {fileID: 8300000, guid: f9517356afb533a41b9e7cb6f155031e, type: 3}
-      HitSoundVolume: 1
+      MoveCost: 0.15
     SolarCharger:
       SunPosition: {x: 0, y: 0, z: 0}
       ChargeAmount: 0.25
@@ -51,6 +48,3 @@ MonoBehaviour:
       StartForce: 0
       MaxShootInterval: 1
       SpawnOffset: -2
-    Bullet:
-      StartEnergy: 4
-      Damage: 10

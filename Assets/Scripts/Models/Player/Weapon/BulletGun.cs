@@ -1,5 +1,10 @@
-﻿using Presenters;
-using UnityEngine;
+﻿using Components;
+using Enums;
+using Extensions;
+using Leopotam.Ecs;
+using Models.Player.Weapon.Bullets;
+using Presenters;
+using Zenject;
 
 namespace Models.Player.Weapon
 {
@@ -8,27 +13,17 @@ namespace Models.Player.Weapon
         private readonly BulletPresenter.Factory _factory;
         private readonly Settings _settings;
 
-        public BulletGun(AudioSource audioSource, Settings settings, PlayerModel playerModel, BulletPresenter.Factory factory) : base(audioSource, playerModel)
+        public BulletGun(ref EcsEntity weapon, Settings settings, [Inject(Id = BulletsEnum.Bullet)] BulletPresenter.Factory factory) : base(ref weapon)
         {
-            _factory = factory;
             _settings = settings;
+            _factory = factory;
         }
 
-        public override bool CanShoot()
+        public override EcsEntity SpawnBullet()
         {
-            return Time.realtimeSinceStartup - LastFireTime > _settings.MaxShootInterval;
-        }
-
-        protected override void PlaySound()
-        {
-            AudioSource.PlayOneShot(_settings.ShootSound, _settings.ShootSoundVolume);
-        }
-
-        protected override void InitBullet()
-        {
-            var spawnPosition = PlayerModel.Position + PlayerModel.LookDir * _settings.SpawnOffset;
-            _factory.Create(_settings.StartForce, spawnPosition, PlayerModel.LookDir);
-            PlayerModel.SpendEnergy(_settings.EnergyCost);
+            var bullet = _factory.Create();
+            ref var entity = ref bullet.GetProvider().Entity;
+            return entity;
         }
     }
 }

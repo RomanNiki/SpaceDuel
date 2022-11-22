@@ -7,6 +7,20 @@
       "dependencies": {},
       "hash": "4282b66549f2b6c4296958b5703a86b7c213db4a"
     },
+    "com.leopotam.ecs-ui": {
+      "version": "https://github.com/Leopotam/ecs-ui.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "70cd76063aae51a44059c95710c19c5d09cfd550"
+    },
+    "com.leopotam.ecs-unityintegration": {
+      "version": "https://github.com/Leopotam/ecs-unityintegration.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {},
+      "hash": "16f527e942e4c03efabff357d718c4ba0092a477"
+    },
     "com.unity.burst": {
       "version": "1.6.6",
       "depth": 1,
@@ -88,7 +102,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.inputsystem": {
-      "version": "1.4.3",
+      "version": "1.4.4",
       "depth": 0,
       "source": "registry",
       "dependencies": {

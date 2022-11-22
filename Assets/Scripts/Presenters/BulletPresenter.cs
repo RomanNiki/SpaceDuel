@@ -1,50 +1,31 @@
-﻿using Models.Player.Interfaces;
-using Models.Player.Weapon.Bullets;
-using UnityEngine;
+﻿using Components.Unit.MoveComponents;
+using Extensions;
+using Extensions.EntityToGameObject;
+using Leopotam.Ecs;
 using Zenject;
 
 namespace Presenters
 {
-    public class BulletPresenter : MonoBehaviour, IPoolable<float, Vector3, Vector3, IMemoryPool>
+    public class BulletPresenter : EcsUnityNotifier, IPoolable<IMemoryPool>
     {
-        [Inject] private DamagerModel _bulletModel;
-        private IMemoryPool _pool;
+        private View _view;
 
-        private void OnTriggerEnter2D(Collider2D col)
+        private void Start()
         {
-            if (col.usedByEffector)
-                return;
-            
-            if (col.transform.TryGetComponent(out IDamageVisitor visitor))
-            {
-                visitor.Visit(_bulletModel);
-                _pool?.Despawn(this);
-            }
-            
-            _pool?.Despawn(this);
+            _view = transform.GetProvider().Entity.Get<View>();
         }
 
         public void OnDespawned()
         {
-            _bulletModel.EnergyEnded -= OnEnergyEnded;
-            _pool = null;
+            _view.ViewObject.SetPool(null);
         }
 
-        public void OnSpawned(float force, Vector3 position, Vector3 dir, IMemoryPool pool)
+        public void OnSpawned(IMemoryPool pool)
         {
-            _bulletModel.EnergyEnded += OnEnergyEnded;
-            _bulletModel.Reset();
-            _bulletModel.Position = position;
-            _pool = pool;
-            _bulletModel.AddForce(dir * force);
+            _view.ViewObject.SetPool(pool);
         }
 
-        private void OnEnergyEnded()
-        {
-            _pool.Despawn(this);
-        }
-
-        public class Factory : PlaceholderFactory<float, Vector3, Vector3, BulletPresenter>
+        public class Factory : PlaceholderFactory<BulletPresenter>
         {
         }
     }

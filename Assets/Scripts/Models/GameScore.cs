@@ -1,6 +1,4 @@
 ﻿using System;
-using Messages;
-using Models.Player;
 using TMPro;
 using Zenject;
 
@@ -19,19 +17,10 @@ namespace Models
             _settings = settings;
         }
         
-        public void Initialize()
-        {
-            _signalBus.Subscribe<PlayerDiedMessage>(OnPlayerDied);
-        }
-
-        public void Dispose()
-        {
-            _signalBus.Unsubscribe<PlayerDiedMessage>(OnPlayerDied);
-        }
         
-        private void OnPlayerDied(PlayerDiedMessage message)
+        private void OnPlayerDied()
         {
-            switch (message.Team)
+            /*switch (message.Team)
             {
                 case Team.Blue:
                     _redScore++;
@@ -43,7 +32,7 @@ namespace Models
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
-            }
+            }*/
         }
 
         private void ChangeScore(TMP_Text text, int score)
@@ -57,6 +46,16 @@ namespace Models
             public TMP_Text BlueScore;
             public TMP_Text RedScore;
             public string ScoreTextFormat;
+        }
+
+        public void Initialize()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

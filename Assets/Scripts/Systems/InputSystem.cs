@@ -1,12 +1,10 @@
-﻿using Components.Player.Move;
-using Components.Player.MoveComponents;
+﻿using Components.Events.InputEvents;
+using Enums;
 using Events.InputEvents;
 using Extensions;
 using Leopotam.Ecs;
 using Models;
 using Models.Player;
-using Tags;
-using UnityEngine.InputSystem;
 using Zenject;
 
 namespace Systems
@@ -15,7 +13,6 @@ namespace Systems
     {
         [Inject] private PlayerInput _playerInput;
         private readonly EcsWorld _world = null;
-        private readonly EcsFilter<PlayerTag, InputRouter, InputData> _playerFilter = null;
 
         private void SendMessageInGame<T>(in T messageEvent)
             where T : struct
@@ -23,22 +20,9 @@ namespace Systems
             _world.SendMessage(messageEvent);
         }
 
-        public void Run()
-        {
-            foreach (var i in _playerFilter)
-            {
-                ref var inputComponent = ref _playerFilter.Get2(i);
-                ref var inputData = ref _playerFilter.Get3(i);
-
-                inputData.Accelerate = inputComponent.InputRoute.Accelerate;
-                inputData.Rotation = inputComponent.InputRoute.Rotation;
-                inputData.FirstShoot = inputComponent.InputRoute.FirstShoot.phase == InputActionPhase.Performed;
-                inputData.SecondShoot = inputComponent.InputRoute.SecondShoot.phase == InputActionPhase.Performed;
-            }
-        }
-
         public void Init()
         {
+            _playerInput.Enable();
             InitMoveInput();
             InitShootInput();
         }
@@ -46,7 +30,7 @@ namespace Systems
         private void InitShootInput()
         {
             _playerInput.Player.FirstShoot.started += _ =>
-                SendMessageInGame(new InputShootStartedEvent {PlayerTeam = Team.Red, Weapon = WeaponEnum.Primary});
+                SendMessageInGame(new InputShootStartedEvent { PlayerTeam = Team.Red, Weapon = WeaponEnum.Primary});
 
             _playerInput.Player1.FirstShoot.started += _ =>
                 SendMessageInGame(new InputShootStartedEvent {PlayerTeam = Team.Blue, Weapon = WeaponEnum.Primary});

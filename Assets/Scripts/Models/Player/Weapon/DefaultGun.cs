@@ -1,33 +1,20 @@
 ﻿using System;
+using Leopotam.Ecs;
 using UnityEngine;
 
 namespace Models.Player.Weapon
 {
     public abstract class DefaultGun
     {
-        protected readonly AudioSource AudioSource;
-        protected float LastFireTime;
-        protected readonly PlayerModel PlayerModel;
+        protected readonly EcsEntity Weapon;
 
-        protected DefaultGun(AudioSource audioSource, PlayerModel playerModel)
+        protected DefaultGun(ref EcsEntity weapon)
         {
-            AudioSource = audioSource;
-            PlayerModel = playerModel;
+            Weapon = weapon;
         }
-
-        public abstract bool CanShoot();
-
-        public void Shoot()
-        {
-            PlaySound();
-            InitBullet();
-            LastFireTime = Time.realtimeSinceStartup;
-        }
-
-        protected abstract void PlaySound();
-
-        protected abstract void InitBullet();
         
+        public abstract EcsEntity SpawnBullet();
+
         [Serializable]
         public class Settings
         {

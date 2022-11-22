@@ -1,8 +1,9 @@
 ﻿using System;
+using Enums;
 using Models;
-using Models.Player;
 using Models.Player.Weapon;
-using Models.Player.Weapon.Bullets;
+using Systems.Unit;
+using Systems.Unit.Movement;
 using UnityEngine;
 using Zenject;
 
@@ -24,32 +25,32 @@ namespace Installers
         {
             public GameInstaller.Settings GameInstaller;
             public RestartGameHandler.Settings RestartGameHandler;
+            public FrictionSystem.Settings Friction;
 
         }
         [Serializable]
         public class PlayerSettings
         {
-            public PlayerModel.Settings PlayerModel;
-            public PlayerMover.Settings PlayerMover;
-            public DamageHandler.Settings DamageHandler;
-            public SolarCharger.Settings SolarCharger;
+            public PlayerForceSystem.Settings Move;
+            public PlayerRotateSystem.Settings Rotate;
+            public EnergySpendSystem.Settings Energy;
+            public EnergyChargeSystem.Settings SolarCharger;
             public DefaultGun.Settings BulletGun;
             public DefaultGun.Settings MinGun;
-            public DamagerModel.Settings Bullet;
         }
 
         public override void InstallBindings()
         {
             Application.targetFrameRate = _targetFrameRate;
-            Container.BindInstance(_player.PlayerModel).IfNotBound();
-            Container.BindInstance(_player.PlayerMover).IfNotBound();
-            Container.BindInstance(_player.DamageHandler).IfNotBound();
+            Container.BindInstance(_player.Move).IfNotBound();
+            Container.BindInstance(_player.Rotate).IfNotBound();
+            Container.BindInstance(_player.Energy).IfNotBound();
             Container.BindInstance(_player.SolarCharger).IfNotBound();
             Container.BindInstance(_player.BulletGun).WithId(WeaponEnum.Primary).IfNotBound();
             Container.BindInstance(_player.MinGun).WithId(WeaponEnum.Secondary).IfNotBound();
-            Container.BindInstance(_player.Bullet).IfNotBound();
             Container.BindInstance(GameInstaller.GameInstaller).IfNotBound();
             Container.BindInstance(GameInstaller.RestartGameHandler).IfNotBound();
+            Container.BindInstance(GameInstaller.Friction).IfNotBound();
         }
     }
 }

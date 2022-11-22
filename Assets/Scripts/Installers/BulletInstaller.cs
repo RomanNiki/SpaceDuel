@@ -1,5 +1,4 @@
 ﻿using System;
-using Models.Player.Weapon.Bullets;
 using UnityEngine;
 using Zenject;
 
@@ -11,14 +10,17 @@ namespace Installers
 
         public override void InstallBindings()
         {
-            Container.BindInterfacesAndSelfTo<DamagerModel>().AsSingle().WithArguments(_settings.Rigidbody);
-            Container.BindInterfacesTo<BulletMover>().AsSingle();
-            Container.BindInterfacesTo<EnergySpender>().AsSingle();
+            /*Container.BindInterfacesAndSelfTo<DamagerModel>().AsSingle().WithArguments(_settings.Rigidbody);
+           // Container.BindInterfacesTo<BulletMover>().AsSingle();
+            Container.BindInterfacesTo<EnergySpender>().AsSingle();*/
         }
 
         [Serializable]
         public class Settings
-        {
+        {  
+            public float Health;
+            public float Energy;
+            public float Damage;
             public Rigidbody2D Rigidbody;
         }
     }

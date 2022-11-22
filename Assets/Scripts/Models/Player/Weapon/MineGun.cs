@@ -1,34 +1,26 @@
-﻿using Presenters;
-using UnityEngine;
+﻿using Components;
+using Enums;
+using Extensions;
+using Leopotam.Ecs;
+using Models.Player.Weapon.Bullets;
+using Presenters;
+using Zenject;
 
 namespace Models.Player.Weapon
 {
     public sealed class MineGun : DefaultGun
     {
-        private readonly Settings _settings;
-        private readonly MinePresenter.Factory _factory;
+        private readonly BulletPresenter.Factory _factory;
         
-        public MineGun(AudioSource audioSource, PlayerModel playerModel, Settings settings, MinePresenter.Factory factory) : base(audioSource, playerModel)
+        public MineGun(ref EcsEntity weapon, [Inject(Id = BulletsEnum.Mine)] BulletPresenter.Factory factory) : base(ref weapon)
         {
-            _settings = settings;
             _factory = factory;
         }
-
-        public override bool CanShoot()
-        {
-            return Time.realtimeSinceStartup - LastFireTime > _settings.MaxShootInterval;
-        }
         
-        protected override void PlaySound()
+        public override EcsEntity SpawnBullet()
         {
-            AudioSource.PlayOneShot(_settings.ShootSound, _settings.ShootSoundVolume);
-        }
-
-        protected override void InitBullet()
-        {
-            var spawnPosition = PlayerModel.Position + PlayerModel.LookDir * _settings.SpawnOffset;
-            _factory.Create(spawnPosition);
-            PlayerModel.SpendEnergy(_settings.EnergyCost);
+            var mine =  _factory.Create();
+            return mine.GetProvider().Entity;
         }
     }
 }

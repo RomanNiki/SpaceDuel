@@ -1,6 +1,6 @@
 ﻿using System;
-using Models.Pause;
 using Models.Player.Interfaces;
+using Pause;
 using UnityEngine;
 using Zenject;
 

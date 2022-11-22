@@ -1,6 +1,5 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
-using Messages;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
@@ -17,18 +16,9 @@ namespace Models
             _signalBus = signalBus;
             _settings = settings;
         }
+        
 
-        public void Initialize()
-        {
-            _signalBus.Subscribe<PlayerDiedMessage>(OnPlayerDied);
-        }
-
-        public void Dispose()
-        {
-            _signalBus.Unsubscribe<PlayerDiedMessage>(OnPlayerDied);
-        }
-
-        private async void OnPlayerDied(PlayerDiedMessage message)
+        private async void OnPlayerDied()
         {
             await SlowDownTime();
             await SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex).ToUniTask().ContinueWith(() =>
@@ -53,6 +43,16 @@ namespace Models
         public class Settings
         {
             public float RestartDelay;
+        }
+
+        public void Initialize()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Dispose()
+        {
+            throw new NotImplementedException();
         }
     }
 }

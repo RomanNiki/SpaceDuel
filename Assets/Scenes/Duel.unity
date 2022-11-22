@@ -221,6 +221,8 @@ MonoBehaviour:
   _settings:
     Rigidbody: {fileID: 3469287837994040445}
     AudioSource: {fileID: 1970445732}
+    MaxHealth: 100
+    MaxEnergy: 100
     Team: 1
 --- !u!1 &223021055
 GameObject:
@@ -4238,6 +4240,8 @@ MonoBehaviour:
   _settings:
     Rigidbody: {fileID: 1287644912}
     AudioSource: {fileID: 1761838584}
+    MaxHealth: 100
+    MaxEnergy: 100
     Team: 0
 --- !u!4 &2102510105
 Transform:
@@ -4264,7 +4268,9 @@ GameObject:
   m_Component:
   - component: {fileID: 2129929874}
   - component: {fileID: 2129929873}
+  - component: {fileID: 2129929876}
   - component: {fileID: 2129929872}
+  - component: {fileID: 2129929875}
   m_Layer: 3
   m_Name: SunEffect
   m_TagString: Untagged
@@ -4386,6 +4392,40 @@ Transform:
   m_Father: {fileID: 1377552973}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2129929875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129929871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c9bd89917ab4519bc6b0874bd3d87f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _settings:
+    Transform: {fileID: 498487403}
+    SunPosition: {x: 0, y: 0}
+    GravityForce: 0.1
+--- !u!114 &2129929876
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129929871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08eca9f7688a0a24685b89133b020c8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scriptableObjectInstallers: []
+  _monoInstallers:
+  - {fileID: 2129929875}
+  _installerPrefabs: []
+  _autoRun: 1
+  _kernel: {fileID: 0}
 --- !u!4 &543450651862545375
 Transform:
   m_ObjectHideFlags: 0
