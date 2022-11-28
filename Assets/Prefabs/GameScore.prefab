@@ -463,9 +463,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _settings:
-    BlueScore: {fileID: 7364889111363022380}
-    RedScore: {fileID: 7364889110343868890}
-    ScoreTextFormat: 
+    BlueTeamScoreText: {fileID: 7364889111363022380}
+    RedTeamScoreText: {fileID: 7364889110343868890}
 --- !u!1 &7364889112094911811
 GameObject:
   m_ObjectHideFlags: 0

@@ -1,4 +1,4 @@
-﻿using Pause;
+﻿using Model.Pause;
 using Zenject;
 
 namespace Installers

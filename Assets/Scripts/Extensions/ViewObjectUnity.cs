@@ -1,7 +1,7 @@
-﻿using Components;
-using JetBrains.Annotations;
+﻿using JetBrains.Annotations;
+using Model.Components;
+using Model.Components.Extensions.Pool;
 using UnityEngine;
-using Zenject;
 
 namespace Extensions
 {
@@ -20,13 +20,13 @@ namespace Extensions
         }
 
         public Vector2 Velocity { get => _rigidbody2D.velocity; set => _rigidbody2D.velocity = value ; }
-        [CanBeNull] private IMemoryPool _poolObject;
+        [CanBeNull] private readonly IPoolObject _poolObject;
         [NotNull] private readonly Rigidbody2D _rigidbody2D;
 
-        public ViewObjectUnity([NotNull] Rigidbody2D rigidbody2D, IMemoryPool pool = null)
+        public ViewObjectUnity([NotNull] Rigidbody2D rigidbody2D, IPoolObject poolObject = null)
         {
             _rigidbody2D = rigidbody2D;
-            _poolObject = pool;
+            _poolObject = poolObject;
         }
 
         public void MoveTo(in Vector2 vector2)
@@ -34,16 +34,11 @@ namespace Extensions
             _rigidbody2D.MovePosition(vector2);
         }
 
-        public void SetPool(IMemoryPool pool)
-        {
-            _poolObject = pool;
-        }
-
         public void Destroy()
         {
             if (_poolObject != null)
             {
-                _poolObject.Despawn(_rigidbody2D.gameObject);
+                _poolObject.PoolRecycle();
             }
             else
             {

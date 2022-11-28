@@ -1,8 +1,11 @@
 ﻿using System;
-using Components;
+using Controller.EntityToGameObject;
 using Extensions;
-using Extensions.EntityToGameObject;
 using Leopotam.Ecs;
+using Model.Components;
+using Model.Components.Requests;
+using Model.Components.Unit;
+using Model.Components.Unit.MoveComponents;
 using UnityEngine;
 using Zenject;
 
@@ -24,8 +27,10 @@ namespace Installers
         {
             var sunEntity = _world.NewEntity();
             ref var sun = ref sunEntity.Get<Sun>();
-            sun.Position = _settings.SunPosition;
+            sunEntity.Get<TransformData>().Position = _settings.SunPosition;
             sun.GravityForce = _settings.GravityForce;
+            sun.Radius = _settings.Radius;
+            sunEntity.Get<ChargeContainer>().ChargeRequest = new ChargeRequest() {Value = _settings.EnergyChargeAmount};
             return sunEntity;
         }
         
@@ -34,7 +39,15 @@ namespace Installers
         {
             public Transform Transform;
             public Vector2 SunPosition;
+            public float Radius;
             public float GravityForce;
+            public float EnergyChargeAmount;
+        }
+
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.DrawWireSphere(Vector3.zero, _settings.Radius);
         }
     }
 }

@@ -19,32 +19,11 @@ MonoBehaviour:
       _minePrefab: {fileID: 8862172488318726591, guid: fe5ed7c715c94894fbd195c8bc6cf337, type: 3}
     RestartGameHandler:
       RestartDelay: 3
-    Friction:
-      FrictionCoefficient: 0.3
   _player:
     Move:
-      MoveForce: 19
+      MoveForce: 30
     Rotate:
-      RotationSpeed: 90
-    Energy:
-      RotationCost: 0.1
-      MoveCost: 0.15
+      RotationSpeed: 100
     SolarCharger:
-      SunPosition: {x: 0, y: 0, z: 0}
-      ChargeAmount: 0.25
       MaxChargeDistance: 21
       MinChargeDistance: 0
-    BulletGun:
-      ShootSound: {fileID: 8300000, guid: 34c638d8d99ccfd44a261f13505ab317, type: 3}
-      EnergyCost: 2
-      ShootSoundVolume: 1
-      StartForce: 900
-      MaxShootInterval: 0.15
-      SpawnOffset: 1.5
-    MinGun:
-      ShootSound: {fileID: 8300000, guid: aa66f043685a31e4bb90d0b6128bc3e1, type: 3}
-      EnergyCost: 7
-      ShootSoundVolume: 1
-      StartForce: 0
-      MaxShootInterval: 1
-      SpawnOffset: -2

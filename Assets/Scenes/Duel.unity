@@ -223,7 +223,12 @@ MonoBehaviour:
     AudioSource: {fileID: 1970445732}
     MaxHealth: 100
     MaxEnergy: 100
-    Team: 1
+    RotationCost: 0.1
+    MoveCost: 0.15
+    MoveFriction: 0.8
+    _teamEnum: 0
+  _primaryWeapon: {fileID: 11400000, guid: 5a39c43450167544abda49c1db893963, type: 2}
+  _secondaryWeapon: {fileID: 11400000, guid: 969c9c59810c25542a735a133c74c2ef, type: 2}
 --- !u!1 &223021055
 GameObject:
   m_ObjectHideFlags: 0
@@ -235,7 +240,7 @@ GameObject:
   - component: {fileID: 223021056}
   - component: {fileID: 223021057}
   m_Layer: 0
-  m_Name: PlayerInputInstaller
+  m_Name: OrthoCameraInstaller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -501,75 +506,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!1 &395418088
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 395418089}
-  - component: {fileID: 395418091}
-  - component: {fileID: 395418090}
-  m_Layer: 0
-  m_Name: GravityTrigger
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &395418089
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395418088}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 2129929874}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!70 &395418090
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395418088}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 1
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 40, y: 22}
-  m_Direction: 0
---- !u!250 &395418091
-PointEffector2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 395418088}
-  m_Enabled: 1
-  m_UseColliderMask: 1
-  m_ColliderMask:
-    serializedVersion: 2
-    m_Bits: 1088
-  m_ForceMagnitude: -20
-  m_ForceVariation: 0
-  m_DistanceScale: 0.8
-  m_ForceSource: 0
-  m_ForceTarget: 0
-  m_ForceMode: 1
-  m_Drag: 0.2
-  m_AngularDrag: 0
 --- !u!1 &498487402
 GameObject:
   m_ObjectHideFlags: 0
@@ -601,7 +537,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2129929874}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!58 &498487404
 CircleCollider2D:
@@ -1562,7 +1498,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 3
   m_LinearDrag: 0.2
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0
@@ -1705,7 +1641,7 @@ Transform:
   - {fileID: 18467831}
   - {fileID: 2050107239}
   m_Father: {fileID: 2129929874}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1377552972
 GameObject:
@@ -1865,7 +1801,7 @@ GameObject:
   - component: {fileID: 1496363138}
   - component: {fileID: 1496363139}
   m_Layer: 0
-  m_Name: ECSWorldInstaller
+  m_Name: ECSSystemsInstaller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1895,7 +1831,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1496363137}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c5aa02aee3c64d5f8e09529878d2b3a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 3a7157b23ecd4857a97d972e7e55062c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1600893482
@@ -4242,7 +4178,12 @@ MonoBehaviour:
     AudioSource: {fileID: 1761838584}
     MaxHealth: 100
     MaxEnergy: 100
-    Team: 0
+    RotationCost: 0.1
+    MoveCost: 0.15
+    MoveFriction: 0.8
+    _teamEnum: 1
+  _primaryWeapon: {fileID: 11400000, guid: 5a39c43450167544abda49c1db893963, type: 2}
+  _secondaryWeapon: {fileID: 11400000, guid: 969c9c59810c25542a735a133c74c2ef, type: 2}
 --- !u!4 &2102510105
 Transform:
   m_ObjectHideFlags: 0
@@ -4386,7 +4327,6 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 936384748}
-  - {fileID: 395418089}
   - {fileID: 498487403}
   - {fileID: 1311626075}
   m_Father: {fileID: 1377552973}
@@ -4407,7 +4347,9 @@ MonoBehaviour:
   _settings:
     Transform: {fileID: 498487403}
     SunPosition: {x: 0, y: 0}
-    GravityForce: 0.1
+    Radius: 45
+    GravityForce: 90
+    EnergyChargeAmount: 0.5
 --- !u!114 &2129929876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4532,7 +4474,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 3
   m_LinearDrag: 0.2
-  m_AngularDrag: 0.05
+  m_AngularDrag: 1
   m_GravityScale: 1
   m_Material: {fileID: 0}
   m_Interpolate: 0

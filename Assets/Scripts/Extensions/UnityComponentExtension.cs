@@ -1,6 +1,6 @@
-﻿using Components.Extensions;
-using Extensions.EntityToGameObject;
+﻿using Controller.EntityToGameObject;
 using Leopotam.Ecs;
+using Model.Components.Extensions;
 using UnityEngine;
 
 namespace Extensions
@@ -19,26 +19,32 @@ namespace Extensions
 
             return provider;
         }
-        
+
         public static bool HasProvider(this Component component)
         {
             var gameObject = component.gameObject;
             var providerExist = gameObject.TryGetComponent<EcsUnityProvider>(out _);
             return providerExist;
         }
-        
-            public static void AddEventToStack<T>(in this EcsEntity entity)
-                where T : struct
-            {
-                var eventComponent = new T();
-                AddEventToStack(entity, eventComponent);
-            }
 
-            public static void AddEventToStack<T>(in this EcsEntity entity, in T eventComponent)
-                where T : struct
-            {
-                ref var containerComponents = ref entity.Get<ContainerComponents<T>>();
-                containerComponents.List.Add(eventComponent);
-            }
+        public static void AddEventToStack<T>(in this EcsEntity entity)
+            where T : struct
+        {
+            var eventComponent = new T();
+            AddEventToStack(entity, eventComponent);
+        }
+
+        public static void AddEventToStack<T>(in this EcsEntity entity, in T eventComponent)
+            where T : struct
+        {
+            ref var containerComponents = ref entity.Get<ContainerComponents<T>>();
+            containerComponents.List.Add(eventComponent);
+        }
+
+        public static void AddEvent<T>(in this EcsEntity entity, in T eventComponent)
+            where T : struct
+        {
+            entity.Get<T>() = eventComponent;
+        }
     }
 }

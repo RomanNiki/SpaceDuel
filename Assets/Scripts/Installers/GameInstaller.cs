@@ -1,7 +1,6 @@
 ﻿using System;
-using Enums;
-using Presenters;
 using UnityEngine;
+using Views.Projectiles;
 using Zenject;
 
 namespace Installers
@@ -11,14 +10,14 @@ namespace Installers
         [Inject] private Settings _settings;
 
         public override void InstallBindings()
-        {
+        {        
             Container.BindInterfacesAndSelfTo<PlayerInput>().AsSingle();
-            Container.BindFactory<BulletPresenter, BulletPresenter.Factory>().WithId(BulletsEnum.Bullet)
-                .FromPoolableMemoryPool<BulletPresenter, BulletPool>(poolBinder =>
+            Container.BindFactory<BulletView, BulletView.Factory>()
+                .FromPoolableMemoryPool<BulletView, BulletPool>(poolBinder =>
                     poolBinder.WithInitialSize(20).FromSubContainerResolve()
                         .ByNewContextPrefab(_settings._bulletPrefab).UnderTransformGroup("Bullets"));
-            Container.BindFactory<BulletPresenter, BulletPresenter.Factory>().WithId(BulletsEnum.Mine)
-                .FromPoolableMemoryPool<BulletPresenter, MinePool>(poolBinder =>
+            Container.BindFactory<MineView, MineView.Factory>()
+                .FromPoolableMemoryPool<MineView, MinePool>(poolBinder =>
                     poolBinder.WithInitialSize(10).FromSubContainerResolve()
                         .ByNewContextPrefab(_settings._minePrefab).UnderTransformGroup("Mines"));
             
@@ -27,10 +26,10 @@ namespace Installers
             Time.timeScale = 1f;
         }
         
-        private class BulletPool : MonoPoolableMemoryPool<IMemoryPool, BulletPresenter>
+        private class BulletPool : MonoPoolableMemoryPool<IMemoryPool, BulletView>
         {
         } 
-        private class MinePool : MonoPoolableMemoryPool<IMemoryPool, BulletPresenter>
+        private class MinePool : MonoPoolableMemoryPool<IMemoryPool, MineView>
         {
         }
 

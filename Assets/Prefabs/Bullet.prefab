@@ -1,51 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &5471779006462995895
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5532707092779816884}
-  - component: {fileID: 4172008738556098121}
-  m_Layer: 6
-  m_Name: BulletInstaller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5532707092779816884
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5471779006462995895}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 7113131982927379640}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4172008738556098121
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5471779006462995895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5c47d342452a42b488f7458700109c88, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _settings:
-    Rigidbody: {fileID: 6145753196986344753}
 --- !u!1 &7113131982927379651
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,9 +13,10 @@ GameObject:
   - component: {fileID: 7113131982927379654}
   - component: {fileID: 130019354674080410}
   - component: {fileID: 6145753196986344753}
-  - component: {fileID: 8785289849121896911}
-  - component: {fileID: 4918262667071043138}
-  - component: {fileID: 7113131982927379652}
+  - component: {fileID: 2938870567979546578}
+  - component: {fileID: 5145155867312129582}
+  - component: {fileID: 5914633614765404434}
+  - component: {fileID: 7312037415313696118}
   m_Layer: 6
   m_Name: Bullet
   m_TagString: Untagged
@@ -80,8 +35,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.1, y: 0.2, z: 0.1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 5532707092779816884}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
@@ -172,7 +126,19 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 1
   m_Constraints: 0
---- !u!114 &8785289849121896911
+--- !u!114 &2938870567979546578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7113131982927379651}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e79a6c0f902c44cfb2585e527e136e99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &5145155867312129582
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -185,12 +151,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _scriptableObjectInstallers: []
-  _monoInstallers:
-  - {fileID: 4172008738556098121}
+  _monoInstallers: []
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
---- !u!114 &4918262667071043138
+--- !u!114 &5914633614765404434
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,12 +168,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _components:
-  - {fileID: 7113131982927379652}
+  - {fileID: 7312037415313696118}
   _identifier: 
   _useSceneContext: 0
   _context: {fileID: 0}
   _bindType: 0
---- !u!114 &7113131982927379652
+--- !u!114 &7312037415313696118
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -217,6 +182,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7113131982927379651}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b738ec6d68544eaaa901a31c69df0b3, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e8205e71a0349529de2d781deb08dee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

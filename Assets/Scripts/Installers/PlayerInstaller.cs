@@ -1,16 +1,17 @@
 ﻿using System;
-using Components.Extensions.EntityFactories;
-using Components.Tags;
-using Components.Unit;
-using Components.Unit.MoveComponents;
-using Components.Unit.MoveComponents.Input;
-using Components.Unit.Weapon;
-using Enums;
+using Controller.EntityToGameObject;
 using Extensions;
-using Extensions.EntityToGameObject;
+using Extensions.Factories;
 using Leopotam.Ecs;
-using UniRx;
+using Model.Components.Extensions.EntityFactories;
+using Model.Components.Tags;
+using Model.Components.Unit;
+using Model.Components.Unit.MoveComponents;
+using Model.Components.Unit.MoveComponents.Input;
+using Model.Components.Weapons;
+using Model.Enums;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Installers
@@ -18,64 +19,64 @@ namespace Installers
     public class PlayerInstaller : MonoInstaller
     {
         [SerializeField] private Settings _settings;
+        [SerializeField] private WeaponEntityFactoryFromSo _primaryWeapon;
+        [SerializeField] private WeaponEntityFactoryFromSo _secondaryWeapon;
+
         [Inject] private EcsWorld _world;
-        
+
         public override void InstallBindings()
         {
-            //Container.Bind<InputActionMap>().FromInstance(IsBlueTeam ? _input.Player : _input.Player1);
-            //Container.BindInterfacesTo<StandardDyingPolicy>().AsSingle().WhenInjectedInto<PlayerModel>();
-            Container.Bind<AudioSource>().FromInstance(_settings.AudioSource);
-            /*Container.BindInterfacesAndSelfTo<PlayerModel>().AsSingle()
-                .WithArguments(_settings.Rigidbody, _settings.Team);
-            Container.Bind<DefaultGun>().WithId(WeaponEnum.Primary).To<BulletGun>().AsSingle();
-            Container.Bind<DefaultGun>().WithId(WeaponEnum.Secondary).To<MineGun>().AsSingle();
-            Container.BindInterfacesAndSelfTo<DamageHandler>().AsSingle().WhenInjectedInto<PlayerPresenter>();
-            Container.BindInterfacesAndSelfTo<PlayerShooter>().AsSingle();*/
-            //Container.BindInterfacesAndSelfTo<PlayerInputRouter>().AsSingle();
-            /*Container.BindInterfacesTo<PlayerMover>().AsSingle();
-            Container.BindInterfacesTo<SolarCharger>().AsSingle();*/
             var entity = EcsInitPlayer();
             _settings.Rigidbody.transform.GetProvider().SetEntity(entity);
             _settings.Rigidbody.gameObject.AddComponent<PlayerUnityNotify>();
+            SetPrimaryWeapon(entity, _primaryWeapon);
+            SetSecondaryWeapon(entity, _secondaryWeapon);
         }
 
         private EcsEntity EcsInitPlayer()
         {
             var entity = _world.NewEntity();
-            entity.Get<PlayerTag>() = new PlayerTag();
-            entity.Get<View>().ViewObject = new ViewObjectUnity(_settings.Rigidbody);
-            entity.Get<TeamData>().Team = _settings.Team;
+            entity.Get<PlayerTag>();
+            entity.Get<ViewObjectComponent>().ViewObject = new ViewObjectUnity(_settings.Rigidbody);
+            entity.Get<Team>().Value = _settings._teamEnum;
             entity.Get<InputMoveData>();
-            entity.Get<InputShootData>();
-            ref var move = ref  entity.Get<Move>();
-            move.Rotation = _settings.Rigidbody.rotation;
-            move.Position = _settings.Rigidbody.position;
+
+            ref var transformData = ref entity.Get<TransformData>();
+            transformData.Rotation = _settings.Rigidbody.rotation;
+            transformData.Position = _settings.Rigidbody.position;
+            entity.Get<Move>();
             entity.Get<Mass>().Value = _settings.Rigidbody.mass;
+            entity.Get<Friction>().Value = _settings.MoveFriction;
             ref var health = ref entity.Get<Health>();
-            health.Current = new ReactiveProperty<float>(_settings.MaxHealth);
+            health.Current = _settings.MaxHealth;
             ref var energy = ref entity.Get<Energy>();
             energy.InitialEnergy = _settings.MaxEnergy;
-            energy.CurrentEnergy = new ReactiveProperty<float>(_settings.MaxEnergy);
-
+            energy.CurrentEnergy = _settings.MaxEnergy;
+            entity.Get<DischargeMoveContainer>().DischargeRequest.Value = _settings.MoveCost;
+            entity.Get<DischargeRotateContainer>().DischargeRequest.Value = _settings.RotationCost;
             return entity;
         }
 
-        private void SetFirsWeapon(in EcsEntity player, Transform playerTransform,
-            IEntityFactory gunEntityFactoryFromSo)
+        private EcsEntity SetWeapon(in EcsEntity player,
+            IEntityFactory gunEntityFactoryFromSo, WeaponEnum weaponEnum)
         {
             var gun = gunEntityFactoryFromSo.CreateEntity(_world);
             gun.Get<PlayerOwner>().Owner = player;
-            gun.Get<FirstWeapon>();
+            gun.Get<WeaponType>()  = new WeaponType(){ Type = weaponEnum};
             gun.Get<ShootIsPossible>();
+            return gun;
         }
 
-        private void SetSecondWeapon(in EcsEntity player, Transform playerTransform,
-            IEntityFactory gunEntityFactoryFromSo)
+        private void SetPrimaryWeapon(in EcsEntity player,
+            in IEntityFactory gunEntityFactoryFromSo)
         {
-            var gun = gunEntityFactoryFromSo.CreateEntity(_world);
-            gun.Get<PlayerOwner>().Owner = player;
-            gun.Get<FirstWeapon>();
-            gun.Get<ShootIsPossible>();
+           var gun = SetWeapon(player, gunEntityFactoryFromSo, WeaponEnum.Primary);
+        }
+
+        private void SetSecondaryWeapon(in EcsEntity player,
+            in IEntityFactory gunEntityFactoryFromSo)
+        {
+            var gun =  SetWeapon(player, gunEntityFactoryFromSo, WeaponEnum.Secondary);
         }
 
         [Serializable]
@@ -85,7 +86,10 @@ namespace Installers
             public AudioSource AudioSource;
             public float MaxHealth;
             public float MaxEnergy;
-            public Team Team;
+            public float RotationCost;
+            public float MoveCost;
+            public float MoveFriction;
+            [FormerlySerializedAs("Team")] public TeamEnum _teamEnum;
         }
     }
 }
