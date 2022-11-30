@@ -11,10 +11,10 @@ namespace Model.Systems.Weapons
 
         public void Run()
         {
-            foreach (var j in _weapon)
+            foreach (var i in _weapon)
             {
-                ref var owner = ref _weapon.Get1(j);
-                owner.Owner.Get<DischargeRequest>().Value += _weapon.Get2(j).DischargeRequest.Value;
+                ref var owner = ref _weapon.Get1(i);
+                owner.Owner.Get<DischargeRequest>().Value += _weapon.Get2(i).DischargeRequest.Value;
             }
         }
     }

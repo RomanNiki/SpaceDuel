@@ -2,7 +2,7 @@
 {
     public struct Energy
     {
-        public float InitialEnergy;
-        public float CurrentEnergy;
+        public float Initial;
+        public float Current;
     }
 }

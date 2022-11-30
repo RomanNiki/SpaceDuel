@@ -6,5 +6,6 @@ namespace Model.Components.Unit
     public struct Health
     {
         public float Current;
+        public float Initial;
     }
 }

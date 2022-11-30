@@ -3,6 +3,9 @@ using Controller.EntityToGameObject;
 using Extensions;
 using Extensions.Factories;
 using Leopotam.Ecs;
+using Model.Components;
+using Model.Components.Extensions;
+using Model.Components.Extensions.DyingPolicies;
 using Model.Components.Extensions.EntityFactories;
 using Model.Components.Tags;
 using Model.Components.Unit;
@@ -40,18 +43,10 @@ namespace Installers
             entity.Get<ViewObjectComponent>().ViewObject = new ViewObjectUnity(_settings.Rigidbody);
             entity.Get<Team>().Value = _settings._teamEnum;
             entity.Get<InputMoveData>();
-
-            ref var transformData = ref entity.Get<TransformData>();
-            transformData.Rotation = _settings.Rigidbody.rotation;
-            transformData.Position = _settings.Rigidbody.position;
-            entity.Get<Move>();
-            entity.Get<Mass>().Value = _settings.Rigidbody.mass;
-            entity.Get<Friction>().Value = _settings.MoveFriction;
-            ref var health = ref entity.Get<Health>();
-            health.Current = _settings.MaxHealth;
-            ref var energy = ref entity.Get<Energy>();
-            energy.InitialEnergy = _settings.MaxEnergy;
-            energy.CurrentEnergy = _settings.MaxEnergy;
+            entity.AddMove(_settings.Rigidbody.position, _settings.Rigidbody.rotation, _settings.Rigidbody.mass,
+                    _settings.MoveFriction)
+                .AddHealth(_settings.MaxHealth, new StandardDyingPolicy())
+                .AddEnergy(_settings.MaxEnergy);
             entity.Get<DischargeMoveContainer>().DischargeRequest.Value = _settings.MoveCost;
             entity.Get<DischargeRotateContainer>().DischargeRequest.Value = _settings.RotationCost;
             return entity;
@@ -62,7 +57,7 @@ namespace Installers
         {
             var gun = gunEntityFactoryFromSo.CreateEntity(_world);
             gun.Get<PlayerOwner>().Owner = player;
-            gun.Get<WeaponType>()  = new WeaponType(){ Type = weaponEnum};
+            gun.Get<WeaponType>() = new WeaponType() {Type = weaponEnum};
             gun.Get<ShootIsPossible>();
             return gun;
         }
@@ -70,13 +65,13 @@ namespace Installers
         private void SetPrimaryWeapon(in EcsEntity player,
             in IEntityFactory gunEntityFactoryFromSo)
         {
-           var gun = SetWeapon(player, gunEntityFactoryFromSo, WeaponEnum.Primary);
+            SetWeapon(player, gunEntityFactoryFromSo, WeaponEnum.Primary);
         }
 
         private void SetSecondaryWeapon(in EcsEntity player,
             in IEntityFactory gunEntityFactoryFromSo)
         {
-            var gun =  SetWeapon(player, gunEntityFactoryFromSo, WeaponEnum.Secondary);
+            SetWeapon(player, gunEntityFactoryFromSo, WeaponEnum.Secondary);
         }
 
         [Serializable]

@@ -1,9 +1,9 @@
 ﻿using Leopotam.Ecs;
-using Model.Components.Extensions;
+using Model.Components;
 using Model.Components.Requests;
 using Model.Components.Unit;
 
-namespace Model.Systems
+namespace Model.Systems.Unit
 {
     public sealed class ChargeEnergySystem : IEcsRunSystem
     {
@@ -16,7 +16,20 @@ namespace Model.Systems
                 ref var energyComponent = ref _filter.Get1(i);
                 ref var dischargeRequest = ref _filter.Get2(i);
                 ref var entity = ref _filter.GetEntity(i);
-                energyComponent.ChargeEnergy(ref entity, dischargeRequest.Value);
+                ChargeEnergy(ref energyComponent, ref entity, dischargeRequest.Value);
+            }
+        }
+        
+        private static void ChargeEnergy(ref Energy energy, ref EcsEntity entity, float amount)
+        {
+            if (energy.Initial > energy.Current)
+            {
+                energy.Current += amount;
+            }
+
+            if (energy.Current > 0f && entity.Has<NoEnergyBlock>())
+            {
+                entity.Del<NoEnergyBlock>();
             }
         }
     }

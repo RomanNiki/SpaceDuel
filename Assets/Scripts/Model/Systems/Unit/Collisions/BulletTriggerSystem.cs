@@ -1,16 +1,16 @@
 ﻿using Leopotam.Ecs;
+using Model.Components;
 using Model.Components.Events;
 using Model.Components.Extensions;
 using Model.Components.Requests;
-using Model.Components.Tags;
 using Model.Components.Unit;
 using UnityEngine;
 
 namespace Model.Systems.Unit.Collisions
 {
-    public class BulletCollisionSystem : IEcsRunSystem
+    public class BulletTriggerSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<ContainerComponents<TriggerEnterEvent>, DamageContainer, BulletTag> _filter =
+        private readonly EcsFilter<ContainerComponents<TriggerEnterEvent>, DamageContainer> _filter =
             null;
 
         public void Run()

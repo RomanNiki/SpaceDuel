@@ -50,6 +50,10 @@ namespace Model.Systems.Unit.Input
             foreach (var i in _filterGuns)
             {
                 ref var owner = ref _filterGuns.Get1(i);
+                if (owner.Owner.IsAlive() == false)
+                {
+                    continue;
+                }
                 ref var weapon = ref _filterGuns.Get2(i);
                 ref var ownerTeam = ref owner.Owner.Get<Team>().Value;
                 

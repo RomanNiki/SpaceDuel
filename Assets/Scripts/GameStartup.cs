@@ -45,7 +45,7 @@ public class GameStartup : IDisposable, ITickable, IFixedTickable
         }
 
         _systems
-            .OneFrame<ViewUpdateRequest>()
+            //.OneFrame<ViewUpdateRequest>()
             .OneFrame<InputAnyKeyEvent>()
             .OneFrame<InputPauseQuitEvent>()
             .OneFrame<InputRotateStartedEvent>()
@@ -54,20 +54,29 @@ public class GameStartup : IDisposable, ITickable, IFixedTickable
             .OneFrame<InputAccelerateCanceledEvent>()
             .OneFrame<InputShootStartedEvent>()
             .OneFrame<InputShootCanceledEvent>()
-            .OneFrame<ForceRequest>()
-            .OneFrame<ShotMadeEvent>() 
+            .OneFrame<ShotMadeEvent>()
+            /*.OneFrame<CollisionEnterEvent>()
+            .OneFrame<TriggerEnterEvent>()
+            .OneFrame<ContainerComponents<CollisionEnterEvent>>()
+            .OneFrame<ContainerComponents<TriggerEnterEvent>>()
             .OneFrame<DamageRequest>()
+            .OneFrame<HealthChangeEvent>()   */
             .OneFrame<DischargeRequest>()
             .OneFrame<ChargeRequest>()
             .OneFrame<EnergyEndedEvent>()
             .OneFrame<ViewCreateRequest>();
 
-        _fixedSystems.OneFrame<ForceRequest>()
-            .OneFrame<EnergyEndedEvent>()
+        _fixedSystems
+            .OneFrame<ViewUpdateRequest>()
+            .OneFrame<InputAnyKeyEvent>()
+            .OneFrame<ForceRequest>()
             .OneFrame<CollisionEnterEvent>()
             .OneFrame<TriggerEnterEvent>()
+            .OneFrame<ContainerComponents<CollisionEnterEvent>>()
+            .OneFrame<ContainerComponents<TriggerEnterEvent>>()
+            .OneFrame<DamageRequest>()
             .OneFrame<HealthChangeEvent>()
-            .OneFrame<DamageRequest>();
+            .OneFrame<EntityDestroyRequest>();
         _systems.Init();
         _fixedSystems.Init();
     }

@@ -1,10 +1,11 @@
 ﻿using Leopotam.Ecs;
 using Model.Components;
+using Model.Components.Requests;
 using Model.Components.Weapons;
 
 namespace Model.Systems.Weapons
 {
-    public class CheckOwnerEnergySystem : IEcsRunSystem
+    public class CheckOwnerEnergyBlockSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerOwner, WeaponType> _filter = null;
         
@@ -14,6 +15,13 @@ namespace Model.Systems.Weapons
             {
                 ref var owner = ref _filter.Get1(i).Owner;
                 ref var gun = ref _filter.GetEntity(i);
+                if (owner.IsAlive() == false)
+                {
+                    _filter.GetEntity(i).Get<EntityDestroyRequest>();
+                    continue;
+                }
+                   
+                
                 if (owner.Has<NoEnergyBlock>())
                 {
                     gun.Get<NoEnergyBlock>();

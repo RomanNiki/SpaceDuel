@@ -17,7 +17,7 @@ namespace Controller.EntityToGameObject
             if (otherEntity.IsAlive() == false) 
                 return;
             
-            Entity.AddEventToStack(new CollisionEnterEvent() {Other = otherEntity});
+            Entity.AddEventToStack(new TriggerEnterEvent() {Other = otherEntity});
         }
     }
 } 

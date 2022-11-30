@@ -5,7 +5,7 @@ using Model.Enums;
 using TMPro;
 using UnityEngine;
 using Zenject;
-using Team = Model.Components.Unit.MoveComponents.Input.Team;
+using Model.Components.Unit.MoveComponents.Input;
 
 namespace Installers
 {
@@ -23,6 +23,7 @@ namespace Installers
         private void CreateScore(TeamEnum team, TMP_Text scoreText)
         {
             var score = _world.NewEntity();
+            score.Get<Score>();
             score.Get<Team>().Value = team;
             score.Get<UnityComponent<TMP_Text>>().Value = scoreText;
         }
