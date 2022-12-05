@@ -17,8 +17,11 @@ MonoBehaviour:
     GameInstaller:
       _bulletPrefab: {fileID: 7113131982927379651, guid: c5baf7dcf21e50b41b9a1a4b6ae8f0e3, type: 3}
       _minePrefab: {fileID: 8862172488318726591, guid: fe5ed7c715c94894fbd195c8bc6cf337, type: 3}
-    RestartGameHandler:
-      RestartDelay: 3
+      _explosionPrefab: {fileID: 6370172100038760875, guid: 4544355d92055994c9ee89aca26474d5, type: 3}
+    Explosions:
+      ExplosionLifeTime: 1
+    Restart:
+      RestartDelay: 2
   _player:
     Move:
       MoveForce: 30

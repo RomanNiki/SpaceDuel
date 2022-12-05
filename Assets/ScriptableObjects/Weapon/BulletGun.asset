@@ -21,4 +21,4 @@ MonoBehaviour:
   _muzzle:
     Offset: 2
   _timeBetweenShotsSetup:
-    TimeSec: 0.15
+    TimeSec: 0.3

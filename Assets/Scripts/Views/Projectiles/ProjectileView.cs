@@ -7,7 +7,7 @@ namespace Views.Projectiles
 {
     [RequireComponent(typeof(EcsUnityProvider))]
     [RequireComponent(typeof(Rigidbody2D))]
-    public abstract class ProjectileView<T> : EcsUnityNotifier, IPoolable<IMemoryPool>, IPoolObject
+    public abstract class ProjectileView<T> : EcsUnityNotifier, IPoolable<IMemoryPool>, IPhysicsPoolObject
     {
         private IMemoryPool _memoryPool;
         public Rigidbody2D Rigidbody2D { get; private set; }

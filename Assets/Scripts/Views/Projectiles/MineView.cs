@@ -2,6 +2,5 @@
 {
     public class MineView : ProjectileView<MineView>
     {
-        
     }
 }

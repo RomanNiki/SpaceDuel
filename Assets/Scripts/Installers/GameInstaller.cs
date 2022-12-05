@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using Views;
 using Views.Projectiles;
 using Zenject;
 
@@ -20,16 +21,21 @@ namespace Installers
                 .FromPoolableMemoryPool<MineView, MinePool>(poolBinder =>
                     poolBinder.WithInitialSize(10).FromSubContainerResolve()
                         .ByNewContextPrefab(_settings._minePrefab).UnderTransformGroup("Mines"));
-            
-          //  Container.BindInterfacesAndSelfTo<RestartGameHandler>().AsSingle();
-   
-            Time.timeScale = 1f;
+            Container.BindFactory<ExplosionView, ExplosionView.Factory>()
+                .FromPoolableMemoryPool<ExplosionView, ExplosionPool>(poolBinder =>
+                    poolBinder.WithInitialSize(10).FromSubContainerResolve()
+                        .ByNewContextPrefab(_settings._explosionPrefab).UnderTransformGroup("Explosions"));
         }
         
         private class BulletPool : MonoPoolableMemoryPool<IMemoryPool, BulletView>
         {
         } 
+        
         private class MinePool : MonoPoolableMemoryPool<IMemoryPool, MineView>
+        {
+        } 
+        
+        private class ExplosionPool : MonoPoolableMemoryPool<IMemoryPool, ExplosionView>
         {
         }
 
@@ -38,6 +44,7 @@ namespace Installers
         {
             public GameObject _bulletPrefab;
             public GameObject _minePrefab;
+            public GameObject _explosionPrefab;
         }
     }
 }

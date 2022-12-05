@@ -16,7 +16,7 @@ namespace Controller.EntityToGameObject
 
         protected virtual void OnTriggerEnter2D(Collider2D col)
         {
-            if(Entity.IsAlive() == false && col.usedByEffector == false) 
+            if(Entity.IsAlive() == false) 
                 return;
             
             var otherTransform = col.transform;

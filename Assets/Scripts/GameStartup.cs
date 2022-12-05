@@ -7,6 +7,7 @@ using Model.Components.Events;
 using Model.Components.Events.InputEvents;
 using Model.Components.Extensions;
 using Model.Components.Requests;
+using Model.Systems;
 using UnityEngine;
 using Zenject;
 using Object = UnityEngine.Object;
@@ -25,6 +26,7 @@ public class GameStartup : IDisposable, ITickable, IFixedTickable
         _world = world;
         _systems = new EcsSystems(_world);
         _fixedSystems = new EcsSystems(_world);
+        Time.timeScale = 1f;
 
 #if UNITY_EDITOR
         _debugObjects = new[]
@@ -45,7 +47,6 @@ public class GameStartup : IDisposable, ITickable, IFixedTickable
         }
 
         _systems
-            //.OneFrame<ViewUpdateRequest>()
             .OneFrame<InputAnyKeyEvent>()
             .OneFrame<InputPauseQuitEvent>()
             .OneFrame<InputRotateStartedEvent>()
@@ -55,15 +56,9 @@ public class GameStartup : IDisposable, ITickable, IFixedTickable
             .OneFrame<InputShootStartedEvent>()
             .OneFrame<InputShootCanceledEvent>()
             .OneFrame<ShotMadeEvent>()
-            /*.OneFrame<CollisionEnterEvent>()
-            .OneFrame<TriggerEnterEvent>()
-            .OneFrame<ContainerComponents<CollisionEnterEvent>>()
-            .OneFrame<ContainerComponents<TriggerEnterEvent>>()
-            .OneFrame<DamageRequest>()
-            .OneFrame<HealthChangeEvent>()   */
             .OneFrame<DischargeRequest>()
             .OneFrame<ChargeRequest>()
-            .OneFrame<EnergyEndedEvent>()
+            .OneFrame<EnergyChangedEvent>()
             .OneFrame<ViewCreateRequest>();
 
         _fixedSystems
@@ -76,16 +71,11 @@ public class GameStartup : IDisposable, ITickable, IFixedTickable
             .OneFrame<ContainerComponents<TriggerEnterEvent>>()
             .OneFrame<DamageRequest>()
             .OneFrame<HealthChangeEvent>()
-            .OneFrame<EntityDestroyRequest>();
+            .OneFrame<EntityDestroyRequest>()
+            .OneFrame<GameRestartRequest>();
+        
         _systems.Init();
         _fixedSystems.Init();
-    }
-
-    public void Dispose()
-    {
-        _systems.Destroy();
-        _fixedSystems.Destroy();
-        _world.Destroy();
     }
 
     public void Tick()
@@ -96,5 +86,24 @@ public class GameStartup : IDisposable, ITickable, IFixedTickable
     public void FixedTick()
     {
         _fixedSystems.Run();
+    }
+
+    public void Dispose()
+    {
+        if (_debugObjects != null)
+        {
+            foreach (var i in _debugObjects)
+            {
+                if (i)
+                {
+                    Object.Destroy(i);
+                }
+            }
+        }
+
+        _systems?.Destroy();
+
+        _fixedSystems?.Destroy();
+        _world?.Destroy();
     }
 }

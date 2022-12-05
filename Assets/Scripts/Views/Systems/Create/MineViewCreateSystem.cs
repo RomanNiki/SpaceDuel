@@ -9,7 +9,7 @@ namespace Views.Systems.Create
     {
         [Inject] private MineView.Factory _factory;
         
-        protected override IPoolObject GetPoolObject()
+        protected override IPhysicsPoolObject GetPoolObject()
         {
             return _factory.Create();
         }

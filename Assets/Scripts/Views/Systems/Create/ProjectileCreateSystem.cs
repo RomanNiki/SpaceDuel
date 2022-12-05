@@ -17,11 +17,11 @@ namespace Views.Systems.Create
             transform.position = data.StartPosition;
 
             var rigidbody2D = poolObject.Rigidbody2D;
-            entity.Get<ViewObjectComponent>().ViewObject = new ViewObjectUnity(rigidbody2D, poolObject);
+            entity.Get<ViewObjectComponent>().ViewObject = new RigidbodyViewObjectUnity(rigidbody2D, poolObject);
 
             return transform;
         }
 
-        protected abstract IPoolObject GetPoolObject();
+        protected abstract IPhysicsPoolObject GetPoolObject();
     }
 }

@@ -2,7 +2,8 @@
 using Model.Components.Requests;
 
 namespace Model.Components.Unit
-{    [Serializable]
+{
+    [Serializable]
     public struct DischargeRotateContainer
     {
         public DischargeRequest DischargeRequest;

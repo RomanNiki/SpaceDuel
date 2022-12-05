@@ -1,4 +1,5 @@
 ﻿using System;
+using Model.Systems;
 using Model.Systems.Unit;
 using Model.Systems.Unit.Movement;
 using UnityEngine;
@@ -22,7 +23,8 @@ namespace Installers
         public class GameSettings
         {
             public GameInstaller.Settings GameInstaller;
-            public RestartGameHandler.Settings RestartGameHandler;
+            public EntityExplosionSystem.Settings Explosions;
+            public RestartGameSystem.Settings Restart;
         }
         [Serializable]
         public class PlayerSettings
@@ -39,7 +41,8 @@ namespace Installers
             Container.BindInstance(_player.Rotate).IfNotBound();
             Container.BindInstance(_player.SolarCharger).IfNotBound();
             Container.BindInstance(GameInstaller.GameInstaller).IfNotBound();
-            Container.BindInstance(GameInstaller.RestartGameHandler).IfNotBound();
+            Container.BindInstance(GameInstaller.Explosions).IfNotBound();
+            Container.BindInstance(GameInstaller.Restart).IfNotBound();
         }
     }
 }

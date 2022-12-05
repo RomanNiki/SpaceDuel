@@ -26,7 +26,7 @@ namespace Model.Systems.Unit.Movement
                     var distance = targetDirection.magnitude;
 
                     if (distance <= 0.5f)
-                        return;
+                        continue;
                     var force = targetDirection.normalized * sun.GravityForce ;
                     var distRatio = Mathf.Clamp01(distance / sun.Radius);
                     

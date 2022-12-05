@@ -1,5 +1,6 @@
 ﻿using Leopotam.Ecs;
 using Model.Components;
+using Model.Components.Events;
 using Model.Components.Requests;
 using Model.Components.Unit;
 
@@ -17,6 +18,7 @@ namespace Model.Systems.Unit
                 ref var dischargeRequest = ref _filter.Get2(i);
                 ref var entity = ref _filter.GetEntity(i);
                 ChargeEnergy(ref energyComponent, ref entity, dischargeRequest.Value);
+                entity.Get<EnergyChangedEvent>();
             }
         }
         

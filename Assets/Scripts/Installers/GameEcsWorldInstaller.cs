@@ -7,7 +7,8 @@ namespace Installers
     {
         public override void InstallBindings()
         {
-            Container.Bind<EcsWorld>().FromNew().AsSingle();
+            var world = new EcsWorld();
+            Container.BindInstance(world).AsSingle();
         }
     }
 }

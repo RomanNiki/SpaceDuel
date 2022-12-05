@@ -19,7 +19,7 @@ namespace Model.Systems.Unit
                 ref var dischargeRequest = ref _filter.Get2(i);
                 ref var entity = ref _filter.GetEntity(i);
                 SpendEnergy(ref energyComponent, ref entity, dischargeRequest.Value);
-                entity.Get<EnergyEndedEvent>();
+                entity.Get<EnergyChangedEvent>();
             }
         }
 
