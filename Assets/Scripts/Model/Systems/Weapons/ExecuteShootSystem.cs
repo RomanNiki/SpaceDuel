@@ -1,6 +1,7 @@
 ﻿using Leopotam.Ecs;
 using Model.Components;
 using Model.Components.Events;
+using Model.Components.Extensions;
 using Model.Components.Extensions.EntityFactories;
 using Model.Components.Requests;
 using Model.Components.Unit.MoveComponents;
@@ -25,8 +26,9 @@ namespace Model.Systems.Weapons
                 ref var bulletForce = ref _filter.Get4(i).Value;
                 ref var offset = ref _filter.Get5(i).Offset;
                 ref var direction = ref _filter.Get2(i).Direction;
-                ref var playerTransformData = ref owner.Get<TransformData>();
-                var spawnPosition = playerTransformData.Position + (Vector2)playerTransformData.LookDir * offset;
+                ref var playerPosition = ref owner.Get<Position>();
+                ref var playerRotation = ref owner.Get<Rotation>();
+                var spawnPosition = playerPosition.Value + (Vector2)playerRotation.LookDir * offset;
 
                 CreateBullet(factory, spawnPosition, direction * bulletForce);
 
@@ -38,9 +40,8 @@ namespace Model.Systems.Weapons
         private void CreateBullet(IEntityFactory factory, in Vector2 position, in Vector2 velocity)
         {
             var entity = factory.CreateEntity(_world);
-            entity.Get<Move>().Velocity = velocity;
-            entity.Get<TransformData>().Rotation = Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg;
-            entity.Get<TransformData>().Position = position;
+            entity.Get<Velocity>().Value = velocity;
+            entity.AddTransform(position, Mathf.Atan2(velocity.y, velocity.x) * Mathf.Rad2Deg);
             entity.Get<ViewCreateRequest>().StartPosition = position;
         }
 

@@ -25,14 +25,25 @@ namespace Model.Components.Extensions
             return ref entity;
         } 
         
-        public static ref EcsEntity AddMove(this ref EcsEntity entity, Vector2 startPosition, float startRotation, float mass, float friction = 0.5f)
+        private static ref EcsEntity AddPhysicsMove(this ref EcsEntity entity, float mass, float friction)
         {
-            ref var energy = ref entity.Get<TransformData>();
-            energy.Position = startPosition;
-            energy.Rotation = startRotation;
-            entity.Get<Move>();
+            entity.Get<Velocity>();
             entity.Get<Mass>().Value = mass;
             entity.Get<Friction>().Value = friction;
+            return ref entity;
+        }
+
+        public static ref EcsEntity AddTransform(this ref EcsEntity entity, Vector2 startPosition, float startRotation = 0f)
+        {
+            entity.Get<Position>().Value = startPosition;
+            entity.Get<Rotation>().Value = startRotation;
+            return ref entity;
+        } 
+        
+        public static ref EcsEntity AddMovementComponents(this ref EcsEntity entity, Vector2 startPosition, float startRotation, float mass, float friction = 0.5f)
+        {
+            entity.AddTransform(startPosition, startRotation);
+            entity.AddPhysicsMove(mass, friction);
             return ref entity;
         }
     }

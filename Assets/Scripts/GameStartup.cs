@@ -23,10 +23,10 @@ public class GameStartup : IDisposable, ITickable, IFixedTickable
     [Inject]
     public GameStartup(EcsWorld world, SystemRegisterHandler systemRegister)
     {
+        Time.timeScale = 1f;
         _world = world;
         _systems = new EcsSystems(_world);
         _fixedSystems = new EcsSystems(_world);
-        Time.timeScale = 1f;
 
 #if UNITY_EDITOR
         _debugObjects = new[]
@@ -72,6 +72,7 @@ public class GameStartup : IDisposable, ITickable, IFixedTickable
             .OneFrame<DamageRequest>()
             .OneFrame<HealthChangeEvent>()
             .OneFrame<EntityDestroyRequest>()
+            .OneFrame<ExplosionEvent>()
             .OneFrame<GameRestartRequest>();
         
         _systems.Init();

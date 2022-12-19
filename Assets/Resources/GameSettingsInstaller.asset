@@ -18,10 +18,11 @@ MonoBehaviour:
       _bulletPrefab: {fileID: 7113131982927379651, guid: c5baf7dcf21e50b41b9a1a4b6ae8f0e3, type: 3}
       _minePrefab: {fileID: 8862172488318726591, guid: fe5ed7c715c94894fbd195c8bc6cf337, type: 3}
       _explosionPrefab: {fileID: 6370172100038760875, guid: 4544355d92055994c9ee89aca26474d5, type: 3}
-    Explosions:
-      ExplosionLifeTime: 1
+      _hitPrefab: {fileID: 6370172100038760875, guid: 628548f42de9e37468f5b2291d2fcc35, type: 3}
+      _explosionEntityFactory: {fileID: 11400000, guid: 80e5abd1e837a8e429f0d4d57bf73f95, type: 2}
+      _hitEntityFactory: {fileID: 11400000, guid: 7547a33e57c07674bb855c9bd0637e10, type: 2}
     Restart:
-      RestartDelay: 2
+      RestartDelay: 3
   _player:
     Move:
       MoveForce: 30

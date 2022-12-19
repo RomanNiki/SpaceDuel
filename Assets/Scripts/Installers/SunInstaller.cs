@@ -1,12 +1,15 @@
 ﻿using System;
 using Controller.EntityToGameObject;
 using Extensions;
+using Extensions.Factories.Buffs;
 using Leopotam.Ecs;
 using Model.Components;
+using Model.Components.Extensions;
+using Model.Components.Extensions.EntityFactories;
 using Model.Components.Requests;
 using Model.Components.Unit;
-using Model.Components.Unit.MoveComponents;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Zenject;
 
 namespace Installers
@@ -15,6 +18,7 @@ namespace Installers
     {
         [Inject] private readonly EcsWorld _world;
         [SerializeField] private Settings _settings;
+        [SerializeField] private BuffEntityFactoryFromSo _buffEntityFactory;
 
         public override void InstallBindings()
         {
@@ -27,10 +31,12 @@ namespace Installers
         {
             var sunEntity = _world.NewEntity();
             ref var sun = ref sunEntity.Get<Sun>();
-            sunEntity.Get<TransformData>().Position = _settings.SunPosition;
+            sunEntity.AddTransform(_settings.SunPosition, 0f);
             sun.GravityForce = _settings.GravityForce;
-            sun.Radius = _settings.Radius;
+            sun.OuterRadius = _settings.OuterRadius;
+            sun.InnerRadius = _settings.InnerRadius;
             sunEntity.Get<ChargeContainer>().ChargeRequest = new ChargeRequest() {Value = _settings.EnergyChargeAmount};
+            sunEntity.Get<EntityFactoryRef<BuffEntityFactoryFromSo>>().Value = _buffEntityFactory;
             return sunEntity;
         }
         
@@ -39,15 +45,17 @@ namespace Installers
         {
             public Transform Transform;
             public Vector2 SunPosition;
-            public float Radius;
+            [FormerlySerializedAs("Radius")] public float OuterRadius;
+            public float InnerRadius;
             public float GravityForce;
             public float EnergyChargeAmount;
+
         }
 
 
         private void OnDrawGizmos()
         {
-            Gizmos.DrawWireSphere(Vector3.zero, _settings.Radius);
+            Gizmos.DrawWireSphere(Vector3.zero, _settings.OuterRadius);
         }
     }
 }

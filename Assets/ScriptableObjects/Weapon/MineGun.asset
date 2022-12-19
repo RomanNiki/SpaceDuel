@@ -19,6 +19,6 @@ MonoBehaviour:
     DischargeRequest:
       Value: 5
   _muzzle:
-    Offset: 2
+    Offset: -2
   _timeBetweenShotsSetup:
     TimeSec: 10

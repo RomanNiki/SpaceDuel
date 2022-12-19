@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Model.Enums;
+using UnityEngine;
 using UnityEngine.Assertions;
 using Zenject;
 
@@ -20,7 +21,7 @@ namespace Installers
         
         public override void InstallBindings()
         {
-            Container.Bind<Camera>().FromInstance(_orthoCamera).AsSingle();
+            Container.Bind<Camera>().WithId(CameraEnum.Orthographic).FromInstance(_orthoCamera).AsSingle();
         }
     }
 }

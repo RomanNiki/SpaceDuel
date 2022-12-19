@@ -1,9 +1,12 @@
 ﻿using System;
+using Extensions.Factories.Weapon;
 using Leopotam.Ecs;
+using Model.Components;
 using Model.Components.Extensions;
 using Model.Components.Extensions.DyingPolicies;
 using Model.Components.Extensions.EntityFactories;
 using Model.Components.Tags;
+using Model.Components.Tags.Effects;
 using Model.Components.Unit;
 using Model.Components.Unit.MoveComponents.Input;
 using Model.Components.Weapons;
@@ -25,6 +28,7 @@ namespace Extensions.Factories
             var entity = world.NewEntity();
             entity.Get<PlayerTag>();
             entity.Get<InputMoveData>();
+            entity.Get<ExplosiveTag>();
             entity.AddHealth(_settings.MaxHealth, new StandardDyingPolicy())
                 .AddEnergy(_settings.MaxEnergy);
             entity.Get<DischargeMoveContainer>().DischargeRequest.Value = _settings.MoveCost;

@@ -34,7 +34,6 @@ namespace Model.Systems
         {
             health.Current = Mathf.Max(0.0f, health.Current - damage);
             entity.Get<HealthChangeEvent>();
-            entity.Get<ViewUpdateRequest>();
         }
     }
 }

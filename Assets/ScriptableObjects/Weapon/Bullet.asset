@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a8cf0294096426fbaf95e5a8403dc30, type: 3}
   m_Name: Bullet
   m_EditorClassIdentifier: 
-  _health:
-    Current: 1
-  _damage: 1
+  _health: 1
+  _damage: 10
+  _friction: 0.1

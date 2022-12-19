@@ -1,6 +1,5 @@
 ﻿using Leopotam.Ecs;
 using Model.Components;
-using Model.Components.Requests;
 using Model.Components.Weapons;
 
 namespace Model.Systems.Weapons
@@ -14,14 +13,9 @@ namespace Model.Systems.Weapons
             foreach (var i in _filter)
             {
                 ref var owner = ref _filter.Get1(i).Owner;
+                if (owner.IsAlive() == false) continue;
                 ref var gun = ref _filter.GetEntity(i);
-                if (owner.IsAlive() == false)
-                {
-                    _filter.GetEntity(i).Get<EntityDestroyRequest>();
-                    continue;
-                }
-                   
-                
+
                 if (owner.Has<NoEnergyBlock>())
                 {
                     gun.Get<NoEnergyBlock>();

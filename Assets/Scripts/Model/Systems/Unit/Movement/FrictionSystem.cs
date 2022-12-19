@@ -7,7 +7,7 @@ namespace Model.Systems.Unit.Movement
 {
     public sealed class FrictionSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<Move, Friction> _moveFilter = null;
+        private readonly EcsFilter<Velocity, Friction> _moveFilter = null;
 
         public void Run()
         {
@@ -15,10 +15,10 @@ namespace Model.Systems.Unit.Movement
             {
                 ref var move = ref _moveFilter.Get1(i);
                 ref var friction = ref _moveFilter.Get2(i);
-                var frictionDirection = -move.Velocity.normalized;
-                var frictionMagnitude = move.Velocity.magnitude * move.Velocity.magnitude;
+                var frictionDirection = -move.Value.normalized;
+                var frictionMagnitude = move.Value.magnitude * move.Value.magnitude;
                 var frictionVector = frictionDirection * frictionMagnitude;
-                move.Velocity += friction.Value * frictionVector * Time.deltaTime;
+                move.Value += friction.Value * frictionVector * Time.deltaTime;
             }
         }
     }

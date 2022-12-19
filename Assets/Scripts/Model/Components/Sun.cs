@@ -3,6 +3,7 @@
     public struct Sun
     {
         public float GravityForce;
-        public float Radius;
+        public float OuterRadius;
+        public float InnerRadius;
     }
 }

@@ -9,26 +9,26 @@ namespace Model.Systems.Unit.Movement
 {
     public sealed class SunGravitySystem : IEcsRunSystem
     {
-        private readonly EcsFilter<TransformData>.Exclude<NoGravity, Sun> _move = null;
-        private readonly EcsFilter<Sun, TransformData> _sun = null;
+        private readonly EcsFilter<Position, Velocity>.Exclude<NoGravity, Sun> _movableFilter = null;
+        private readonly EcsFilter<Sun, Position> _sunFilter = null;
 
         public void Run()
         {
-            foreach (var j in _sun)
+            foreach (var j in _sunFilter)
             {
-                ref var sun = ref _sun.Get1(j);
-                ref var sunTransform = ref _sun.Get2(j);
-                foreach (var i in _move)
+                ref var sun = ref _sunFilter.Get1(j);
+                ref var sunPosition = ref _sunFilter.Get2(j);
+                foreach (var i in _movableFilter)
                 {
-                    ref var transform = ref _move.Get1(i);
-                    ref var entity = ref _move.GetEntity(i);
-                    var targetDirection = sunTransform.Position - transform.Position;
+                    ref var objectPosition = ref _movableFilter.Get1(i);
+                    ref var entity = ref _movableFilter.GetEntity(i);
+                    var targetDirection = sunPosition.Value - objectPosition.Value;
                     var distance = targetDirection.magnitude;
 
                     if (distance <= 0.5f)
                         continue;
                     var force = targetDirection.normalized * sun.GravityForce ;
-                    var distRatio = Mathf.Clamp01(distance / sun.Radius);
+                    var distRatio = Mathf.Clamp01(distance / sun.OuterRadius);
                     
                     force *= 1.0f + distRatio;
                     entity.Get<ForceRequest>().Force += force * Time.deltaTime;

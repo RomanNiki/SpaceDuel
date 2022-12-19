@@ -7,7 +7,7 @@ namespace Model.Systems.Unit.Movement
 {
     public sealed class AccelerationSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<Move, ForceRequest> _moveFilter = null;
+        private readonly EcsFilter<Velocity, ForceRequest> _moveFilter = null;
         
         public void Run()
         {
@@ -15,7 +15,7 @@ namespace Model.Systems.Unit.Movement
             {
                 ref var move = ref _moveFilter.Get1(i);
                 ref var force = ref _moveFilter.Get2(i);
-                move.Velocity += force.Force * Time.deltaTime;
+                move.Value += force.Force * Time.deltaTime;
             }
         }
     }

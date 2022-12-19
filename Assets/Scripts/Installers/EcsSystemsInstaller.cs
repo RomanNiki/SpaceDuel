@@ -5,11 +5,13 @@ using Model.Systems.Unit;
 using Model.Systems.Unit.Collisions;
 using Model.Systems.Unit.Input;
 using Model.Systems.Unit.Movement;
+using Model.Systems.VisualEffects;
 using Model.Systems.Weapons;
 using Model.Systems.Weapons.Particle;
 using Model.Timers;
-using Views.Systems;
-using Views.Systems.Create;
+using Views.Systems.Create.Effects;
+using Views.Systems.Create.Projectiles;
+using Views.Systems.Update;
 using Zenject;
 
 namespace Installers
@@ -29,7 +31,7 @@ namespace Installers
         private void AddSystems()
         {
             AddInputSystems();
-            Container.BindInterfacesTo<AcceleratePlayerVFXSystem>().AsSingle().NonLazy().BindInfo.Identifier =
+            Container.BindInterfacesTo<NozzleVFXSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.Run;
             AddShootSystems();
             AddTimers();
@@ -52,6 +54,8 @@ namespace Installers
 
             Container.BindInterfacesTo<SunChargeSystem>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.Run;
             Container.BindInterfacesTo<ChargeEnergySystem>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.Run;
+            Container.BindInterfacesTo<UpdateEnergyBarViewSystem>().AsSingle().NonLazy().BindInfo.Identifier =
+                SystemsEnum.Run;
         }
 
         private void AddViewCreateSystems()
@@ -59,8 +63,10 @@ namespace Installers
             Container.BindInterfacesTo<BulletViewCreateSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.Run;
             Container.BindInterfacesTo<MineViewCreateSystem>().AsSingle().NonLazy().BindInfo.Identifier =
-                SystemsEnum.Run;  
+                SystemsEnum.Run;
             Container.BindInterfacesTo<ExplosionViewCreateSystem>().AsSingle().NonLazy().BindInfo.Identifier =
+                SystemsEnum.Run;
+            Container.BindInterfacesTo<HitViewCreateSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.Run;
         }
 
@@ -70,12 +76,14 @@ namespace Installers
                 SystemsEnum.Run;
             Container.BindInterfacesTo<TimerSystem<SunGravityResistTime>>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.Run;
-            Container.BindInterfacesTo<TimerSystem<DestroyTimer>>().AsSingle().NonLazy().BindInfo.Identifier =
+            Container.BindInterfacesTo<TimerSystem<LifeTime>>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.Run;
         }
 
         private void AddShootSystems()
         {
+            Container.BindInterfacesTo<OwnerIsAliveSystem>().AsSingle().NonLazy().BindInfo.Identifier =
+                SystemsEnum.Run;
             Container.BindInterfacesTo<CheckOwnerEnergyBlockSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.Run;
             Container.BindInterfacesTo<ShootDeniedTimeBetweenShotsSystem>().AsSingle().NonLazy().BindInfo.Identifier =
@@ -98,25 +106,32 @@ namespace Installers
         {
             AddMoveSystems();
             AddCollisionsSystems();
+            Container.BindInterfacesTo<ExecuteHitSystem>().AsSingle().NonLazy().BindInfo.Identifier =
+                SystemsEnum.FixedRun;
             Container.BindInterfacesTo<DamageSystem>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.FixedRun;
+            Container.BindInterfacesTo<UpdateHealthBarViewSystem>().AsSingle().NonLazy().BindInfo.Identifier =
+                SystemsEnum.FixedRun;
             Container.BindInterfacesTo<DeathSystem>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.FixedRun;
+      
             AddScoreSystems();
             AddDestroySystems();
         }
 
         private void AddRestartGameSystems()
         {
-            Container.BindInterfacesTo<GameOverSystem>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.FixedRun;
-            Container.BindInterfacesTo<RestartGameSystem>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.FixedRun;
+            Container.BindInterfacesTo<GameOverSystem>().AsSingle().NonLazy().BindInfo.Identifier =
+                SystemsEnum.FixedRun;
+            Container.BindInterfacesTo<RestartGameSystem>().AsSingle().NonLazy().BindInfo.Identifier =
+                SystemsEnum.FixedRun;
         }
 
         private void AddDestroySystems()
         {
-            Container.BindInterfacesTo<ExplosionDestroySystem>().AsSingle().NonLazy().BindInfo.Identifier =
+            Container.BindInterfacesTo<VisualEffectDestroySystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.FixedRun;
             Container.BindInterfacesTo<ViewDestroySystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.FixedRun;
-            Container.BindInterfacesTo<EntityExplosionSystem>().AsSingle().NonLazy().BindInfo.Identifier =
+            Container.BindInterfacesTo<ExecuteExplosionSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.FixedRun;
             AddRestartGameSystems();
             Container.BindInterfacesTo<EntityDestroySystem>().AsSingle().NonLazy().BindInfo.Identifier =
@@ -137,7 +152,7 @@ namespace Installers
         {
             Container.BindInterfacesTo<SunTriggerEnterSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.FixedRun;
-            Container.BindInterfacesTo<BulletTriggerSystem>().AsSingle().NonLazy().BindInfo.Identifier =
+            Container.BindInterfacesTo<DamageContainerTriggerSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.FixedRun;
             Container.BindInterfacesTo<ShipCollisionSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.FixedRun;
@@ -160,6 +175,8 @@ namespace Installers
             Container.BindInterfacesTo<FrictionSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.FixedRun;
             Container.BindInterfacesTo<VelocitySystem>().AsSingle().NonLazy().BindInfo.Identifier =
+                SystemsEnum.FixedRun;
+            Container.BindInterfacesTo<FollowSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.FixedRun;
             Container.BindInterfacesTo<ExecuteMoveSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.FixedRun;

@@ -64,7 +64,7 @@ namespace Model.Systems.Unit.Input
 
                 ref var gun = ref _filterGuns.GetEntity(i);
 
-                var direction = owner.Owner.Get<TransformData>().LookDir;
+                var direction = owner.Owner.Get<Rotation>().LookDir;
                 if (isShoot)
                 {
                     MakeShooting(ref gun, direction);

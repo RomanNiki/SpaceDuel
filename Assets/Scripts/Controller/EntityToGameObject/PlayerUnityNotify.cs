@@ -15,6 +15,7 @@ namespace Controller.EntityToGameObject
 
             var provider = col.transform.GetProvider();
             if (!provider) return;
+            
             if (provider.Entity.IsAlive() && provider.Entity.Has<PlayerTag>())
             {
                 Entity.AddEvent(new CollisionEnterEvent() {Other = provider.Entity});
