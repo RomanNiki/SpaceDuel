@@ -1,5 +1,4 @@
-﻿using Components.Events.InputEvents;
-using Leopotam.Ecs;
+﻿using Leopotam.Ecs;
 using Model.Components.Events.InputEvents;
 using Model.Components.Extensions;
 using Model.Enums;
@@ -11,7 +10,7 @@ namespace Controller.Input
     {
         [Inject] private PlayerInput _playerInput;
         private readonly EcsWorld _world = null;
-
+        
         private void SendMessageInGame<T>(in T messageEvent)
             where T : struct
         {
@@ -21,6 +20,8 @@ namespace Controller.Input
         public void Init()
         {
             _playerInput.Enable();
+            _playerInput.Common.Menu.started += _ =>
+                SendMessageInGame(new InputPauseQuitEvent());
             InitMoveInput();
             InitShootInput();
         }
@@ -28,37 +29,47 @@ namespace Controller.Input
         private void InitShootInput()
         {
             _playerInput.Player.FirstShoot.started += _ =>
-                SendMessageInGame(new InputShootStartedEvent { PlayerTeamEnum = TeamEnum.Blue, Weapon = WeaponEnum.Primary});
+                SendMessageInGame(new InputShootStartedEvent
+                    {PlayerTeamEnum = TeamEnum.Blue, Weapon = WeaponEnum.Primary});
 
             _playerInput.Player1.FirstShoot.started += _ =>
-                SendMessageInGame(new InputShootStartedEvent {PlayerTeamEnum = TeamEnum.Red, Weapon = WeaponEnum.Primary});
+                SendMessageInGame(new InputShootStartedEvent
+                    {PlayerTeamEnum = TeamEnum.Red, Weapon = WeaponEnum.Primary});
 
             _playerInput.Player.FirstShoot.canceled += _ =>
-                SendMessageInGame(new InputShootCanceledEvent {PlayerTeamEnum = TeamEnum.Blue, Weapon = WeaponEnum.Primary});
+                SendMessageInGame(new InputShootCanceledEvent
+                    {PlayerTeamEnum = TeamEnum.Blue, Weapon = WeaponEnum.Primary});
 
             _playerInput.Player1.FirstShoot.canceled += _ =>
-                SendMessageInGame(new InputShootCanceledEvent {PlayerTeamEnum = TeamEnum.Red, Weapon = WeaponEnum.Primary});
+                SendMessageInGame(new InputShootCanceledEvent
+                    {PlayerTeamEnum = TeamEnum.Red, Weapon = WeaponEnum.Primary});
 
             _playerInput.Player.SecondShoot.started += _ =>
-                SendMessageInGame(new InputShootStartedEvent {PlayerTeamEnum = TeamEnum.Blue, Weapon = WeaponEnum.Secondary});
+                SendMessageInGame(new InputShootStartedEvent
+                    {PlayerTeamEnum = TeamEnum.Blue, Weapon = WeaponEnum.Secondary});
 
             _playerInput.Player1.SecondShoot.started += _ =>
-                SendMessageInGame(new InputShootStartedEvent {PlayerTeamEnum = TeamEnum.Red, Weapon = WeaponEnum.Secondary});
+                SendMessageInGame(new InputShootStartedEvent
+                    {PlayerTeamEnum = TeamEnum.Red, Weapon = WeaponEnum.Secondary});
 
             _playerInput.Player.SecondShoot.canceled += _ =>
-                SendMessageInGame(new InputShootCanceledEvent {PlayerTeamEnum = TeamEnum.Blue, Weapon = WeaponEnum.Secondary});
+                SendMessageInGame(new InputShootCanceledEvent
+                    {PlayerTeamEnum = TeamEnum.Blue, Weapon = WeaponEnum.Secondary});
 
             _playerInput.Player1.SecondShoot.canceled += _ =>
-                SendMessageInGame(new InputShootCanceledEvent {PlayerTeamEnum = TeamEnum.Red, Weapon = WeaponEnum.Secondary});
+                SendMessageInGame(new InputShootCanceledEvent
+                    {PlayerTeamEnum = TeamEnum.Red, Weapon = WeaponEnum.Secondary});
         }
 
         private void InitMoveInput()
         {
             _playerInput.Player.Rotate.started += context =>
-                SendMessageInGame(new InputRotateStartedEvent() {PlayerNumber = TeamEnum.Blue, Axis = context.ReadValue<float>()});
+                SendMessageInGame(new InputRotateStartedEvent()
+                    {PlayerNumber = TeamEnum.Blue, Axis = context.ReadValue<float>()});
 
             _playerInput.Player1.Rotate.started += context =>
-                SendMessageInGame(new InputRotateStartedEvent {PlayerNumber = TeamEnum.Red, Axis = context.ReadValue<float>()});
+                SendMessageInGame(new InputRotateStartedEvent
+                    {PlayerNumber = TeamEnum.Red, Axis = context.ReadValue<float>()});
 
             _playerInput.Player.Rotate.canceled += _ =>
                 SendMessageInGame(new InputRotateCanceledEvent() {PlayerNumber = TeamEnum.Blue});
@@ -81,6 +92,7 @@ namespace Controller.Input
 
         public void Destroy()
         {
+            _playerInput.Dispose();
             _playerInput.Disable();
         }
     }

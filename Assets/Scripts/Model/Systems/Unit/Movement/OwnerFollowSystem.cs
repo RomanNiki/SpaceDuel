@@ -5,7 +5,7 @@ using Model.Components.Weapons;
 
 namespace Model.Systems.Unit.Movement
 {
-    public class FollowSystem : IEcsRunSystem
+    public sealed class FollowSystem : IEcsRunSystem
     {
         private readonly EcsFilter<Follower, Position, PlayerOwner>.Exclude<Velocity> _filter;
 

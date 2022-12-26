@@ -1,5 +1,4 @@
 ﻿using Model.Components.Extensions.Pool;
-using Model.Components.Tags;
 using Model.Components.Tags.Projectiles;
 using Zenject;
 

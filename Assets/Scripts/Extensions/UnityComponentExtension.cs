@@ -20,11 +20,15 @@ namespace Extensions
             return provider;
         }
 
-        public static bool HasProvider(this Component component)
+        public static bool HasProvider(this Component component, out EcsUnityProvider provider)
         {
             var gameObject = component.gameObject;
-            var providerExist = gameObject.TryGetComponent<EcsUnityProvider>(out _);
-            return providerExist;
+            if (gameObject.TryGetComponent(out provider) == false)
+            {
+                provider = gameObject.GetComponentInParent<EcsUnityProvider>();
+            }
+
+            return provider != null;
         }
 
         public static void AddEventToStack<T>(in this EcsEntity entity)

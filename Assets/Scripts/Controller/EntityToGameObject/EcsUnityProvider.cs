@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Controller.EntityToGameObject
 {
-    public class EcsUnityProvider : MonoBehaviour
+    public sealed class EcsUnityProvider : MonoBehaviour
     {
         public ref EcsEntity Entity
         {

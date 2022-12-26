@@ -17,44 +17,12 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: c620c6e900a9735448f85bad5ee46373
   m_SerializeEntries:
-  - m_GUID: 7a77cf45bf71a43459ace5efd8a876ac
-    m_Address: Assets/Prefabs/FirstImpact.prefab
+  - m_GUID: 8f586378b4e144a9851e7b34d9b748ee
+    m_Address: Fonts & Materials/LiberationSans SDF
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 4544355d92055994c9ee89aca26474d5
-    m_Address: Assets/Prefabs/Misk/Explosion.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: e6fed69711c5d464ba3c19876076826b
-    m_Address: Assets/Prefabs/Misk/Fire.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: c7d01813663b376468d489c9a1c1eb0f
-    m_Address: Assets/Prefabs/Misk/GameScore.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 628548f42de9e37468f5b2291d2fcc35
-    m_Address: Assets/Prefabs/Misk/Hit.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 60b3c6785d4fdda48b29f6956be9d2e1
-    m_Address: Assets/Prefabs/Players/BluePlayer.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 32033f24a09e0f04f9e21088c92a7deb
-    m_Address: Assets/Prefabs/Players/PlayerUI.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: c63c6b00826ef6f4c8b1e71547bd4740
-    m_Address: Assets/Prefabs/Players/RedPlayer.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: c5baf7dcf21e50b41b9a1a4b6ae8f0e3
-    m_Address: Assets/Prefabs/Projectiles/Bullet.prefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: fe5ed7c715c94894fbd195c8bc6cf337
-    m_Address: Assets/Prefabs/Projectiles/Mine.prefab
+  - m_GUID: 2e498d1c8094910479dc3e1b768306a4
+    m_Address: Fonts & Materials/LiberationSans SDF - Fallback
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

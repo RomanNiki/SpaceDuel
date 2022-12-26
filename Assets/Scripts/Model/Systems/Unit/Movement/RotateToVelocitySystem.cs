@@ -1,16 +1,16 @@
 ﻿using Leopotam.Ecs;
-using Model.Components.Tags;
+using Model.Components.Extensions;
 using Model.Components.Tags.Projectiles;
 using Model.Components.Unit.MoveComponents;
 using UnityEngine;
 
 namespace Model.Systems.Unit.Movement
 {
-    public sealed class RotateToVelocitySystem : IEcsRunSystem
+    public sealed class RotateToVelocitySystem : PauseHandlerDefaultRunSystem
     {
         private readonly EcsFilter<BulletTag, Rotation, Velocity> _bulletsFilter = null;
-
-        public void Run()
+        
+        protected override void Tick()
         {
             foreach (var i in _bulletsFilter)
             {

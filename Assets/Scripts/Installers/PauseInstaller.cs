@@ -7,9 +7,7 @@ namespace Installers
     {
         public override void InstallBindings()
         {
-            Container.BindInterfacesTo<PauseRegisterHandler>().AsSingle().CopyIntoAllSubContainers();
-
-            Container.Bind<PauseManager>().AsSingle();
+            Container.Bind<PauseService>().AsSingle();
         }
     }
 }

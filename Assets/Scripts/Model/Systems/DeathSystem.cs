@@ -14,8 +14,8 @@ namespace Model.Systems
             foreach (var i in _deathFilter)
             {
                 ref var dyingPolicy = ref _deathFilter.Get1(i);
-                ref var health = ref _deathFilter.Get2(i).Current;
-                CheckDeath(dyingPolicy, health, i);
+                ref var health = ref _deathFilter.Get2(i);
+                CheckDeath(dyingPolicy, health.Current, i);
             }
         }
 

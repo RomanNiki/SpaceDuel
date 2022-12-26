@@ -5,7 +5,7 @@ using Model.Components.Weapons;
 
 namespace Model.Systems.Weapons
 {
-    public class WeaponEnergyDischargeSystem : IEcsRunSystem
+    public sealed class WeaponEnergyDischargeSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerOwner, DischargeShotContainer, ShotMadeEvent> _weapon = null;
 

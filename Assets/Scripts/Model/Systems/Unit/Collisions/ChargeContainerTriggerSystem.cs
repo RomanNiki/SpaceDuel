@@ -2,13 +2,14 @@
 using Model.Components.Events;
 using Model.Components.Extensions;
 using Model.Components.Requests;
+using Model.Components.Tags.Buffs;
 using Model.Components.Unit;
 
 namespace Model.Systems.Unit.Collisions
 {
-    public class ChargeContainerTriggerSystem : IEcsRunSystem
+    public sealed class ChargeContainerTriggerSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<ContainerComponents<TriggerEnterEvent>, ChargeContainer> _filter =
+        private readonly EcsFilter<ContainerComponents<TriggerEnterEvent>, ChargeContainer, BuffTag> _filter =
             null;
 
         public void Run()
@@ -22,7 +23,7 @@ namespace Model.Systems.Unit.Collisions
                {
                    collision.Other.Get<ChargeRequest>().Value += charge.ChargeRequest.Value;
                }
-               entity.Get<InstantlyKill>();
+               entity.Get<EntityDestroyRequest>();
             }
         }
     }

@@ -7,34 +7,17 @@ namespace Views
 {
     [RequireComponent(typeof(EcsUnityProvider))]
     [RequireComponent(typeof(Rigidbody2D))]
-    public class ProjectileView : EcsUnityNotifier, IPoolable<IMemoryPool>, IPhysicsPoolObject
+    public class ProjectileView : GameObjectView, IPhysicsPoolObject
     {
-        private IMemoryPool _memoryPool;
         public Rigidbody2D Rigidbody2D { get; private set; }
-        public Transform Transform { get; private set; }
 
-        private void Awake()
+        protected sealed override void Awake()
         {
+            base.Awake();
             Rigidbody2D = GetComponent<Rigidbody2D>();
-            Transform = transform;
         }
-
-        public void OnDespawned()
-        {
-            _memoryPool = null;
-        }
-
-        public void OnSpawned(IMemoryPool pool)
-        {
-            _memoryPool = pool;
-        }
-
-        public void PoolRecycle()
-        {
-            _memoryPool.Despawn(this);
-        }
-
-        public class Factory : PlaceholderFactory<ProjectileView>
+        
+        public new class Factory : PlaceholderFactory<ProjectileView>
         {
         }
     }

@@ -1,8 +1,10 @@
-﻿namespace Model.Components.Unit
+﻿using Model.Components.Extensions.Interfaces;
+
+namespace Model.Components.Unit
 {
-    public struct Energy
+    public struct Energy : ICharacteristic
     {
-        public float Initial;
-        public float Current;
+        public float Initial { get; set; }
+        public float Current { get; set; }
     }
 }

@@ -6,7 +6,6 @@ using Leopotam.Ecs;
 using Model.Components;
 using Model.Components.Extensions;
 using Model.Components.Extensions.UI;
-using Model.Components.Tags;
 using Model.Components.Unit;
 using Model.Components.Unit.MoveComponents;
 using Model.Components.Unit.MoveComponents.Input;
@@ -29,7 +28,7 @@ namespace Installers
         {
             var entity = EcsInitPlayer();
             _settings.Rigidbody.transform.GetProvider().SetEntity(entity);
-            _settings.Rigidbody.gameObject.AddComponent<PlayerUnityNotify>();
+            _settings.Rigidbody.gameObject.AddComponent<EcsUnityNotifier>();
             CreateUI(entity);
         }
 
@@ -37,7 +36,7 @@ namespace Installers
         {
             var uiEntity = _world.NewEntity();
             uiEntity.AddTransform(_settings.BarTransform.position, _settings.BarTransform.rotation.z);
-            uiEntity.Get<ViewObjectComponent>().ViewObject = new TransformViewObjectUnity(_settings.BarTransform);
+            uiEntity.Get<ViewObjectComponent>().ViewObject = new ViewObjectUnity(_settings.BarTransform);
             uiEntity.Get<Follower>().Offset = _settings.Offset;
             uiEntity.Get<PlayerOwner>().Owner = owner;
             _settings.BarTransform.GetProvider().SetEntity(uiEntity);
@@ -46,13 +45,12 @@ namespace Installers
         private EcsEntity EcsInitPlayer()
         {
             var entity = _playerEntityFactory.CreateEntity(_world);
-            entity.Get<ViewObjectComponent>().ViewObject = new RigidbodyViewObjectUnity(_settings.Rigidbody);
+            entity.Get<ViewObjectComponent>().ViewObject = new ViewObjectUnity(_settings.Rigidbody.transform,_settings.Rigidbody);
             entity.Get<UnityComponent<AudioSource>>().Value = _settings.AudioSource;
-            entity.Get<UnityComponent<VisualEffect>>().Value = _settings.VisualEffect;
+            entity.Get<Nozzle>().VisualEffect = _settings.VisualEffect;
             entity.Get<Team>().Value = _settings.Team;
-            ref var bars = ref entity.Get<CharacteristicBars>();
-            bars.EnergyBar = _settings.EnergyBar;
-            bars.HealthBar = _settings.HealthBar;
+            entity.Get<EnergyBar>().Bar = _settings.EnergyBar;
+            entity.Get<HealthBar>().Bar = _settings.HealthBar;
             entity.AddMovementComponents(_settings.Rigidbody.position, _settings.Rigidbody.rotation, _settings.Rigidbody.mass,
                 _settings.MoveFriction);
             return entity;

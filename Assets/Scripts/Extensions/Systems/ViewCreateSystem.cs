@@ -1,4 +1,5 @@
 ﻿using Leopotam.Ecs;
+using Model.Components.Events;
 using Model.Components.Requests;
 using UnityEngine;
 
@@ -17,12 +18,12 @@ namespace Extensions.Systems
             {
                 ref var entity = ref _filter.GetEntity(i);
                 ref var createRequest = ref _filter.Get1(i);
-                
+
                 var transform = GetTransform(entity, createRequest);
-                
+
                 var provider = transform.GetProvider();
                 provider.SetEntity(entity);
-                
+
                 entity.Del<TCreateData>();
 
                 entity.Get<ViewUpdateRequest>();

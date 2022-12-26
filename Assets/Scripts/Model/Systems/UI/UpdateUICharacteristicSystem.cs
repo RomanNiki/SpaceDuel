@@ -1,4 +1,5 @@
 ﻿using Leopotam.Ecs;
+using Model.Components.Extensions.Interfaces;
 
 namespace Model.Systems.UI
 {
@@ -7,14 +8,14 @@ namespace Model.Systems.UI
         where TValueComponent : struct
         where TUIComponent : struct
     {
-        protected readonly EcsFilter<TValueComponent, TUIComponent, TEvent> _componentUpdateFilter = null;
+        protected readonly EcsFilter<TValueComponent, TUIComponent, TEvent> ComponentUpdateFilter = null;
 
         public void Run()
         {
-            foreach (var i in _componentUpdateFilter)
+            foreach (var i in ComponentUpdateFilter)
             {
-                ref var component = ref _componentUpdateFilter.Get1(i);
-                ref var bar = ref _componentUpdateFilter.Get2(i);
+                ref var component = ref ComponentUpdateFilter.Get1(i);
+                ref var bar = ref ComponentUpdateFilter.Get2(i);
                 UpdateUI(component, bar);
             }
         }

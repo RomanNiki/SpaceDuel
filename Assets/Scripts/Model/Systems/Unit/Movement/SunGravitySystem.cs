@@ -1,5 +1,6 @@
 ﻿using Leopotam.Ecs;
 using Model.Components;
+using Model.Components.Extensions;
 using Model.Components.Requests;
 using Model.Components.Tags;
 using Model.Components.Unit.MoveComponents;
@@ -7,12 +8,12 @@ using UnityEngine;
 
 namespace Model.Systems.Unit.Movement
 {
-    public sealed class SunGravitySystem : IEcsRunSystem
+    public sealed class SunGravitySystem : PauseHandlerDefaultRunSystem
     {
-        private readonly EcsFilter<Position, Velocity>.Exclude<NoGravity, Sun> _movableFilter = null;
+        private readonly EcsFilter<Position, Velocity>.Exclude<GravityResist, Sun> _movableFilter = null;
         private readonly EcsFilter<Sun, Position> _sunFilter = null;
 
-        public void Run()
+        protected override void Tick()
         {
             foreach (var j in _sunFilter)
             {

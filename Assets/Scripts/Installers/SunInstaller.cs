@@ -8,6 +8,7 @@ using Model.Components.Extensions;
 using Model.Components.Extensions.EntityFactories;
 using Model.Components.Requests;
 using Model.Components.Unit;
+using Model.Timers;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;
@@ -24,19 +25,20 @@ namespace Installers
         {
             var entity = EcsInitSun();
             _settings.Transform.GetProvider().SetEntity(entity);
-            _settings.Transform.gameObject.AddComponent<SunUnityNotify>();
+            _settings.Transform.gameObject.AddComponent<EcsUnityNotifier>();
         }
 
         private EcsEntity EcsInitSun()
         {
             var sunEntity = _world.NewEntity();
             ref var sun = ref sunEntity.Get<Sun>();
-            sunEntity.AddTransform(_settings.SunPosition, 0f);
+            sunEntity.AddTransform(_settings.SunPosition);
             sun.GravityForce = _settings.GravityForce;
             sun.OuterRadius = _settings.OuterRadius;
             sun.InnerRadius = _settings.InnerRadius;
             sunEntity.Get<ChargeContainer>().ChargeRequest = new ChargeRequest() {Value = _settings.EnergyChargeAmount};
-            sunEntity.Get<EntityFactoryRef<BuffEntityFactoryFromSo>>().Value = _buffEntityFactory;
+            sunEntity.Get<EntityFactoryRef<IEntityFactory>>().Value = _buffEntityFactory;
+            sunEntity.Get<Timer<TimerBetweenSpawn>>().TimeLeftSec = 10f;
             return sunEntity;
         }
         

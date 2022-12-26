@@ -1,27 +1,24 @@
 ﻿using System;
 using Leopotam.Ecs;
 using Model.Components;
+using Model.Components.Extensions;
 using Model.Components.Requests;
 using Model.Components.Tags;
 using Model.Components.Unit;
-using Model.Components.Unit.MoveComponents;
-using Model.Pause;
+using Model.Components.Unit.MoveComponents; 
 using UnityEngine;
 using Zenject;
 
 namespace Model.Systems.Unit
 {
-    public sealed class SunChargeSystem : IEcsRunSystem, IPauseHandler
+    public sealed class SunChargeSystem : PauseHandlerDefaultRunSystem
     {
         [Inject] private readonly Settings _settings;
         private readonly EcsFilter<PlayerTag, Position, Rotation> _playerFilter = null;
         private readonly EcsFilter<Sun, Position, ChargeContainer> _sunFilter = null;
-        private bool _isPause;
 
-        public void Run()
+        protected override void Tick()
         {
-            if (_isPause)
-                return;
             foreach (var j in _sunFilter)
             {
                 ref var sunPosition = ref _sunFilter.Get2(j);
@@ -60,11 +57,6 @@ namespace Model.Systems.Unit
         private static float ScaleValue(float min, float max, float value)
         {
             return (value - max) / (min - max);
-        }
-
-        public void SetPaused(bool isPaused)
-        {
-            _isPause = isPaused;
         }
 
         [Serializable]

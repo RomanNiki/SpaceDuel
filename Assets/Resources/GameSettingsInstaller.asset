@@ -15,14 +15,40 @@ MonoBehaviour:
   _targetFrameRate: 200
   _gameInstaller:
     GameInstaller:
-      _bulletPrefab: {fileID: 7113131982927379651, guid: c5baf7dcf21e50b41b9a1a4b6ae8f0e3, type: 3}
-      _minePrefab: {fileID: 8862172488318726591, guid: fe5ed7c715c94894fbd195c8bc6cf337, type: 3}
-      _explosionPrefab: {fileID: 6370172100038760875, guid: 4544355d92055994c9ee89aca26474d5, type: 3}
-      _hitPrefab: {fileID: 6370172100038760875, guid: 628548f42de9e37468f5b2291d2fcc35, type: 3}
+      _bulletPrefab:
+        m_AssetGUID: 8817d99080699ac41aea27546405e8d1
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      _minePrefab:
+        m_AssetGUID: eb52b47df7d89df4a9ec14c46d659652
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      _explosionPrefab:
+        m_AssetGUID: 95e18a6c0d3dfc04e80745a5fc82086b
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      _hitPrefab:
+        m_AssetGUID: 101ff51d8e6d0e0458cbb6351e2900b1
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
+      _energyPrefab:
+        m_AssetGUID: 1426627d451ccee4686352246c211f87
+        m_SubObjectName: 
+        m_SubObjectType: 
+        m_EditorAssetChanged: 0
       _explosionEntityFactory: {fileID: 11400000, guid: 80e5abd1e837a8e429f0d4d57bf73f95, type: 2}
       _hitEntityFactory: {fileID: 11400000, guid: 7547a33e57c07674bb855c9bd0637e10, type: 2}
     Restart:
       RestartDelay: 3
+    Buff:
+      MaxTimeToSpawn: 30
+      MinTimeToSpawn: 10
+    PrepairGame:
+      SecondsToStart: 3
   _player:
     Move:
       MoveForce: 30

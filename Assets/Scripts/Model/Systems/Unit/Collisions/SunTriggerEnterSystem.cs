@@ -7,7 +7,7 @@ using Model.Components.Requests;
 
 namespace Model.Systems.Unit.Collisions
 {
-    public class SunTriggerEnterSystem : IEcsRunSystem
+    public sealed class SunTriggerEnterSystem : IEcsRunSystem
     {
         private readonly EcsFilter<ContainerComponents<TriggerEnterEvent>, Sun> _filter =
             null;
@@ -20,7 +20,7 @@ namespace Model.Systems.Unit.Collisions
 
                 foreach (var collision in collisions)
                 {
-                    collision.Other.Get<InstantlyKill>();
+                    collision.Other.Get<InstantlyKillRequest>();
                 }
             }
         }

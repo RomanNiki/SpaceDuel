@@ -4,7 +4,7 @@ using Model.Components.Weapons;
 
 namespace Model.Systems.Weapons
 {
-    public class CheckOwnerEnergyBlockSystem : IEcsRunSystem
+    public sealed class CheckOwnerEnergyBlockSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerOwner, WeaponType> _filter = null;
         

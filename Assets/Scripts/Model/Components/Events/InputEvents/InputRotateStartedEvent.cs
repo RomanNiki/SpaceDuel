@@ -1,6 +1,6 @@
 ﻿using Model.Enums;
 
-namespace Components.Events.InputEvents
+namespace Model.Components.Events.InputEvents
 {
     public struct InputRotateStartedEvent
     {

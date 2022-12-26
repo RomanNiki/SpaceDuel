@@ -10,7 +10,7 @@ namespace Extensions.Factories
 {
     [CreateAssetMenu(fileName = "VisualEffect", menuName = "SpaceDuel/VisualEffects", order = 10)]
     [Serializable]
-    public class VisualEffectEntityFactoryFromSo : EntityFactoryFromSo
+    public sealed class VisualEffectEntityFactoryFromSo : EntityFactoryFromSo
     {
         [SerializeField] private float _lifeTime;
 
@@ -18,7 +18,7 @@ namespace Extensions.Factories
         {
             var visualEffect = world.NewEntity();
             visualEffect.Get<VisualEffectTag>();
-            visualEffect.Get<NoGravity>();
+            visualEffect.Get<GravityResist>();
             visualEffect.Get<ViewCreateRequest>();
             visualEffect.Get<Timer<LifeTime>>().TimeLeftSec = _lifeTime;
             return visualEffect;

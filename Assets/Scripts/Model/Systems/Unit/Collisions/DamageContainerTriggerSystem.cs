@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Model.Systems.Unit.Collisions
 {
-    public class DamageContainerTriggerSystem : IEcsRunSystem
+    public sealed class DamageContainerTriggerSystem : IEcsRunSystem
     {
         private readonly EcsFilter<ContainerComponents<TriggerEnterEvent>, DamageContainer> _filter =
             null;
@@ -16,14 +16,14 @@ namespace Model.Systems.Unit.Collisions
         {
             foreach (var i in _filter)
             {
-                ref var bullet = ref _filter.GetEntity(i);
-                ref var bulletHealthCurrent = ref bullet.Get<Health>().Current;
+              ref var bullet = ref _filter.GetEntity(i);
+                ref var bulletHealthCurrent = ref bullet.Get<Health>();
 
                 var collisions = _filter.Get1(i).List;
 
                 foreach (var collision in collisions)
                 {
-                    var calculateBulletHealthCurrent = GetCalculateBulletHealthCurrent(bullet, bulletHealthCurrent);
+                    var calculateBulletHealthCurrent = GetCalculateBulletHealthCurrent(bullet, bulletHealthCurrent.Current);
                     if (calculateBulletHealthCurrent == 0) break;
                     var otherEntity = collision.Other;
                     ProcessBulletCollision(bullet, otherEntity);

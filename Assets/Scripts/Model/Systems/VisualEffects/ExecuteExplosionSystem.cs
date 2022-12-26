@@ -23,7 +23,7 @@ namespace Model.Systems.VisualEffects
             {
                 ref var explosionPosition = ref _filterExplosive.Get1(i).Value;
                 CreateExplosion(_world, explosionPosition);
-                _world.SendMessage(new ExplosionEvent());
+                _world.SendMessage(new ExplosionEvent(){Position = explosionPosition});
             }
         }
 

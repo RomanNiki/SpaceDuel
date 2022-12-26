@@ -4,7 +4,7 @@ using Model.Components.Weapons;
 
 namespace Model.Systems
 {
-    public class OwnerIsAliveSystem : IEcsRunSystem
+    public sealed class OwnerIsAliveSystem : IEcsRunSystem
     {
         private readonly EcsFilter<PlayerOwner> _filter = null;
         

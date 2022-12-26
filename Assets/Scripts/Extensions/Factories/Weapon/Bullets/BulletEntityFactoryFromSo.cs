@@ -6,9 +6,9 @@ using UnityEngine;
 
 namespace Extensions.Factories.Weapon.Bullets
 {
-    [CreateAssetMenu(fileName = "Bullet", menuName = "SpaceDuel/Bullet", order = 10)]
+    [CreateAssetMenu(fileName = "Bullet", menuName = "SpaceDuel/Projectiles/Bullet", order = 10)]
     [Serializable]
-    public class BulletEntityFactoryFromSo : ProjectileEntityFactoryFromSo
+    public sealed class BulletEntityFactoryFromSo : ProjectileEntityFactoryFromSo
     {
         public override EcsEntity CreateEntity(EcsWorld world)
         {

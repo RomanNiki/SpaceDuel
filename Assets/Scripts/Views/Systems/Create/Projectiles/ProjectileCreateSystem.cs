@@ -16,7 +16,7 @@ namespace Views.Systems.Create.Projectiles
             var transform = poolObject.Transform;
             transform.position = data.StartPosition;
             var rigidbody2D = poolObject.Rigidbody2D;
-            entity.Get<ViewObjectComponent>().ViewObject = new RigidbodyViewObjectUnity(rigidbody2D, poolObject);
+            entity.Get<ViewObjectComponent>().ViewObject = new ViewObjectUnity(transform, rigidbody2D, poolObject);
 
             return transform;
         }

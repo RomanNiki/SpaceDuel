@@ -8,8 +8,8 @@ namespace Model.Systems
 {
     public sealed class DamageSystem : IEcsRunSystem
     {
-        private EcsFilter<DamageRequest, Health>.Exclude<InstantlyKill> _damageRequestFilter;
-        private EcsFilter<Health, InstantlyKill> _instantlyKill;
+        private EcsFilter<DamageRequest, Health>.Exclude<InstantlyKillRequest> _damageRequestFilter;
+        private EcsFilter<Health, InstantlyKillRequest> _instantlyKill;
 
         public void Run()
         {

@@ -1,6 +1,7 @@
 ﻿using System;
 using Leopotam.Ecs;
 using Model.Components;
+using Model.Components.Extensions;
 using Model.Components.Requests;
 using Model.Components.Unit.MoveComponents;
 using Model.Components.Unit.MoveComponents.Input;
@@ -9,12 +10,12 @@ using Zenject;
 
 namespace Model.Systems.Unit.Movement
 {
-    public sealed class PlayerForceSystem : IEcsRunSystem
+    public sealed class PlayerForceSystem : PauseHandlerDefaultRunSystem
     {
         private readonly EcsFilter<InputMoveData, Rotation, Mass, Velocity>.Exclude<NoEnergyBlock> _playerMove = null;
         [Inject] private Settings _settings;
 
-        public void Run()
+        protected override void Tick()
         {
             foreach (var i in _playerMove)
             {
@@ -22,7 +23,7 @@ namespace Model.Systems.Unit.Movement
                 ref var rotation = ref _playerMove.Get2(i);
                 ref var mass = ref _playerMove.Get3(i);
                 ref var entity = ref _playerMove.GetEntity(i);
-                
+
                 if (inputData.Accelerate)
                 {
                     Accelerate(ref entity, _settings.MoveForce, rotation.LookDir, mass.Value);

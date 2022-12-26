@@ -1,15 +1,16 @@
 ﻿using Leopotam.Ecs;
+using Model.Components.Extensions;
 using Model.Components.Unit;
 using Model.Components.Unit.MoveComponents;
 using UnityEngine;
 
 namespace Model.Systems.Unit.Movement
 {
-    public sealed class FrictionSystem : IEcsRunSystem
+    public sealed class FrictionSystem : PauseHandlerDefaultRunSystem
     {
         private readonly EcsFilter<Velocity, Friction> _moveFilter = null;
 
-        public void Run()
+        protected override void Tick()
         {
             foreach (var i in _moveFilter)
             {

@@ -8,9 +8,9 @@ using UnityEngine;
 
 namespace Extensions.Factories.Weapon.Bullets
 {
-    [CreateAssetMenu(fileName = "Mine", menuName = "SpaceDuel/Mine", order = 10)]
+    [CreateAssetMenu(fileName = "Mine", menuName = "SpaceDuel/Projectiles/Mine", order = 10)]
     [Serializable]
-    public class MineEntityFactoryFromSo : ProjectileEntityFactoryFromSo
+    public sealed class MineEntityFactoryFromSo : ProjectileEntityFactoryFromSo
     {
         [SerializeField] private float _sunGravityResistTime = 1;
 
@@ -18,7 +18,7 @@ namespace Extensions.Factories.Weapon.Bullets
         {
             var entity = base.CreateEntity(world);
             entity.Get<MineTag>();
-            entity.Get<NoGravity>();
+            entity.Get<GravityResist>();
             entity.Get<ExplosiveTag>();
             entity.Get<Timer<SunGravityResistTime>>().TimeLeftSec = _sunGravityResistTime;
             return entity;

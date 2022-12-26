@@ -1,8 +1,10 @@
 ﻿using System;
 using Model.Systems;
+using Model.Systems.Buffs;
 using Model.Systems.Unit;
 using Model.Systems.Unit.Movement;
 using UnityEngine;
+using Views.Systems;
 using Zenject;
 
 namespace Installers
@@ -17,8 +19,10 @@ namespace Installers
         [Serializable]
         public class GameSettings
         {
-            public GameInstaller.Settings GameInstaller;
+            public GamePoolInstaller.Settings GameInstaller;
             public RestartGameSystem.Settings Restart;
+            public SunBuffEntityExecuteSystem.Settings Buff;
+            public PrepareGameSystem.Settings PrepairGame;
         }
         
         [Serializable]
@@ -37,6 +41,8 @@ namespace Installers
             Container.BindInstance(_player.SolarCharger).IfNotBound();
             Container.BindInstance(_gameInstaller.GameInstaller).IfNotBound();
             Container.BindInstance(_gameInstaller.Restart).IfNotBound();
+            Container.BindInstance(_gameInstaller.Buff).IfNotBound();
+            Container.BindInstance(_gameInstaller.PrepairGame).IfNotBound();
         }
     }
 }

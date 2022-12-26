@@ -20,7 +20,7 @@ namespace Views.Systems.Create.Effects
             transform.position = data.StartPosition;
             entity.Get<UnityComponent<VisualEffect>>().Value = explosionView.VisualEffect;
             entity.Get<ViewObjectComponent>().ViewObject =
-                new TransformViewObjectUnity(transform, explosionView);
+                new ViewObjectUnity(transform, explosionView);
 
             return transform;
         }

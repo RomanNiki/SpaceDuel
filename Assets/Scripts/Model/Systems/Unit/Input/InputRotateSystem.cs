@@ -1,5 +1,4 @@
-﻿using Components.Events.InputEvents;
-using Leopotam.Ecs;
+﻿using Leopotam.Ecs;
 using Model.Components.Events.InputEvents;
 using Model.Components.Tags;
 using Model.Components.Unit.MoveComponents.Input;

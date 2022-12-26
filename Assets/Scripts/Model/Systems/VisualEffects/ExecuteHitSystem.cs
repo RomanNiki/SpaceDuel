@@ -14,7 +14,7 @@ using Zenject;
 
 namespace Model.Systems.VisualEffects
 {
-    public class ExecuteHitSystem : IEcsRunSystem
+    public sealed class ExecuteHitSystem : IEcsRunSystem
     {
         [Inject] private readonly IEntityFactory _factory;
         private readonly EcsWorld _world;

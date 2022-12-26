@@ -16,7 +16,9 @@ namespace Model.Systems.Unit.Collisions
             foreach (var i in _playerFilter)
             {
                 ref var collision = ref _playerFilter.Get1(i);
-                ref var otherHealth = ref collision.Other.Get<Health>();
+                ref var otherEntity = ref collision.Other;
+                if (otherEntity.Has<Health>() == false && otherEntity.Has<PlayerTag>() == false) continue;
+                ref var otherHealth = ref otherEntity.Get<Health>();
                 _playerFilter.GetEntity(i).Get<DamageRequest>().Damage = otherHealth.Current;
             }
         }

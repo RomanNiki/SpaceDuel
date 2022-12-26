@@ -5,14 +5,14 @@ using Model.Components.Tags;
 
 namespace Model.Systems
 {
-    public class GameOverSystem : IEcsRunSystem
+    public sealed class GameOverSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world;
         private readonly EcsFilter<PlayerTag, EntityDestroyRequest> _filter;
 
         public void Run()
         {
-            if (_filter.GetEntitiesCount() > 0)
+            if (_filter.IsEmpty() == false)
             {
                 _world.SendMessage(new GameRestartRequest());
             }

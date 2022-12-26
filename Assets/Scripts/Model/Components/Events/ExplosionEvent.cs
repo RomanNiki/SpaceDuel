@@ -1,8 +1,9 @@
-﻿using Leopotam.Ecs;
+﻿using UnityEngine;
 
 namespace Model.Components.Events
 {
-    public struct ExplosionEvent : IEcsIgnoreInFilter
+    public struct ExplosionEvent
     {
+        public Vector2 Position;
     }
 }

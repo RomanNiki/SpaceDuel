@@ -17,7 +17,7 @@ namespace Extensions.Factories
 {
     [CreateAssetMenu(fileName = "Player", menuName = "SpaceDuel/Player", order = 10)]
     [Serializable]
-    public class PlayerEntityFactoryFromSo : EntityFactoryFromSo
+    public sealed class PlayerEntityFactoryFromSo : EntityFactoryFromSo
     {
         [SerializeField] private Settings _settings;
         [SerializeField] private WeaponEntityFactoryFromSo _primaryWeapon;

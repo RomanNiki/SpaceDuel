@@ -9,7 +9,7 @@ using Zenject;
 
 namespace Model.Systems
 {
-    public class UpdateCachedScoreSystem : IEcsRunSystem
+    public sealed class UpdateCachedScoreSystem : IEcsRunSystem
     {
         [Inject] private PlayersScore _playersScore;
         private readonly EcsFilter<Team, Score, ViewUpdateRequest> _filter;

@@ -1,6 +1,6 @@
 ﻿using Leopotam.Ecs;
 
-namespace Events.InputEvents
+namespace Model.Components.Events.InputEvents
 {
     public struct InputAnyKeyEvent : IEcsIgnoreInFilter
     {

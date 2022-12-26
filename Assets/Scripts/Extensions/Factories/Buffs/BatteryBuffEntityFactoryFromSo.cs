@@ -8,9 +8,9 @@ using Random = UnityEngine.Random;
 
 namespace Extensions.Factories.Buffs
 {
-    [CreateAssetMenu(fileName = "EnergyBuff", menuName = "SpaceDuel/Buffs", order = 10)]
+    [CreateAssetMenu(fileName = "EnergyBuff", menuName = "SpaceDuel/Buffs/EnergyBuff", order = 10)]
     [Serializable]
-    public class BatteryBuffEntityFactoryFromSo : BuffEntityFactoryFromSo
+    public sealed class BatteryBuffEntityFactoryFromSo : BuffEntityFactoryFromSo
     {
         [SerializeField] private float _minEnergy;
         [SerializeField] private float _maxEnergy;

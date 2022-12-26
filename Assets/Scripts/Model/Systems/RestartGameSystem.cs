@@ -2,34 +2,39 @@
 using Cysharp.Threading.Tasks;
 using Leopotam.Ecs;
 using Model.Components.Events;
+using Model.Components.Extensions;
 using Model.Components.Requests;
+using Model.Components.Tags;
+using Model.Components.Unit.MoveComponents;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
 namespace Model.Systems
 {
-    public sealed class RestartGameSystem : IEcsRunSystem
+    public sealed class RestartGameSystem : PauseHandlerDefaultRunSystem
     {
         private readonly EcsWorld _world;
         private readonly EcsFilter<GameRestartRequest> _filterRequest;
         private readonly EcsFilter<GameRestartEvent> _filterEvent;
+        private readonly EcsFilter<ViewObjectComponent>.Exclude<PlayerTag> _filter;
         [Inject] private Settings _settings;
 
-        public void Run()
+        protected override void Tick()
         {
-            if (_filterEvent.GetEntitiesCount() > 0)
-                return;  
-            if (_filterRequest.GetEntitiesCount() <= 0)
-                return; 
+            if (_filterEvent.IsEmpty() == false)
+                return;
+            if (_filterRequest.IsEmpty())
+                return;
             OnRestartGame();
         }
 
         private async void OnRestartGame()
         {
-            var restartEntity = _world.NewEntity();
-            restartEntity.Get<GameRestartEvent>();
+            _world.SendMessage(new GameRestartEvent());
+
             await SlowDownTime();
+
             await SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex).ToUniTask().ContinueWith(() =>
             {
                 Time.timeScale = 1f;

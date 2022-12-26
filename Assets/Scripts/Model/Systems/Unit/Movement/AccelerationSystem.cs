@@ -1,15 +1,16 @@
 ﻿using Leopotam.Ecs;
+using Model.Components.Extensions;
 using Model.Components.Requests;
 using Model.Components.Unit.MoveComponents;
 using UnityEngine;
 
 namespace Model.Systems.Unit.Movement
 {
-    public sealed class AccelerationSystem : IEcsRunSystem
+    public sealed class AccelerationSystem : PauseHandlerDefaultRunSystem
     {
         private readonly EcsFilter<Velocity, ForceRequest> _moveFilter = null;
-        
-        public void Run()
+
+        protected override void Tick()
         {
             foreach (var i in _moveFilter)
             {

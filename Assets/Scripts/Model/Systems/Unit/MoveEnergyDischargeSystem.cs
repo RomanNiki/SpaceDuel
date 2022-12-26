@@ -1,5 +1,6 @@
 ﻿using Leopotam.Ecs;
 using Model.Components;
+using Model.Components.Extensions;
 using Model.Components.Requests;
 using Model.Components.Tags;
 using Model.Components.Unit;
@@ -8,11 +9,11 @@ using UnityEngine;
 
 namespace Model.Systems.Unit
 {
-    public sealed class MoveEnergyDischargeSystem : IEcsRunSystem
+    public sealed class MoveEnergyDischargeSystem : PauseHandlerDefaultRunSystem
     {
         private readonly EcsFilter<PlayerTag, InputMoveData, DischargeMoveContainer, DischargeRotateContainer>.Exclude<NoEnergyBlock> _player = null;
 
-        public void Run()
+        protected override void Tick()
         {
             foreach (var i in _player)
             {

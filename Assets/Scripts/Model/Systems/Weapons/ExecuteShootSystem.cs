@@ -10,14 +10,16 @@ using UnityEngine;
 
 namespace Model.Systems.Weapons
 {
-    public sealed class ExecuteShootSystem : IEcsRunSystem
+    public sealed class ExecuteShootSystem : PauseHandlerDefaultRunSystem
     {
         private readonly EcsWorld _world = null;
 
         private readonly
-            EcsFilter<EntityFactoryRef<IEntityFactory>, Shooting, PlayerOwner, BulletStartForce, Muzzle>.Exclude<NoEnergyBlock> _filter = null;
+            EcsFilter<EntityFactoryRef<IEntityFactory>, Shooting, PlayerOwner, BulletStartForce, Muzzle>.Exclude<
+                NoEnergyBlock> _filter = null;
 
-        public void Run()
+
+        protected override void Tick()
         {
             foreach (var i in _filter)
             {
@@ -28,7 +30,7 @@ namespace Model.Systems.Weapons
                 ref var direction = ref _filter.Get2(i).Direction;
                 ref var playerPosition = ref owner.Get<Position>();
                 ref var playerRotation = ref owner.Get<Rotation>();
-                var spawnPosition = playerPosition.Value + (Vector2)playerRotation.LookDir * offset;
+                var spawnPosition = playerPosition.Value + (Vector2) playerRotation.LookDir * offset;
 
                 CreateBullet(factory, spawnPosition, direction * bulletForce);
 

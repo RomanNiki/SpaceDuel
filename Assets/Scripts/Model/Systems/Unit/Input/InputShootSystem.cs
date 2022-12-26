@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Components.Events.InputEvents;
 using Leopotam.Ecs;
 using Model.Components.Events.InputEvents;
 using Model.Components.Extensions;
@@ -11,7 +10,7 @@ using UnityEngine;
 
 namespace Model.Systems.Unit.Input
 {
-    public sealed class InputShootSystem : IEcsRunSystem
+    public sealed class InputShootSystem : PauseHandlerDefaultRunSystem
     {
         private readonly EcsFilter<InputShootStartedEvent> _filterShootStarted = null;
         private readonly EcsFilter<InputShootCanceledEvent> _filterShootCanceled = null;
@@ -19,7 +18,7 @@ namespace Model.Systems.Unit.Input
 
         private readonly HashSet<ShootData> _numberPlayersIsShooting = new();
 
-        public void Run()
+        protected override void Tick()
         {
             foreach (var i in _filterShootStarted)
             {

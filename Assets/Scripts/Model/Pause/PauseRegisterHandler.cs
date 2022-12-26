@@ -1,27 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using Model.Components.Extensions;
 using Zenject;
 
 namespace Model.Pause
 {
-    public class PauseRegisterHandler: IInitializable, IDisposable
+    public sealed class PauseRegisterHandler: IInitializable, IDisposable
     {
         private readonly List<IPauseHandler> _pauseHandlers;
-        private readonly PauseManager _pauseManager;
+        private readonly PauseService _pauseService;
 
         public PauseRegisterHandler(
+            [Inject(Source = InjectSources.Local, Id = SystemsEnum.FixedRun)]
+            List<IPauseHandler> pauseFixedRunHandlers, [Inject(Source = InjectSources.Local, Id = SystemsEnum.Run)]
+            List<IPauseHandler> pauseRunHandlers,
             [Inject(Source = InjectSources.Local)]
-            List<IPauseHandler> pauseHandlers, PauseManager pauseManager)
+            List<IPauseHandler> pauseHandlers, PauseService pauseService)
         {
-            _pauseHandlers = pauseHandlers;
-            _pauseManager = pauseManager;
+            _pauseHandlers = new List<IPauseHandler>(pauseFixedRunHandlers);
+            foreach (var i in pauseRunHandlers)
+            {
+                _pauseHandlers.Add(i);
+            }     
+            foreach (var i in pauseHandlers)
+            {
+                _pauseHandlers.Add(i);
+            }
+            _pauseService = pauseService;
         }
 
         public void Initialize()
         {
             foreach (var pauseHandler in _pauseHandlers)
             {
-                _pauseManager.AddPauseHandler(pauseHandler);
+                _pauseService.AddPauseHandler(pauseHandler);
             }
         }
 
@@ -29,7 +41,7 @@ namespace Model.Pause
         {
             foreach (var pauseHandler in _pauseHandlers)
             {
-                _pauseManager.RemovePauseHandler(pauseHandler);
+                _pauseService.RemovePauseHandler(pauseHandler);
             }
         }
     }
