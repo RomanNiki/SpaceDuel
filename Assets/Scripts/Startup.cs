@@ -75,6 +75,7 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
             .OneFrame<DischargeRequest>()
             .OneFrame<ChargeRequest>()
             .OneFrame<EnergyChangedEvent>()
+            .OneFrame<BackToMenuRequest>()
             .OneFrame<ViewCreateRequest>();
 
         _fixedSystems

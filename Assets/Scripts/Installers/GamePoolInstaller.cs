@@ -1,5 +1,5 @@
 ﻿using System;
-using Extensions.Factories;
+using Extensions.MappingUnityToModel.Factories;
 using Model.Systems.VisualEffects;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Serialization;

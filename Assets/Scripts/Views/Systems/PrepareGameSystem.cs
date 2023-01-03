@@ -5,17 +5,18 @@ using Extensions.AssetLoaders;
 using Leopotam.Ecs;
 using Model.Components.Events;
 using Model.Components.Extensions;
+using Model.Components.Requests;
 using UnityEngine;
 using Zenject;
 
 namespace Views.Systems
 {
-    public class PrepareGameSystem : IEcsRunSystem, IEcsInitSystem
+    public class PrepareGameSystem : IEcsRunSystem, IEcsInitSystem, IEcsDestroySystem
     {
         [Inject] private Settings _settings;
         [Inject] private PrepareGameScreenProvider _provider;
         private EcsFilter<PauseEvent> _filter;
-        private EcsFilter<StartGameEvent> _startFilter;
+        private EcsFilter<StartGameRequest> _startFilter;
         private EcsWorld _world;
         private CancellationTokenSource _cancellationTokenSource;
         private CancellationToken _token;
@@ -66,7 +67,7 @@ namespace Views.Systems
 
             _provider.Unload();
             _cancellationTokenSource = null;
-            _world.SendMessage(new StartGameEvent());
+            _world?.SendMessage(new StartGameRequest());
         }
 
 
@@ -74,6 +75,11 @@ namespace Views.Systems
         public class Settings
         {
             public float SecondsToStart;
+        }
+
+        public void Destroy()
+        {
+            CheckTokenSource();
         }
     }
 }

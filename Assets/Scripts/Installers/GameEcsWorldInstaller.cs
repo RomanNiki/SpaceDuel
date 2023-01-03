@@ -11,7 +11,6 @@ namespace Installers
             Container.BindInterfacesTo<PauseRegisterHandler>().AsSingle().CopyIntoAllSubContainers();
             var world = new EcsWorld();
             Container.BindInstance(world).AsSingle();
-            
         }
     }
 }

@@ -1,7 +1,7 @@
 ﻿using System;
 using Controller.EntityToGameObject;
 using Extensions;
-using Extensions.Factories.Buffs;
+using Extensions.MappingUnityToModel.Factories.Buffs;
 using Leopotam.Ecs;
 using Model.Components;
 using Model.Components.Extensions;
@@ -51,7 +51,6 @@ namespace Installers
             public float InnerRadius;
             public float GravityForce;
             public float EnergyChargeAmount;
-
         }
 
 

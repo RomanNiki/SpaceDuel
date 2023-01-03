@@ -1,4 +1,5 @@
 ﻿using Leopotam.Ecs;
+using Model.Components.Tags.Effects;
 using Model.Components.Unit.MoveComponents;
 using Model.Enums;
 using UnityEngine;
@@ -9,7 +10,7 @@ namespace Model.Systems.Unit.Movement
     public sealed class LoopedMoveSystem : IEcsRunSystem
     {
         [Inject(Id = CameraEnum.Orthographic)] private Camera _camera;
-        private readonly EcsFilter<Position> _transformFilter = null;
+        private readonly EcsFilter<Position>.Exclude<VisualEffectTag> _transformFilter = null;
         
         public void Run()
         {

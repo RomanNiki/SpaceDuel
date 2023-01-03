@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
+using Extensions.Loading;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -16,10 +18,10 @@ namespace Extensions.AssetLoaders
             return await LoadHandler<T>(handle);
         }
         
-        protected async UniTask<T> LoadInternal<T>(string assetId)
+        protected UniTask<T> LoadInternal<T>(string assetId)
         {
             var handle = Addressables.LoadAssetAsync<GameObject>(assetId);
-            return await LoadHandler<T>(handle);
+            return LoadHandler<T>(handle);
         }
 
         private async UniTask<T> LoadHandler<T>(AsyncOperationHandle<GameObject> operation)

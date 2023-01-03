@@ -1,18 +1,19 @@
 ﻿using Leopotam.Ecs;
 using Model.Components.Events.InputEvents;
+using Model.Components.Extensions;
 using Model.Components.Tags;
 using Model.Components.Unit.MoveComponents.Input;
 using Model.Enums;
 
 namespace Model.Systems.Unit.Input
 {
-    public sealed class InputRotateSystem : IEcsRunSystem
+    public sealed class InputRotateSystem : PauseHandlerDefaultRunSystem
     {
         private readonly EcsFilter<InputRotateStartedEvent> _filterRotationStart = null;
         private readonly EcsFilter<InputRotateCanceledEvent> _filterRotationCanceled = null;
         private readonly EcsFilter<PlayerTag, InputMoveData, Team> _filterMove = null;
 
-        public void Run()
+        protected override void Tick()
         {
             foreach (var i in _filterRotationStart)
             {
@@ -31,7 +32,7 @@ namespace Model.Systems.Unit.Input
                 ProcessRotation(inputMoveCanceledEvent.PlayerNumber, 0f);
             }
         }
-        
+
         private bool IsPlayerWithNumber(in TeamEnum playerTeamEnum, in int indexFilter)
         {
             var teamData = _filterMove.Get3(indexFilter);

@@ -558,9 +558,9 @@ TextureImporter:
       name: progress_bar
       rect:
         serializedVersion: 2
-        x: 2003
-        y: 2141
-        width: 998
+        x: 2004
+        y: 2140
+        width: 996
         height: 56
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -893,7 +893,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: b38d40f3dd277e546ae1f074b1b18e19
     internalID: 0
     vertices: []
     indices: 

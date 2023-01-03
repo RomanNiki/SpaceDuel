@@ -10,7 +10,7 @@ namespace Model.Systems
     {
         [Inject] private PauseService _pauseService;
         private EcsFilter<PauseEvent> _pause;
-        private EcsFilter<StartGameEvent> _start;
+        private EcsFilter<StartGameRequest> _start;
 
         public void Run()
         {
@@ -19,13 +19,11 @@ namespace Model.Systems
                 _pauseService.SetPaused(true);
             }
 
-            if (_start.IsEmpty() == false)
+            if (_start.IsEmpty()) return;
+            _pauseService.SetPaused(false);
+            foreach (var i in _start)
             {
-                _pauseService.SetPaused(false);
-                foreach (var i in _start)
-                {
-                    _start.GetEntity(i).Get<EntityDestroyRequest>();
-                }
+                _start.GetEntity(i).Get<EntityDestroyRequest>();
             }
         }
     }

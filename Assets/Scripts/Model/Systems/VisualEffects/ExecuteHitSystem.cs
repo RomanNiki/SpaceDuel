@@ -25,7 +25,7 @@ namespace Model.Systems.VisualEffects
             foreach (var i in _filter)
             {
                 ref var collisions = ref _filter.Get1(i);
-                if (collisions.List.Any(collision => collision.Other.Has<Health>()))
+                if (collisions.List.Any(collision => collision.Other.Has<Health>() && collision.Other.IsAlive()))
                 {
                     var hitPosition = _filter.Get2(i);
                     var hitRotation = _filter.Get3(i);

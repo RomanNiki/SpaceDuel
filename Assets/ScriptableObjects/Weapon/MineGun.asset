@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: MineGun
   m_EditorClassIdentifier: 
   _bulletEntityFactoryFromSo: {fileID: 11400000, guid: ba093dc6d1d5367468c87ace827b37ae, type: 2}
+  _shot: {fileID: 8300000, guid: ed947d6eb5fde0f43b27b85d7687783a, type: 3}
   _bulletStartForce:
     Value: 0
   _dischargeShotContainer:
