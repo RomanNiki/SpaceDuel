@@ -23,6 +23,7 @@ namespace Extensions.MappingUnityToModel.Factories
             entity.Get<PlayerTag>();
             entity.Get<InputMoveData>();
             entity.Get<ExplosiveTag>();
+            entity.Get<Nozzle>();
             entity.AddHealth(_settings.MaxHealth, new StandardDyingPolicy())
                 .AddEnergy(_settings.MaxEnergy);
             entity.Get<DischargeMoveContainer>().DischargeRequest.Value = _settings.MoveCost;

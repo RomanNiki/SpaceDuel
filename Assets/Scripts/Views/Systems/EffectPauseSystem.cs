@@ -1,6 +1,7 @@
 ﻿using Leopotam.Ecs;
 using Model.Components;
 using Model.Components.Events;
+using Model.Components.Requests;
 using UnityEngine.VFX;
 
 
@@ -10,15 +11,21 @@ namespace Views.Systems
     {
         private EcsFilter<UnityComponent<VisualEffect>> _filter;
         private EcsFilter<PauseEvent> _pause;
+        private EcsFilter<StartGameRequest> _start;
 
         public void Run()
         {
             foreach (var i in _filter)
             {
                 ref var visualEffect = ref _filter.Get1(i);
-                foreach (var j in _pause)
+                if (_pause.IsEmpty() == false)
                 {
-                    visualEffect.Value.pause = _pause.Get1(j).Pause;
+                    visualEffect.Value.pause = true;
+                }
+
+                if (_start.IsEmpty() == false)
+                {
+                    visualEffect.Value.pause = false;
                 }
             }
         }

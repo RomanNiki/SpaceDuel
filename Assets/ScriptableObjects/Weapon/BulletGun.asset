@@ -18,7 +18,7 @@ MonoBehaviour:
     Value: 30
   _dischargeShotContainer:
     DischargeRequest:
-      Value: 2.5
+      Value: 7.5
   _muzzle:
     Offset: 2
   _timeBetweenShotsSetup:

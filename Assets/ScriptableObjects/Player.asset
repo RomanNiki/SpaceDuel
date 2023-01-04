@@ -15,8 +15,5 @@ MonoBehaviour:
   _settings:
     MaxHealth: 100
     MaxEnergy: 100
-    RotationCost: 0.15
-    MoveCost: 0.2
-    ExplosionScale: 1
-  _primaryWeapon: {fileID: 11400000, guid: 5a39c43450167544abda49c1db893963, type: 2}
-  _secondaryWeapon: {fileID: 11400000, guid: 969c9c59810c25542a735a133c74c2ef, type: 2}
+    RotationCost: 0.1
+    MoveCost: 0.15

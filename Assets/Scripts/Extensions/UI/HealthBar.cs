@@ -1,7 +1,7 @@
 ﻿using Model.Components.Extensions.Interfaces;
 using UnityEngine.UI;
 
-namespace Model.Components.Extensions.UI
+namespace Extensions.UI
 {
     public struct HealthBar : IBarContainer
     {

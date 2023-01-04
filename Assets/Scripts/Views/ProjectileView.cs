@@ -1,5 +1,5 @@
 ﻿using Controller.EntityToGameObject;
-using Model.Components.Extensions.Pool;
+using Model.Components.Extensions.Interfaces.Pool;
 using UnityEngine;
 using Zenject;
 

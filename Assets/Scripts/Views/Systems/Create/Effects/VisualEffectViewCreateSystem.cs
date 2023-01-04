@@ -2,7 +2,7 @@
 using Extensions.Systems;
 using Leopotam.Ecs;
 using Model.Components;
-using Model.Components.Extensions.Pool;
+using Model.Components.Extensions.Interfaces.Pool;
 using Model.Components.Requests;
 using Model.Components.Unit.MoveComponents;
 using UnityEngine;

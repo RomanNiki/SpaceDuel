@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Model.Systems
 {
-    public sealed class ExecutePause : IEcsRunSystem
+    public sealed class ExecutePauseSystem : IEcsRunSystem
     {
         [Inject] private PauseService _pauseService;
         private EcsFilter<PauseEvent> _pause;

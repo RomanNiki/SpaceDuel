@@ -1,4 +1,4 @@
-﻿using Model.Components.Extensions.Pool;
+﻿using Model.Components.Extensions.Interfaces.Pool;
 using Model.Components.Tags.Effects;
 using Zenject;
 

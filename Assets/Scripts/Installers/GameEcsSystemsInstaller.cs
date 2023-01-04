@@ -1,4 +1,5 @@
 ﻿using Controller.Input;
+using Extensions.UI;
 using Model.Components.Events;
 using Model.Components.Extensions;
 using Model.Components.Extensions.UI;
@@ -16,6 +17,7 @@ using Model.Systems.VisualEffects;
 using Model.Systems.Weapons;
 using Model.Systems.Weapons.Particle;
 using Model.Timers;
+using Views;
 using Views.Systems;
 using Views.Systems.Create.Buffs;
 using Views.Systems.Create.Effects;
@@ -123,7 +125,7 @@ namespace Installers
             Container.BindInterfacesTo<InputShootSystem>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.Run;  
             Container.BindInterfacesTo<InputPauseSystem>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.Run;
             Container.BindInterfacesTo<PrepareGameSystem>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.Run;
-            Container.BindInterfacesTo<ExecutePause>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.Run;
+            Container.BindInterfacesTo<ExecutePauseSystem>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.Run;
             Container.BindInterfacesTo<PauseMenuSystem>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.Run;
         }
 

@@ -4,6 +4,7 @@ using Extensions;
 using Extensions.MappingUnityToModel;
 using Extensions.MappingUnityToModel.Factories;
 using Extensions.MappingUnityToModel.Factories.Weapon;
+using Extensions.UI;
 using Leopotam.Ecs;
 using Model.Components;
 using Model.Components.Extensions;
@@ -44,7 +45,7 @@ namespace Installers
         {
             var entity = _playerEntityFactory.CreateEntity(_world);
             entity.Get<ViewObjectComponent>().ViewObject = new ViewObjectUnity(_settings.Rigidbody.transform,_settings.Rigidbody);
-            entity.Get<Nozzle>().VisualEffect = _settings.VisualEffect;
+            entity.Get<UnityComponent<VisualEffect>>().Value = _settings.VisualEffect;
             entity.Get<Team>().Value = _settings.Team;
             entity.Get<EnergyBar>().Bar = _settings.EnergyBar;
             entity.Get<HealthBar>().Bar = _settings.HealthBar;

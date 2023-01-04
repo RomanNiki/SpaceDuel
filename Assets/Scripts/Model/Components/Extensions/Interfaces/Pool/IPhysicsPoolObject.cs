@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Model.Components.Extensions.Pool
+namespace Model.Components.Extensions.Interfaces.Pool
 {
     public interface IPhysicsPoolObject : IPoolObject
     {

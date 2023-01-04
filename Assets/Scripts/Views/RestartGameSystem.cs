@@ -10,7 +10,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;
 
-namespace Model.Systems
+namespace Views
 {
     public sealed class RestartGameSystem : PauseHandlerDefaultRunSystem
     {
@@ -43,7 +43,7 @@ namespace Model.Systems
 
         private async UniTask SlowDownTime()
         {
-            for (var t = 0f; t < _settings.RestartDelay; t += Time.deltaTime)
+            for (var t = 0f; t < _settings.RestartDelay; t += Time.unscaledDeltaTime)
             {
                 var normalizedTime = t / _settings.RestartDelay;
                 Time.timeScale = Mathf.Lerp(1f, 0.5f, normalizedTime);

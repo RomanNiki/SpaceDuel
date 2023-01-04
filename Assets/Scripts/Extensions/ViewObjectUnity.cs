@@ -2,7 +2,7 @@
 using JetBrains.Annotations;
 using Model.Components;
 using Model.Components.Extensions.Interfaces;
-using Model.Components.Extensions.Pool;
+using Model.Components.Extensions.Interfaces.Pool;
 using UnityEngine;
 using Object = UnityEngine.Object;
 

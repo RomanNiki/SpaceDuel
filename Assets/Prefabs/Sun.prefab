@@ -634,7 +634,7 @@ MonoBehaviour:
     SunPosition: {x: 0, y: 0}
     OuterRadius: 45
     InnerRadius: 5
-    GravityForce: 90
+    GravityForce: 85
     EnergyChargeAmount: 0.5
   _buffEntityFactory: {fileID: 11400000, guid: f4afcc8984cc7734cbae21befd54f12a, type: 2}
 --- !u!1 &2954573909930129812
