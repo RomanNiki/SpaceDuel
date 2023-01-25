@@ -2,8 +2,10 @@
 using Leopotam.Ecs;
 using Model.Components.Requests;
 using Model.Components.Tags;
-using Model.Components.Tags.Effects;
 using Model.Timers;
+using Model.Timers.Components;
+using Model.Unit.Movement.Components.Tags;
+using Model.VisualEffects.Components.Tags;
 using UnityEngine;
 
 namespace Extensions.MappingUnityToModel.Factories

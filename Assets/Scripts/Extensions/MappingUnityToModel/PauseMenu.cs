@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
 using Leopotam.Ecs;
-using Model.Components.Events.InputEvents;
-using Model.Components.Extensions;
 using Model.Components.Requests;
+using Model.Extensions;
+using Model.Unit.Input.Components.Events;
 using UnityEngine;
 using UnityEngine.UI;
 

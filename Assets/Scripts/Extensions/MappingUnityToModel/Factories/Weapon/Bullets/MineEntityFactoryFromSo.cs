@@ -1,9 +1,11 @@
 ﻿using System;
 using Leopotam.Ecs;
 using Model.Components.Tags;
-using Model.Components.Tags.Effects;
-using Model.Components.Tags.Projectiles;
 using Model.Timers;
+using Model.Timers.Components;
+using Model.Unit.Movement.Components.Tags;
+using Model.VisualEffects.Components.Tags;
+using Model.Weapons.Components.Tags;
 using UnityEngine;
 
 namespace Extensions.MappingUnityToModel.Factories.Weapon.Bullets

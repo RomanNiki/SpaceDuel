@@ -1,6 +1,6 @@
-﻿using Model.Components.Extensions.Interfaces;
-using Model.Systems.UI;
+﻿using Model.Extensions.Interfaces;
 using UnityEngine;
+using Views.UI;
 
 namespace Views.Systems.Update
 {

@@ -1,13 +1,14 @@
 ﻿using System;
 using Leopotam.Ecs;
 using Model.Components;
-using Model.Components.Extensions;
 using Model.Components.Requests;
 using Model.Enums;
+using Model.Extensions;
+using Model.Scores.Components;
+using Model.Unit.Input.Components;
 using TMPro;
 using UnityEngine;
 using Zenject;
-using Model.Components.Unit.MoveComponents.Input;
 
 namespace Installers
 {

@@ -1,6 +1,6 @@
 ﻿using Controller.EntityToGameObject;
-using Model.Components.Extensions.Interfaces.Pool;
 using UnityEngine;
+using Views.Extensions.Pools;
 using Zenject;
 
 namespace Views

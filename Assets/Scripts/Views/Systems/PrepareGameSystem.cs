@@ -4,14 +4,14 @@ using System.Threading.Tasks;
 using Extensions.AssetLoaders;
 using Leopotam.Ecs;
 using Model.Components.Events;
-using Model.Components.Extensions;
 using Model.Components.Requests;
+using Model.Extensions;
 using UnityEngine;
 using Zenject;
 
 namespace Views.Systems
 {
-    public class PrepareGameSystem : IEcsRunSystem, IEcsInitSystem, IEcsDestroySystem
+    public sealed class PrepareGameSystem : IEcsRunSystem, IEcsInitSystem, IEcsDestroySystem
     {
         [Inject] private Settings _settings;
         [Inject] private PrepareGameScreenProvider _provider;

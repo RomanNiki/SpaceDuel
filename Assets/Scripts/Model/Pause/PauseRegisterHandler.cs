@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using Model.Components.Extensions;
+using Model.Extensions;
 using Zenject;
 
 namespace Model.Pause

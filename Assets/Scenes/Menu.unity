@@ -97,7 +97,7 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: 2ff0987917460e94bb679f4a5d36537d, type: 2}
   m_LightingSettings: {fileID: 0}
 --- !u!196 &4
 NavMeshSettings:
@@ -179,6 +179,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2954573909595934123, guid: 0054b608175e0f54ca8c94247f682696, type: 3}
+      propertyPath: m_BakedTexture
+      value: 
+      objectReference: {fileID: 8900000, guid: b2d78460ccf03824ab3782b5989d701e, type: 3}
     - target: {fileID: 2954573909675756609, guid: 0054b608175e0f54ca8c94247f682696, type: 3}
       propertyPath: m_Name
       value: Sun
@@ -226,6 +230,14 @@ PrefabInstance:
     - target: {fileID: 2954573909675756636, guid: 0054b608175e0f54ca8c94247f682696, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954573909675756639, guid: 0054b608175e0f54ca8c94247f682696, type: 3}
+      propertyPath: m_StartSeed
+      value: 24405957
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954573909675756639, guid: 0054b608175e0f54ca8c94247f682696, type: 3}
+      propertyPath: m_ResetSeedOnPlay
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2954573909675756639, guid: 0054b608175e0f54ca8c94247f682696, type: 3}
       propertyPath: m_PropertySheet.m_Int.m_Array.Array.data[0].m_Value
@@ -348,6 +360,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7859967241203936873, guid: 561d267989349bc4399eb6c1e18d613d, type: 3}
   m_PrefabInstance: {fileID: 1104070102}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &544891321 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2954573909595934122, guid: 0054b608175e0f54ca8c94247f682696, type: 3}
+  m_PrefabInstance: {fileID: 28885960}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1104070102
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -405,6 +422,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 561d267989349bc4399eb6c1e18d613d, type: 3}
+--- !u!115 &1149210662
+MonoScript:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  serializedVersion: 5
+  m_Script: 
+  m_DefaultReferences: {}
+  m_Icon: {fileID: 0}
+  m_ExecutionOrder: 0
+  m_ClassName: SceneObjectIDMapSceneAsset
+  m_Namespace: UnityEngine.Rendering.HighDefinition
 --- !u!1 &1438449173
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,6 +681,54 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &1441874689
+GameObject:
+  m_ObjectHideFlags: 19
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1441874691}
+  - component: {fileID: 1441874690}
+  m_Layer: 0
+  m_Name: SceneIDMap
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1441874690
+MonoBehaviour:
+  m_ObjectHideFlags: 19
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441874689}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 1149210662}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Entries:
+  - id: 0
+    category: 0
+    gameObject: {fileID: 544891321}
+--- !u!4 &1441874691
+Transform:
+  m_ObjectHideFlags: 19
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1441874689}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1496717867
 GameObject:
   m_ObjectHideFlags: 0

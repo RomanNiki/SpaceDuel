@@ -1,6 +1,7 @@
 ﻿using Leopotam.Ecs;
-using Model.Components.Tags.Buffs;
+using Model.Buffs.Components.Tags;
 using Model.Timers;
+using Model.Timers.Components;
 using UnityEngine;
 
 namespace Extensions.MappingUnityToModel.Factories.Buffs

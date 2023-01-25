@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
-using Extensions.Loading;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using UnityEngine.ResourceManagement.AsyncOperations;
@@ -26,6 +24,10 @@ namespace Extensions.AssetLoaders
 
         private async UniTask<T> LoadHandler<T>(AsyncOperationHandle<GameObject> operation)
         {
+            if (_cachedObject!= null)
+            {
+                Addressables.ReleaseInstance(_cachedObject);
+            }
             var gameObject = await operation.Task;
             _cachedObject = gameObject;
             if (_cachedObject.TryGetComponent(out T component) == false)

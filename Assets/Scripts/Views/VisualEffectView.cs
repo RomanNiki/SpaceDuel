@@ -1,6 +1,6 @@
-﻿using Model.Components.Extensions.Interfaces.Pool;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.VFX;
+using Views.Extensions.Pools;
 using Zenject;
 
 namespace Views

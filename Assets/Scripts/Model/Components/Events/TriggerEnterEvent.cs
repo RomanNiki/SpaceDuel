@@ -1,9 +1,0 @@
-﻿using Leopotam.Ecs;
-
-namespace Model.Components.Events
-{
-    public struct TriggerEnterEvent
-    {
-        public EcsEntity Other;
-    }
-}

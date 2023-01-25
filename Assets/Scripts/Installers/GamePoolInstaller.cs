@@ -1,6 +1,6 @@
 ﻿using System;
 using Extensions.MappingUnityToModel.Factories;
-using Model.Systems.VisualEffects;
+using Model.VisualEffects;
 using UnityEngine.AddressableAssets;
 using UnityEngine.Serialization;
 using Views;

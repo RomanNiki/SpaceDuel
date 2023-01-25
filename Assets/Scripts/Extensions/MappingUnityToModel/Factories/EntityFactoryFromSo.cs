@@ -1,5 +1,5 @@
 ﻿using Leopotam.Ecs;
-using Model.Components.Extensions.EntityFactories;
+using Model.Extensions.EntityFactories;
 using UnityEngine;
 
 namespace Extensions.MappingUnityToModel.Factories

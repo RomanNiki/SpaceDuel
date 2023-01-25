@@ -1,9 +1,9 @@
 ﻿using Extensions;
 using Extensions.Systems;
 using Leopotam.Ecs;
+using Model.Buffs.Components.Tags;
 using Model.Components.Requests;
-using Model.Components.Tags.Buffs;
-using Model.Components.Unit.MoveComponents;
+using Model.Extensions;
 using UnityEngine;
 using Zenject;
 

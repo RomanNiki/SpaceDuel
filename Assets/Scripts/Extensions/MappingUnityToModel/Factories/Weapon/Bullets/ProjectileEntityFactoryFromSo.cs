@@ -1,9 +1,9 @@
 ﻿using Leopotam.Ecs;
-using Model.Components.Extensions;
-using Model.Components.Extensions.DyingPolicies;
-using Model.Components.Requests;
-using Model.Components.Tags.Projectiles;
-using Model.Components.Unit;
+using Model.Extensions;
+using Model.Extensions.DyingPolicies;
+using Model.Unit.Damage.Components;
+using Model.Unit.Damage.Components.Requests;
+using Model.Weapons.Components.Tags;
 using UnityEngine;
 
 namespace Extensions.MappingUnityToModel.Factories.Weapon.Bullets

@@ -1,10 +1,10 @@
 ﻿using Extensions;
 using Extensions.Systems;
 using Leopotam.Ecs;
-using Model.Components.Extensions.Interfaces.Pool;
 using Model.Components.Requests;
-using Model.Components.Unit.MoveComponents;
+using Model.Extensions;
 using UnityEngine;
+using Views.Extensions.Pools;
 
 namespace Views.Systems.Create.Projectiles
 {

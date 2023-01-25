@@ -1,6 +1,6 @@
 ﻿using Controller.EntityToGameObject;
 using Leopotam.Ecs;
-using Model.Components.Extensions;
+using Model.Extensions;
 using UnityEngine;
 
 namespace Extensions

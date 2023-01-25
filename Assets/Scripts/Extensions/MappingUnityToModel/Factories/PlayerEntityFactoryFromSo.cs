@@ -1,11 +1,12 @@
 ﻿using System;
 using Leopotam.Ecs;
-using Model.Components.Extensions;
-using Model.Components.Extensions.DyingPolicies;
-using Model.Components.Tags;
-using Model.Components.Tags.Effects;
-using Model.Components.Unit;
-using Model.Components.Unit.MoveComponents.Input;
+using Model.Extensions;
+using Model.Extensions.DyingPolicies;
+using Model.Unit.EnergySystems.Components;
+using Model.Unit.Input.Components;
+using Model.Unit.Movement.Components;
+using Model.Unit.Movement.Components.Tags;
+using Model.VisualEffects.Components.Tags;
 using UnityEngine;
 
 namespace Extensions.MappingUnityToModel.Factories

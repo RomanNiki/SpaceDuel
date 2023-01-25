@@ -1,22 +1,26 @@
 ﻿using Controller.Input;
 using Extensions.UI;
-using Model.Components.Events;
-using Model.Components.Extensions;
-using Model.Components.Extensions.UI;
-using Model.Components.Tags.Buffs;
-using Model.Components.Tags.Effects;
-using Model.Components.Unit;
-using Model.Systems;
-using Model.Systems.Buffs;
-using Model.Systems.Unit;
-using Model.Systems.Unit.Collisions;
-using Model.Systems.Unit.Destroy;
-using Model.Systems.Unit.Input;
-using Model.Systems.Unit.Movement;
-using Model.Systems.VisualEffects;
-using Model.Systems.Weapons;
-using Model.Systems.Weapons.Particle;
+using Model;
+using Model.Buffs;
+using Model.Buffs.Components.Tags;
+using Model.Extensions;
+using Model.Scores;
 using Model.Timers;
+using Model.Timers.Components;
+using Model.Unit.Collisions;
+using Model.Unit.Damage;
+using Model.Unit.Damage.Components;
+using Model.Unit.Damage.Components.Events;
+using Model.Unit.Destroy;
+using Model.Unit.EnergySystems;
+using Model.Unit.EnergySystems.Components;
+using Model.Unit.EnergySystems.Components.Events;
+using Model.Unit.Input;
+using Model.Unit.Movement;
+using Model.VisualEffects;
+using Model.VisualEffects.Components.Tags;
+using Model.Weapons;
+using Model.Weapons.Components;
 using Views;
 using Views.Systems;
 using Views.Systems.Create.Buffs;
@@ -51,6 +55,8 @@ namespace Installers
                 SystemsEnum.Run;         
             AddShootSystems();
             Container.BindInterfacesTo<GunSoundSystem>().AsSingle().NonLazy().BindInfo.Identifier =
+                SystemsEnum.Run;      
+            Container.BindInterfacesTo<PlayerMoveSoundSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.Run;           
             AddTimers();
             Container.BindInterfacesTo<SunBuffEntityExecuteSystem>().AsSingle().NonLazy().BindInfo.Identifier =
@@ -107,7 +113,7 @@ namespace Installers
         {
             Container.BindInterfacesTo<OwnerIsAliveSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.Run;
-            Container.BindInterfacesTo<CheckOwnerEnergyBlockSystem>().AsSingle().NonLazy().BindInfo.Identifier =
+            Container.BindInterfacesTo<CheckOwnerEnergyBlockSystem<WeaponType>>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.Run;
             Container.BindInterfacesTo<ShootDeniedTimeBetweenShotsSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.Run;

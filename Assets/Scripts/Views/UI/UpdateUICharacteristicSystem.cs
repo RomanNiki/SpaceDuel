@@ -1,7 +1,6 @@
 ﻿using Leopotam.Ecs;
-using Model.Components.Extensions.Interfaces;
 
-namespace Model.Systems.UI
+namespace Views.UI
 {
     public abstract class UpdateUICharacteristicSystem<TEvent, TValueComponent, TUIComponent> : IEcsRunSystem
         where TEvent : struct

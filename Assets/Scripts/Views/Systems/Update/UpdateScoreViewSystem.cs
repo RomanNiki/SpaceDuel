@@ -1,11 +1,12 @@
 ﻿using Leopotam.Ecs;
 using Model.Components;
 using Model.Components.Requests;
+using Model.Scores.Components;
 using TMPro;
 
 namespace Views.Systems.Update
 {
-    public class UpdateScoreViewSystem : IEcsRunSystem
+    public sealed class UpdateScoreViewSystem : IEcsRunSystem
     {
         private readonly EcsFilter<UnityComponent<TMP_Text>, Score, ViewUpdateRequest> _filter;
 

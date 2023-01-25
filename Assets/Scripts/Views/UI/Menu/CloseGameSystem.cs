@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Views.UI.Menu
 {
-    public class CloseGameSystem : IEcsRunSystem
+    public sealed class CloseGameSystem : IEcsRunSystem
     {
         private EcsFilter<CloseAppRequest> _filter;
 

@@ -1,6 +1,6 @@
 ﻿using System;
 using Leopotam.Ecs;
-using Model.Components.Tags.Projectiles;
+using Model.Weapons.Components.Tags;
 using UnityEngine;
 
 namespace Extensions.MappingUnityToModel.Factories.Weapon.Bullets

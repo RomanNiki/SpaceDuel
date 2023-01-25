@@ -1,5 +1,5 @@
-﻿using Model.Components.Extensions.Interfaces.Pool;
-using Model.Components.Tags.Effects;
+﻿using Model.VisualEffects.Components.Tags;
+using Views.Extensions.Pools;
 using Zenject;
 
 namespace Views.Systems.Create.Effects

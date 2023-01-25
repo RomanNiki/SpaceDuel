@@ -5,7 +5,7 @@ using Zenject;
 
 namespace Views.Systems
 {
-    public class PauseMenuSystem : IEcsRunSystem
+    public sealed class PauseMenuSystem : IEcsRunSystem
     {
         [Inject] private PauseMenuProvider _provider;
         private readonly EcsFilter<PauseEvent> _ecsFilter;

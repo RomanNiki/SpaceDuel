@@ -7,19 +7,17 @@ using Extensions.MappingUnityToModel.Factories.Weapon;
 using Extensions.UI;
 using Leopotam.Ecs;
 using Model.Components;
-using Model.Components.Extensions;
-using Model.Components.Extensions.EntityFactories;
-using Model.Components.Extensions.UI;
-using Model.Components.Unit;
-using Model.Components.Unit.MoveComponents;
-using Model.Components.Unit.MoveComponents.Input;
-using Model.Components.Weapons;
 using Model.Enums;
+using Model.Extensions;
+using Model.Extensions.EntityFactories;
+using Model.Unit.Input.Components;
+using Model.Unit.Movement.Components;
+using Model.Weapons.Components;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.VFX;
 using Zenject;
-using VisualEffect = UnityEngine.VFX.VisualEffect;
 
 namespace Installers
 {
@@ -46,6 +44,7 @@ namespace Installers
             var entity = _playerEntityFactory.CreateEntity(_world);
             entity.Get<ViewObjectComponent>().ViewObject = new ViewObjectUnity(_settings.Rigidbody.transform,_settings.Rigidbody);
             entity.Get<UnityComponent<VisualEffect>>().Value = _settings.VisualEffect;
+            entity.Get<UnityComponent<PlayerAudioComponent>>().Value = _settings.PlayerAudioComponent;
             entity.Get<Team>().Value = _settings.Team;
             entity.Get<EnergyBar>().Bar = _settings.EnergyBar;
             entity.Get<HealthBar>().Bar = _settings.HealthBar;
@@ -93,6 +92,7 @@ namespace Installers
             [FormerlySerializedAs("PrimiryWeaponAudioComponent")] public GunAudioUnityComponent _primiryWeaponAudioUnityComponent;
             [FormerlySerializedAs("SecondaryWeaponAudioComponent")] public GunAudioUnityComponent _secondaryWeaponAudioUnityComponent;
             public VisualEffect VisualEffect;
+            public PlayerAudioComponent PlayerAudioComponent;
             public float MoveFriction;
             public TeamEnum Team;
             [Header("UI")] public Slider HealthBar;

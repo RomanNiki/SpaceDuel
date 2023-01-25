@@ -1,6 +1,6 @@
 using Leopotam.Ecs;
-using Model.Components.Extensions;
 using Model.Components.Requests;
+using Model.Extensions;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;

@@ -1,5 +1,4 @@
 ﻿using Leopotam.Ecs;
-using Model.Components.Events;
 using Model.Components.Requests;
 using UnityEngine;
 

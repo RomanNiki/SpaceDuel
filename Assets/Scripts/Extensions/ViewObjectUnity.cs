@@ -1,8 +1,7 @@
 ﻿using System;
 using JetBrains.Annotations;
 using Model.Components;
-using Model.Components.Extensions.Interfaces;
-using Model.Components.Extensions.Interfaces.Pool;
+using Model.Extensions.Interfaces.Pool;
 using UnityEngine;
 using Object = UnityEngine.Object;
 

@@ -1,8 +1,7 @@
 ﻿using System;
-using Model.Systems;
-using Model.Systems.Buffs;
-using Model.Systems.Unit;
-using Model.Systems.Unit.Movement;
+using Model.Buffs;
+using Model.Unit.EnergySystems;
+using Model.Unit.Movement;
 using UnityEngine;
 using Views;
 using Views.Systems;

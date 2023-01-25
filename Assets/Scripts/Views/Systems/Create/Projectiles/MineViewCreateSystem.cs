@@ -1,5 +1,5 @@
-﻿using Model.Components.Extensions.Interfaces.Pool;
-using Model.Components.Tags.Projectiles;
+﻿using Model.Weapons.Components.Tags;
+using Views.Extensions.Pools;
 using Zenject;
 
 namespace Views.Systems.Create.Projectiles

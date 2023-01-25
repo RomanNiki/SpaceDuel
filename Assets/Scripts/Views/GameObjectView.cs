@@ -1,4 +1,4 @@
-﻿using Model.Components.Extensions.Interfaces.Pool;
+﻿using Model.Extensions.Interfaces.Pool;
 using UnityEngine;
 using Zenject;
 

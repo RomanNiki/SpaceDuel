@@ -2,10 +2,9 @@
 using Cysharp.Threading.Tasks;
 using Leopotam.Ecs;
 using Model.Components.Events;
-using Model.Components.Extensions;
 using Model.Components.Requests;
-using Model.Components.Tags;
-using Model.Components.Unit.MoveComponents;
+using Model.Extensions;
+using Model.Unit.Movement.Components.Tags;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Zenject;

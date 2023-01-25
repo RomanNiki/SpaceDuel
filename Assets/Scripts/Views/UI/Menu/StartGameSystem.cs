@@ -7,7 +7,7 @@ using Zenject;
 
 namespace Views.UI.Menu
 {
-    public class StartGameSystem : IEcsRunSystem
+    public sealed class StartGameSystem : IEcsRunSystem
     {
         private EcsFilter<StartGameRequest> _filter;
         [Inject] private LoadingScreenProvider _provider;

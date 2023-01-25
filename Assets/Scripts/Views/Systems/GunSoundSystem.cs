@@ -1,9 +1,9 @@
-﻿using Controller.EntityToGameObject;
-using Extensions.MappingUnityToModel;
+﻿using Extensions.MappingUnityToModel;
 using Leopotam.Ecs;
 using Model.Components;
 using Model.Components.Events;
-using Model.Components.Weapons;
+using Model.Weapons.Components;
+using Model.Weapons.Components.Events;
 using UnityEngine;
 
 namespace Views.Systems

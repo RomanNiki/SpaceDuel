@@ -1,4 +1,4 @@
-﻿using Model.Components.Extensions.Interfaces;
+﻿using Model.Extensions.Interfaces;
 using UnityEngine.UI;
 
 namespace Extensions.UI

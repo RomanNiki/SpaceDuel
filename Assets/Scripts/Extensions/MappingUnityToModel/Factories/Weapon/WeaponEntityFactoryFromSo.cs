@@ -2,10 +2,12 @@
 using Extensions.MappingUnityToModel.Factories.Weapon.Bullets;
 using Leopotam.Ecs;
 using Model.Components;
-using Model.Components.Extensions.EntityFactories;
 using Model.Components.Requests;
-using Model.Components.Weapons;
+using Model.Extensions.EntityFactories;
 using Model.Timers;
+using Model.Timers.Components;
+using Model.Unit.EnergySystems.Components.Requests;
+using Model.Weapons.Components;
 using UnityEngine;
 
 namespace Extensions.MappingUnityToModel.Factories.Weapon

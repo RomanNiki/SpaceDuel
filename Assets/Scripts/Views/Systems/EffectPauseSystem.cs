@@ -7,7 +7,7 @@ using UnityEngine.VFX;
 
 namespace Views.Systems
 {
-    public class EffectPauseSystem : IEcsRunSystem
+    public sealed class EffectPauseSystem : IEcsRunSystem
     {
         private EcsFilter<UnityComponent<VisualEffect>> _filter;
         private EcsFilter<PauseEvent> _pause;

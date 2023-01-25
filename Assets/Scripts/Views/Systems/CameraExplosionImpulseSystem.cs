@@ -1,12 +1,13 @@
 ﻿using Cinemachine;
 using Leopotam.Ecs;
 using Model.Components.Events;
+using Model.VisualEffects.Components.Events;
 using UnityEngine;
 using Zenject;
 
 namespace Views.Systems
 {
-    public class CameraExplosionImpulseSystem : IEcsRunSystem
+    public sealed class CameraExplosionImpulseSystem : IEcsRunSystem
     {
         [Inject] private CinemachineImpulseSource _impulseSource;
         private readonly EcsFilter<ExplosionEvent> _filter;

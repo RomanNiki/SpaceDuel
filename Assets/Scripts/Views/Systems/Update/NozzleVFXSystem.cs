@@ -1,8 +1,9 @@
 ﻿using Leopotam.Ecs;
 using Model.Components;
-using Model.Components.Unit;
-using Model.Components.Unit.MoveComponents.Input;
 using Model.Pause;
+using Model.Unit.EnergySystems.Components;
+using Model.Unit.Input.Components;
+using Model.Unit.Movement.Components;
 using UnityEngine.VFX;
 
 namespace Views.Systems.Update

@@ -1,8 +1,9 @@
 ﻿using System;
 using Leopotam.Ecs;
+using Model.Buffs.Components.Tags;
 using Model.Components.Requests;
-using Model.Components.Tags.Buffs;
-using Model.Components.Unit;
+using Model.Unit.EnergySystems.Components;
+using Model.Unit.EnergySystems.Components.Requests;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

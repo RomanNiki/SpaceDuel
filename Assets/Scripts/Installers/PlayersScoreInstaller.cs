@@ -1,4 +1,4 @@
-using Model.Components.Extensions;
+using Model.Extensions;
 using Zenject;
 
 namespace Installers
