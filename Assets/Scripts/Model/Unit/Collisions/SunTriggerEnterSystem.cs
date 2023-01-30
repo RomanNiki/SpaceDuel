@@ -8,14 +8,14 @@ namespace Model.Unit.Collisions
 {
     public sealed class SunTriggerEnterSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<ContainerComponents<TriggerEnterEvent>, Sun> _filter =
+        private readonly EcsFilter<ContainerComponents<TriggerEnterEvent>, Sun> _sunCollisionFilter =
             null;
 
         public void Run()
         {
-            foreach (var i in _filter)
+            foreach (var i in _sunCollisionFilter)
             {
-                var collisions = _filter.Get1(i).List;
+                var collisions = _sunCollisionFilter.Get1(i).List;
 
                 foreach (var collision in collisions)
                 {

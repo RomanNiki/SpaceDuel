@@ -2,7 +2,7 @@
 using Leopotam.Ecs;
 using Zenject;
 
-namespace Model.Extensions
+namespace Extensions
 {
     public sealed class SystemRegisterHandler
     {

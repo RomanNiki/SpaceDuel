@@ -9,13 +9,13 @@ namespace Model.Timers
     public sealed class LifeTimeTimerSystem<TTag> : IEcsRunSystem
     where TTag : struct
     {
-        private readonly EcsFilter<TTag>.Exclude<Timer<LifeTime>> _filterExplosion = null;
+        private readonly EcsFilter<TTag>.Exclude<Timer<LifeTime>> _explosionFilter = null;
         
         public void Run()
         {
-            foreach (var i in _filterExplosion)
+            foreach (var i in _explosionFilter)
             {
-                ref var entity = ref _filterExplosion.GetEntity(i);
+                ref var entity = ref _explosionFilter.GetEntity(i);
                 if (entity.Has<Health>())
                 {
                     entity.Get<InstantlyKillRequest>();

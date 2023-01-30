@@ -6,13 +6,13 @@ namespace Model.Unit.Movement
 {
     public sealed class CheckSunGravityResistSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<GravityResist>.Exclude<Timer<SunGravityResistTime>> _filter = null; 
+        private readonly EcsFilter<GravityResist>.Exclude<Timer<SunGravityResistTime>> _gravityResistFilter = null; 
         
         public void Run()
         {
-            foreach (var i in _filter)
+            foreach (var i in _gravityResistFilter)
             {
-                _filter.GetEntity(i).Del<GravityResist>();
+                _gravityResistFilter.GetEntity(i).Del<GravityResist>();
             }
         }
     }

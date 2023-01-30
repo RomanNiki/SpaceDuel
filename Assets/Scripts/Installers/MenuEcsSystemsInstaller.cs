@@ -1,4 +1,5 @@
-﻿using Model.Extensions;
+﻿using Extensions;
+using Model.Extensions;
 using Views.UI.Menu;
 using Zenject;
 

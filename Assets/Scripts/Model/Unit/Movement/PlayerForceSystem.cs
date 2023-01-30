@@ -11,17 +11,17 @@ namespace Model.Unit.Movement
 {
     public sealed class PlayerForceSystem : PauseHandlerDefaultRunSystem
     {
-        private readonly EcsFilter<InputMoveData, Rotation, Mass, Velocity>.Exclude<NoEnergyBlock> _playerMove = null;
+        private readonly EcsFilter<InputMoveData, Rotation, Mass, Velocity>.Exclude<NoEnergyBlock> _playerMoveFilter = null;
         [Inject] private Settings _settings;
 
         protected override void Tick()
         {
-            foreach (var i in _playerMove)
+            foreach (var i in _playerMoveFilter)
             {
-                ref var inputData = ref _playerMove.Get1(i);
-                ref var rotation = ref _playerMove.Get2(i);
-                ref var mass = ref _playerMove.Get3(i);
-                ref var entity = ref _playerMove.GetEntity(i);
+                ref var inputData = ref _playerMoveFilter.Get1(i);
+                ref var rotation = ref _playerMoveFilter.Get2(i);
+                ref var mass = ref _playerMoveFilter.Get3(i);
+                ref var entity = ref _playerMoveFilter.GetEntity(i);
 
                 if (inputData.Accelerate)
                 {

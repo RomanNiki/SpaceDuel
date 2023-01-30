@@ -7,13 +7,12 @@ using Model.Unit.EnergySystems.Components.Requests;
 using Model.Unit.Movement.Components;
 using Model.Unit.Movement.Components.Tags;
 using UnityEngine;
-using Zenject;
 
 namespace Model.Unit.EnergySystems
 {
     public sealed class SunChargeSystem : PauseHandlerDefaultRunSystem
     {
-        [Inject] private readonly Settings _settings;
+        private readonly Settings _settings;
         private readonly EcsFilter<PlayerTag, Position, Rotation> _playerFilter = null;
         private readonly EcsFilter<Sun, Position, ChargeContainer> _sunFilter = null;
 

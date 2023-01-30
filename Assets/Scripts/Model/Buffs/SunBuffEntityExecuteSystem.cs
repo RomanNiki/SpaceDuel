@@ -7,16 +7,15 @@ using Model.Extensions.EntityFactories;
 using Model.Timers.Components;
 using Model.Unit.Movement.Components;
 using UnityEngine;
-using Zenject;
 using Random = UnityEngine.Random;
 
 namespace Model.Buffs
 {
     public sealed class SunBuffEntityExecuteSystem : IEcsRunSystem
     {
-        [Inject] private Settings _settings;
-        private EcsWorld _world;
-        private EcsFilter<Sun, Position, EntityFactoryRef<IEntityFactory>>.Exclude<Timer<TimerBetweenSpawn>> _filter;
+        private readonly Settings _settings;
+        private readonly EcsWorld _world;
+        private readonly EcsFilter<Sun, Position, EntityFactoryRef<IEntityFactory>>.Exclude<Timer<TimerBetweenSpawn>> _filter;
 
         public void Run()
         {

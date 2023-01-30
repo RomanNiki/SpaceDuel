@@ -1,4 +1,5 @@
 ﻿using Controller.Input;
+using Extensions;
 using Extensions.UI;
 using Model;
 using Model.Buffs;
@@ -40,6 +41,7 @@ namespace Installers
             AddFixedSystems();
             AddSystems();
 
+            Container.BindInterfacesAndSelfTo<MoveClamper>().AsSingle();
             Container.BindInterfacesAndSelfTo<SystemRegisterHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<Startup>().AsSingle().NonLazy();
         }
@@ -205,7 +207,7 @@ namespace Installers
 
         private void AddMoveSystems()
         {
-            Container.BindInterfacesTo<LoopedMoveSystem>().AsSingle().NonLazy().BindInfo.Identifier =
+            Container.BindInterfacesTo<ClampMoveSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.FixedRun;
             Container.BindInterfacesTo<SunGravitySystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.FixedRun;

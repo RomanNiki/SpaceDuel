@@ -6,16 +6,16 @@ namespace Model
 {
     public sealed class OwnerIsAliveSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<PlayerOwner> _filter = null;
+        private readonly EcsFilter<PlayerOwner> _playerOwnerFilter = null;
         
         public void Run()
         {
-            foreach (var i in _filter)
+            foreach (var i in _playerOwnerFilter)
             {
-                ref var owner = ref _filter.Get1(i).Owner;
+                ref var owner = ref _playerOwnerFilter.Get1(i).Owner;
                 if (owner.IsAlive() == false)
                 {
-                    _filter.GetEntity(i).Get<EntityDestroyRequest>();
+                    _playerOwnerFilter.GetEntity(i).Get<EntityDestroyRequest>();
                 }
             }
         }

@@ -1,4 +1,4 @@
-﻿using Model.Pause;
+﻿using Extensions.Pause;
 using Zenject;
 
 namespace Installers
@@ -7,7 +7,7 @@ namespace Installers
     {
         public override void InstallBindings()
         {
-            Container.Bind<PauseService>().AsSingle();
+            Container.BindInterfacesAndSelfTo<PauseService>().AsSingle();
         }
     }
 }

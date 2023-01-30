@@ -1,4 +1,4 @@
-﻿namespace Model.Pause
+﻿namespace Model.Extensions.Pause
 {
     public interface IPauseHandler
     {

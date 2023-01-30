@@ -13,7 +13,7 @@ namespace Model.VisualEffects
 {
     public sealed class ExecuteExplosionSystem : IEcsRunSystem
     {
-        [Inject] private readonly IEntityFactory _factory;
+        private readonly VisualEffectsEntityFactories _entityFactory;
         private readonly EcsWorld _world;
         private readonly EcsFilter<Position, EntityDestroyRequest, ExplosiveTag> _filterExplosive = null;
 
@@ -29,7 +29,7 @@ namespace Model.VisualEffects
 
         private void CreateExplosion(EcsWorld world, Vector2 explosionPosition)
         {
-            var explosion = _factory.CreateEntity(world);
+            var explosion = _entityFactory.ExplosionEntityFactory.CreateEntity(world);
             explosion.Get<ExplosionTag>();
             explosion.AddTransform(explosionPosition);
             explosion.Get<ViewCreateRequest>().StartPosition = explosionPosition;

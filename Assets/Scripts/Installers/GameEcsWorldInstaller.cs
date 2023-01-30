@@ -1,5 +1,5 @@
-﻿using Leopotam.Ecs;
-using Model.Pause;
+﻿using Extensions.Pause;
+using Leopotam.Ecs;
 using Zenject;
 
 namespace Installers

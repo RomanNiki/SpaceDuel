@@ -10,16 +10,16 @@ namespace Model.Unit.Collisions
 {
     public sealed class ChargeContainerTriggerSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<ContainerComponents<TriggerEnterEvent>, ChargeContainer, BuffTag> _filter =
+        private readonly EcsFilter<ContainerComponents<TriggerEnterEvent>, ChargeContainer, BuffTag> _chargersFilter =
             null;
 
         public void Run()
         {
-            foreach (var i in _filter)
+            foreach (var i in _chargersFilter)
             {
-               ref var collisions = ref _filter.Get1(i);
-               ref var charge = ref _filter.Get2(i);
-               ref var entity = ref _filter.GetEntity(i);
+               ref var collisions = ref _chargersFilter.Get1(i);
+               ref var charge = ref _chargersFilter.Get2(i);
+               ref var entity = ref _chargersFilter.GetEntity(i);
                foreach (var collision in collisions.List)
                {
                    collision.Other.Get<ChargeRequest>().Value += charge.ChargeRequest.Value;

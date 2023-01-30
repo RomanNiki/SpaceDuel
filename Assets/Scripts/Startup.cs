@@ -1,15 +1,21 @@
 ﻿using System;
+using Extensions;
+using Extensions.Pause;
 using Leopotam.Ecs;
+using Model.Buffs;
 using Model.Components.Events;
 using Model.Components.Requests;
 using Model.Extensions;
+using Model.Extensions.Interfaces;
 using Model.Unit.Collisions.Components.Events;
 using Model.Unit.Damage.Components.Events;
 using Model.Unit.Damage.Components.Requests;
 using Model.Unit.Destroy.Components.Requests;
+using Model.Unit.EnergySystems;
 using Model.Unit.EnergySystems.Components.Events;
 using Model.Unit.EnergySystems.Components.Requests;
 using Model.Unit.Input.Components.Events;
+using Model.Unit.Movement;
 using Model.Unit.Movement.Components;
 using Model.VisualEffects.Components.Events;
 using Model.Weapons.Components.Events;
@@ -25,9 +31,24 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
     private readonly EcsSystems _systems;
     private readonly EcsSystems _fixedSystems;
     private readonly SystemRegisterHandler _systemRegister;
+    private readonly PlayerRotateSystem.Settings _rotateSettings;
+    private readonly PauseService _pauseService;
+    private readonly VisualEffectsEntityFactories _visualEffectsEntityFactories;
+    private readonly IMoveClamper _moveClamper;
+    private readonly SunChargeSystem.Settings _sunChargeSettings;
+    private readonly PlayersScore _playersScore;
+    private readonly SunBuffEntityExecuteSystem.Settings _sunBuffSettings;
 
     [Inject]
-    public Startup(EcsWorld world, SystemRegisterHandler systemRegister)
+    public Startup(EcsWorld world, SystemRegisterHandler systemRegister,
+        [Inject(Optional = true)] PlayerRotateSystem.Settings rotateSettings,
+        [Inject(Optional = true)] PauseService pauseService,
+        [Inject(Optional = true)] MoveClamper moveClamper,
+        [Inject(Optional = true)] VisualEffectsEntityFactories visualEffectsEntityFactories,
+        [Inject(Optional = true)] SunChargeSystem.Settings sunChargeSettings,
+        [Inject(Optional = true)] PlayersScore playersScore,
+        [Inject(Optional = true)] SunBuffEntityExecuteSystem.Settings sunBuffSettings
+    )
     {
         Time.timeScale = 1f;
         _world = world;
@@ -39,6 +60,13 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
         EcsSystemsObserver.Create(_systems);
         EcsSystemsObserver.Create(_fixedSystems);
 #endif
+        _visualEffectsEntityFactories = visualEffectsEntityFactories;
+        _rotateSettings = rotateSettings;
+        _pauseService = pauseService;
+        _moveClamper = moveClamper;
+        _sunChargeSettings = sunChargeSettings;
+        _playersScore = playersScore;
+        _sunBuffSettings = sunBuffSettings;
     }
 
     public void Tick()
@@ -70,6 +98,33 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
             _fixedSystems.Add(system);
         }
 
+        InjectGameData();
+        AddRunOneFrames();
+        AddFixedRunOneFrames();
+
+        _systems?.Init();
+        _fixedSystems?.Init();
+    }
+
+    private void AddFixedRunOneFrames()
+    {
+        _fixedSystems
+            .OneFrame<ViewUpdateRequest>()
+            .OneFrame<InputAnyKeyEvent>()
+            .OneFrame<ForceRequest>()
+            .OneFrame<CollisionEnterEvent>()
+            .OneFrame<TriggerEnterEvent>()
+            .OneFrame<ContainerComponents<CollisionEnterEvent>>()
+            .OneFrame<ContainerComponents<TriggerEnterEvent>>()
+            .OneFrame<DamageRequest>()
+            .OneFrame<HealthChangeEvent>()
+            .OneFrame<EntityDestroyRequest>()
+            .OneFrame<ExplosionEvent>()
+            .OneFrame<GameRestartRequest>();
+    }
+
+    private void AddRunOneFrames()
+    {
         _systems
             .OneFrame<PauseEvent>()
             .OneFrame<InputAnyKeyEvent>()
@@ -86,22 +141,44 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
             .OneFrame<EnergyChangedEvent>()
             .OneFrame<BackToMenuRequest>()
             .OneFrame<ViewCreateRequest>();
+    }
 
-        _fixedSystems
-            .OneFrame<ViewUpdateRequest>()
-            .OneFrame<InputAnyKeyEvent>()
-            .OneFrame<ForceRequest>()
-            .OneFrame<CollisionEnterEvent>()
-            .OneFrame<TriggerEnterEvent>()
-            .OneFrame<ContainerComponents<CollisionEnterEvent>>()
-            .OneFrame<ContainerComponents<TriggerEnterEvent>>()
-            .OneFrame<DamageRequest>()
-            .OneFrame<HealthChangeEvent>()
-            .OneFrame<EntityDestroyRequest>()
-            .OneFrame<ExplosionEvent>()
-            .OneFrame<GameRestartRequest>();
+    private void InjectGameData()
+    {
+        if (_sunChargeSettings != null)
+        {
+            _systems.Inject(_sunChargeSettings);
+        } 
         
-        _systems?.Init();
-        _fixedSystems?.Init();
+        if (_sunBuffSettings != null)
+        {
+            _systems.Inject(_sunBuffSettings);
+        }
+
+        if (_playersScore != null)
+        {
+            _systems.Inject(_playersScore);
+        }
+
+        if (_moveClamper != null)
+        {
+            _fixedSystems.Inject(_moveClamper);
+        }
+
+        if (_pauseService != null)
+        {
+            _systems.Inject(_pauseService);
+            _fixedSystems.Inject(_pauseService);
+        }
+
+        if (_visualEffectsEntityFactories != null)
+        {
+            _fixedSystems.Inject(_visualEffectsEntityFactories);
+        }
+
+        if (_rotateSettings != null)
+        {
+            _fixedSystems.Inject(_rotateSettings);
+        }
     }
 }

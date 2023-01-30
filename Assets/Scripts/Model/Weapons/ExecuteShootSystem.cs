@@ -15,25 +15,25 @@ namespace Model.Weapons
         private readonly EcsWorld _world = null;
 
         private readonly EcsFilter<EntityFactoryRef<IEntityFactory>, Shooting, PlayerOwner, BulletStartForce, Muzzle>.Exclude<
-                NoEnergyBlock> _filter = null;
+                NoEnergyBlock> _readyToShotFilter = null;
 
 
         protected override void Tick()
         {
-            foreach (var i in _filter)
+            foreach (var i in _readyToShotFilter)
             {
-                ref var owner = ref _filter.Get3(i).Owner;
-                ref var factory = ref _filter.Get1(i).Value;
-                ref var bulletForce = ref _filter.Get4(i).Value;
-                ref var offset = ref _filter.Get5(i).Offset;
-                ref var direction = ref _filter.Get2(i).Direction;
+                ref var owner = ref _readyToShotFilter.Get3(i).Owner;
+                ref var factory = ref _readyToShotFilter.Get1(i).Value;
+                ref var bulletForce = ref _readyToShotFilter.Get4(i).Value;
+                ref var offset = ref _readyToShotFilter.Get5(i).Offset;
+                ref var direction = ref _readyToShotFilter.Get2(i).Direction;
                 ref var playerPosition = ref owner.Get<Position>();
                 ref var playerRotation = ref owner.Get<Rotation>();
                 var spawnPosition = playerPosition.Value + (Vector2) playerRotation.LookDir * offset;
 
                 CreateBullet(factory, spawnPosition, direction * bulletForce);
 
-                ref var gun = ref _filter.GetEntity(i);
+                ref var gun = ref _readyToShotFilter.GetEntity(i);
                 MessageShotMade(gun);
             }
         }

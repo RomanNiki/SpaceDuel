@@ -1,7 +1,7 @@
 ﻿using Leopotam.Ecs;
 using Model.Components.Events;
 using Model.Components.Requests;
-using Model.Pause;
+using Model.Extensions.Pause;
 using Model.Unit.Destroy.Components.Requests;
 using Zenject;
 
@@ -9,22 +9,22 @@ namespace Model
 {
     public sealed class ExecutePauseSystem : IEcsRunSystem
     {
-        [Inject] private PauseService _pauseService;
-        private EcsFilter<PauseEvent> _pause;
-        private EcsFilter<StartGameRequest> _start;
+        private readonly IPauseService _pauseService;
+        private readonly EcsFilter<PauseEvent> _pauseFilter;
+        private readonly EcsFilter<StartGameRequest> _startFilter;
 
         public void Run()
         {
-            if (_pause.IsEmpty() == false)
+            if (_pauseFilter.IsEmpty() == false)
             {
-                _pauseService.SetPaused(true);
+                _pauseService?.SetPaused(true);
             }
 
-            if (_start.IsEmpty()) return;
-            _pauseService.SetPaused(false);
-            foreach (var i in _start)
+            if (_startFilter.IsEmpty()) return;
+            _pauseService?.SetPaused(false);
+            foreach (var i in _startFilter)
             {
-                _start.GetEntity(i).Get<EntityDestroyRequest>();
+                _startFilter.GetEntity(i).Get<EntityDestroyRequest>();
             }
         }
     }

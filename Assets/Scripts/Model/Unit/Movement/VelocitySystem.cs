@@ -7,14 +7,14 @@ namespace Model.Unit.Movement
 {
     public sealed class VelocitySystem : PauseHandlerDefaultRunSystem
     {
-        private readonly EcsFilter<Position, Velocity> _move = null;
+        private readonly EcsFilter<Position, Velocity> _moveFilter = null;
 
         protected override void Tick()
         {
-            foreach (var i in _move)
+            foreach (var i in _moveFilter)
             {
-                ref var position = ref _move.Get1(i);
-                ref var move = ref _move.Get2(i);
+                ref var position = ref _moveFilter.Get1(i);
+                ref var move = ref _moveFilter.Get2(i);
                 position.Value += move.Value * Time.deltaTime;
             }
         }

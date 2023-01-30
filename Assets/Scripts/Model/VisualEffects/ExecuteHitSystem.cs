@@ -15,7 +15,7 @@ namespace Model.VisualEffects
 {
     public sealed class ExecuteHitSystem : IEcsRunSystem
     {
-        [Inject] private readonly IEntityFactory _factory;
+        private readonly VisualEffectsEntityFactories _entityFactory;
         private readonly EcsWorld _world;
         private readonly EcsFilter<ContainerComponents<TriggerEnterEvent>, Position, Rotation, BulletTag> _filter;
 
@@ -35,7 +35,7 @@ namespace Model.VisualEffects
 
         private void CreateHit(EcsWorld world, Vector2 hitPosition, float hitRotation)
         {
-            var hitEntity = _factory.CreateEntity(world);
+            var hitEntity = _entityFactory.HitEntityFactory.CreateEntity(world);
             hitEntity.Get<HitTag>();
             hitEntity.AddTransform(hitPosition, hitRotation);
             hitEntity.Get<ViewCreateRequest>().StartPosition = hitPosition;

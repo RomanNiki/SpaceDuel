@@ -19,7 +19,6 @@ namespace Installers
         [Serializable]
         public class GameSettings
         {
-            public GamePoolInstaller.Settings GameInstaller;
             public RestartGameSystem.Settings Restart;
             public SunBuffEntityExecuteSystem.Settings Buff;
             public PrepareGameSystem.Settings PrepairGame;
@@ -39,7 +38,6 @@ namespace Installers
             Container.BindInstance(_player.Move).IfNotBound();
             Container.BindInstance(_player.Rotate).IfNotBound();
             Container.BindInstance(_player.SolarCharger).IfNotBound();
-            Container.BindInstance(_gameInstaller.GameInstaller).IfNotBound();
             Container.BindInstance(_gameInstaller.Restart).IfNotBound();
             Container.BindInstance(_gameInstaller.Buff).IfNotBound();
             Container.BindInstance(_gameInstaller.PrepairGame).IfNotBound();

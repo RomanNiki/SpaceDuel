@@ -9,7 +9,7 @@ namespace Model.Unit.Damage
     public sealed class DamageSystem : IEcsRunSystem
     {
         private EcsFilter<DamageRequest, Health>.Exclude<InstantlyKillRequest> _damageRequestFilter;
-        private EcsFilter<Health, InstantlyKillRequest> _instantlyKill;
+        private EcsFilter<Health, InstantlyKillRequest> _instantlyKillFilter;
 
         public void Run()
         {
@@ -22,10 +22,10 @@ namespace Model.Unit.Damage
               
             }
 
-            foreach (var i in _instantlyKill)
+            foreach (var i in _instantlyKillFilter)
             {
-                ref var entity = ref _instantlyKill.GetEntity(i);
-                ref var health = ref _instantlyKill.Get1(i);
+                ref var entity = ref _instantlyKillFilter.GetEntity(i);
+                ref var health = ref _instantlyKillFilter.Get1(i);
                 TakeDamage(ref health, health.Current, ref entity);
             }
         }

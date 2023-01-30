@@ -7,15 +7,15 @@ namespace Model.Unit.EnergySystems
     public sealed class CheckOwnerEnergyBlockSystem<TTag> : IEcsRunSystem
     where TTag : struct
     {
-        private readonly EcsFilter<PlayerOwner, TTag> _filter = null;
+        private readonly EcsFilter<PlayerOwner, TTag> _ownerEnergyFilter = null;
         
         public void Run()
         {
-            foreach (var i in _filter)
+            foreach (var i in _ownerEnergyFilter)
             {
-                ref var owner = ref _filter.Get1(i).Owner;
+                ref var owner = ref _ownerEnergyFilter.Get1(i).Owner;
                 if (owner.IsAlive() == false) continue;
-                ref var gun = ref _filter.GetEntity(i);
+                ref var gun = ref _ownerEnergyFilter.GetEntity(i);
 
                 if (owner.Has<NoEnergyBlock>())
                 {

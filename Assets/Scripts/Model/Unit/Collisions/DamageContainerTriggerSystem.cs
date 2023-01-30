@@ -9,17 +9,17 @@ namespace Model.Unit.Collisions
 {
     public sealed class DamageContainerTriggerSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<ContainerComponents<TriggerEnterEvent>, DamageContainer> _filter =
+        private readonly EcsFilter<ContainerComponents<TriggerEnterEvent>, DamageContainer> _damagerFilter =
             null;
 
         public void Run()
         {
-            foreach (var i in _filter)
+            foreach (var i in _damagerFilter)
             {
-              ref var bullet = ref _filter.GetEntity(i);
+              ref var bullet = ref _damagerFilter.GetEntity(i);
                 ref var bulletHealthCurrent = ref bullet.Get<Health>();
 
-                var collisions = _filter.Get1(i).List;
+                var collisions = _damagerFilter.Get1(i).List;
 
                 foreach (var collision in collisions)
                 {

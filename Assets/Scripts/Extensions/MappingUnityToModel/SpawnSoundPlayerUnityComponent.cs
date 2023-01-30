@@ -2,7 +2,7 @@ using Controller.EntityToGameObject;
 using JetBrains.Annotations;
 using Leopotam.Ecs;
 using Model.Components;
-using Model.Pause;
+using Model.Extensions.Pause;
 using UnityEngine;
 
 namespace Extensions.MappingUnityToModel

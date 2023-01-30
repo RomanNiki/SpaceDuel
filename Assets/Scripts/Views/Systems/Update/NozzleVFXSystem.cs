@@ -1,6 +1,6 @@
 ﻿using Leopotam.Ecs;
 using Model.Components;
-using Model.Pause;
+using Model.Extensions.Pause;
 using Model.Unit.EnergySystems.Components;
 using Model.Unit.Input.Components;
 using Model.Unit.Movement.Components;

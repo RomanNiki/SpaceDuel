@@ -1,7 +1,7 @@
 ﻿using Leopotam.Ecs;
 using Model.Components;
 using Model.Components.Events;
-using Model.Pause;
+using Model.Extensions.Pause;
 using Model.Timers.Components;
 using UnityEngine;
 
@@ -11,20 +11,20 @@ namespace Model.Timers
         where TTimerFlag : struct
     {
         private readonly EcsFilter<Timer<TTimerFlag>>.Exclude<UnPause> _pauseFilter = null;
-        private readonly EcsFilter<Timer<TTimerFlag>, UnPause> _filter = null;
-        private readonly EcsFilter<GameRestartEvent> _restart = null;
+        private readonly EcsFilter<Timer<TTimerFlag>, UnPause> _unpauseFilter = null;
+        private readonly EcsFilter<GameRestartEvent> _restartFilter = null;
         private bool _pause;
 
         public void Run()
         {
-            foreach (var i in _filter)
+            foreach (var i in _unpauseFilter)
             {
-                ref var timer = ref _filter.Get1(i);
-                ref var entity = ref _filter.GetEntity(i);
+                ref var timer = ref _unpauseFilter.Get1(i);
+                ref var entity = ref _unpauseFilter.GetEntity(i);
                 ExecuteTimer(ref timer, entity);
             }
            
-            if (_pause || _restart.IsEmpty() == false)
+            if (_pause || _restartFilter.IsEmpty() == false)
                 return;
 
             foreach (var i in _pauseFilter)

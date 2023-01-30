@@ -6,13 +6,13 @@ namespace Model.Weapons
 {
     public sealed class ShootDeniedTimeBetweenShotsSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<Shooting, Timer<TimerBetweenShots>> _filter = null; 
+        private readonly EcsFilter<Shooting, Timer<TimerBetweenShots>> _weaponTimerFilter = null; 
         
         void IEcsRunSystem.Run()
         {
-            foreach (var i in _filter)
+            foreach (var i in _weaponTimerFilter)
             {
-                _filter.GetEntity(i).Del<Shooting>();
+                _weaponTimerFilter.GetEntity(i).Del<Shooting>();
             }
         }
     }

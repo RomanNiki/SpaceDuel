@@ -1,9 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using Model.Extensions;
+using Model.Extensions.Pause;
 using Zenject;
 
-namespace Model.Pause
+namespace Extensions.Pause
 {
     public sealed class PauseRegisterHandler: IInitializable, IDisposable
     {

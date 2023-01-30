@@ -6,13 +6,13 @@ namespace Model.Unit.Destroy
 {
     public sealed class ViewDestroySystem : IEcsRunSystem
     {
-        private readonly EcsFilter<ViewObjectComponent, EntityDestroyRequest> _filterWithView = null;
+        private readonly EcsFilter<ViewObjectComponent, EntityDestroyRequest> _destroyViewFilter = null;
         
         public void Run()
         {
-            foreach (var i in _filterWithView)
+            foreach (var i in _destroyViewFilter)
             {
-                _filterWithView.Get1(i).ViewObject.Destroy();
+                _destroyViewFilter.Get1(i).ViewObject.Destroy();
             }
         }
     }

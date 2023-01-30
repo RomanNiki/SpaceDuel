@@ -9,15 +9,15 @@ namespace Model.Unit.Input
 {
     public sealed class InputRotateSystem : PauseHandlerDefaultRunSystem
     {
-        private readonly EcsFilter<InputRotateStartedEvent> _filterRotationStart = null;
-        private readonly EcsFilter<InputRotateCanceledEvent> _filterRotationCanceled = null;
-        private readonly EcsFilter<PlayerTag, InputMoveData, Team> _filterMove = null;
+        private readonly EcsFilter<InputRotateStartedEvent> _rotationStartFilter = null;
+        private readonly EcsFilter<InputRotateCanceledEvent> _rotationCanceledFilter = null;
+        private readonly EcsFilter<PlayerTag, InputMoveData, Team> _moveFilter = null;
 
         protected override void Tick()
         {
-            foreach (var i in _filterRotationStart)
+            foreach (var i in _rotationStartFilter)
             {
-                ref var inputMoveStartedEvent = ref _filterRotationStart.Get1(i);
+                ref var inputMoveStartedEvent = ref _rotationStartFilter.Get1(i);
                 var direction = 0;
                 if (inputMoveStartedEvent.Axis != 0)
                 {
@@ -26,26 +26,26 @@ namespace Model.Unit.Input
                 ProcessRotation(inputMoveStartedEvent.PlayerNumber, direction);
             }
 
-            foreach (var i in _filterRotationCanceled)
+            foreach (var i in _rotationCanceledFilter)
             {
-                ref var inputMoveCanceledEvent = ref _filterRotationCanceled.Get1(i);
+                ref var inputMoveCanceledEvent = ref _rotationCanceledFilter.Get1(i);
                 ProcessRotation(inputMoveCanceledEvent.PlayerNumber, 0f);
             }
         }
 
         private bool IsPlayerWithNumber(in TeamEnum playerTeamEnum, in int indexFilter)
         {
-            var teamData = _filterMove.Get3(indexFilter);
+            var teamData = _moveFilter.Get3(indexFilter);
             return teamData.Value == playerTeamEnum;
         }
 
         private void ProcessRotation(in TeamEnum numberPlayer, in float angle)
         {
-            foreach (var i in _filterMove)
+            foreach (var i in _moveFilter)
             {
                 if (IsPlayerWithNumber(numberPlayer, i) == false)
                     continue;
-                ref var rotate = ref _filterMove.Get2(i);
+                ref var rotate = ref _moveFilter.Get2(i);
                 
                 RotatePlayer(ref rotate, angle);
             }

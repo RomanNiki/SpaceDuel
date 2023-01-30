@@ -1,5 +1,5 @@
 ﻿using Leopotam.Ecs;
-using Model.Pause;
+using Model.Extensions.Pause;
 
 namespace Model.Extensions
 {

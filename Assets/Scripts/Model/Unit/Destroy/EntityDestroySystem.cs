@@ -5,13 +5,13 @@ namespace Model.Unit.Destroy
 {
     public sealed class EntityDestroySystem : IEcsRunSystem
     {
-        private readonly EcsFilter<EntityDestroyRequest> _filterWithoutView = null;
+        private readonly EcsFilter<EntityDestroyRequest> _destroyEntityFilter = null;
 
         public void Run()
         {
-            foreach (var i in _filterWithoutView)
+            foreach (var i in _destroyEntityFilter)
             {
-                _filterWithoutView.GetEntity(i).Destroy();
+                _destroyEntityFilter.GetEntity(i).Destroy();
             }
         }
     }

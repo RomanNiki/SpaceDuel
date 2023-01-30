@@ -7,20 +7,18 @@ namespace Model.Unit.Input
     public sealed class InputPauseSystem : IEcsRunSystem
     {
         private readonly EcsFilter<InputPauseQuitEvent> _inputPauseFilter;
-        private readonly EcsFilter<GameRestartEvent> _restartEvent;
+        private readonly EcsFilter<GameRestartEvent> _restartEventFilter;
         private bool _isPause;
 
         public void Run()
         {
-            if (_restartEvent.IsEmpty() == false)
+            if (_restartEventFilter.IsEmpty() == false)
                 return;
-            
 
-            if (_inputPauseFilter.IsEmpty() == false)
-            {
-                _isPause = !_isPause;
-                _inputPauseFilter.GetEntity(0).Get<PauseEvent>().Pause = _isPause;
-            }
+
+            if (_inputPauseFilter.IsEmpty()) return;
+            _isPause = !_isPause;
+            _inputPauseFilter.GetEntity(0).Get<PauseEvent>().Pause = _isPause;
         }
     }
 }

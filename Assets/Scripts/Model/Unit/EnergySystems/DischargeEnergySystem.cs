@@ -8,15 +8,15 @@ namespace Model.Unit.EnergySystems
 {
     public sealed class DischargeEnergySystem : IEcsRunSystem
     {
-        private readonly EcsFilter<Energy, DischargeRequest> _filter;
+        private readonly EcsFilter<Energy, DischargeRequest> _dischargeFilter;
 
         public void Run()
         {
-            foreach (var i in _filter)
+            foreach (var i in _dischargeFilter)
             {
-                ref var energyComponent = ref _filter.Get1(i);
-                ref var dischargeRequest = ref _filter.Get2(i);
-                ref var entity = ref _filter.GetEntity(i);
+                ref var energyComponent = ref _dischargeFilter.Get1(i);
+                ref var dischargeRequest = ref _dischargeFilter.Get2(i);
+                ref var entity = ref _dischargeFilter.GetEntity(i);
                 SpendEnergy(ref energyComponent, ref entity, dischargeRequest.Value);
                 entity.Get<EnergyChangedEvent>();
             }

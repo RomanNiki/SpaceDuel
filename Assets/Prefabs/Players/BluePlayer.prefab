@@ -128,7 +128,7 @@ Rigidbody2D:
   m_Mass: 3
   m_LinearDrag: 0.2
   m_AngularDrag: 1
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
@@ -199,8 +199,8 @@ MonoBehaviour:
   _secondaryWeapon: {fileID: 11400000, guid: 969c9c59810c25542a735a133c74c2ef, type: 2}
   _settings:
     Rigidbody: {fileID: 969312551615168198}
-    _primiryWeaponAudioUnityComponent: {fileID: 3502726035980524490}
-    _secondaryWeaponAudioUnityComponent: {fileID: 4443057236400968958}
+    PrimaryWeaponAudioUnityComponent: {fileID: 3502726035980524490}
+    SecondaryWeaponAudioUnityComponent: {fileID: 4443057236400968958}
     VisualEffect: {fileID: 8951776472925217454}
     PlayerAudioComponent: {fileID: 8143835419196856237}
     MoveFriction: 0.8

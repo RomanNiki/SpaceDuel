@@ -9,11 +9,11 @@ namespace Model
     public sealed class GameOverSystem : IEcsRunSystem
     {
         private readonly EcsWorld _world;
-        private readonly EcsFilter<PlayerTag, EntityDestroyRequest> _filter;
+        private readonly EcsFilter<PlayerTag, EntityDestroyRequest> _playerDeathFilter;
 
         public void Run()
         {
-            if (_filter.IsEmpty() == false)
+            if (_playerDeathFilter.IsEmpty() == false)
             {
                 _world.SendMessage(new GameRestartRequest());
             }

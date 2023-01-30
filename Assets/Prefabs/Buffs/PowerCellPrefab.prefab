@@ -112,6 +112,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerCellPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 5156301316468848953, guid: 053cf56c9e776e04789e8ee52db78872, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 053cf56c9e776e04789e8ee52db78872, type: 3}
 --- !u!4 &5539544749407634768 stripped

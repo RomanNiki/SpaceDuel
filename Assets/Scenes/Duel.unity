@@ -1193,6 +1193,52 @@ Transform:
   m_Father: {fileID: 1785812351}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1102956137
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1102956138}
+  - component: {fileID: 1102956139}
+  m_Layer: 0
+  m_Name: VisualEffectEntityFactoriesInstaller
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1102956138
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102956137}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1407978353}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1102956139
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1102956137}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f20c29669a24b7597bdbb196aa916bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _explosionEntityFactory: {fileID: 11400000, guid: 80e5abd1e837a8e429f0d4d57bf73f95, type: 2}
+  _hitEntityFactory: {fileID: 11400000, guid: 7547a33e57c07674bb855c9bd0637e10, type: 2}
 --- !u!1 &1103748405
 GameObject:
   m_ObjectHideFlags: 0
@@ -1469,6 +1515,7 @@ Transform:
   - {fileID: 1567964174}
   - {fileID: 445033247}
   - {fileID: 1362034106}
+  - {fileID: 1102956138}
   m_Father: {fileID: 2094420983}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1492,6 +1539,7 @@ MonoBehaviour:
   - {fileID: 1496363139}
   - {fileID: 445033248}
   - {fileID: 1362034107}
+  - {fileID: 1102956139}
   _installerPrefabs: []
   _autoRun: 1
   OnPreInstall:
@@ -1555,6 +1603,10 @@ PrefabInstance:
     - target: {fileID: 7364889110524255009, guid: c7d01813663b376468d489c9a1c1eb0f, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7364889110524255010, guid: c7d01813663b376468d489c9a1c1eb0f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -2
       objectReference: {fileID: 0}
     - target: {fileID: 7364889110524255010, guid: c7d01813663b376468d489c9a1c1eb0f, type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -4011,7 +4063,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2954573909675756639, guid: 0054b608175e0f54ca8c94247f682696, type: 3}
       propertyPath: m_StartSeed
-      value: 1107192073
+      value: 1064054129
       objectReference: {fileID: 0}
     - target: {fileID: 2954573909930129812, guid: 0054b608175e0f54ca8c94247f682696, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -4050,6 +4102,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 969312551615168198, guid: 60b3c6785d4fdda48b29f6956be9d2e1, type: 3}
+      propertyPath: m_Simulated
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3069000735540218379, guid: 60b3c6785d4fdda48b29f6956be9d2e1, type: 3}
       propertyPath: m_MotionVectors
       value: 1

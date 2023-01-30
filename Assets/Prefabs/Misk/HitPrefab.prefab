@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HitPrefab
       objectReference: {fileID: 0}
+    - target: {fileID: 1975270494718588692, guid: c4dd2145f37763746bfd084022d5bb1e, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5543584086326497625, guid: c4dd2145f37763746bfd084022d5bb1e, type: 3}
       propertyPath: _visualEffect
       value: 

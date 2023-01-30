@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using Model.Extensions.Interfaces;
+using Model.Extensions.Pause;
 using Zenject;
 
-namespace Model.Pause
+namespace Extensions.Pause
 {
-    public sealed class PauseService
+    public sealed class PauseService : IPauseService
     {
         private readonly List<IPauseHandler> _pauseHandlers = new();
         private readonly TickableManager _tickableManager;

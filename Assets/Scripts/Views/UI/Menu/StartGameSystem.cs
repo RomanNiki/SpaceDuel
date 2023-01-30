@@ -10,8 +10,8 @@ namespace Views.UI.Menu
     public sealed class StartGameSystem : IEcsRunSystem
     {
         private EcsFilter<StartGameRequest> _filter;
-        [Inject] private LoadingScreenProvider _provider;
-
+        [Inject] private readonly LoadingScreenProvider _provider;
+        [Inject] private readonly GameAssetsLoadProvider _assetsLoadProvider;
         public async void Run()
         {
             if (_filter.IsEmpty())
@@ -20,6 +20,7 @@ namespace Views.UI.Menu
 
             
             Queue<ILoadingOperation> loadingOperations = new();
+            loadingOperations.Enqueue(new LoadGameAssets(_assetsLoadProvider));
             loadingOperations.Enqueue(new LoadGameLoadingOperation());
 
             await _provider.LoadAndDestroy(loadingOperations);

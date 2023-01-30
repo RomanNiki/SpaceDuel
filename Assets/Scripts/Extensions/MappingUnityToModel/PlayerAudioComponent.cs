@@ -1,4 +1,4 @@
-﻿using Model.Pause;
+﻿using Model.Extensions.Pause;
 using UnityEngine;
 
 namespace Extensions.MappingUnityToModel

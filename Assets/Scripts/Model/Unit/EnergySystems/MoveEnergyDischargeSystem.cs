@@ -10,24 +10,26 @@ namespace Model.Unit.EnergySystems
 {
     public sealed class MoveEnergyDischargeSystem : PauseHandlerDefaultRunSystem
     {
-        private readonly EcsFilter<PlayerTag, InputMoveData, DischargeMoveContainer, DischargeRotateContainer>.Exclude<NoEnergyBlock> _player = null;
+        private readonly
+            EcsFilter<PlayerTag, InputMoveData, DischargeMoveContainer, DischargeRotateContainer>.Exclude<NoEnergyBlock>
+            _moveDischargeFilter = null;
 
         protected override void Tick()
         {
-            foreach (var i in _player)
+            foreach (var i in _moveDischargeFilter)
             {
-                ref var inputData = ref _player.Get2(i);
-                ref var entity = ref _player.GetEntity(i);
+                ref var inputData = ref _moveDischargeFilter.Get2(i);
+                ref var entity = ref _moveDischargeFilter.GetEntity(i);
 
                 if (inputData.Accelerate)
                 {
-                    ref var discharge = ref _player.Get3(i).DischargeRequest.Value;
+                    ref var discharge = ref _moveDischargeFilter.Get3(i).DischargeRequest.Value;
                     entity.Get<DischargeRequest>().Value += discharge;
                 }
 
                 if (Mathf.Abs(inputData.Rotation) > 0.02f)
                 {
-                    ref var discharge = ref _player.Get4(i).DischargeRequest.Value;
+                    ref var discharge = ref _moveDischargeFilter.Get4(i).DischargeRequest.Value;
                     entity.Get<DischargeRequest>().Value += discharge;
                 }
             }

@@ -76,21 +76,21 @@ namespace Installers
         private void SetPrimaryWeapon(in EcsEntity player,
             in IEntityFactory gunEntityFactoryFromSo)
         {
-            SetWeapon(player, gunEntityFactoryFromSo, WeaponEnum.Primary, _world, _settings._primiryWeaponAudioUnityComponent);
+            SetWeapon(player, gunEntityFactoryFromSo, WeaponEnum.Primary, _world, _settings.PrimaryWeaponAudioUnityComponent);
         }
 
         private void SetSecondaryWeapon(in EcsEntity player,
             in IEntityFactory gunEntityFactoryFromSo)
         {
-            SetWeapon(player, gunEntityFactoryFromSo, WeaponEnum.Secondary, _world, _settings._secondaryWeaponAudioUnityComponent);
+            SetWeapon(player, gunEntityFactoryFromSo, WeaponEnum.Secondary, _world, _settings.SecondaryWeaponAudioUnityComponent);
         }
 
         [Serializable]
         public class Settings
         {
             public Rigidbody2D Rigidbody;
-            [FormerlySerializedAs("PrimiryWeaponAudioComponent")] public GunAudioUnityComponent _primiryWeaponAudioUnityComponent;
-            [FormerlySerializedAs("SecondaryWeaponAudioComponent")] public GunAudioUnityComponent _secondaryWeaponAudioUnityComponent;
+            public GunAudioUnityComponent PrimaryWeaponAudioUnityComponent;
+            public GunAudioUnityComponent SecondaryWeaponAudioUnityComponent;
             public VisualEffect VisualEffect;
             public PlayerAudioComponent PlayerAudioComponent;
             public float MoveFriction;
