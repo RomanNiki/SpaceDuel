@@ -2,14 +2,12 @@
 using Leopotam.Ecs;
 using Model.Components.Requests;
 using Model.Extensions;
-using Model.Extensions.EntityFactories;
 using Model.Unit.Collisions.Components.Events;
 using Model.Unit.Damage.Components;
 using Model.Unit.Movement.Components;
 using Model.VisualEffects.Components.Tags;
 using Model.Weapons.Components.Tags;
 using UnityEngine;
-using Zenject;
 
 namespace Model.VisualEffects
 {

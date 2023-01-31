@@ -38,7 +38,7 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
     private readonly SunChargeSystem.Settings _sunChargeSettings;
     private readonly PlayersScore _playersScore;
     private readonly SunBuffEntityExecuteSystem.Settings _sunBuffSettings;
-
+    private readonly PlayerForceSystem.Settings _forceSettings;
     [Inject]
     public Startup(EcsWorld world, SystemRegisterHandler systemRegister,
         [Inject(Optional = true)] PlayerRotateSystem.Settings rotateSettings,
@@ -47,7 +47,8 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
         [Inject(Optional = true)] VisualEffectsEntityFactories visualEffectsEntityFactories,
         [Inject(Optional = true)] SunChargeSystem.Settings sunChargeSettings,
         [Inject(Optional = true)] PlayersScore playersScore,
-        [Inject(Optional = true)] SunBuffEntityExecuteSystem.Settings sunBuffSettings
+        [Inject(Optional = true)] SunBuffEntityExecuteSystem.Settings sunBuffSettings,
+        [Inject(Optional = true)] PlayerForceSystem.Settings forceSettings
     )
     {
         Time.timeScale = 1f;
@@ -67,6 +68,7 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
         _sunChargeSettings = sunChargeSettings;
         _playersScore = playersScore;
         _sunBuffSettings = sunBuffSettings;
+        _forceSettings = forceSettings;
     }
 
     public void Tick()
@@ -157,7 +159,7 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
 
         if (_playersScore != null)
         {
-            _systems.Inject(_playersScore);
+            _fixedSystems.Inject(_playersScore);
         }
 
         if (_moveClamper != null)
@@ -179,6 +181,11 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
         if (_rotateSettings != null)
         {
             _fixedSystems.Inject(_rotateSettings);
+        }  
+        
+        if (_forceSettings != null)
+        {
+            _fixedSystems.Inject(_forceSettings);
         }
     }
 }
