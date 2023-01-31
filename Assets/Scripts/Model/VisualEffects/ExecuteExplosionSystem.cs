@@ -1,13 +1,11 @@
 ﻿using Leopotam.Ecs;
 using Model.Components.Requests;
 using Model.Extensions;
-using Model.Extensions.EntityFactories;
 using Model.Unit.Destroy.Components.Requests;
 using Model.Unit.Movement.Components;
 using Model.VisualEffects.Components.Events;
 using Model.VisualEffects.Components.Tags;
 using UnityEngine;
-using Zenject;
 
 namespace Model.VisualEffects
 {

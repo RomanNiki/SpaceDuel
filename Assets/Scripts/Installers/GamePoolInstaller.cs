@@ -15,7 +15,6 @@ namespace Installers
 
         public override void InstallBindings()
         {
-            Debug.Log(_gameAssetsLoadProvider.BulletView);
             Container.BindFactory<ProjectileView, ProjectileView.Factory>()
                 .FromPoolableMemoryPool<ProjectileView, BulletPool>(poolBinder =>
                     poolBinder.WithInitialSize(20).FromComponentInNewPrefab(_gameAssetsLoadProvider.BulletView))

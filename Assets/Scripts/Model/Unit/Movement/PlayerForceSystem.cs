@@ -5,14 +5,13 @@ using Model.Unit.EnergySystems.Components;
 using Model.Unit.Input.Components;
 using Model.Unit.Movement.Components;
 using UnityEngine;
-using Zenject;
 
 namespace Model.Unit.Movement
 {
     public sealed class PlayerForceSystem : PauseHandlerDefaultRunSystem
     {
         private readonly EcsFilter<InputMoveData, Rotation, Mass, Velocity>.Exclude<NoEnergyBlock> _playerMoveFilter = null;
-        [Inject] private Settings _settings;
+        private Settings _settings;
 
         protected override void Tick()
         {

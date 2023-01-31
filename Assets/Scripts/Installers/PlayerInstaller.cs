@@ -14,7 +14,6 @@ using Model.Unit.Input.Components;
 using Model.Unit.Movement.Components;
 using Model.Weapons.Components;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using UnityEngine.VFX;
 using Zenject;

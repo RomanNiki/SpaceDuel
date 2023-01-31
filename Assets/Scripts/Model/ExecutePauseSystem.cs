@@ -3,7 +3,6 @@ using Model.Components.Events;
 using Model.Components.Requests;
 using Model.Extensions.Pause;
 using Model.Unit.Destroy.Components.Requests;
-using Zenject;
 
 namespace Model
 {

@@ -4,7 +4,6 @@ using Extensions.UI;
 using Model;
 using Model.Buffs;
 using Model.Buffs.Components.Tags;
-using Model.Extensions;
 using Model.Scores;
 using Model.Timers;
 using Model.Timers.Components;
@@ -36,8 +35,7 @@ namespace Installers
     public class GameEcsSystemsInstaller : MonoInstaller
     {
         public override void InstallBindings()
-        {  
-
+        {
             AddFixedSystems();
             AddSystems();
 
