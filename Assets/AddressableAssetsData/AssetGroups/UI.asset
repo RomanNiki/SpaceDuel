@@ -1,0 +1,37 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: UI
+  m_EditorClassIdentifier: 
+  m_GroupName: UI
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 815a6a277ea0fbb418493f33f607e06e
+  m_SerializeEntries:
+  - m_GUID: 32033f24a09e0f04f9e21088c92a7deb
+    m_Address: PlayerUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: c7d01813663b376468d489c9a1c1eb0f
+    m_Address: GameScore
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 97c958f8f03a52a4f8cb1b7f27e7357e
+    m_Address: PrepareScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: e0df372616e9dd1438e54318ff94b096, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: a1289522868560d4e9799ba042427eb3, type: 2}
+    - {fileID: 11400000, guid: 50f55f8e79fb37142bad695459bf7cdb, type: 2}

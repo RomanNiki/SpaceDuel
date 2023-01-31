@@ -13,9 +13,6 @@
        _FormUParam("FormUParam" ,float) = 0.53
        _StepSize("StepSize" ,range(0.1, 0.9)) = 0.1
        _DarkMatter("DarkMatter" ,range(-1, 1)) = 0.300
-       _OffsetX("OffsetX" ,float) = 0.300
-       _OffsetY("OffsetY" ,float) = 0.300
-        
     }
     
      HLSLINCLUDE
@@ -29,7 +26,6 @@
         Tags {   "RenderPipeline"="HDRenderPipeline"
             "RenderType"="HDUnlitShader"
             "Queue"="Geometry+0"
-            "ShaderGraphShader"="true"
             "ShaderGraphTargetId"="HDUnlitSubTarget"}
         LOD 100
 
@@ -60,8 +56,6 @@
             float _FormUParam;
             float _StepSize;
             float _DarkMatter;
-            float _OffsetX;
-            float _OffsetY;
             int _Iterations;
             float4 _Color;
             struct appdata
@@ -97,15 +91,15 @@
                 float3 dir=float3(uv * _Zoom,1.);
                 
                 float time=iTime*_Speed+.25;
-                time = fmod(time, 10.);
+                time = fmod(time, 1.);
                 
                 float3 from=float3(1.,.5,0.5);
                 from+=float3(time*2.,time,-2.);
 
-                float s=0.1,fade=1.;
+                float s=0.01,fade=1.;
                 float3 v=0.;
                 for (int r=0; r<volsteps; r++) {
-                    float3 p=from+s*dir*.5;
+                    float3 p=from+s*dir*0.5;
                     p = abs(_Tile-mod(p, _Tile*2.)); 
                     float pa,a=pa=0.;
                     for (int i=0; i<_Iterations; i++) { 
@@ -123,7 +117,7 @@
                     s+=_StepSize;
                 }
                 v=lerp(length(v),v,_Saturation); 
-                return  float4(v*.01,1.) * _Color;
+                return float4(v*.01,1.) * _Color;
             }
         
             ENDHLSL

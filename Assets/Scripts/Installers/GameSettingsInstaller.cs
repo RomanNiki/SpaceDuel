@@ -1,46 +1,46 @@
 ﻿using System;
-using Models.Player;
-using Models.Player.Weapon;
-using Models.Player.Weapon.Bullets;
+using Model.Buffs;
+using Model.Unit.EnergySystems;
+using Model.Unit.Movement;
 using UnityEngine;
+using Views;
+using Views.Systems;
 using Zenject;
 
 namespace Installers
 {
     //[CreateAssetMenu(menuName = "Space Duel/Game Settings")]
-    public class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInstaller>
+    public sealed class GameSettingsInstaller : ScriptableObjectInstaller<GameSettingsInstaller>
     {
-       // public EnemySpawner.Settings EnemySpawner;
-       // public GameRestartHandler.Settings GameRestartHandler;
-       // public GameInstaller.Settings GameInstaller;
-        [SerializeField] private int _targetFrameRate = 200;
+        [SerializeField] private int _targetFrameRate = 60;
+        [SerializeField] private GameSettings _gameInstaller;
         [SerializeField] private PlayerSettings _player;
-     
-        public PlayerSettings Player => _player;
-        
 
+        [Serializable]
+        public class GameSettings
+        {
+            public RestartGameSystem.Settings Restart;
+            public SunBuffEntityExecuteSystem.Settings Buff;
+            public PrepareGameSystem.Settings PrepairGame;
+        }
+        
         [Serializable]
         public class PlayerSettings
         {
-            public PlayerModel.Settings PlayerModel;
-            public PlayerMover.Settings PlayerMover;
-            public DamageHandler.Settings DamageHandler;
-            public DefaultGun.Settings DefaultGun;
-            public BulletModel.Settings Bullet;
+            public PlayerForceSystem.Settings Move;
+            public PlayerRotateSystem.Settings Rotate;
+            public SunChargeSystem.Settings SolarCharger;
         }
-        
+
         public override void InstallBindings()
         {
-            // Use IfNotBound to allow overriding for eg. from play mode tests
-            /*Container.BindInstance(EnemySpawner).IfNotBound();
-            Container.BindInstance(GameRestartHandler).IfNotBound();
-            Container.BindInstance(GameInstaller).IfNotBound();*/
             Application.targetFrameRate = _targetFrameRate;
-            Container.BindInstance(_player.PlayerModel).IfNotBound();
-            Container.BindInstance(_player.PlayerMover).IfNotBound();
-            Container.BindInstance(_player.DamageHandler).IfNotBound();
-            Container.BindInstance(_player.DefaultGun).IfNotBound();
-            Container.BindInstance(_player.Bullet).IfNotBound();
+            Container.BindInstance(_player.Move).IfNotBound();
+            Container.BindInstance(_player.Rotate).IfNotBound();
+            Container.BindInstance(_player.SolarCharger).IfNotBound();
+            Container.BindInstance(_gameInstaller.Restart).IfNotBound();
+            Container.BindInstance(_gameInstaller.Buff).IfNotBound();
+            Container.BindInstance(_gameInstaller.PrepairGame).IfNotBound();
         }
     }
 }

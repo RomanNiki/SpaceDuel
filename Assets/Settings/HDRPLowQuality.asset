@@ -23,7 +23,7 @@ MonoBehaviour:
       m_Values: 140000002800000050000000
       m_SchemaId:
         m_Id: With3Levels
-    supportVolumetrics: 0
+    supportVolumetrics: 1
     supportVolumetricClouds: 0
     supportLightLayers: 1
     supportDistortion: 1
@@ -73,11 +73,11 @@ MonoBehaviour:
       maxEnvLightsOnScreen: 32
       maxDecalsOnScreen: 512
       maxPlanarReflectionOnScreen: 16
-      maxLightsPerClusterCell: 16
+      maxLightsPerClusterCell: 24
       maxLocalVolumetricFogSize: 32
       maxLocalVolumetricFogOnScreen: 64
     hdShadowInitParams:
-      maxShadowRequests: 128
+      maxShadowRequests: 258
       directionalShadowsDepthBits: 16
       shadowFilteringQuality: 1
       punctualLightShadowAtlas:
@@ -95,7 +95,7 @@ MonoBehaviour:
         m_SchemaId:
           m_Id: With4Levels
       shadowResolutionPunctual:
-        m_Values: 00010000000200000004000000080000
+        m_Values: 80000000000100000002000000040000
         m_SchemaId:
           m_Id: With4Levels
       shadowResolutionArea:
@@ -103,7 +103,7 @@ MonoBehaviour:
         m_SchemaId:
           m_Id: With4Levels
       maxDirectionalShadowMapResolution: 1024
-      maxPunctualShadowMapResolution: 2048
+      maxPunctualShadowMapResolution: 1024
       maxAreaShadowMapResolution: 2048
       supportScreenSpaceShadows: 0
       maxScreenSpaceShadowSlots: 4
@@ -140,6 +140,7 @@ MonoBehaviour:
       singlePass: 1
       occlusionMesh: 1
       cameraJitter: 0
+      allowMotionBlur: 1
     postProcessQualitySettings:
       NearBlurSampleCount: 030000000400000004000000
       NearBlurMaxRadius:

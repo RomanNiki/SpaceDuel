@@ -142,7 +142,7 @@ Material:
     - _CullMode: 2
     - _CullModeForward: 2
     - _Cutoff: 0.5
-    - _DarkMatter: 1
+    - _DarkMatter: 0.5
     - _DepthOffsetEnable: 0
     - _DetailAlbedoScale: 1
     - _DetailNormalScale: 1
@@ -152,7 +152,7 @@ Material:
     - _DisplacementLockObjectScale: 1
     - _DisplacementLockTilingScale: 1
     - _DisplacementMode: 0
-    - _DistFading: 0.9556556
+    - _DistFading: 0.75
     - _DoubleSidedEnable: 0
     - _DoubleSidedGIMode: 0
     - _DoubleSidedNormalMode: 1
@@ -165,7 +165,7 @@ Material:
     - _EnableFogOnTransparent: 1
     - _EnableGeometricSpecularAA: 0
     - _EnergyConservingSpecularColor: 1
-    - _FormUParam: 0.55
+    - _FormUParam: 0.7
     - _HeightAmplitude: 0.02
     - _HeightCenter: 0.5
     - _HeightMapParametrization: 0
@@ -179,7 +179,7 @@ Material:
     - _Ior: 1.5
     - _IridescenceMask: 1
     - _IridescenceThickness: 1
-    - _Iterations: 16
+    - _Iterations: 14
     - _LinkDetailsWithBase: 1
     - _MaterialID: 1
     - _Metallic: 0
@@ -187,7 +187,7 @@ Material:
     - _MetallicRemapMin: 0
     - _NormalMapSpace: 0
     - _NormalScale: 1
-    - _OffsetX: 2.6598556e+10
+    - _OffsetX: 56
     - _OffsetY: 25488
     - _OpaqueCullMode: 2
     - _PPDLodThreshold: 5
@@ -199,7 +199,7 @@ Material:
     - _ReceivesSSR: 1
     - _ReceivesSSRTransparent: 0
     - _RefractionModel: 0
-    - _Saturation: 0.85
+    - _Saturation: 0.75
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
@@ -216,14 +216,14 @@ Material:
     - _StencilWriteMaskDepth: 8
     - _StencilWriteMaskGBuffer: 14
     - _StencilWriteMaskMV: 40
-    - _StepSize: 0.1
+    - _StepSize: 0.15
     - _SubsurfaceMask: 1
     - _SupportDecals: 1
     - _SurfaceType: 0
     - _TexWorldScale: 1
     - _TexWorldScaleEmissive: 1
     - _Thickness: 1
-    - _Tile: 1.45
+    - _Tile: 1.2
     - _TransmissionEnable: 1
     - _TransparentBackfaceEnable: 0
     - _TransparentCullMode: 2
