@@ -1,20 +1,18 @@
 ﻿using System;
-using Controller.EntityToGameObject;
+using EntityToGameObject;
 using Extensions;
 using Extensions.MappingUnityToModel;
 using Extensions.MappingUnityToModel.Factories;
 using Extensions.MappingUnityToModel.Factories.Weapon;
-using Extensions.UI;
 using Leopotam.Ecs;
 using Model.Components;
 using Model.Enums;
 using Model.Extensions;
 using Model.Extensions.EntityFactories;
 using Model.Unit.Input.Components;
-using Model.Unit.Movement.Components;
 using Model.Weapons.Components;
 using UnityEngine;
-using UnityEngine.UI;
+using UnityEngine.Serialization;
 using UnityEngine.VFX;
 using Zenject;
 
@@ -35,7 +33,6 @@ namespace Installers
             _settings.Rigidbody.gameObject.AddComponent<EcsUnityNotifier>();
             SetPrimaryWeapon(entity, _primaryWeapon);
             SetSecondaryWeapon(entity, _secondaryWeapon);
-            CreateUI(entity);
         }
         
         private EcsEntity EcsInitPlayer()
@@ -45,21 +42,9 @@ namespace Installers
             entity.Get<UnityComponent<VisualEffect>>().Value = _settings.VisualEffect;
             entity.Get<UnityComponent<PlayerAudioComponent>>().Value = _settings.PlayerAudioComponent;
             entity.Get<Team>().Value = _settings.Team;
-            entity.Get<EnergyBar>().Bar = _settings.EnergyBar;
-            entity.Get<HealthBar>().Bar = _settings.HealthBar;
             entity.AddMovementComponents(_settings.Rigidbody.position, _settings.Rigidbody.rotation, _settings.Rigidbody.mass,
                 _settings.MoveFriction);
             return entity;
-        }
-
-        private void CreateUI(in EcsEntity owner)
-        {
-            var uiEntity = _world.NewEntity();
-            uiEntity.AddTransform(_settings.BarTransform.position, _settings.BarTransform.rotation.z);
-            uiEntity.Get<ViewObjectComponent>().ViewObject = new ViewObjectUnity(_settings.BarTransform);
-            uiEntity.Get<Follower>().Offset = _settings.Offset;
-            uiEntity.Get<PlayerOwner>().Owner = owner;
-            _settings.BarTransform.GetProvider().SetEntity(uiEntity);
         }
 
         private static void SetWeapon(in EcsEntity player,
@@ -75,29 +60,24 @@ namespace Installers
         private void SetPrimaryWeapon(in EcsEntity player,
             in IEntityFactory gunEntityFactoryFromSo)
         {
-            SetWeapon(player, gunEntityFactoryFromSo, WeaponEnum.Primary, _world, _settings.PrimaryWeaponAudioUnityComponent);
+            SetWeapon(player, gunEntityFactoryFromSo, WeaponEnum.Primary, _world, _settings.PrimaryWeaponAudioComponent);
         }
 
         private void SetSecondaryWeapon(in EcsEntity player,
             in IEntityFactory gunEntityFactoryFromSo)
         {
-            SetWeapon(player, gunEntityFactoryFromSo, WeaponEnum.Secondary, _world, _settings.SecondaryWeaponAudioUnityComponent);
+            SetWeapon(player, gunEntityFactoryFromSo, WeaponEnum.Secondary, _world, _settings.PrimaryWeaponAudioComponent);
         }
 
         [Serializable]
         public class Settings
         {
             public Rigidbody2D Rigidbody;
-            public GunAudioUnityComponent PrimaryWeaponAudioUnityComponent;
-            public GunAudioUnityComponent SecondaryWeaponAudioUnityComponent;
+            [FormerlySerializedAs("PrimaryWeaponAudioUnityComponent")] public GunAudioUnityComponent PrimaryWeaponAudioComponent;
             public VisualEffect VisualEffect;
             public PlayerAudioComponent PlayerAudioComponent;
             public float MoveFriction;
             public TeamEnum Team;
-            [Header("UI")] public Slider HealthBar;
-            public Slider EnergyBar;
-            public Transform BarTransform;
-            public Vector2 Offset;
         }
     }
 }

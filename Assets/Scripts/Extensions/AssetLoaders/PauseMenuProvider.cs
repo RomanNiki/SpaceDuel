@@ -1,5 +1,4 @@
-﻿using Controller.EntityToGameObject;
-using Cysharp.Threading.Tasks;
+﻿using Cysharp.Threading.Tasks;
 using Extensions.MappingUnityToModel;
 using Leopotam.Ecs;
 using Views;

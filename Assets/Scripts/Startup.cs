@@ -128,7 +128,7 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
     private void AddRunOneFrames()
     {
         _systems
-            .OneFrame<PauseEvent>()
+            .OneFrame<PauseRequest>()
             .OneFrame<InputAnyKeyEvent>()
             .OneFrame<InputPauseQuitEvent>()
             .OneFrame<InputRotateStartedEvent>()

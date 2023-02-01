@@ -8,7 +8,7 @@ namespace Views.Systems
     public sealed class PauseMenuSystem : IEcsRunSystem
     {
         [Inject] private PauseMenuProvider _provider;
-        private readonly EcsFilter<PauseEvent> _ecsFilter;
+        private readonly EcsFilter<PauseRequest> _ecsFilter;
         private readonly EcsWorld _world;
 
         public async void Run()

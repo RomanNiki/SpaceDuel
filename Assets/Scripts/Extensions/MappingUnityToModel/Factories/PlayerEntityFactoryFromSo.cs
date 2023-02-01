@@ -16,7 +16,6 @@ namespace Extensions.MappingUnityToModel.Factories
     public sealed class PlayerEntityFactoryFromSo : EntityFactoryFromSo
     {
         [SerializeField] private Settings _settings;
-       
 
         public override EcsEntity CreateEntity(EcsWorld world)
         {
@@ -31,8 +30,6 @@ namespace Extensions.MappingUnityToModel.Factories
             entity.Get<DischargeRotateContainer>().DischargeRequest.Value = _settings.RotationCost;
             return entity;
         }
-
-       
 
         [Serializable]
         public class Settings

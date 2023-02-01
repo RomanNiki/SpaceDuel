@@ -18,7 +18,7 @@ namespace Model.Unit.Input
 
             if (_inputPauseFilter.IsEmpty()) return;
             _isPause = !_isPause;
-            _inputPauseFilter.GetEntity(0).Get<PauseEvent>().Pause = _isPause;
+            _inputPauseFilter.GetEntity(0).Get<PauseRequest>().Pause = _isPause;
         }
     }
 }

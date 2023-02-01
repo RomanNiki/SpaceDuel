@@ -2,7 +2,7 @@
 using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Controller.EntityToGameObject
+namespace EntityToGameObject
 {
     public abstract class EcsUnityNotifierBase : MonoBehaviour
     {

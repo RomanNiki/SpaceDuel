@@ -1,4 +1,4 @@
-using Controller.EntityToGameObject;
+using EntityToGameObject;
 using JetBrains.Annotations;
 using Leopotam.Ecs;
 using Model.Components;

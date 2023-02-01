@@ -15,7 +15,7 @@ namespace Views.Systems
     {
         [Inject] private Settings _settings;
         [Inject] private PrepareGameScreenProvider _provider;
-        private EcsFilter<PauseEvent> _filter;
+        private EcsFilter<PauseRequest> _filter;
         private EcsFilter<StartGameRequest> _startFilter;
         private EcsWorld _world;
         private CancellationTokenSource _cancellationTokenSource;
@@ -23,7 +23,7 @@ namespace Views.Systems
 
         public void Init()
         {
-            _world.SendMessage(new PauseEvent() {Pause = false});
+            _world.SendMessage(new PauseRequest() {Pause = true});
         }
 
         public async void Run()
@@ -69,17 +69,15 @@ namespace Views.Systems
             _cancellationTokenSource = null;
             _world?.SendMessage(new StartGameRequest());
         }
-
+        public void Destroy()
+        {
+            CheckTokenSource();
+        }
 
         [Serializable]
         public class Settings
         {
             public float SecondsToStart;
-        }
-
-        public void Destroy()
-        {
-            CheckTokenSource();
         }
     }
 }

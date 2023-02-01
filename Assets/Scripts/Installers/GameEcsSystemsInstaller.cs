@@ -1,4 +1,5 @@
 ﻿using Controller.Input;
+using EntityToGameObject;
 using Extensions;
 using Extensions.UI;
 using Model;
@@ -36,12 +37,19 @@ namespace Installers
     {
         public override void InstallBindings()
         {
+            AddInitSystems();
             AddFixedSystems();
             AddSystems();
 
             Container.BindInterfacesAndSelfTo<MoveClamper>().AsSingle();
             Container.BindInterfacesAndSelfTo<SystemRegisterHandler>().AsSingle().NonLazy();
             Container.BindInterfacesAndSelfTo<Startup>().AsSingle().NonLazy();
+        }
+
+        private void AddInitSystems()
+        {
+            Container.BindInterfacesTo<PlayerInitSystem>().AsSingle().NonLazy().BindInfo.Identifier =
+                SystemsEnum.Run;
         }
 
         private void AddSystems()

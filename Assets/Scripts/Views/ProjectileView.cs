@@ -1,4 +1,4 @@
-﻿using Controller.EntityToGameObject;
+﻿using EntityToGameObject;
 using UnityEngine;
 using Views.Extensions.Pools;
 using Zenject;

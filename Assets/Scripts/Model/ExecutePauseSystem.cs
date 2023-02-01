@@ -9,7 +9,7 @@ namespace Model
     public sealed class ExecutePauseSystem : IEcsRunSystem
     {
         private readonly IPauseService _pauseService;
-        private readonly EcsFilter<PauseEvent> _pauseFilter;
+        private readonly EcsFilter<PauseRequest> _pauseFilter;
         private readonly EcsFilter<StartGameRequest> _startFilter;
 
         public void Run()

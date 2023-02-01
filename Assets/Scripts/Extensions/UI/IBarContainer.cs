@@ -1,6 +1,6 @@
 ﻿using UnityEngine.UI;
 
-namespace Model.Extensions.Interfaces
+namespace Extensions.UI
 {
     public interface IBarContainer
     {
