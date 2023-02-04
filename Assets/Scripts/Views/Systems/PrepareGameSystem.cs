@@ -23,7 +23,7 @@ namespace Views.Systems
 
         public void Init()
         {
-            _world.SendMessage(new PauseRequest() {Pause = true});
+            _world.SendMessage(new PauseRequest() {Pause = false});
         }
 
         public async void Run()

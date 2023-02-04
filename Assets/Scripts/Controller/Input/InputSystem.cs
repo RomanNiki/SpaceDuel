@@ -65,11 +65,11 @@ namespace Controller.Input
         {
             _playerInput.Player.Rotate.started += context =>
                 SendMessageInGame(new InputRotateStartedEvent()
-                    {PlayerNumber = TeamEnum.Blue, Axis = context.ReadValue<float>()});
+                    {PlayerTeam = TeamEnum.Blue, Axis = context.ReadValue<float>()});
 
             _playerInput.Player1.Rotate.started += context =>
                 SendMessageInGame(new InputRotateStartedEvent
-                    {PlayerNumber = TeamEnum.Red, Axis = context.ReadValue<float>()});
+                    {PlayerTeam = TeamEnum.Red, Axis = context.ReadValue<float>()});
 
             _playerInput.Player.Rotate.canceled += _ =>
                 SendMessageInGame(new InputRotateCanceledEvent() {PlayerNumber = TeamEnum.Blue});
@@ -78,16 +78,16 @@ namespace Controller.Input
                 SendMessageInGame(new InputRotateCanceledEvent {PlayerNumber = TeamEnum.Red});
 
             _playerInput.Player.Acceleration.started += _ =>
-                SendMessageInGame(new InputAccelerateEvent() {PlayerNumber = TeamEnum.Blue});
+                SendMessageInGame(new InputAccelerateStartedEvent() {PlayerTeam = TeamEnum.Blue});
 
             _playerInput.Player1.Acceleration.started += _ =>
-                SendMessageInGame(new InputAccelerateEvent {PlayerNumber = TeamEnum.Red});
+                SendMessageInGame(new InputAccelerateStartedEvent {PlayerTeam = TeamEnum.Red});
 
             _playerInput.Player.Acceleration.canceled += _ =>
-                SendMessageInGame(new InputAccelerateCanceledEvent() {PlayerNumber = TeamEnum.Blue});
+                SendMessageInGame(new InputAccelerateCanceledEvent() {PlayerTeam = TeamEnum.Blue});
 
             _playerInput.Player1.Acceleration.canceled += _ =>
-                SendMessageInGame(new InputAccelerateCanceledEvent {PlayerNumber = TeamEnum.Red});
+                SendMessageInGame(new InputAccelerateCanceledEvent {PlayerTeam = TeamEnum.Red});
         }
 
         public void Destroy()

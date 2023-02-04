@@ -39,6 +39,7 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
     private readonly PlayersScore _playersScore;
     private readonly SunBuffEntityExecuteSystem.Settings _sunBuffSettings;
     private readonly PlayerForceSystem.Settings _forceSettings;
+    
     [Inject]
     public Startup(EcsWorld world, SystemRegisterHandler systemRegister,
         [Inject(Optional = true)] PlayerRotateSystem.Settings rotateSettings,
@@ -133,7 +134,7 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
             .OneFrame<InputPauseQuitEvent>()
             .OneFrame<InputRotateStartedEvent>()
             .OneFrame<InputRotateCanceledEvent>()
-            .OneFrame<InputAccelerateEvent>()
+            .OneFrame<InputAccelerateStartedEvent>()
             .OneFrame<InputAccelerateCanceledEvent>()
             .OneFrame<InputShootStartedEvent>()
             .OneFrame<InputShootCanceledEvent>()

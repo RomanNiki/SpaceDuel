@@ -9,7 +9,7 @@ namespace Model.Unit.Input
 {
     public sealed class InputAccelerateSystem : PauseHandlerDefaultRunSystem
     {
-        private readonly EcsFilter<InputAccelerateEvent> _accelerationStartFilter = null;
+        private readonly EcsFilter<InputAccelerateStartedEvent> _accelerationStartFilter = null;
         private readonly EcsFilter<InputAccelerateCanceledEvent> _accelerationCanceledFilter = null;
         private readonly EcsFilter<PlayerTag, InputMoveData, Team> _moveFilter = null;
         
@@ -18,13 +18,13 @@ namespace Model.Unit.Input
             foreach (var i in _accelerationStartFilter)
             {
                 ref var inputMoveStartedEvent = ref _accelerationStartFilter.Get1(i);
-                ProcessMove(inputMoveStartedEvent.PlayerNumber, true);
+                ProcessMove(inputMoveStartedEvent.PlayerTeam, true);
             }
 
             foreach (var i in _accelerationCanceledFilter)
             {
                 ref var inputMoveCanceledEvent = ref _accelerationCanceledFilter.Get1(i);
-                ProcessMove(inputMoveCanceledEvent.PlayerNumber, false);
+                ProcessMove(inputMoveCanceledEvent.PlayerTeam, false);
             }
         }
 
