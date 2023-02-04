@@ -10,7 +10,7 @@ namespace Views.Systems
     public sealed class EffectPauseSystem : IEcsRunSystem
     {
         private EcsFilter<UnityComponent<VisualEffect>> _filter;
-        private EcsFilter<PauseEvent> _pause;
+        private EcsFilter<PauseRequest> _pause;
         private EcsFilter<StartGameRequest> _start;
 
         public void Run()

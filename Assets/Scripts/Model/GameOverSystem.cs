@@ -15,7 +15,7 @@ namespace Model
         {
             if (_playerDeathFilter.IsEmpty() == false)
             {
-                _world.SendMessage(new GameRestartRequest());
+                _world.SendMessage(new RestartGameRequest());
             }
         }
     }

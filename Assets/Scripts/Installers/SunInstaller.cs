@@ -1,5 +1,5 @@
 ﻿using System;
-using Controller.EntityToGameObject;
+using EntityToGameObject;
 using Extensions;
 using Extensions.MappingUnityToModel.Factories.Buffs;
 using Leopotam.Ecs;

@@ -1,7 +1,7 @@
 ﻿using Leopotam.Ecs;
 using UnityEngine;
 
-namespace Controller.EntityToGameObject
+namespace EntityToGameObject
 {
     public sealed class EcsUnityProvider : MonoBehaviour
     {

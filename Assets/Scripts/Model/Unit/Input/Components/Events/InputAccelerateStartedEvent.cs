@@ -2,8 +2,8 @@
 
 namespace Model.Unit.Input.Components.Events
 {
-    public struct InputAccelerateEvent
+    public struct InputAccelerateStartedEvent
     {
-        public TeamEnum PlayerNumber;
+        public TeamEnum PlayerTeam;
     }
 }

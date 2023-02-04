@@ -1,4 +1,4 @@
-﻿using Controller.EntityToGameObject;
+﻿using EntityToGameObject;
 using Leopotam.Ecs;
 using Model.Extensions;
 using UnityEngine;

@@ -23,7 +23,7 @@ namespace Model.Unit.Input
                 {
                     direction = inputMoveStartedEvent.Axis > 0 ? 1 : -1;
                 }
-                ProcessRotation(inputMoveStartedEvent.PlayerNumber, direction);
+                ProcessRotation(inputMoveStartedEvent.PlayerTeam, direction);
             }
 
             foreach (var i in _rotationCanceledFilter)

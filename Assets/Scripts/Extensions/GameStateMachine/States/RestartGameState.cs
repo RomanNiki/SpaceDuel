@@ -1,35 +1,32 @@
 ﻿using System;
+using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Extensions.GameStateMachine.Transitions;
 using Leopotam.Ecs;
 using Model.Components.Events;
-using Model.Components.Requests;
 using Model.Extensions;
-using Model.Unit.Movement.Components.Tags;
+using Model.Extensions.Pause;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using Zenject;
 
-namespace Views
+namespace Extensions.GameStateMachine.States
 {
-    public sealed class RestartGameSystem : PauseHandlerDefaultRunSystem
+    public class RestartGameState : State
     {
         private readonly EcsWorld _world;
-        private readonly EcsFilter<GameRestartRequest> _filterRequest;
-        private readonly EcsFilter<GameRestartEvent> _filterEvent;
-        private readonly EcsFilter<ViewObjectComponent>.Exclude<PlayerTag> _filter;
-        [Inject] private Settings _settings;
+        private readonly Settings _settings;
+        private readonly IPauseService _pauseService;
 
-        protected override void Tick()
+        public RestartGameState(EcsWorld world, Settings settings, IPauseService pauseService, List<Transition> transitions) : base(transitions)
         {
-            if (_filterEvent.IsEmpty() == false)
-                return;
-            if (_filterRequest.IsEmpty())
-                return;
-            OnRestartGame();
+            _world = world;
+            _settings = settings;
+            _pauseService = pauseService;
         }
 
-        private async void OnRestartGame()
+        protected override async void OnEnter()
         {
+            _pauseService.SetPaused(false);
             _world.SendMessage(new GameRestartEvent());
 
             await SlowDownTime();
@@ -40,6 +37,10 @@ namespace Views
             });
         }
 
+        protected override void OnRun()
+        {
+        }
+
         private async UniTask SlowDownTime()
         {
             for (var t = 0f; t < _settings.RestartDelay; t += Time.unscaledDeltaTime)
@@ -48,6 +49,10 @@ namespace Views
                 Time.timeScale = Mathf.Lerp(1f, 0.5f, normalizedTime);
                 await UniTask.Yield();
             }
+        }
+
+        public override void Exit()
+        {
         }
 
         [Serializable]

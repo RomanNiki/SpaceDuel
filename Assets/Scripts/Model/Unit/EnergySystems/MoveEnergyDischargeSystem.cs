@@ -10,7 +10,7 @@ namespace Model.Unit.EnergySystems
 {
     public sealed class MoveEnergyDischargeSystem : PauseHandlerDefaultRunSystem
     {
-        private readonly
+        private readonly 
             EcsFilter<PlayerTag, InputMoveData, DischargeMoveContainer, DischargeRotateContainer>.Exclude<NoEnergyBlock>
             _moveDischargeFilter = null;
 
@@ -27,11 +27,9 @@ namespace Model.Unit.EnergySystems
                     entity.Get<DischargeRequest>().Value += discharge;
                 }
 
-                if (Mathf.Abs(inputData.Rotation) > 0.02f)
-                {
-                    ref var discharge = ref _moveDischargeFilter.Get4(i).DischargeRequest.Value;
-                    entity.Get<DischargeRequest>().Value += discharge;
-                }
+                if (Mathf.Abs(inputData.Rotation) < 0.02f) continue;
+                ref var dischargeRotation = ref _moveDischargeFilter.Get4(i).DischargeRequest.Value;
+                entity.Get<DischargeRequest>().Value += dischargeRotation;
             }
         }
     }

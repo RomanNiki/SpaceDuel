@@ -1,4 +1,6 @@
 ﻿using System;
+using EntityToGameObject;
+using Extensions.GameStateMachine.States;
 using Model.Buffs;
 using Model.Unit.EnergySystems;
 using Model.Unit.Movement;
@@ -19,9 +21,9 @@ namespace Installers
         [Serializable]
         public class GameSettings
         {
-            public RestartGameSystem.Settings Restart;
+            public RestartGameState.Settings Restart;
             public SunBuffEntityExecuteSystem.Settings Buff;
-            public PrepareGameSystem.Settings PrepairGame;
+            public StartGameState.Settings PrepairGame;
         }
         
         [Serializable]
@@ -30,6 +32,7 @@ namespace Installers
             public PlayerForceSystem.Settings Move;
             public PlayerRotateSystem.Settings Rotate;
             public SunChargeSystem.Settings SolarCharger;
+            public PlayerInitSystem.Settings PlayerInit;
         }
 
         public override void InstallBindings()
@@ -38,6 +41,7 @@ namespace Installers
             Container.BindInstance(_player.Move).IfNotBound();
             Container.BindInstance(_player.Rotate).IfNotBound();
             Container.BindInstance(_player.SolarCharger).IfNotBound();
+            Container.BindInstance(_player.PlayerInit).IfNotBound();
             Container.BindInstance(_gameInstaller.Restart).IfNotBound();
             Container.BindInstance(_gameInstaller.Buff).IfNotBound();
             Container.BindInstance(_gameInstaller.PrepairGame).IfNotBound();

@@ -28,7 +28,7 @@ namespace Extensions.MappingUnityToModel
             _audioRotateShot.UnPause();
         }
 
-        public void AccelerateSound(bool accelerate)
+        public void PlayAccelerateSound(bool accelerate)
         {
             if (accelerate == false)
             {
@@ -42,7 +42,7 @@ namespace Extensions.MappingUnityToModel
             }
         }
 
-        public void RotateSoundSound()
+        public void PlayRotateSound()
         {
             if (_audioRotateShot.isPlaying == false)
                 _audioRotateShot.PlayOneShot(_rotateSound, 0.25f);

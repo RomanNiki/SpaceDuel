@@ -4,7 +4,7 @@ using Model.Components.Events;
 using Model.Unit.Collisions.Components.Events;
 using UnityEngine;
 
-namespace Controller.EntityToGameObject
+namespace EntityToGameObject
 {
     public class EcsUnityNotifier : EcsUnityNotifierBase
     {

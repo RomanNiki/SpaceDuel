@@ -1,47 +1,44 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using Extensions.AssetLoaders;
+using Extensions.GameStateMachine.Transitions;
 using Leopotam.Ecs;
 using Model.Components.Events;
-using Model.Components.Requests;
 using Model.Extensions;
 using UnityEngine;
-using Zenject;
+using Views;
 
-namespace Views.Systems
+namespace Extensions.GameStateMachine.States
 {
-    public sealed class PrepareGameSystem : IEcsRunSystem, IEcsInitSystem, IEcsDestroySystem
+    public class StartGameState : State
     {
-        [Inject] private Settings _settings;
-        [Inject] private PrepareGameScreenProvider _provider;
-        private EcsFilter<PauseEvent> _filter;
-        private EcsFilter<StartGameRequest> _startFilter;
-        private EcsWorld _world;
+        private readonly Settings _settings;
+        private readonly PrepareGameScreenProvider _provider;
+        private readonly EcsWorld _world;
         private CancellationTokenSource _cancellationTokenSource;
         private CancellationToken _token;
 
-        public void Init()
+        public StartGameState(Settings settings, PrepareGameScreenProvider provider,
+            EcsWorld world, List<Transition> transitions) : base(transitions)
         {
-            _world.SendMessage(new PauseEvent() {Pause = false});
+            _world = world;
+            _settings = settings;
+            _provider = provider;
         }
 
-        public async void Run()
+        protected override async void OnEnter()
         {
-            if (_filter.IsEmpty() == false)
-            {
-                CheckTokenSource();
-                if (_filter.Get1(0).Pause == false)
-                {
-                    _cancellationTokenSource = new CancellationTokenSource();
-                    _token = _cancellationTokenSource.Token;
-                    var text = await _provider.Load();
-                    await WaitToStart(text, _settings.SecondsToStart, _token);
-                }
-            }
-
-            if (_startFilter.IsEmpty()) return;
             CheckTokenSource();
+            _cancellationTokenSource = new CancellationTokenSource();
+            _token = _cancellationTokenSource.Token;
+            var text = await _provider.Load();
+            await WaitToStart(text, _settings.SecondsToStart, _token);
+        }
+
+        protected override void OnRun()
+        {
         }
 
         private void CheckTokenSource()
@@ -67,19 +64,21 @@ namespace Views.Systems
 
             _provider.Unload();
             _cancellationTokenSource = null;
-            _world?.SendMessage(new StartGameRequest());
+            if (_world.IsAlive())
+            {
+                _world.SendMessage(new GameStartedEvent());
+            }
         }
 
+        public override void Exit()
+        {
+            CheckTokenSource();
+        }
 
         [Serializable]
         public class Settings
         {
             public float SecondsToStart;
-        }
-
-        public void Destroy()
-        {
-            CheckTokenSource();
         }
     }
 }

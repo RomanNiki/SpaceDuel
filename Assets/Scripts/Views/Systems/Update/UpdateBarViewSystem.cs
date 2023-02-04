@@ -1,4 +1,5 @@
-﻿using Model.Extensions.Interfaces;
+﻿using Extensions.UI;
+using Model.Extensions.Interfaces;
 using UnityEngine;
 using Views.UI;
 
@@ -6,7 +7,8 @@ namespace Views.Systems.Update
 {
     public class
         UpdateBarViewSystem<TEvent, TValueComponent, TUIComponent> : UpdateUICharacteristicSystem<TEvent,
-            TValueComponent, TUIComponent> where TUIComponent : struct, IBarContainer
+            TValueComponent, TUIComponent> 
+        where TUIComponent : struct, IBarContainer
         where TValueComponent : struct, ICharacteristic
         where TEvent : struct
     {
