@@ -1,5 +1,6 @@
 ﻿using Leopotam.Ecs;
 using Model.Components.Events;
+using Model.Components.Requests;
 using Model.Unit.Input.Components.Events;
 
 namespace Model.Unit.Input
@@ -18,7 +19,14 @@ namespace Model.Unit.Input
 
             if (_inputPauseFilter.IsEmpty()) return;
             _isPause = !_isPause;
-            _inputPauseFilter.GetEntity(0).Get<PauseRequest>().Pause = _isPause;
+            if (_isPause)
+            {
+                _inputPauseFilter.GetEntity(0).Get<PauseRequest>();
+            }
+            else
+            {
+                _inputPauseFilter.GetEntity(0).Get<StartGameRequest>();
+            }
         }
     }
 }

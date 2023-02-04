@@ -122,14 +122,12 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
             .OneFrame<DamageRequest>()
             .OneFrame<HealthChangeEvent>()
             .OneFrame<EntityDestroyRequest>()
-            .OneFrame<ExplosionEvent>()
-            .OneFrame<GameRestartRequest>();
+            .OneFrame<ExplosionEvent>();
     }
 
     private void AddRunOneFrames()
     {
         _systems
-            .OneFrame<PauseRequest>()
             .OneFrame<InputAnyKeyEvent>()
             .OneFrame<InputPauseQuitEvent>()
             .OneFrame<InputRotateStartedEvent>()
@@ -142,7 +140,6 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
             .OneFrame<DischargeRequest>()
             .OneFrame<ChargeRequest>()
             .OneFrame<EnergyChangedEvent>()
-            .OneFrame<BackToMenuRequest>()
             .OneFrame<ViewCreateRequest>();
     }
 

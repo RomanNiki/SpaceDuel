@@ -1,4 +1,5 @@
-﻿using Controller.Input;
+﻿using Controller;
+using Controller.Input;
 using EntityToGameObject;
 using Extensions;
 using Extensions.UI;
@@ -28,7 +29,6 @@ using Views.Systems.Create.Buffs;
 using Views.Systems.Create.Effects;
 using Views.Systems.Create.Projectiles;
 using Views.Systems.Update;
-using Views.UI.Menu;
 using Zenject;
 
 namespace Installers
@@ -54,11 +54,11 @@ namespace Installers
 
         private void AddSystems()
         {
-            AddInputSystems();
-            Container.BindInterfacesTo<BackMenuSystem>().AsSingle().NonLazy().BindInfo.Identifier =
-                SystemsEnum.Run;          
-            Container.BindInterfacesTo<EffectPauseSystem>().AsSingle().NonLazy().BindInfo.Identifier =
+            Container.BindInterfacesTo<GameStateSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.Run;           
+            AddInputSystems();
+            Container.BindInterfacesTo<EffectPauseSystem>().AsSingle().NonLazy().BindInfo.Identifier =
+                SystemsEnum.Run;            
             Container.BindInterfacesTo<NozzleVFXSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.Run;         
             AddShootSystems();
@@ -138,9 +138,6 @@ namespace Installers
             Container.BindInterfacesTo<InputRotateSystem>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.Run;
             Container.BindInterfacesTo<InputShootSystem>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.Run;  
             Container.BindInterfacesTo<InputPauseSystem>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.Run;
-            Container.BindInterfacesTo<PrepareGameSystem>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.Run;
-            Container.BindInterfacesTo<ExecutePauseSystem>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.Run;
-            Container.BindInterfacesTo<PauseMenuSystem>().AsSingle().NonLazy().BindInfo.Identifier = SystemsEnum.Run;
         }
 
         private void AddFixedSystems()
@@ -162,8 +159,6 @@ namespace Installers
         private void AddRestartGameSystems()
         {
             Container.BindInterfacesTo<GameOverSystem>().AsSingle().NonLazy().BindInfo.Identifier =
-                SystemsEnum.FixedRun;
-            Container.BindInterfacesTo<RestartGameSystem>().AsSingle().NonLazy().BindInfo.Identifier =
                 SystemsEnum.FixedRun;
         }
 

@@ -2,7 +2,7 @@
 
 namespace Model.Components.Requests
 {
-    public struct GameRestartRequest : IEcsIgnoreInFilter
+    public struct ExitRequest : IEcsIgnoreInFilter
     {
     }
 }

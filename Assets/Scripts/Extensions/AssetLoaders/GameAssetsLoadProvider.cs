@@ -1,10 +1,8 @@
 ﻿using System;
 using Cysharp.Threading.Tasks;
 using Extensions.UI;
-using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
-using UnityEngine.Serialization;
 using Views;
 using Zenject;
 
@@ -21,6 +19,7 @@ namespace Extensions.AssetLoaders
         public Transform FirstPlayer { get; private set; }
         public Transform SecondPlayer { get; private set; }
         public PlayerUIBars PlayerUIBar { get; private set; }
+        public Transform ScoreBoard { get; private set; }
         
         public async UniTask LoadAssets()
         {
@@ -32,6 +31,7 @@ namespace Extensions.AssetLoaders
             FirstPlayer = await LoadAsset<Transform>(_settings.FirstPlayerAssetReference);
             SecondPlayer = await LoadAsset<Transform>(_settings.SecondPlayerAssetReference);
             PlayerUIBar = await LoadAsset<PlayerUIBars>(_settings.PlayerUIBarAssetReference);
+            ScoreBoard = await LoadAsset<Transform>(_settings.ScoreBoardAssetReference);
         }
 
         public void UnloadAssets()
@@ -44,6 +44,7 @@ namespace Extensions.AssetLoaders
             _settings.FirstPlayerAssetReference.ReleaseAsset();
             _settings.SecondPlayerAssetReference.ReleaseAsset();
             _settings.PlayerUIBarAssetReference.ReleaseAsset();
+            _settings.ScoreBoardAssetReference.ReleaseAsset();
         }
 
         private static async UniTask<T> LoadAsset<T>(AssetReference assetReference)
@@ -71,6 +72,7 @@ namespace Extensions.AssetLoaders
             public AssetReference FirstPlayerAssetReference;
             public AssetReference SecondPlayerAssetReference;
             public AssetReference PlayerUIBarAssetReference;
+            public AssetReference ScoreBoardAssetReference;
         }
     }
 }

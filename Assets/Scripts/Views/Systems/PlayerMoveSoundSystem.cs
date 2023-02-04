@@ -25,11 +25,6 @@ namespace Views.Systems
 
         public void Run()
         {
-            if (_pause)
-            {
-                return;
-            }
-
             foreach (var i in _accelerateStartFilter)
             {
                 ref var accelerateTeam = ref _accelerateStartFilter.Get1(i);
@@ -61,6 +56,11 @@ namespace Views.Systems
                 _playersRotating.Remove(rotateTeam.PlayerTeam);
             }
 
+            if (_pause)
+            {
+                return;
+            }
+            
             ProcessMoveSounds();
         }
 

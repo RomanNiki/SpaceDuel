@@ -40,7 +40,7 @@ namespace Extensions.MappingUnityToModel
 
         private void OnExitButtonClick()
         {
-            _world?.SendMessage(new BackToMenuRequest());
+            _world?.SendMessage(new ExitRequest());
         }
     }
 }

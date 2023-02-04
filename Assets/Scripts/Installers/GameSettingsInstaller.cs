@@ -1,5 +1,6 @@
 ﻿using System;
 using EntityToGameObject;
+using Extensions.GameStateMachine.States;
 using Model.Buffs;
 using Model.Unit.EnergySystems;
 using Model.Unit.Movement;
@@ -20,9 +21,9 @@ namespace Installers
         [Serializable]
         public class GameSettings
         {
-            public RestartGameSystem.Settings Restart;
+            public RestartGameState.Settings Restart;
             public SunBuffEntityExecuteSystem.Settings Buff;
-            public PrepareGameSystem.Settings PrepairGame;
+            public StartGameState.Settings PrepairGame;
         }
         
         [Serializable]

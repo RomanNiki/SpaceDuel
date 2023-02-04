@@ -1,6 +1,4 @@
-﻿using System;
-using Extensions.AssetLoaders;
-using UnityEngine;
+﻿using Extensions.AssetLoaders;
 using Views;
 using Views.Systems.Create.Buffs;
 using Views.Systems.Create.Effects;
@@ -9,7 +7,7 @@ using Zenject;
 
 namespace Installers
 {
-    public class GamePoolInstaller : MonoInstaller, IDisposable
+    public class GamePoolInstaller : MonoInstaller
     {
         [Inject] private GameAssetsLoadProvider _gameAssetsLoadProvider;
 
@@ -55,11 +53,6 @@ namespace Installers
 
         private class EnergyBuffPool : MonoPoolableMemoryPool<IMemoryPool, GameObjectView>
         {
-        }
-        
-        public void Dispose()
-        {
-            _gameAssetsLoadProvider?.UnloadAssets();
         }
     }
 }

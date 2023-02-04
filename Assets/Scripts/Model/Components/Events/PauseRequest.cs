@@ -2,6 +2,5 @@
 {
     public struct PauseRequest
     {
-        public bool Pause { get; set; }
     }
 }
