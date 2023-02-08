@@ -1,12 +1,12 @@
 ﻿using System;
 using Leopotam.Ecs;
-using Model.Components.Tags;
-using Model.Timers;
-using Model.Timers.Components;
+using Model.Unit.EnergySystems.Components;
 using Model.Unit.Movement.Components.Tags;
+using Model.Unit.SunEntity.Components;
 using Model.VisualEffects.Components.Tags;
 using Model.Weapons.Components.Tags;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Extensions.MappingUnityToModel.Factories.Weapon.Bullets
 {
@@ -14,7 +14,7 @@ namespace Extensions.MappingUnityToModel.Factories.Weapon.Bullets
     [Serializable]
     public sealed class MineEntityFactoryFromSo : ProjectileEntityFactoryFromSo
     {
-        [SerializeField] private float _sunGravityResistTime = 1;
+        [FormerlySerializedAs("_sunGravityResistTime")] [SerializeField] private float _startEnergy = 40;
 
         public override EcsEntity CreateEntity(EcsWorld world)
         {
@@ -22,7 +22,8 @@ namespace Extensions.MappingUnityToModel.Factories.Weapon.Bullets
             entity.Get<MineTag>();
             entity.Get<GravityResist>();
             entity.Get<ExplosiveTag>();
-            entity.Get<Timer<SunGravityResistTime>>().TimeLeftSec = _sunGravityResistTime;
+            entity.Get<SunDischargeTag>();
+            entity.Get<Energy>().Current = _startEnergy;
             return entity;
         }
     }

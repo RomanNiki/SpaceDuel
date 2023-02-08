@@ -9,6 +9,7 @@ using Model.Extensions.EntityFactories;
 using Model.Timers.Components;
 using Model.Unit.EnergySystems.Components;
 using Model.Unit.EnergySystems.Components.Requests;
+using Model.Unit.SunEntity.Components;
 using UnityEngine;
 using UnityEngine.Serialization;
 using Zenject;

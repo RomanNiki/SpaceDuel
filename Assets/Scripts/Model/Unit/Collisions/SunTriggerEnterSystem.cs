@@ -3,6 +3,7 @@ using Model.Components;
 using Model.Extensions;
 using Model.Unit.Collisions.Components.Events;
 using Model.Unit.Damage.Components.Requests;
+using Model.Unit.SunEntity.Components;
 
 namespace Model.Unit.Collisions
 {

@@ -1,11 +1,11 @@
 ﻿using Leopotam.Ecs;
-using Model.Components;
 using Model.Extensions;
 using Model.Unit.Movement.Components;
 using Model.Unit.Movement.Components.Tags;
+using Model.Unit.SunEntity.Components;
 using UnityEngine;
 
-namespace Model.Unit.Movement
+namespace Model.Unit.SunEntity
 {
     public sealed class SunGravitySystem : PauseHandlerDefaultRunSystem
     {

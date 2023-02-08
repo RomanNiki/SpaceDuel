@@ -6,6 +6,7 @@ using Model.Extensions;
 using Model.Extensions.EntityFactories;
 using Model.Timers.Components;
 using Model.Unit.Movement.Components;
+using Model.Unit.SunEntity.Components;
 using UnityEngine;
 using Random = UnityEngine.Random;
 

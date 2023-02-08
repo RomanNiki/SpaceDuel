@@ -2,13 +2,14 @@
 using Model.Extensions.Interfaces;
 using Model.Unit.Movement.Components;
 using Model.VisualEffects.Components.Tags;
+using Model.Weapons.Components.Tags;
 
 namespace Model.Unit.Movement
 {
     public sealed class ClampMoveSystem : IEcsRunSystem
     {
         private readonly IMoveClamper _moveClamper;
-        private readonly EcsFilter<Position>.Exclude<VisualEffectTag> _positionFilter = null;
+        private readonly EcsFilter<Position>.Exclude<VisualEffectTag, MineTag> _positionFilter = null;
         
         public void Run()
         {

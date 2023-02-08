@@ -1,14 +1,14 @@
 ﻿using System;
 using Leopotam.Ecs;
-using Model.Components;
 using Model.Extensions;
 using Model.Unit.EnergySystems.Components;
 using Model.Unit.EnergySystems.Components.Requests;
 using Model.Unit.Movement.Components;
 using Model.Unit.Movement.Components.Tags;
+using Model.Unit.SunEntity.Components;
 using UnityEngine;
 
-namespace Model.Unit.EnergySystems
+namespace Model.Unit.SunEntity
 {
     public sealed class SunChargeSystem : PauseHandlerDefaultRunSystem
     {
@@ -41,23 +41,13 @@ namespace Model.Unit.EnergySystems
                 sunPosition.Value - playerPosition.Value.normalized);
             if (rotationCoefficient > 0.1f)
             {
-                return rotationCoefficient * CalculateDistanceCoefficient(playerPosition, sunPosition);
+                return rotationCoefficient * WorldExtensions.CalculateDistanceCoefficient(playerPosition, sunPosition,
+                    _settings.MinChargeDistance, _settings.MaxChargeDistance);
             }
 
             return 0f;
         }
-
-        private float CalculateDistanceCoefficient(in Position viewPosition, in Position sunTransform)
-        {
-            var distance = Vector3.Distance(viewPosition.Value, sunTransform.Value);
-            return ScaleValue(_settings.MinChargeDistance, _settings.MaxChargeDistance, distance);
-        }
-
-        private static float ScaleValue(float min, float max, float value)
-        {
-            return (value - max) / (min - max);
-        }
-
+        
         [Serializable]
         public class Settings
         {

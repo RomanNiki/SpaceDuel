@@ -2,11 +2,9 @@
 using EntityToGameObject;
 using Extensions.GameStateMachine.States;
 using Model.Buffs;
-using Model.Unit.EnergySystems;
 using Model.Unit.Movement;
+using Model.Unit.SunEntity;
 using UnityEngine;
-using Views;
-using Views.Systems;
 using Zenject;
 
 namespace Installers

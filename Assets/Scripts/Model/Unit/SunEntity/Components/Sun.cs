@@ -1,4 +1,4 @@
-﻿namespace Model.Components
+﻿namespace Model.Unit.SunEntity.Components
 {
     public struct Sun
     {

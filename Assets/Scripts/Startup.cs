@@ -17,6 +17,7 @@ using Model.Unit.EnergySystems.Components.Requests;
 using Model.Unit.Input.Components.Events;
 using Model.Unit.Movement;
 using Model.Unit.Movement.Components;
+using Model.Unit.SunEntity;
 using Model.VisualEffects.Components.Events;
 using Model.Weapons.Components.Events;
 using UnityEngine;
