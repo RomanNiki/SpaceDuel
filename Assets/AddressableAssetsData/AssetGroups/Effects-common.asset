@@ -53,24 +53,12 @@ MonoBehaviour:
     m_Address: Assets/ScriptableObjects/Weapon/BulletGun.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 6e4ae4064600d784cac1e41a9e6f2e59
-    m_Address: Packages/com.unity.render-pipelines.high-definition/Runtime/Material/Lit/Lit.shader
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 969c9c59810c25542a735a133c74c2ef
     m_Address: Assets/ScriptableObjects/Weapon/MineGun.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 36e335017ad71d54fbb10842863188ae
-    m_Address: Packages/com.unity.render-pipelines.core/Runtime/FallbackShader.shader
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: 92748583f2037ea43b40c82ce08494ba
     m_Address: Assets/ScriptableObjects/Weapon/Bullet.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 8ced2ee46972912409c8ffd9ea2276a4
-    m_Address: Packages/com.unity.render-pipelines.high-definition/Runtime/Material/FallbackError.shader
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: ba093dc6d1d5367468c87ace827b37ae
@@ -87,10 +75,6 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: e3265ab4bf004d28a9537516768c1c75
     m_Address: Assets/TextMesh Pro/Fonts/LiberationSans.ttf
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 559e8daf3a407c94791440f4ced4cb4e
-    m_Address: SpaceMaterial
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

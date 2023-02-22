@@ -7,6 +7,7 @@ using Model.Components.Events;
 using Model.Components.Requests;
 using Model.Extensions.Pause;
 using Model.Scores.Components;
+using Model.Unit.Input.Components.Events;
 using Zenject;
 
 namespace Controller
@@ -21,12 +22,14 @@ namespace Controller
         [Inject] private LoadingScreenProvider _loadingScreenProvider;
         [Inject] private PauseMenuProvider _pauseProvider;
         [Inject] private GameAssetsLoadProvider _gameAssetsLoadProvider;
+        [Inject] private ControlsScreenProvider _controlsScreenProvider;
         private readonly EcsFilter<PauseRequest> _pauseFilter;
         private readonly EcsFilter<Score> _scoreFilter;
         private readonly EcsFilter<ExitRequest> _exitGameFilter;
         private readonly EcsFilter<RestartGameRequest> _restartRequest;
         private readonly EcsFilter<StartGameRequest> _unpauseFilter;
         private readonly EcsFilter<GameStartedEvent> _gameStartedFilter;
+        private readonly EcsFilter<InputAnyKeyEvent> _inputAnyKeyFilter;
 
         private State _currentState;
 
@@ -44,7 +47,16 @@ namespace Controller
 
         public void Init()
         {
-            var exitState = new ExitGameState(_scoreFilter, _loadingScreenProvider, _gameAssetsLoadProvider,new List<Transition>(0));
+            var startState = InitGameStates();
+
+            _pauseService.SetPaused(true);
+            Transit(startState);
+        }
+
+        private ControlsState InitGameStates()
+        {
+            var exitState = new ExitGameState(_scoreFilter, _loadingScreenProvider, _gameAssetsLoadProvider,
+                new List<Transition>(0));
 
             var pauseTransitions = new List<Transition>
             {
@@ -53,15 +65,15 @@ namespace Controller
 
             var pauseState = new PauseGameState(_world, _pauseProvider, pauseTransitions);
 
-            var restartState = new RestartGameState(_world, _restartSettings, _pauseService,new List<Transition>());
-            
+            var restartState = new RestartGameState(_world, _restartSettings, _pauseService, new List<Transition>());
+
             var gameProcessTransitions = new List<Transition>
             {
                 new RestartTransition(restartState, _restartRequest)
             };
 
             var gameProcessState = new GameProcessState(_pauseService, gameProcessTransitions);
-            
+
             var pauseTransition = new PauseTransition(pauseState, _pauseFilter);
             var startGameTransitions = new List<Transition>
             {
@@ -73,12 +85,12 @@ namespace Controller
                 startGameTransitions);
 
             var unpauseTransition = new UnPauseTransition(startState, _unpauseFilter);
+            var anyKeyTransition = new PressedAnyKeyTransition(startState, _inputAnyKeyFilter);
 
+            var controlsState = new ControlsState(_controlsScreenProvider, new List<Transition>() {anyKeyTransition});
             pauseTransitions.Add(unpauseTransition);
             gameProcessTransitions.Add(pauseTransition);
-
-            _pauseService.SetPaused(true);
-            Transit(startState);
+            return controlsState;
         }
 
         private void Transit(State nextState)

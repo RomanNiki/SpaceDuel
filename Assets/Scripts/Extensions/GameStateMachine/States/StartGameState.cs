@@ -62,6 +62,7 @@ namespace Extensions.GameStateMachine.States
                 await Task.Yield();
             }
 
+            await text.Disappear();
             _provider.Unload();
             _cancellationTokenSource = null;
             if (_world.IsAlive())

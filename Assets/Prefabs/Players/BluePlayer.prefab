@@ -159,6 +159,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4419951295746082707}
   - component: {fileID: 4419951295746082706}
+  - component: {fileID: 6954536887223545316}
   m_Layer: 7
   m_Name: PlayerInstaller
   m_TagString: Untagged
@@ -199,10 +200,23 @@ MonoBehaviour:
   _settings:
     Rigidbody: {fileID: 969312551615168198}
     PrimaryWeaponAudioComponent: {fileID: 3502726035980524490}
-    VisualEffect: {fileID: 8951776472925217454}
+    EffectInteractor: {fileID: 6954536887223545316}
     PlayerAudioComponent: {fileID: 8143835419196856237}
     MoveFriction: 0.8
     Team: 0
+--- !u!114 &6954536887223545316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4419951295746082716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86817ab8b17845a2b718dc08b08b26a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _visualEffect: {fileID: 8951776472925217454}
 --- !u!1 &4419951297048633113
 GameObject:
   m_ObjectHideFlags: 0

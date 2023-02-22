@@ -1,7 +1,6 @@
 ﻿using Extensions.MappingUnityToModel;
 using Leopotam.Ecs;
 using Model.Components;
-using Model.Components.Events;
 using Model.Weapons.Components;
 using Model.Weapons.Components.Events;
 using UnityEngine;

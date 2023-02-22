@@ -22,6 +22,7 @@ namespace Controller.Input
             _playerInput.Enable();
             _playerInput.Common.Menu.started += _ =>
                 SendMessageInGame(new InputPauseQuitEvent());
+            _playerInput.Common.AnyKey.performed += _ => _world.SendMessage(new InputAnyKeyEvent());
             InitMoveInput();
             InitShootInput();
         }

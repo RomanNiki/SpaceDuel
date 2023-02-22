@@ -21,18 +21,6 @@ MonoBehaviour:
     m_Address: PowerCellPrefab
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 95e18a6c0d3dfc04e80745a5fc82086b
-    m_Address: ExplosionPrefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: da5b3e5832fdb454594d834df45e72e6
-    m_Address: FirePrefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 101ff51d8e6d0e0458cbb6351e2900b1
-    m_Address: HitPrefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: eb52b47df7d89df4a9ec14c46d659652
     m_Address: MinePrefab
     m_ReadOnly: 0

@@ -15,7 +15,7 @@ MonoBehaviour:
   _targetFrameRate: 200
   _gameInstaller:
     Restart:
-      RestartDelay: 3
+      RestartDelay: 3.5
     Buff:
       MaxTimeToSpawn: 30
       MinTimeToSpawn: 10
@@ -27,7 +27,7 @@ MonoBehaviour:
     Rotate:
       RotationSpeed: 100
     SolarCharger:
-      MaxChargeDistance: 21
+      MaxChargeDistance: 22
       MinChargeDistance: 0
     PlayerInit:
       FirstPlayerSpawnPoint: {x: 14.46, y: 0, z: 0}

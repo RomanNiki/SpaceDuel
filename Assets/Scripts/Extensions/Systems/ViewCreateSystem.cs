@@ -8,15 +8,15 @@ namespace Extensions.Systems
         where TCreateData : struct
         where TFlag : struct
     {
-        protected readonly EcsWorld _world = null;
-        protected EcsFilter<TCreateData, TFlag> _filter = null;
+        protected readonly EcsWorld World = null;
+        protected readonly EcsFilter<TCreateData, TFlag> Filter = null;
 
         public void Run()
         {
-            foreach (var i in _filter)
+            foreach (var i in Filter)
             {
-                ref var entity = ref _filter.GetEntity(i);
-                ref var createRequest = ref _filter.Get1(i);
+                ref var entity = ref Filter.GetEntity(i);
+                ref var createRequest = ref Filter.Get1(i);
 
                 var transform = GetTransform(entity, createRequest);
 

@@ -34,7 +34,7 @@ namespace Installers
                     poolBinder.WithInitialSize(5).FromComponentInNewPrefab(_gameAssetsLoadProvider.EnergyBuffView))
                 .WhenInjectedInto<EnergyBuffViewCreateSystem>().NonLazy();
         }
-
+   
         private class BulletPool : MonoPoolableMemoryPool<IMemoryPool, ProjectileView>
         {
         }

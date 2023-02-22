@@ -9,8 +9,10 @@ namespace Extensions
         public readonly IReadOnlyList<IEcsSystem> RunSystems;
         public readonly IReadOnlyList<IEcsSystem> FixedRunSystems;
 
+        [Inject]
         public SystemRegisterHandler(
-            [Inject(Source = InjectSources.Local, Id = SystemsEnum.Run)] List<IEcsSystem> runSystems,[Inject(Source = InjectSources.Local, Id = SystemsEnum.FixedRun)] List<IEcsSystem> fixedRunSystems)
+            [Inject(Source = InjectSources.Local, Id = SystemsEnum.Run)] List<IEcsSystem> runSystems,
+            [Inject(Source = InjectSources.Local, Id = SystemsEnum.FixedRun)] List<IEcsSystem> fixedRunSystems)
         {
             RunSystems = runSystems;
             FixedRunSystems = fixedRunSystems;

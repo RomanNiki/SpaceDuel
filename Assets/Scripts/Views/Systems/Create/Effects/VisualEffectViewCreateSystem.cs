@@ -5,7 +5,7 @@ using Model.Components;
 using Model.Components.Requests;
 using Model.Extensions;
 using UnityEngine;
-using UnityEngine.VFX;
+using Views.Extensions;
 using Views.Extensions.Pools;
 
 namespace Views.Systems.Create.Effects
@@ -18,7 +18,7 @@ namespace Views.Systems.Create.Effects
             var explosionView = GetPoolObject();
             var transform = explosionView.Transform;
             transform.position = data.StartPosition;
-            entity.Get<UnityComponent<VisualEffect>>().Value = explosionView.VisualEffect;
+            entity.Get<UnityComponent<EffectInteractor>>().Value = explosionView.EffectInteractor;
             entity.Get<ViewObjectComponent>().ViewObject =
                 new ViewObjectUnity(transform, explosionView);
 

@@ -3,13 +3,14 @@ using Model.Components;
 using Model.Components.Events;
 using Model.Components.Requests;
 using UnityEngine.VFX;
+using Views.Extensions;
 
 
 namespace Views.Systems
 {
     public sealed class EffectPauseSystem : IEcsRunSystem
     {
-        private EcsFilter<UnityComponent<VisualEffect>> _filter;
+        private EcsFilter<UnityComponent<EffectInteractor>> _filter;
         private EcsFilter<PauseRequest> _pause;
         private EcsFilter<StartGameRequest> _start;
 
@@ -20,12 +21,12 @@ namespace Views.Systems
                 ref var visualEffect = ref _filter.Get1(i);
                 if (_pause.IsEmpty() == false)
                 {
-                    visualEffect.Value.pause = true;
+                    visualEffect.Value.SetPause(true);
                 }
 
                 if (_start.IsEmpty() == false)
                 {
-                    visualEffect.Value.pause = false;
+                    visualEffect.Value.SetPause(false);
                 }
             }
         }

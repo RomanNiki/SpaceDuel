@@ -116,12 +116,12 @@ MonoBehaviour:
       m_SubObjectType: 
       m_EditorAssetChanged: 0
     ExplosionAssetReference:
-      m_AssetGUID: 95e18a6c0d3dfc04e80745a5fc82086b
+      m_AssetGUID: a394315d2e0bd8742a2c66d9f59b3b63
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
     HitAssetReference:
-      m_AssetGUID: 101ff51d8e6d0e0458cbb6351e2900b1
+      m_AssetGUID: 7ac2ad573b594034da84a1e947c0d1b0
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0

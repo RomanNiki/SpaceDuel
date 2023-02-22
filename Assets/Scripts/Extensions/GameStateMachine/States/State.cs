@@ -12,11 +12,6 @@ namespace Extensions.GameStateMachine.States
         {
             _transitions = transitions;
         }
-
-        public State()
-        {
-            
-        }
         
         public void Enter()
         {

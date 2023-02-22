@@ -5,12 +5,13 @@ using Model.Unit.EnergySystems.Components;
 using Model.Unit.Input.Components;
 using Model.Unit.Movement.Components;
 using UnityEngine.VFX;
+using Views.Extensions;
 
 namespace Views.Systems.Update
 {
     public sealed class NozzleVFXSystem : IEcsRunSystem, IPauseHandler
     {
-        private readonly EcsFilter<InputMoveData, Nozzle, UnityComponent<VisualEffect>>.Exclude<NoEnergyBlock> _filter;
+        private readonly EcsFilter<InputMoveData, Nozzle, UnityComponent<EffectInteractor>>.Exclude<NoEnergyBlock> _filter;
         private bool _isPause;
 
         public void Run()

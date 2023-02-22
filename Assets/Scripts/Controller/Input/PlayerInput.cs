@@ -255,6 +255,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""AnyKey"",
+                    ""type"": ""Button"",
+                    ""id"": ""9d0296d8-ca9e-4213-9347-564f3952298a"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -266,6 +275,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard1;Keyboard2"",
                     ""action"": ""Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b865c5c4-70d8-4d21-b0ca-c9b28eb5eaed"",
+                    ""path"": ""<Keyboard>/anyKey"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard1;Keyboard2"",
+                    ""action"": ""AnyKey"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -312,6 +332,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         // Common
         m_Common = asset.FindActionMap("Common", throwIfNotFound: true);
         m_Common_Menu = m_Common.FindAction("Menu", throwIfNotFound: true);
+        m_Common_AnyKey = m_Common.FindAction("AnyKey", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -486,11 +507,13 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Common;
     private ICommonActions m_CommonActionsCallbackInterface;
     private readonly InputAction m_Common_Menu;
+    private readonly InputAction m_Common_AnyKey;
     public struct CommonActions
     {
         private @PlayerInput m_Wrapper;
         public CommonActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Menu => m_Wrapper.m_Common_Menu;
+        public InputAction @AnyKey => m_Wrapper.m_Common_AnyKey;
         public InputActionMap Get() { return m_Wrapper.m_Common; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -503,6 +526,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Menu.started -= m_Wrapper.m_CommonActionsCallbackInterface.OnMenu;
                 @Menu.performed -= m_Wrapper.m_CommonActionsCallbackInterface.OnMenu;
                 @Menu.canceled -= m_Wrapper.m_CommonActionsCallbackInterface.OnMenu;
+                @AnyKey.started -= m_Wrapper.m_CommonActionsCallbackInterface.OnAnyKey;
+                @AnyKey.performed -= m_Wrapper.m_CommonActionsCallbackInterface.OnAnyKey;
+                @AnyKey.canceled -= m_Wrapper.m_CommonActionsCallbackInterface.OnAnyKey;
             }
             m_Wrapper.m_CommonActionsCallbackInterface = instance;
             if (instance != null)
@@ -510,6 +536,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Menu.started += instance.OnMenu;
                 @Menu.performed += instance.OnMenu;
                 @Menu.canceled += instance.OnMenu;
+                @AnyKey.started += instance.OnAnyKey;
+                @AnyKey.performed += instance.OnAnyKey;
+                @AnyKey.canceled += instance.OnAnyKey;
             }
         }
     }
@@ -549,5 +578,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     public interface ICommonActions
     {
         void OnMenu(InputAction.CallbackContext context);
+        void OnAnyKey(InputAction.CallbackContext context);
     }
 }

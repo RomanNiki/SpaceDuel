@@ -3,7 +3,6 @@ using EntityToGameObject;
 using Extensions;
 using Extensions.MappingUnityToModel.Factories.Buffs;
 using Leopotam.Ecs;
-using Model.Components;
 using Model.Extensions;
 using Model.Extensions.EntityFactories;
 using Model.Timers.Components;

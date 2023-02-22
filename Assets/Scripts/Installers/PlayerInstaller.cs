@@ -13,7 +13,7 @@ using Model.Unit.Input.Components;
 using Model.Weapons.Components;
 using UnityEngine;
 using UnityEngine.Serialization;
-using UnityEngine.VFX;
+using Views.Extensions;
 using Zenject;
 
 namespace Installers
@@ -39,7 +39,7 @@ namespace Installers
         {
             var entity = _playerEntityFactory.CreateEntity(_world);
             entity.Get<ViewObjectComponent>().ViewObject = new ViewObjectUnity(_settings.Rigidbody.transform,_settings.Rigidbody);
-            entity.Get<UnityComponent<VisualEffect>>().Value = _settings.VisualEffect;
+            entity.Get<UnityComponent<EffectInteractor>>().Value = _settings.EffectInteractor;
             entity.Get<UnityComponent<PlayerAudioComponent>>().Value = _settings.PlayerAudioComponent;
             entity.Get<Team>().Value = _settings.Team;
             entity.AddMovementComponents(_settings.Rigidbody.position, _settings.Rigidbody.rotation, _settings.Rigidbody.mass,
@@ -74,7 +74,7 @@ namespace Installers
         {
             public Rigidbody2D Rigidbody;
             [FormerlySerializedAs("PrimaryWeaponAudioUnityComponent")] public GunAudioUnityComponent PrimaryWeaponAudioComponent;
-            public VisualEffect VisualEffect;
+            [FormerlySerializedAs("VisualEffect")] public EffectInteractor EffectInteractor;
             public PlayerAudioComponent PlayerAudioComponent;
             public float MoveFriction;
             public TeamEnum Team;
