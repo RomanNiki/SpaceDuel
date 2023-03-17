@@ -2,6 +2,7 @@
 using Model.Enums;
 using Model.Extensions;
 using Model.Unit.Input.Components.Events;
+using Unity.VisualScripting;
 using Zenject;
 
 namespace Controller.Input
@@ -20,9 +21,7 @@ namespace Controller.Input
         public void Init()
         {
             _playerInput.Enable();
-            _playerInput.Common.Menu.started += _ =>
-                SendMessageInGame(new InputPauseQuitEvent());
-            _playerInput.Common.AnyKey.performed += _ => _world.SendMessage(new InputAnyKeyEvent());
+            _playerInput.Common.Menu.performed += _ => SendMessageInGame(new InputPauseQuitEvent());
             InitMoveInput();
             InitShootInput();
         }

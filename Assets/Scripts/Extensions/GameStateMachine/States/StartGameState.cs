@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 using Extensions.AssetLoaders;
 using Extensions.GameStateMachine.Transitions;
 using Leopotam.Ecs;
@@ -33,22 +34,27 @@ namespace Extensions.GameStateMachine.States
             CheckTokenSource();
             _cancellationTokenSource = new CancellationTokenSource();
             _token = _cancellationTokenSource.Token;
-            var text = await _provider.Load();
-            await WaitToStart(text, _settings.SecondsToStart, _token);
+            var prepareScreen = await _provider.Load();
+            await WaitToStart(prepareScreen, _settings.SecondsToStart, _token);
         }
 
         protected override void OnRun()
         {
         }
+        
+        public override void OnExit()
+        {
+            CheckTokenSource();
+        }
 
         private void CheckTokenSource()
         {
             if (_cancellationTokenSource == null) return;
-            _provider.Unload();
             _cancellationTokenSource.Cancel();
+            _provider.Unload();
         }
 
-        private async Task WaitToStart(PrepareScreen text, float secondsToStart, CancellationToken token)
+        private async UniTask WaitToStart(PrepareScreen text, float secondsToStart, CancellationToken token)
         {
             while (secondsToStart > 0f)
             {
@@ -59,22 +65,23 @@ namespace Extensions.GameStateMachine.States
 
                 text.SetText(Mathf.CeilToInt(secondsToStart).ToString());
                 secondsToStart -= Time.deltaTime;
-                await Task.Yield();
+                await UniTask.Yield();
             }
 
-            await text.Disappear();
-            _provider.Unload();
-            _cancellationTokenSource = null;
+            await Unload(text);
             if (_world.IsAlive())
             {
                 _world.SendMessage(new GameStartedEvent());
             }
         }
 
-        public override void Exit()
+        private async Task Unload(PrepareScreen text)
         {
-            CheckTokenSource();
+            await text.Disappear();
+            _provider.Unload();
+            _cancellationTokenSource = null;
         }
+        
 
         [Serializable]
         public class Settings

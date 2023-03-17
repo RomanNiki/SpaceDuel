@@ -233,15 +233,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "AnyKey",
-                    "type": "Button",
-                    "id": "9d0296d8-ca9e-4213-9347-564f3952298a",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -253,17 +244,6 @@
                     "processors": "",
                     "groups": "Keyboard1;Keyboard2",
                     "action": "Menu",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b865c5c4-70d8-4d21-b0ca-c9b28eb5eaed",
-                    "path": "<Keyboard>/anyKey",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard1;Keyboard2",
-                    "action": "AnyKey",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

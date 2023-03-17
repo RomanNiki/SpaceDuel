@@ -35,7 +35,7 @@ namespace Extensions.GameStateMachine.States
             OnRun();
         }
 
-        public abstract void Exit();
+        public abstract void OnExit();
 
         public State GetNextState()
         {

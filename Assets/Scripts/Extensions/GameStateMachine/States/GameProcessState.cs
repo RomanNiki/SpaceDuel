@@ -22,7 +22,7 @@ namespace Extensions.GameStateMachine.States
         {
         }
 
-        public override void Exit()
+        public override void OnExit()
         {
             _pauseService?.SetPaused(true);
         }

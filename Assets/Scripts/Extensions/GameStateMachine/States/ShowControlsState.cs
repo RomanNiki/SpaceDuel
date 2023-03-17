@@ -4,11 +4,11 @@ using Extensions.GameStateMachine.Transitions;
 
 namespace Extensions.GameStateMachine.States
 {
-    public class ControlsState : State
+    public class ShowControlsState : State
     {
         private readonly ControlsScreenProvider _controlsScreenProvider;
 
-        public ControlsState(ControlsScreenProvider controlsScreenProvider, List<Transition> transitions) : base (transitions)
+        public ShowControlsState(ControlsScreenProvider controlsScreenProvider, List<Transition> transitions) : base (transitions)
         {
             _controlsScreenProvider = controlsScreenProvider;
         }
@@ -22,7 +22,7 @@ namespace Extensions.GameStateMachine.States
         {
         }
 
-        public override void Exit()
+        public override void OnExit()
         {
             _controlsScreenProvider.Unload();
         }

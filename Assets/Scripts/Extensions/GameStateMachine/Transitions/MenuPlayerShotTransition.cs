@@ -4,11 +4,11 @@ using Model.Unit.Input.Components.Events;
 
 namespace Extensions.GameStateMachine.Transitions
 {
-    public class PressedAnyKeyTransition : Transition
+    public class MenuPlayerShotTransition : Transition
     {
-        private readonly EcsFilter<InputAnyKeyEvent> _anyKeyFilter;
+        private readonly EcsFilter<InputShootStartedEvent> _anyKeyFilter;
 
-        public PressedAnyKeyTransition(State targetState, EcsFilter<InputAnyKeyEvent> anyKeyFilter) : base(targetState)
+        public MenuPlayerShotTransition(State targetState, EcsFilter<InputShootStartedEvent> anyKeyFilter) : base(targetState)
         {
             _anyKeyFilter = anyKeyFilter;
         }

@@ -29,7 +29,7 @@ namespace Controller
         private readonly EcsFilter<RestartGameRequest> _restartRequest;
         private readonly EcsFilter<StartGameRequest> _unpauseFilter;
         private readonly EcsFilter<GameStartedEvent> _gameStartedFilter;
-        private readonly EcsFilter<InputAnyKeyEvent> _inputAnyKeyFilter;
+        private readonly EcsFilter<InputShootStartedEvent> _shotStartedEvent;
 
         private State _currentState;
 
@@ -48,12 +48,11 @@ namespace Controller
         public void Init()
         {
             var startState = InitGameStates();
-
             _pauseService.SetPaused(true);
             Transit(startState);
         }
 
-        private ControlsState InitGameStates()
+        private ShowControlsState InitGameStates()
         {
             var exitState = new ExitGameState(_scoreFilter, _loadingScreenProvider, _gameAssetsLoadProvider,
                 new List<Transition>(0));
@@ -85,9 +84,10 @@ namespace Controller
                 startGameTransitions);
 
             var unpauseTransition = new UnPauseTransition(startState, _unpauseFilter);
-            var anyKeyTransition = new PressedAnyKeyTransition(startState, _inputAnyKeyFilter);
+            var anyKeyTransition = new MenuPlayerShotTransition(startState, _shotStartedEvent);
 
-            var controlsState = new ControlsState(_controlsScreenProvider, new List<Transition>() {anyKeyTransition});
+            var controlsState = new ShowControlsState(_controlsScreenProvider,
+                new List<Transition>() {pauseTransition, anyKeyTransition});
             pauseTransitions.Add(unpauseTransition);
             gameProcessTransitions.Add(pauseTransition);
             return controlsState;
@@ -95,7 +95,7 @@ namespace Controller
 
         private void Transit(State nextState)
         {
-            _currentState?.Exit();
+            _currentState?.OnExit();
             _currentState = nextState;
             _currentState?.Enter();
         }
