@@ -5,6 +5,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 5539544749407634768}
     m_Modifications:
     - target: {fileID: 3572434462922381505, guid: a171bb8dd20d4eb4da7fe6bf50e2e117, type: 3}
@@ -56,12 +57,21 @@ PrefabInstance:
       value: PowerCell
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a171bb8dd20d4eb4da7fe6bf50e2e117, type: 3}
+--- !u!4 &2991074058587215191 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3572434462922381505, guid: a171bb8dd20d4eb4da7fe6bf50e2e117, type: 3}
+  m_PrefabInstance: {fileID: 1734369870077758870}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &5081854557629199931
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
+    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 749345014682923883, guid: 053cf56c9e776e04789e8ee52db78872, type: 3}
@@ -108,6 +118,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2801201876379250569, guid: 053cf56c9e776e04789e8ee52db78872, type: 3}
+      propertyPath: m_BodyType
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5156301316468848953, guid: 053cf56c9e776e04789e8ee52db78872, type: 3}
       propertyPath: m_Name
       value: PowerCellPrefab
@@ -117,6 +131,12 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects:
+    - targetCorrespondingSourceObject: {fileID: 749345014682923883, guid: 053cf56c9e776e04789e8ee52db78872, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2991074058587215191}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 053cf56c9e776e04789e8ee52db78872, type: 3}
 --- !u!4 &5539544749407634768 stripped
 Transform:

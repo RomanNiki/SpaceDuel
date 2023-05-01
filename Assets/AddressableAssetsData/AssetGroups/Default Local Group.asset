@@ -21,62 +21,57 @@ MonoBehaviour:
     m_Address: Fonts & Materials/LiberationSans SDF
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2e498d1c8094910479dc3e1b768306a4
     m_Address: Fonts & Materials/LiberationSans SDF - Fallback
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: d7f26134233a9b74ab5c3351d4ae475c
-    m_Address: Assets/Sounds/Shot2.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 7d6c806927fa60046b55b62941b65fd8
-    m_Address: Assets/Sounds/Rocket.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: ed947d6eb5fde0f43b27b85d7687783a
-    m_Address: Assets/Sounds/BombPlace.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 768f9c7c1c9fbf44a89bbbae492cdad3
-    m_Address: Assets/Sounds/Shot.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2fab373aff35de44faae6fd333baa113
     m_Address: PauseMenu
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: f09f8f698030e0040b733c9a0befb98a
     m_Address: Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/font/zekton free SDF.asset
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: b6799aa1b36dbc342b29093123f63bf2
     m_Address: LoadingScreen
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 559e8daf3a407c94791440f4ced4cb4e
     m_Address: Assets/Materials/Space.mat
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: a394315d2e0bd8742a2c66d9f59b3b63
     m_Address: ParticalSystemExplosion
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c78096f50b655d944b41c86d05000722
     m_Address: HitPrefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 713f7db079a35b14e87df630562cf468
     m_Address: FirePrefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 2e25633a3704db542861cd46a62b378e
     m_Address: ExplosionPrefab
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 7ac2ad573b594034da84a1e947c0d1b0
     m_Address: ParticalSystemHit
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e0df372616e9dd1438e54318ff94b096, type: 2}
   m_SchemaSet:

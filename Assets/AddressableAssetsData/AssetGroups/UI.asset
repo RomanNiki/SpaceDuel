@@ -21,14 +21,22 @@ MonoBehaviour:
     m_Address: PlayerUI
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c7d01813663b376468d489c9a1c1eb0f
     m_Address: GameScore
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 97c958f8f03a52a4f8cb1b7f27e7357e
     m_Address: PrepareScreen
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2b54c2e5d39f13d43b3977547d920636
+    m_Address: ContorolsScreen2
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e0df372616e9dd1438e54318ff94b096, type: 2}
   m_SchemaSet:

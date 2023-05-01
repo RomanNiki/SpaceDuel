@@ -52,7 +52,7 @@ namespace Controller
             Transit(startState);
         }
 
-        private ShowControlsState InitGameStates()
+        private State InitGameStates()
         {
             var exitState = new ExitGameState(_scoreFilter, _loadingScreenProvider, _gameAssetsLoadProvider,
                 new List<Transition>(0));

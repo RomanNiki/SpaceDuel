@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
-  m_Name: Effects
+  m_Name: Effects-VFX
   m_EditorClassIdentifier: 
-  m_GroupName: Effects
+  m_GroupName: Effects-VFX
   m_Data:
     m_SerializedData: []
   m_GUID: f06ab39eb800c0045b363a70693c93c9
@@ -21,18 +21,22 @@ MonoBehaviour:
     m_Address: Fire
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 628548f42de9e37468f5b2291d2fcc35
     m_Address: Hit
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 4544355d92055994c9ee89aca26474d5
     m_Address: Explosion
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 9ded32edd6f7bec4496ab88e699d9bcb
     m_Address: ExplosionEffect
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: e0df372616e9dd1438e54318ff94b096, type: 2}
   m_SchemaSet:

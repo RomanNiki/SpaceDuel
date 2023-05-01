@@ -1,13 +1,21 @@
 ﻿using Cysharp.Threading.Tasks;
+using UnityEngine.AddressableAssets;
 using Views;
 
 namespace Extensions.AssetLoaders
 {
     public class ControlsScreenProvider : LocalAssetLoader
     {
-        public UniTask<ControlsScreen> Load()
+        private readonly AssetReference _reference;
+
+        public ControlsScreenProvider(AssetReference reference)
         {
-            return LoadAndInstantiateInternal<ControlsScreen>(nameof(ControlsScreen));
+            _reference = reference;
+        }
+        
+        public async UniTask<ControlsScreen> Load()
+        {
+            return await LoadAndInstantiateInternal<ControlsScreen>(_reference.AssetGUID);
         }
 
         public void Unload()
