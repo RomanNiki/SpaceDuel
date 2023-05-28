@@ -18,14 +18,12 @@ namespace Extensions.MappingUnityToModel
         private void OnEnable()
         {
             _startGameButton.onClick.AddListener(OnStartGameButtonClick);
-            _optionsButton.onClick.AddListener(OnOptionsButtonClick);
             _exitButton.onClick.AddListener(OnExitButtonClick);
         }
 
         private void OnDisable()
         {
             _startGameButton.onClick.RemoveListener(OnStartGameButtonClick);
-            _optionsButton.onClick.RemoveListener(OnOptionsButtonClick);
             _exitButton.onClick.RemoveListener(OnExitButtonClick);
         }
 
@@ -37,11 +35,6 @@ namespace Extensions.MappingUnityToModel
         private void OnExitButtonClick()
         {
             _world.SendMessage(new CloseAppRequest());
-        }
-        
-        private void OnOptionsButtonClick()
-        {
-            _world.SendMessage(new OpenOptionsRequest());
         }
     }
 }

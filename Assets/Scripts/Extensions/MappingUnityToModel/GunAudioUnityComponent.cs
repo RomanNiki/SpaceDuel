@@ -5,12 +5,9 @@ namespace Extensions.MappingUnityToModel
 {
     public class GunAudioUnityComponent : MonoBehaviour, IPauseHandler
     {
-        private AudioSource _audioSourceShot;
+        [SerializeField] private AudioSource _audioSource;
         
-        private void Awake()
-        {
-            _audioSourceShot = gameObject.AddComponent<AudioSource>();
-        }
+        private AudioSource _audioSourceShot;
 
         private void Pause()
         {
@@ -22,7 +19,7 @@ namespace Extensions.MappingUnityToModel
             _audioSourceShot.UnPause();
         }
         
-        public void PlayShoot(AudioClip clip) => _audioSourceShot.PlayOneShot(clip, 0.25f);
+        public void PlayShoot(AudioClip clip) => _audioSource.PlayOneShot(clip);
 
         public void SetPaused(bool isPaused)
         {

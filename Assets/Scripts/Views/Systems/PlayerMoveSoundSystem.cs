@@ -40,7 +40,7 @@ namespace Views.Systems
                     ref var team = ref _playerFilter.Get2(j);
                     if (team.Value != accelerateTeam.PlayerTeam) continue;
                     ref var soundComponent = ref _playerFilter.Get1(j);
-                    soundComponent.Value.PlayAccelerateSound(false);
+                    soundComponent.Value.StopAccelerateSound();
                 }
             }
 
@@ -71,7 +71,7 @@ namespace Views.Systems
                 ref var team = ref _playerFilter.Get2(j);
                 if (_playersAccelerating.Contains(team.Value) == false) continue;
                 ref var soundComponent = ref _playerFilter.Get1(j);
-                soundComponent.Value.PlayAccelerateSound(true);
+                soundComponent.Value.PlayAccelerateSound();
             }
 
             foreach (var j in _playerFilter)
@@ -92,7 +92,7 @@ namespace Views.Systems
                 ref var team = ref _playerFilter.Get2(j);
                 if (_playersAccelerating.Contains(team.Value) == false) continue;
                 ref var soundComponent = ref _playerFilter.Get1(j);
-                soundComponent.Value.PlayAccelerateSound(false);
+                soundComponent.Value.PlayAccelerateSound();
             }
         }
     }

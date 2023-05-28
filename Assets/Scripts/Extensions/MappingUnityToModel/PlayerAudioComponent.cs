@@ -5,47 +5,40 @@ namespace Extensions.MappingUnityToModel
 {
     public class PlayerAudioComponent : MonoBehaviour, IPauseHandler
     {
-        private AudioSource _audioAccelerateShot;
-        private AudioSource _audioRotateShot;
+        [SerializeField] private AudioSource _accelerationSource;
+        [SerializeField] private AudioSource _rotateSource;
         [SerializeField] private AudioClip _rotateSound;
         [SerializeField] private AudioClip _moveSound;
-
-        private void Awake()
-        {
-            _audioAccelerateShot = gameObject.AddComponent<AudioSource>();
-            _audioRotateShot = gameObject.AddComponent<AudioSource>();
-        }
-
+        
         private void Pause()
         {
-            _audioAccelerateShot.Pause();
-            _audioRotateShot.Pause();
+            _accelerationSource.Pause();
+            _rotateSource.Pause();
         }
 
         private void UnPause()
         {
-            _audioAccelerateShot.UnPause();
-            _audioRotateShot.UnPause();
+            _accelerationSource.UnPause();
+            _rotateSource.UnPause();
         }
 
-        public void PlayAccelerateSound(bool accelerate)
+        public void PlayAccelerateSound()
         {
-            if (accelerate == false)
-            {
-                _audioAccelerateShot.Stop();
-                return;
+            if (_accelerationSource.isPlaying == false)
+            { 
+                _accelerationSource.PlayOneShot(_moveSound);
             }
+        }
 
-            if (_audioAccelerateShot.isPlaying == false)
-            {
-                _audioAccelerateShot.PlayOneShot(_moveSound, 0.25f);
-            }
+        public void StopAccelerateSound()
+        {
+            _accelerationSource.Stop();
         }
 
         public void PlayRotateSound()
         {
-            if (_audioRotateShot.isPlaying == false)
-                _audioRotateShot.PlayOneShot(_rotateSound, 0.25f);
+            if (_rotateSource.isPlaying == false)
+                _rotateSource.PlayOneShot(_rotateSound);
         }
 
         public void SetPaused(bool isPaused)

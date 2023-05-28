@@ -9,7 +9,6 @@ namespace Installers
         public override void InstallBindings()
         {
             Container.AddRunSystem<CloseGameSystem>();
-            Container.AddRunSystem<OptionsSystem>();
             Container.AddRunSystem<StartGameSystem>();
         }
     }
