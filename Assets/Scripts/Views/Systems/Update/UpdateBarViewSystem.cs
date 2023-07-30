@@ -5,8 +5,7 @@ using Views.UI;
 
 namespace Views.Systems.Update
 {
-    public class
-        UpdateBarViewSystem<TEvent, TValueComponent, TUIComponent> : UpdateUICharacteristicSystem<TEvent,
+    public class UpdateBarViewSystem<TEvent, TValueComponent, TUIComponent> : UpdateUICharacteristicSystem<TEvent,
             TValueComponent, TUIComponent> 
         where TUIComponent : struct, IBarContainer
         where TValueComponent : struct, ICharacteristic

@@ -9,9 +9,9 @@ namespace Views
     {
         [SerializeField] private EffectInteractor _effectInteractor;
         public EffectInteractor EffectInteractor => _effectInteractor;
-
-        public new class Factory : PlaceholderFactory<VisualEffectView>
-        {
-        }
+    }
+    
+    public class VisualEffectViewFactory : PlaceholderFactory<VisualEffectView>
+    {
     }
 }

@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1332433000425555296}
   - component: {fileID: 3574060612151953265}
   - component: {fileID: -4127170480288171864}
-  - component: {fileID: -7665944720401705902}
   - component: {fileID: 5543584086326497625}
   - component: {fileID: 8303352608692095039}
   - component: {fileID: 7603055016449047828}
+  - component: {fileID: 578307427566424425}
   m_Layer: 0
   m_Name: VisualEffectRoot
   m_TagString: Untagged
@@ -72,18 +72,6 @@ MonoBehaviour:
   _useSceneContext: 0
   _context: {fileID: 0}
   _bindType: 0
---- !u!114 &-7665944720401705902
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1975270494718588692}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e79a6c0f902c44cfb2585e527e136e99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5543584086326497625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,3 +195,15 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &578307427566424425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975270494718588692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 677dcc1e5a054744acfb27fb3410558b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

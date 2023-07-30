@@ -1,6 +1,6 @@
-using Leopotam.Ecs;
-using Model.Components.Requests;
-using Model.Extensions;
+using System.Collections.Generic;
+using Extensions.AssetLoaders;
+using Extensions.Loading.LoadingOperations;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -12,9 +12,16 @@ namespace Extensions.MappingUnityToModel
         [SerializeField] private Button _startGameButton;
         [SerializeField] private Button _optionsButton;
         [SerializeField] private Button _exitButton;
+        private LoadingScreenProvider _provider;
+        private GameAssetsLoadProvider _assetsLoadProvider;
 
-        [Inject] private EcsWorld _world;
-
+        [Inject]
+        public void Constructor(LoadingScreenProvider provider, GameAssetsLoadProvider assetsLoadProvider)
+        {
+            _provider = provider;
+            _assetsLoadProvider = assetsLoadProvider;
+        }
+        
         private void OnEnable()
         {
             _startGameButton.onClick.AddListener(OnStartGameButtonClick);
@@ -27,14 +34,17 @@ namespace Extensions.MappingUnityToModel
             _exitButton.onClick.RemoveListener(OnExitButtonClick);
         }
 
-        private void OnStartGameButtonClick()
+        private async void OnStartGameButtonClick()
         {
-            _world.SendMessage(new StartGameRequest());
+            Queue<ILoadingOperation> loadingOperations = new();
+            loadingOperations.Enqueue(new LoadGameAssets(_assetsLoadProvider));
+            loadingOperations.Enqueue(new LoadGameLoadingOperation());
+            await _provider.LoadAndDestroy(loadingOperations);
         }
 
-        private void OnExitButtonClick()
+        private static void OnExitButtonClick()
         {
-            _world.SendMessage(new CloseAppRequest());
+            Application.Quit();
         }
     }
 }

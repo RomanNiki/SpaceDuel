@@ -17,7 +17,8 @@ namespace Extensions.GameStateMachine.States
         private readonly Settings _settings;
         private readonly IPauseService _pauseService;
 
-        public RestartGameState(EcsWorld world, Settings settings, IPauseService pauseService, List<Transition> transitions) : base(transitions)
+        public RestartGameState(EcsWorld world, Settings settings, IPauseService pauseService,
+            List<Transition> transitions) : base(transitions)
         {
             _world = world;
             _settings = settings;
@@ -31,14 +32,10 @@ namespace Extensions.GameStateMachine.States
 
             await SlowDownTime();
 
-            await SceneManager.LoadSceneAsync(SceneManager.GetActiveScene().buildIndex).ToUniTask().ContinueWith(() =>
-            {
-                Time.timeScale = 1f;
-            });
-        }
+            var activeScene = SceneManager.GetActiveScene();
 
-        protected override void OnRun()
-        {
+            await SceneManager.LoadSceneAsync(activeScene.buildIndex).ToUniTask()
+                .ContinueWith(() => { Time.timeScale = 1f; });
         }
 
         private async UniTask SlowDownTime()
@@ -49,10 +46,6 @@ namespace Extensions.GameStateMachine.States
                 Time.timeScale = Mathf.Lerp(1f, 0.5f, normalizedTime);
                 await UniTask.Yield();
             }
-        }
-
-        public override void OnExit()
-        {
         }
 
         [Serializable]

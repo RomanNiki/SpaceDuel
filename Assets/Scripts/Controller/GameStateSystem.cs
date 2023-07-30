@@ -30,7 +30,7 @@ namespace Controller
         private readonly EcsFilter<StartGameRequest> _unpauseFilter;
         private readonly EcsFilter<GameStartedEvent> _gameStartedFilter;
         private readonly EcsFilter<InputShootStartedEvent> _shotStartedEvent;
-
+        private EcsComponentPool<Score> _component;
         private State _currentState;
 
         public void Run()
@@ -54,8 +54,9 @@ namespace Controller
 
         private State InitGameStates()
         {
+            var exitTransitions = new List<Transition>();
             var exitState = new ExitGameState(_scoreFilter, _loadingScreenProvider, _gameAssetsLoadProvider,
-                new List<Transition>(0));
+                exitTransitions);
 
             var pauseTransitions = new List<Transition>
             {
@@ -64,7 +65,8 @@ namespace Controller
 
             var pauseState = new PauseGameState(_world, _pauseProvider, pauseTransitions);
 
-            var restartState = new RestartGameState(_world, _restartSettings, _pauseService, new List<Transition>());
+            var restartTransitions = new List<Transition>();
+            var restartState = new RestartGameState(_world, _restartSettings, _pauseService, restartTransitions);
 
             var gameProcessTransitions = new List<Transition>
             {
@@ -87,7 +89,7 @@ namespace Controller
             var anyKeyTransition = new MenuPlayerShotTransition(startState, _shotStartedEvent);
 
             var controlsState = new ShowControlsState(_controlsScreenProvider,
-                new List<Transition>() {pauseTransition, anyKeyTransition});
+                new List<Transition>() { pauseTransition, anyKeyTransition });
             pauseTransitions.Add(unpauseTransition);
             gameProcessTransitions.Add(pauseTransition);
             return controlsState;

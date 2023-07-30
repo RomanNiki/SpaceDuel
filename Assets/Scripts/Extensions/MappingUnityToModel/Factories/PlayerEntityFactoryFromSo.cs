@@ -28,6 +28,8 @@ namespace Extensions.MappingUnityToModel.Factories
                 .AddEnergy(_settings.MaxEnergy);
             entity.Get<DischargeMoveContainer>().DischargeRequest.Value = _settings.MoveCost;
             entity.Get<DischargeRotateContainer>().DischargeRequest.Value = _settings.RotationCost;
+            entity.Get<Speed>() = new Speed(_settings.Speed);
+            entity.Get<RotationSpeed>() =new RotationSpeed(_settings.RotationSpeed);
             return entity;
         }
 
@@ -36,6 +38,8 @@ namespace Extensions.MappingUnityToModel.Factories
         {
             public float MaxHealth;
             public float MaxEnergy;
+            public float Speed;
+            public float RotationSpeed;
             public float RotationCost;
             public float MoveCost;
         }

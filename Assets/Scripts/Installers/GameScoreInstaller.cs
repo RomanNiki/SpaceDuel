@@ -15,8 +15,15 @@ namespace Installers
     public class GameScoreInstaller : MonoInstaller
     {
         [SerializeField] private Settings _settings;
-        [Inject] private EcsWorld _world;
-        [Inject] private PlayersScore _score;
+        private EcsWorld _world;
+        private PlayersScore _score;
+
+        [Inject]
+        public void Constructor(EcsWorld world, PlayersScore score)
+        {
+            _world = world;
+            _score = score;
+        }
 
         public override void InstallBindings()
         {

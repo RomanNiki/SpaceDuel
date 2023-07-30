@@ -17,9 +17,15 @@ namespace Model.Unit.Collisions
             foreach (var i in _sunCollisionFilter)
             {
                 var collisions = _sunCollisionFilter.Get1(i).List;
-
-                foreach (var collision in collisions)
+                
+                for (var j = 0; j < collisions.Count; j++)
                 {
+                    var collision = collisions.Dequeue();
+                    if (collision.Other.IsAlive() == false)
+                    {
+                        continue;
+                    }
+
                     collision.Other.Get<InstantlyKillRequest>();
                 }
             }

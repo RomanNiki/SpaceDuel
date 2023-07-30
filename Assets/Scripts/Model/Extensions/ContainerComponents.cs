@@ -5,7 +5,7 @@ namespace Model.Extensions
     public struct ContainerComponents<T> 
         where T : struct
     {
-        public List<T> List => _list ??= new List<T>();
-        private List<T> _list;
+        public Queue<T> List => _list ??= new Queue<T>();
+        private Queue<T> _list;
     }
 }

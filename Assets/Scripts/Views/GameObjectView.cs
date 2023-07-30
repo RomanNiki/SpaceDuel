@@ -28,9 +28,9 @@ namespace Views
         {
             _memoryPool.Despawn(this);
         }
-
-        public class Factory : PlaceholderFactory<GameObjectView>
-        {
-        }
+    }
+    
+    public class GameObjectViewFactory : PlaceholderFactory<GameObjectView>
+    {
     }
 }

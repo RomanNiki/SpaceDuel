@@ -13,24 +13,22 @@ MonoBehaviour:
   m_Name: GameSettingsInstaller
   m_EditorClassIdentifier: 
   _targetFrameRate: 200
-  _gameInstaller:
-    Restart:
-      RestartDelay: 3.5
-    Buff:
-      MaxTimeToSpawn: 30
-      MinTimeToSpawn: 10
-    PrepairGame:
-      SecondsToStart: 3
-  _player:
-    Move:
-      MoveForce: 30
-    Rotate:
-      RotationSpeed: 100
-    SolarCharger:
-      MaxChargeDistance: 22
-      MinChargeDistance: 0
-    PlayerInit:
-      FirstPlayerSpawnPoint: {x: 14.46, y: 0, z: 0}
-      SecondPlayerSpawnPoint: {x: -14.46, y: 0, z: 0}
+  _gameSettings:
+    _restart:
+      RestartDelay: 3
+    _buff:
+      MaxTimeToSpawn: 60
+      MinTimeToSpawn: 15
+    _startGame:
+      SecondsToStart: 3.5
+  _playerSettings:
+    _rotate:
+      RotationSpeed: 90
+    _solarCharger:
+      MaxChargeDistance: 45
+      MinChargeDistance: 5
+    _playerInit:
+      FirstPlayerSpawnPoint: {x: 16, y: 0, z: 0}
+      SecondPlayerSpawnPoint: {x: -16, y: 0, z: 0}
       FirstPlayerRotation: {x: 0, y: 0, z: -90}
       SecondPlayerRotation: {x: 0, y: 0, z: 90}

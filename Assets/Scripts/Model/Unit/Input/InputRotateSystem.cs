@@ -29,7 +29,7 @@ namespace Model.Unit.Input
             foreach (var i in _rotationCanceledFilter)
             {
                 ref var inputMoveCanceledEvent = ref _rotationCanceledFilter.Get1(i);
-                ProcessRotation(inputMoveCanceledEvent.PlayerNumber, 0f);
+                ProcessRotation(inputMoveCanceledEvent.PlayerTeam, 0f);
             }
         }
 

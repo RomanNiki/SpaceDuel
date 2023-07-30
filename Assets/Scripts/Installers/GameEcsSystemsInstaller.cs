@@ -24,6 +24,7 @@ using Model.VisualEffects;
 using Model.VisualEffects.Components.Tags;
 using Model.Weapons;
 using Model.Weapons.Components;
+using Model.Weapons.Components.Tags;
 using Views.Systems;
 using Views.Systems.Create.Buffs;
 using Views.Systems.Create.Effects;
@@ -78,10 +79,10 @@ namespace Installers
 
         private void AddViewCreateSystems()
         {
-            Container.AddRunSystem<BulletViewCreateSystem>();
-            Container.AddRunSystem<MineViewCreateSystem>();
-            Container.AddRunSystem<ExplosionViewCreateSystem>();
-            Container.AddRunSystem<HitViewCreateSystem>();
+            Container.AddRunSystem<ProjectileCreateSystem<BulletTag>>();
+            Container.AddRunSystem<ProjectileCreateSystem<MineTag>>();
+            Container.AddRunSystem<VisualEffectViewCreateSystem<ExplosionTag>>();
+            Container.AddRunSystem<VisualEffectViewCreateSystem<HitTag>>();
             Container.AddRunSystem<EnergyBuffViewCreateSystem>();
         }
 
@@ -113,14 +114,13 @@ namespace Installers
         private void AddFixedSystems()
         {
             AddMoveSystems();
-            AddCollisionsSystems();
             Container.AddFixedSystem<ExecuteHitSystem>();
+            AddCollisionsSystems();
             Container.AddFixedSystem<DamageSystem>();
             Container.AddFixedSystem<UpdateBarViewSystem<HealthChangeEvent, Health, HealthBar>>();
             Container.AddFixedSystem<DeathSystem>();
             AddScoreSystems();
             AddDestroySystems();
-
         }
 
         private void AddRestartGameSystems()

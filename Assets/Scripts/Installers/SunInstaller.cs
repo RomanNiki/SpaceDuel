@@ -17,10 +17,16 @@ namespace Installers
 {
     public class SunInstaller : MonoInstaller<SunInstaller>
     {
-        [Inject] private readonly EcsWorld _world;
+        private EcsWorld _world;
         [SerializeField] private Settings _settings;
         [SerializeField] private BuffEntityFactoryFromSo _buffEntityFactory;
 
+        [Inject]
+        public void Constructor(EcsWorld world)
+        {
+            _world = world;
+        }
+        
         public override void InstallBindings()
         {
             var entity = EcsInitSun();

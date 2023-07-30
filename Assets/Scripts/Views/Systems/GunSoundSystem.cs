@@ -9,7 +9,7 @@ namespace Views.Systems
 {
     internal sealed class GunSoundSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<UnityComponent<GunAudioUnityComponent>, ShootIsPossible, ShotMadeEvent, UnityComponent<AudioClip>> _gunsMadeShot = null;
+        private readonly EcsFilter<UnityComponent<GunAudioUnityComponent>, ShootIsPossible, ShotMadeEvent, UnityComponent<AudioClip>> _gunsMadeShot;
 
         public void Run()
         {

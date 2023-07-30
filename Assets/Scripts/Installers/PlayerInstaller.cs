@@ -24,7 +24,13 @@ namespace Installers
         [SerializeField] private WeaponEntityFactoryFromSo _primaryWeapon;
         [SerializeField] private WeaponEntityFactoryFromSo _secondaryWeapon;
         [SerializeField] private Settings _settings;
-        [Inject] private EcsWorld _world;
+        private EcsWorld _world;
+
+        [Inject]
+        public void Constructor(EcsWorld world)
+        {
+            _world = world;
+        }
 
         public override void InstallBindings()
         {

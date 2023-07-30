@@ -1,6 +1,7 @@
 ﻿using Leopotam.Ecs;
 using Model.Components.Requests;
 using Model.Extensions;
+using Model.Extensions.EntityFactories;
 using Model.Unit.Destroy.Components.Requests;
 using Model.Unit.Movement.Components;
 using Model.VisualEffects.Components.Events;
@@ -11,10 +12,15 @@ namespace Model.VisualEffects
 {
     public sealed class ExecuteExplosionSystem : IEcsRunSystem
     {
-        private readonly VisualEffectsEntityFactories _entityFactory;
+        private readonly IEntityFactory _entityFactory;
         private readonly EcsWorld _world;
         private readonly EcsFilter<Position, EntityDestroyRequest, ExplosiveTag> _filterExplosive = null;
 
+        public ExecuteExplosionSystem(IEntityFactory entityFactory)
+        {
+            _entityFactory = entityFactory;
+        }
+        
         public void Run()
         {
             foreach (var i in _filterExplosive)
@@ -27,7 +33,7 @@ namespace Model.VisualEffects
 
         private void CreateExplosion(EcsWorld world, Vector2 explosionPosition)
         {
-            var explosion = _entityFactory.ExplosionEntityFactory.CreateEntity(world);
+            var explosion = _entityFactory.CreateEntity(world);
             explosion.Get<ExplosionTag>();
             explosion.AddTransform(explosionPosition);
             explosion.Get<ViewCreateRequest>().StartPosition = explosionPosition;

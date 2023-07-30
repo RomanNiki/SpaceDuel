@@ -18,6 +18,11 @@ namespace Model.Buffs
         private readonly EcsWorld _world;
         private readonly EcsFilter<Sun, Position, EntityFactoryRef<IEntityFactory>>.Exclude<Timer<TimerBetweenSpawn>> _filter;
 
+        public SunBuffEntityExecuteSystem(Settings settings)
+        {
+            _settings = settings;
+        }
+        
         public void Run()
         {
             foreach (var i in _filter)

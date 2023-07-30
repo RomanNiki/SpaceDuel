@@ -1,11 +1,11 @@
 ﻿using System;
 using Extensions;
-using Extensions.Pause;
+using Installers;
 using Leopotam.Ecs;
-using Model.Buffs;
 using Model.Components.Requests;
 using Model.Extensions;
 using Model.Extensions.Interfaces;
+using Model.Extensions.Pause;
 using Model.Unit.Collisions.Components.Events;
 using Model.Unit.Damage.Components.Events;
 using Model.Unit.Damage.Components.Requests;
@@ -13,16 +13,11 @@ using Model.Unit.Destroy.Components.Requests;
 using Model.Unit.EnergySystems.Components.Events;
 using Model.Unit.EnergySystems.Components.Requests;
 using Model.Unit.Input.Components.Events;
-using Model.Unit.Movement;
 using Model.Unit.Movement.Components;
-using Model.Unit.SunEntity;
 using Model.VisualEffects.Components.Events;
 using Model.Weapons.Components.Events;
 using UnityEngine;
 using Zenject;
-#if UNITY_EDITOR
-using Leopotam.Ecs.UnityIntegration;
-#endif
 
 public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializable
 {
@@ -30,25 +25,18 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
     private readonly EcsSystems _systems;
     private readonly EcsSystems _fixedSystems;
     private readonly SystemRegisterHandler _systemRegister;
-    private readonly PlayerRotateSystem.Settings _rotateSettings;
-    private readonly PauseService _pauseService;
-    private readonly VisualEffectsEntityFactories _visualEffectsEntityFactories;
+    private readonly IPauseService _pauseService;
     private readonly IMoveClamper _moveClamper;
-    private readonly SunChargeSystem.Settings _sunChargeSettings;
     private readonly PlayersScore _playersScore;
-    private readonly SunBuffEntityExecuteSystem.Settings _sunBuffSettings;
-    private readonly PlayerForceSystem.Settings _forceSettings;
-    
+    private readonly GameSettingsInstaller.GameSettings _gameSettings;
+    private readonly GameSettingsInstaller.PlayerSettings _playerSettings;
+
     [Inject]
     public Startup(EcsWorld world, SystemRegisterHandler systemRegister,
-        [Inject(Optional = true)] PlayerRotateSystem.Settings rotateSettings,
-        [Inject(Optional = true)] PauseService pauseService,
-        [Inject(Optional = true)] MoveClamper moveClamper,
-        [Inject(Optional = true)] VisualEffectsEntityFactories visualEffectsEntityFactories,
-        [Inject(Optional = true)] SunChargeSystem.Settings sunChargeSettings,
-        [Inject(Optional = true)] PlayersScore playersScore,
-        [Inject(Optional = true)] SunBuffEntityExecuteSystem.Settings sunBuffSettings,
-        [Inject(Optional = true)] PlayerForceSystem.Settings forceSettings
+        GameSettingsInstaller.GameSettings gameSettings, GameSettingsInstaller.PlayerSettings playerSettings,
+        IPauseService pauseService,
+        IMoveClamper moveClamper,
+        PlayersScore playersScore
     )
     {
         Time.timeScale = 1f;
@@ -56,19 +44,16 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
         _systems = new EcsSystems(_world);
         _fixedSystems = new EcsSystems(_world);
         _systemRegister = systemRegister;
-#if UNITY_EDITOR
-        EcsWorldObserver.Create(_world);
-        EcsSystemsObserver.Create(_systems);
-        EcsSystemsObserver.Create(_fixedSystems);
-#endif
-        _visualEffectsEntityFactories = visualEffectsEntityFactories;
-        _rotateSettings = rotateSettings;
+        _playerSettings = playerSettings;
+        _gameSettings = gameSettings;
         _pauseService = pauseService;
         _moveClamper = moveClamper;
-        _sunChargeSettings = sunChargeSettings;
         _playersScore = playersScore;
-        _sunBuffSettings = sunBuffSettings;
-        _forceSettings = forceSettings;
+        /*#if UNITY_EDITOR
+        Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create(_world);
+        Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create(_systems);
+        Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create(_fixedSystems);
+#endif*/
     }
 
     public void Tick()
@@ -144,14 +129,14 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
 
     private void InjectGameData()
     {
-        if (_sunChargeSettings != null)
+        if (_playerSettings != null)
         {
-            _systems.Inject(_sunChargeSettings);
-        } 
-        
-        if (_sunBuffSettings != null)
+            _systems.Inject(_playerSettings.SolarSettings);
+        }
+
+        if (_gameSettings != null)
         {
-            _systems.Inject(_sunBuffSettings);
+            _systems.Inject(_gameSettings.BuffSettings);
         }
 
         if (_playersScore != null)
@@ -168,21 +153,6 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
         {
             _systems.Inject(_pauseService);
             _fixedSystems.Inject(_pauseService);
-        }
-
-        if (_visualEffectsEntityFactories != null)
-        {
-            _fixedSystems.Inject(_visualEffectsEntityFactories);
-        }
-
-        if (_rotateSettings != null)
-        {
-            _fixedSystems.Inject(_rotateSettings);
-        }  
-        
-        if (_forceSettings != null)
-        {
-            _fixedSystems.Inject(_forceSettings);
         }
     }
 }

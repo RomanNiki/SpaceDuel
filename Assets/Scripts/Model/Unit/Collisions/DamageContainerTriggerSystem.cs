@@ -16,14 +16,16 @@ namespace Model.Unit.Collisions
         {
             foreach (var i in _damagerFilter)
             {
-              ref var bullet = ref _damagerFilter.GetEntity(i);
+                ref var bullet = ref _damagerFilter.GetEntity(i);
                 ref var bulletHealthCurrent = ref bullet.Get<Health>();
-
+                
                 var collisions = _damagerFilter.Get1(i).List;
 
-                foreach (var collision in collisions)
+                for (var j = 0; j < collisions.Count; j++)
                 {
-                    var calculateBulletHealthCurrent = GetCalculateBulletHealthCurrent(bullet, bulletHealthCurrent.Current);
+                    var collision = collisions.Dequeue();
+                    var calculateBulletHealthCurrent =
+                        GetCalculateBulletHealthCurrent(bullet, bulletHealthCurrent.Current);
                     if (calculateBulletHealthCurrent == 0) break;
                     var otherEntity = collision.Other;
                     ProcessBulletCollision(bullet, otherEntity);

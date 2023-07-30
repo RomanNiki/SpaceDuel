@@ -8,8 +8,15 @@ using Views.Extensions.Pools;
 
 namespace Views.Systems.Create.Projectiles
 {
-    public abstract class ProjectileCreateSystem<TFlag> : ViewCreateSystem<ViewCreateRequest, TFlag> where TFlag : struct
+    public class ProjectileCreateSystem<TFlag> : ViewCreateSystem<ViewCreateRequest, TFlag> where TFlag : struct
     {
+        private readonly ProjectileViewFactory _factory;
+
+        public ProjectileCreateSystem(ProjectileViewFactory factory)
+        {
+            _factory = factory;
+        }
+
         protected sealed override Transform GetTransform(in EcsEntity entity, in ViewCreateRequest data)
         {
             var poolObject = GetPoolObject();
@@ -21,6 +28,6 @@ namespace Views.Systems.Create.Projectiles
             return transform;
         }
 
-        protected abstract IPhysicsPoolObject GetPoolObject();
+        private IPhysicsPoolObject GetPoolObject() => _factory.Create();
     }
 }

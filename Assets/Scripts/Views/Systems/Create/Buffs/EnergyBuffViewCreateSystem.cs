@@ -5,13 +5,18 @@ using Model.Buffs.Components.Tags;
 using Model.Components.Requests;
 using Model.Extensions;
 using UnityEngine;
-using Zenject;
 
 namespace Views.Systems.Create.Buffs
 {
     public class EnergyBuffViewCreateSystem : ViewCreateSystem<ViewCreateRequest, EnergyBuffTag>
     {
-        [Inject] private GameObjectView.Factory _factory;
+        private readonly GameObjectViewFactory _factory;
+
+        public EnergyBuffViewCreateSystem(GameObjectViewFactory factory)
+        {
+            _factory = factory;
+        }
+
         protected override Transform GetTransform(in EcsEntity entity, in ViewCreateRequest data)
         {
             var poolObject = _factory.Create();

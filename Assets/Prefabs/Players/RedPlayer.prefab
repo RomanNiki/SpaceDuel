@@ -28,6 +28,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[3]
       value: 
       objectReference: {fileID: 2100000, guid: 0f4d2ce6e7532b243b3c64f6039d49a2, type: 2}
+    - target: {fileID: 3502726035980524490, guid: 60b3c6785d4fdda48b29f6956be9d2e1, type: 3}
+      propertyPath: _audioSource
+      value: 
+      objectReference: {fileID: 5883414974463016918}
     - target: {fileID: 3573531093399645150, guid: 60b3c6785d4fdda48b29f6956be9d2e1, type: 3}
       propertyPath: m_Name
       value: RedPlayer
@@ -93,3 +97,8 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 60b3c6785d4fdda48b29f6956be9d2e1, type: 3}
+--- !u!82 &5883414974463016918 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3706907590338957837, guid: 60b3c6785d4fdda48b29f6956be9d2e1, type: 3}
+  m_PrefabInstance: {fileID: 7122304750477815259}
+  m_PrefabAsset: {fileID: 0}

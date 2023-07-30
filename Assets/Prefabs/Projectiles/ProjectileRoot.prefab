@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: -5051013759623065515}
   - component: {fileID: -6863396425466787380}
   - component: {fileID: 4475395539767842668}
-  - component: {fileID: 220253208962574371}
   - component: {fileID: 5857746258131850187}
   - component: {fileID: -1573065836176339164}
+  - component: {fileID: 3316279360640405578}
   m_Layer: 0
   m_Name: ProjectileRoot
   m_TagString: Untagged
@@ -99,18 +99,6 @@ MonoBehaviour:
   _useSceneContext: 0
   _context: {fileID: 0}
   _bindType: 0
---- !u!114 &220253208962574371
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5809206094002908880}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e79a6c0f902c44cfb2585e527e136e99, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5857746258131850187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -133,5 +121,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3fd631f5e57548ba98cd14048d39f246, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3316279360640405578
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5809206094002908880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 677dcc1e5a054744acfb27fb3410558b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

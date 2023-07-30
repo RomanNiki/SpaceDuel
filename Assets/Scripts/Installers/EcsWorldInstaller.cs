@@ -4,13 +4,12 @@ using Zenject;
 
 namespace Installers
 {
-    public class GameEcsWorldInstaller : MonoInstaller
+    public class EcsWorldInstaller : MonoInstaller
     {
         public override void InstallBindings()
         {
             Container.BindInterfacesTo<PauseRegisterHandler>().AsSingle().CopyIntoAllSubContainers();
-            var world = new EcsWorld();
-            Container.BindInstance(world).AsSingle();
+            Container.BindInterfacesAndSelfTo<EcsWorld>().AsSingle();
         }
     }
 }

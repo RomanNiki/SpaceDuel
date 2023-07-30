@@ -14,10 +14,16 @@ namespace EntityToGameObject
     public class PlayerInitSystem : IEcsInitSystem
     {
         private readonly EcsWorld _world = null;
-        [Inject] private GameAssetsLoadProvider _assets;
-        [Inject] private DiContainer _container;
-        [Inject] private Settings _settings;
+        private GameAssetsLoadProvider _assets;
+        private DiContainer _container;
+        private Settings _settings;
 
+        public PlayerInitSystem(GameAssetsLoadProvider assets, DiContainer container, Settings settings)
+        {
+            _assets = assets;
+            _container = container;
+            _settings = settings;
+        }
 
         public void Init()
         {
@@ -27,10 +33,10 @@ namespace EntityToGameObject
 
         private void InitPlayer(Component playerPrefab, Vector3 position, Vector3 rotation)
         {
-            var player = _container
+            var playerTransform = _container
                 .InstantiatePrefab(playerPrefab.gameObject, position, Quaternion.Euler(rotation), null)
                 .transform;
-            InitUI(ref player.GetProvider().Entity);
+            InitUI(ref playerTransform.GetProvider().Entity);
         }
 
         private void InitUI(ref EcsEntity owner)
@@ -43,7 +49,7 @@ namespace EntityToGameObject
             var playerUIBars = _container.InstantiatePrefab(_assets.PlayerUIBar).GetComponent<PlayerUIBars>();
             owner.Get<EnergyBar>().Bar = playerUIBars.EnergyBar;
             owner.Get<HealthBar>().Bar = playerUIBars.HealthBar;
-            
+
             var uiEntity = _world.NewEntity();
             var transform = playerUIBars.transform;
             uiEntity.AddTransform(transform.position, transform.rotation.z);
@@ -51,7 +57,6 @@ namespace EntityToGameObject
             uiEntity.Get<Follower>().Offset = playerUIBars.OffSet;
             uiEntity.Get<PlayerOwner>().Owner = owner;
             playerUIBars.transform.GetProvider().SetEntity(uiEntity);
-          
         }
 
         [Serializable]

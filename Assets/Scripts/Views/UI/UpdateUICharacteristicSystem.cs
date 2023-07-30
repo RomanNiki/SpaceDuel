@@ -7,7 +7,7 @@ namespace Views.UI
         where TValueComponent : struct
         where TUIComponent : struct
     {
-        protected readonly EcsFilter<TValueComponent, TUIComponent, TEvent> ComponentUpdateFilter = null;
+        protected EcsFilter<TValueComponent, TUIComponent, TEvent> ComponentUpdateFilter;
 
         public void Run()
         {

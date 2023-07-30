@@ -10,6 +10,11 @@ namespace Model.Unit.Movement
     {
         private readonly IMoveClamper _moveClamper;
         private readonly EcsFilter<Position>.Exclude<VisualEffectTag, MineTag> _positionFilter = null;
+
+        public ClampMoveSystem(IMoveClamper moveClamper)
+        {
+            _moveClamper = moveClamper;
+        }
         
         public void Run()
         {

@@ -15,5 +15,7 @@ MonoBehaviour:
   _settings:
     MaxHealth: 100
     MaxEnergy: 100
-    RotationCost: 0.1
-    MoveCost: 0.15
+    Speed: 50
+    RotationSpeed: 90
+    RotationCost: 0.05
+    MoveCost: 0.1

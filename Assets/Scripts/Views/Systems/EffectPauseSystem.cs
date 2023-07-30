@@ -2,17 +2,15 @@
 using Model.Components;
 using Model.Components.Events;
 using Model.Components.Requests;
-using UnityEngine.VFX;
 using Views.Extensions;
-
 
 namespace Views.Systems
 {
     public sealed class EffectPauseSystem : IEcsRunSystem
     {
-        private EcsFilter<UnityComponent<EffectInteractor>> _filter;
-        private EcsFilter<PauseRequest> _pause;
-        private EcsFilter<StartGameRequest> _start;
+        private readonly EcsFilter<UnityComponent<EffectInteractor>> _filter;
+        private readonly EcsFilter<PauseRequest> _pause;
+        private readonly EcsFilter<StartGameRequest> _start;
 
         public void Run()
         {

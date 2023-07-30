@@ -1,7 +1,4 @@
 using EntityToGameObject;
-using JetBrains.Annotations;
-using Leopotam.Ecs;
-using Model.Components;
 using Model.Extensions.Pause;
 using UnityEngine;
 
@@ -11,22 +8,11 @@ namespace Extensions.MappingUnityToModel
     public class SpawnSoundPlayerUnityComponent : MonoBehaviour, IPauseHandler
     {
         [SerializeField] private AudioSource _audioSource;
-        [SerializeField] [CanBeNull] private AudioClip _audioClip;
-        private EcsUnityProvider _provider;
-
-        private void Awake()
-        {
-            _provider = GetComponent<EcsUnityProvider>();
-            if (_audioClip != null) return;
-            if (_provider.Entity.Has<UnityComponent<AudioClip>>())
-            {
-                _audioClip = _provider.Entity.Get<UnityComponent<AudioClip>>().Value;
-            }
-        }
+        [SerializeField] private AudioClip _audioClip;
 
         private void OnEnable()
         {
-            _audioSource.PlayOneShot(_audioClip, 0.25f);
+           // _audioSource.PlayOneShot(_audioClip);
         }
 
         public void SetPaused(bool isPaused)

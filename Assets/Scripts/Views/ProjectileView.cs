@@ -16,9 +16,9 @@ namespace Views
             base.Awake();
             Rigidbody2D = GetComponent<Rigidbody2D>();
         }
-        
-        public new class Factory : PlaceholderFactory<ProjectileView>
-        {
-        }
+    }
+    
+    public class ProjectileViewFactory : PlaceholderFactory<ProjectileView>
+    {
     }
 }

@@ -72,10 +72,10 @@ namespace Controller.Input
                     {PlayerTeam = TeamEnum.Red, Axis = context.ReadValue<float>()});
 
             _playerInput.Player.Rotate.canceled += _ =>
-                SendMessageInGame(new InputRotateCanceledEvent() {PlayerNumber = TeamEnum.Blue});
+                SendMessageInGame(new InputRotateCanceledEvent() {PlayerTeam = TeamEnum.Blue});
 
             _playerInput.Player1.Rotate.canceled += _ =>
-                SendMessageInGame(new InputRotateCanceledEvent {PlayerNumber = TeamEnum.Red});
+                SendMessageInGame(new InputRotateCanceledEvent {PlayerTeam = TeamEnum.Red});
 
             _playerInput.Player.Acceleration.started += _ =>
                 SendMessageInGame(new InputAccelerateStartedEvent() {PlayerTeam = TeamEnum.Blue});

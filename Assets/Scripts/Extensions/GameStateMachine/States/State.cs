@@ -12,19 +12,24 @@ namespace Extensions.GameStateMachine.States
         {
             _transitions = transitions;
         }
-        
+
         public void Enter()
         {
             foreach (var transition in _transitions)
             {
                 transition.Init();
             }
+
             OnEnter();
         }
 
-        protected abstract void OnEnter();
-        
-        protected abstract void OnRun();
+        protected virtual void OnEnter()
+        {
+        }
+
+        protected virtual void OnRun()
+        {
+        }
 
         public void Run()
         {
@@ -32,14 +37,16 @@ namespace Extensions.GameStateMachine.States
             {
                 transition.Tick();
             }
+
             OnRun();
         }
 
-        public abstract void OnExit();
+        public virtual void OnExit()
+        {
+        }
 
         public State GetNextState()
         {
-           
             foreach (var transition in _transitions)
             {
                 if (transition.NeedTransit)

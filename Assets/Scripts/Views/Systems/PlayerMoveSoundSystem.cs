@@ -12,9 +12,8 @@ namespace Views.Systems
 {
     public sealed class PlayerMoveSoundSystem : IPauseHandler, IEcsRunSystem
     {
-        private readonly EcsFilter<UnityComponent<PlayerAudioComponent>, Team>.Exclude<NoEnergyBlock> _playerFilter =
-            null;
-
+        private readonly EcsFilter<UnityComponent<PlayerAudioComponent>, Team>.Exclude<NoEnergyBlock> _playerFilter;
+        private readonly EcsFilter<UnityComponent<PlayerAudioComponent>, Team, NoEnergyBlock> _playerNoEnergyFilter;
         private readonly EcsFilter<InputAccelerateStartedEvent> _accelerateStartFilter;
         private readonly EcsFilter<InputAccelerateCanceledEvent> _accelerateCanceledFilter;
         private readonly EcsFilter<InputRotateStartedEvent> _rotateStartFilter;
@@ -44,6 +43,12 @@ namespace Views.Systems
                 }
             }
 
+            foreach (var i in _playerNoEnergyFilter)
+            {
+                _playerNoEnergyFilter.Get1(i).Value.StopAccelerateSound();
+                _playersAccelerating.Remove(_playerNoEnergyFilter.Get2(i).Value);
+            }
+
             foreach (var i in _rotateStartFilter)
             {
                 ref var rotateTeam = ref _rotateStartFilter.Get1(i);
@@ -52,15 +57,23 @@ namespace Views.Systems
 
             foreach (var i in _rotateCanceledFilter)
             {
-                ref var rotateTeam = ref _rotateStartFilter.Get1(i);
+                ref var rotateTeam = ref _rotateCanceledFilter.Get1(i);
                 _playersRotating.Remove(rotateTeam.PlayerTeam);
             }
-
+            
+            foreach (var i in _playerNoEnergyFilter)
+            {
+                _playerNoEnergyFilter.Get1(i).Value.StopAccelerateSound();
+                var team = _playerNoEnergyFilter.Get2(i).Value;
+                _playersAccelerating.Remove(team);
+                _playersRotating.Remove(team);
+            }
+            
             if (_pause)
             {
                 return;
             }
-            
+
             ProcessMoveSounds();
         }
 
@@ -69,16 +82,17 @@ namespace Views.Systems
             foreach (var j in _playerFilter)
             {
                 ref var team = ref _playerFilter.Get2(j);
-                if (_playersAccelerating.Contains(team.Value) == false) continue;
                 ref var soundComponent = ref _playerFilter.Get1(j);
-                soundComponent.Value.PlayAccelerateSound();
-            }
+                if (_playersAccelerating.Contains(team.Value))
+                {
+                    soundComponent.Value.PlayAccelerateSound();
+                }
 
-            foreach (var j in _playerFilter)
-            {
-                ref var team = ref _playerFilter.Get2(j);
-                if (_playersRotating.Contains(team.Value) == false) continue;
-                ref var soundComponent = ref _playerFilter.Get1(j);
+                if (_playersRotating.Contains(team.Value) == false)
+                {
+                    continue;
+                }
+
                 soundComponent.Value.PlayRotateSound();
             }
         }

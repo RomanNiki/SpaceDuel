@@ -10,9 +10,16 @@ using Views.Extensions.Pools;
 
 namespace Views.Systems.Create.Effects
 {
-    public abstract class VisualEffectViewCreateSystem<TFlag> : ViewCreateSystem<ViewCreateRequest, TFlag>
+    public class VisualEffectViewCreateSystem<TFlag> : ViewCreateSystem<ViewCreateRequest, TFlag>
         where TFlag : struct
     {
+        private readonly VisualEffectViewFactory _factory;
+
+        public VisualEffectViewCreateSystem(VisualEffectViewFactory factory)
+        {
+            _factory = factory;
+        }
+
         protected sealed override Transform GetTransform(in EcsEntity entity, in ViewCreateRequest data)
         {
             var explosionView = GetPoolObject();
@@ -25,6 +32,6 @@ namespace Views.Systems.Create.Effects
             return transform;
         }
 
-        protected abstract IVisualEffectPoolObject GetPoolObject();
+        private IVisualEffectPoolObject GetPoolObject() => _factory.Create();
     }
 }

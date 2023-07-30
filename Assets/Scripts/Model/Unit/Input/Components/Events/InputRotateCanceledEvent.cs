@@ -4,6 +4,6 @@ namespace Model.Unit.Input.Components.Events
 {
     public struct InputRotateCanceledEvent
     {
-        public TeamEnum PlayerNumber;
+        public TeamEnum PlayerTeam;
     }
 }

@@ -15,7 +15,8 @@ namespace Extensions.GameStateMachine.States
         private readonly LoadingScreenProvider _loadingScreenProvider;
         private readonly GameAssetsLoadProvider _gameAssetsLoadProvider;
 
-        public ExitGameState(EcsFilter<Score> scoreFilter, LoadingScreenProvider provider, GameAssetsLoadProvider gameAssetsLoadProvider, List<Transition> transitions)
+        public ExitGameState(EcsFilter<Score> scoreFilter, LoadingScreenProvider provider,
+            GameAssetsLoadProvider gameAssetsLoadProvider, List<Transition> transitions)
             : base(transitions)
         {
             _scoreFilter = scoreFilter;
@@ -35,14 +36,6 @@ namespace Extensions.GameStateMachine.States
             loadingOperations.Enqueue(new LoadMenuLoadingOperation());
             loadingOperations.Enqueue(new UnloadGameAssets(_gameAssetsLoadProvider));
             await _loadingScreenProvider.LoadAndDestroy(loadingOperations);
-        }
-
-        protected override void OnRun()
-        {
-        }
-
-        public override void OnExit()
-        {
         }
     }
 }

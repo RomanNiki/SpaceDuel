@@ -42,7 +42,7 @@ namespace Extensions
             where T : struct
         {
             ref var containerComponents = ref entity.Get<ContainerComponents<T>>();
-            containerComponents.List.Add(eventComponent);
+            containerComponents.List.Enqueue(eventComponent);
         }
 
         public static void AddEvent<T>(in this EcsEntity entity, in T eventComponent)
