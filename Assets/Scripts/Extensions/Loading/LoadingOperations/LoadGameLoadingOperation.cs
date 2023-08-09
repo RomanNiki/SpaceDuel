@@ -8,6 +8,7 @@ namespace Extensions.Loading.LoadingOperations
     public class LoadGameLoadingOperation : ILoadingOperation
     {
         public string Description { get; set; } = "Load game...";
+        
         public async UniTask Load(Action<float> onProgress)
         {
             onProgress?.Invoke(0.5f);

@@ -4,7 +4,6 @@ using Model.Extensions.Pause;
 using Model.Unit.EnergySystems.Components;
 using Model.Unit.Input.Components;
 using Model.Unit.Movement.Components;
-using UnityEngine.VFX;
 using Views.Extensions;
 
 namespace Views.Systems.Update

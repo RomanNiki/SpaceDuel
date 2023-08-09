@@ -14,15 +14,8 @@ namespace Controller
 {
     public class GameStateSystem : IEcsRunSystem, IEcsInitSystem
     {
-        private readonly EcsWorld _world;
         private readonly IPauseService _pauseService;
-        [Inject] private RestartGameState.Settings _restartSettings;
-        [Inject] private StartGameState.Settings _startSettings;
-        [Inject] private PrepareGameScreenProvider _prepareGameScreenProvider;
-        [Inject] private LoadingScreenProvider _loadingScreenProvider;
-        [Inject] private PauseMenuProvider _pauseProvider;
-        [Inject] private GameAssetsLoadProvider _gameAssetsLoadProvider;
-        [Inject] private ControlsScreenProvider _controlsScreenProvider;
+        private readonly DiContainer _container;
         private readonly EcsFilter<PauseRequest> _pauseFilter;
         private readonly EcsFilter<Score> _scoreFilter;
         private readonly EcsFilter<ExitRequest> _exitGameFilter;
@@ -31,7 +24,14 @@ namespace Controller
         private readonly EcsFilter<GameStartedEvent> _gameStartedFilter;
         private readonly EcsFilter<InputShootStartedEvent> _shotStartedEvent;
         private EcsComponentPool<Score> _component;
+
         private State _currentState;
+
+        public GameStateSystem(DiContainer container, IPauseService pauseService)
+        {
+            _container = container;
+            _pauseService = pauseService;
+        }
 
         public void Run()
         {
@@ -55,25 +55,28 @@ namespace Controller
         private State InitGameStates()
         {
             var exitTransitions = new List<Transition>();
-            var exitState = new ExitGameState(_scoreFilter, _loadingScreenProvider, _gameAssetsLoadProvider,
-                exitTransitions);
+            var exitState = _container.Instantiate<ExitGameState>(new object[] { exitTransitions, _scoreFilter });
 
             var pauseTransitions = new List<Transition>
             {
                 new ExitGameTransition(exitState, _exitGameFilter),
             };
 
-            var pauseState = new PauseGameState(_world, _pauseProvider, pauseTransitions);
+            var pauseState = _container.Instantiate<PauseGameState>(new object[] { pauseTransitions });
 
             var restartTransitions = new List<Transition>();
-            var restartState = new RestartGameState(_world, _restartSettings, _pauseService, restartTransitions);
+            var restartState = _container.Instantiate<RestartGameState>(new object[]
+            {
+                _pauseService, restartTransitions
+            });
 
             var gameProcessTransitions = new List<Transition>
             {
                 new RestartTransition(restartState, _restartRequest)
             };
 
-            var gameProcessState = new GameProcessState(_pauseService, gameProcessTransitions);
+            var gameProcessState =
+                _container.Instantiate<GameProcessState>(new object[] { gameProcessTransitions });
 
             var pauseTransition = new PauseTransition(pauseState, _pauseFilter);
             var startGameTransitions = new List<Transition>
@@ -82,14 +85,13 @@ namespace Controller
                 new StartGameProcessTransition(gameProcessState, _gameStartedFilter)
             };
 
-            var startState = new StartGameState(_startSettings, _prepareGameScreenProvider, _world,
-                startGameTransitions);
+            var startState = _container.Instantiate<StartGameState>(new object[] { startGameTransitions });
 
             var unpauseTransition = new UnPauseTransition(startState, _unpauseFilter);
             var anyKeyTransition = new MenuPlayerShotTransition(startState, _shotStartedEvent);
 
-            var controlsState = new ShowControlsState(_controlsScreenProvider,
-                new List<Transition>() { pauseTransition, anyKeyTransition });
+            var controlTransition = new List<Transition>() { pauseTransition, anyKeyTransition };
+            var controlsState = _container.Instantiate<ShowControlsState>(new object[] { controlTransition });
             pauseTransitions.Add(unpauseTransition);
             gameProcessTransitions.Add(pauseTransition);
             return controlsState;

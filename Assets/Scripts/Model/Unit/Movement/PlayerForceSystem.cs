@@ -1,5 +1,4 @@
-﻿using System;
-using Leopotam.Ecs;
+﻿using Leopotam.Ecs;
 using Model.Extensions;
 using Model.Unit.EnergySystems.Components;
 using Model.Unit.Input.Components;

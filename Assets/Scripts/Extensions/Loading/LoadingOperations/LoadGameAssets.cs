@@ -12,7 +12,9 @@ namespace Extensions.Loading.LoadingOperations
         {
             _assetsLoadProvider = assetsLoadProvider;
         }
+        
         public string Description { get; } = "Load GameAssets";
+        
         public async UniTask Load(Action<float> onProgress)
         {
             onProgress?.Invoke(0.5f);

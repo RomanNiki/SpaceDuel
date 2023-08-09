@@ -24,6 +24,42 @@ namespace Views.Systems
 
         public void Run()
         {
+            HandleAccelerateInput();
+            HandleRotationInput();
+            
+            foreach (var i in _playerNoEnergyFilter)
+            {
+                _playerNoEnergyFilter.Get1(i).Value.StopAccelerateSound();
+                var team = _playerNoEnergyFilter.Get2(i).Value;
+                _playersAccelerating.Remove(team);
+                _playersRotating.Remove(team);
+            }
+            
+            if (_pause)
+            {
+                return;
+            }
+
+            ProcessMoveSounds();
+        }
+
+        private void HandleRotationInput()
+        {
+            foreach (var i in _rotateStartFilter)
+            {
+                ref var rotateTeam = ref _rotateStartFilter.Get1(i);
+                _playersRotating.Add(rotateTeam.PlayerTeam);
+            }
+
+            foreach (var i in _rotateCanceledFilter)
+            {
+                ref var rotateTeam = ref _rotateCanceledFilter.Get1(i);
+                _playersRotating.Remove(rotateTeam.PlayerTeam);
+            }
+        }
+
+        private void HandleAccelerateInput()
+        {
             foreach (var i in _accelerateStartFilter)
             {
                 ref var accelerateTeam = ref _accelerateStartFilter.Get1(i);
@@ -42,39 +78,6 @@ namespace Views.Systems
                     soundComponent.Value.StopAccelerateSound();
                 }
             }
-
-            foreach (var i in _playerNoEnergyFilter)
-            {
-                _playerNoEnergyFilter.Get1(i).Value.StopAccelerateSound();
-                _playersAccelerating.Remove(_playerNoEnergyFilter.Get2(i).Value);
-            }
-
-            foreach (var i in _rotateStartFilter)
-            {
-                ref var rotateTeam = ref _rotateStartFilter.Get1(i);
-                _playersRotating.Add(rotateTeam.PlayerTeam);
-            }
-
-            foreach (var i in _rotateCanceledFilter)
-            {
-                ref var rotateTeam = ref _rotateCanceledFilter.Get1(i);
-                _playersRotating.Remove(rotateTeam.PlayerTeam);
-            }
-            
-            foreach (var i in _playerNoEnergyFilter)
-            {
-                _playerNoEnergyFilter.Get1(i).Value.StopAccelerateSound();
-                var team = _playerNoEnergyFilter.Get2(i).Value;
-                _playersAccelerating.Remove(team);
-                _playersRotating.Remove(team);
-            }
-            
-            if (_pause)
-            {
-                return;
-            }
-
-            ProcessMoveSounds();
         }
 
         private void ProcessMoveSounds()

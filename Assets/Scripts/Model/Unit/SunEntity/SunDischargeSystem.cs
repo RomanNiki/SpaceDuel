@@ -12,7 +12,12 @@ namespace Model.Unit.SunEntity
         private readonly SunChargeSystem.Settings _settings;
         private readonly EcsFilter<SunDischargeTag, Position, Energy> _dischargeFilter = null;
         private readonly EcsFilter<Sun, Position, ChargeContainer> _sunFilter = null;
-
+        
+        public SunDischargeSystem(SunChargeSystem.Settings settings)
+        {
+            _settings = settings;
+        }
+        
         public void Run()
         {
             foreach (var j in _sunFilter)

@@ -16,6 +16,11 @@ namespace Model.Unit.SunEntity
         private readonly EcsFilter<PlayerTag, Position, Rotation> _playerFilter = null;
         private readonly EcsFilter<Sun, Position, ChargeContainer> _sunFilter = null;
 
+        public SunChargeSystem(Settings settings)
+        {
+            _settings = settings;
+        }
+        
         protected override void Tick()
         {
             foreach (var j in _sunFilter)

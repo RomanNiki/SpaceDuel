@@ -1,11 +1,8 @@
 ﻿using System;
 using Extensions;
-using Installers;
 using Leopotam.Ecs;
 using Model.Components.Requests;
 using Model.Extensions;
-using Model.Extensions.Interfaces;
-using Model.Extensions.Pause;
 using Model.Unit.Collisions.Components.Events;
 using Model.Unit.Damage.Components.Events;
 using Model.Unit.Damage.Components.Requests;
@@ -25,35 +22,16 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
     private readonly EcsSystems _systems;
     private readonly EcsSystems _fixedSystems;
     private readonly SystemRegisterHandler _systemRegister;
-    private readonly IPauseService _pauseService;
-    private readonly IMoveClamper _moveClamper;
-    private readonly PlayersScore _playersScore;
-    private readonly GameSettingsInstaller.GameSettings _gameSettings;
-    private readonly GameSettingsInstaller.PlayerSettings _playerSettings;
+
 
     [Inject]
-    public Startup(EcsWorld world, SystemRegisterHandler systemRegister,
-        GameSettingsInstaller.GameSettings gameSettings, GameSettingsInstaller.PlayerSettings playerSettings,
-        IPauseService pauseService,
-        IMoveClamper moveClamper,
-        PlayersScore playersScore
-    )
+    public Startup(EcsWorld world, SystemRegisterHandler systemRegister)
     {
         Time.timeScale = 1f;
         _world = world;
         _systems = new EcsSystems(_world);
         _fixedSystems = new EcsSystems(_world);
         _systemRegister = systemRegister;
-        _playerSettings = playerSettings;
-        _gameSettings = gameSettings;
-        _pauseService = pauseService;
-        _moveClamper = moveClamper;
-        _playersScore = playersScore;
-        /*#if UNITY_EDITOR
-        Leopotam.Ecs.UnityIntegration.EcsWorldObserver.Create(_world);
-        Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create(_systems);
-        Leopotam.Ecs.UnityIntegration.EcsSystemsObserver.Create(_fixedSystems);
-#endif*/
     }
 
     public void Tick()
@@ -85,7 +63,6 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
             _fixedSystems.Add(system);
         }
 
-        InjectGameData();
         AddRunOneFrames();
         AddFixedRunOneFrames();
 
@@ -97,7 +74,6 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
     {
         _fixedSystems
             .OneFrame<ViewUpdateRequest>()
-            .OneFrame<InputAnyKeyEvent>()
             .OneFrame<ForceRequest>()
             .OneFrame<CollisionEnterEvent>()
             .OneFrame<TriggerEnterEvent>()
@@ -125,34 +101,5 @@ public sealed class Startup : IDisposable, ITickable, IFixedTickable, IInitializ
             .OneFrame<ChargeRequest>()
             .OneFrame<EnergyChangedEvent>()
             .OneFrame<ViewCreateRequest>();
-    }
-
-    private void InjectGameData()
-    {
-        if (_playerSettings != null)
-        {
-            _systems.Inject(_playerSettings.SolarSettings);
-        }
-
-        if (_gameSettings != null)
-        {
-            _systems.Inject(_gameSettings.BuffSettings);
-        }
-
-        if (_playersScore != null)
-        {
-            _fixedSystems.Inject(_playersScore);
-        }
-
-        if (_moveClamper != null)
-        {
-            _fixedSystems.Inject(_moveClamper);
-        }
-
-        if (_pauseService != null)
-        {
-            _systems.Inject(_pauseService);
-            _fixedSystems.Inject(_pauseService);
-        }
     }
 }

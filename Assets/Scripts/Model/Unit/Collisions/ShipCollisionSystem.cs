@@ -18,6 +18,7 @@ namespace Model.Unit.Collisions
             {
                 var collision = _playerFilter.Get1(i).List;
                 var entity = _playerFilter.GetEntity(i);
+              
                 for (var j = 0; j < collision.Count; j++)
                 {
                     var triggerEvent = collision.Dequeue();

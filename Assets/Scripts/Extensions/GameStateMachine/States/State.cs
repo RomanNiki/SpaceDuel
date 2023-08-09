@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Extensions.GameStateMachine.Transitions;
-using UnityEngine;
 
 namespace Extensions.GameStateMachine.States
 {

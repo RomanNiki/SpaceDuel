@@ -1,6 +1,5 @@
 ﻿using Leopotam.Ecs;
 using Model.Buffs.Components.Tags;
-using Model.Timers;
 using Model.Timers.Components;
 using UnityEngine;
 
@@ -14,7 +13,8 @@ namespace Extensions.MappingUnityToModel.Factories.Buffs
         {
             var entity = world.NewEntity();
             entity.Get<BuffTag>();
-            entity.Get<Timer<LifeTime>>().TimeLeftSec = _lifeTime;
+            entity.Get<DieWithoutLifeTimerTag>();
+            entity.Get<Timer<LifeTimer>>().TimeLeftSec = _lifeTime;
             return entity;
         }
     }

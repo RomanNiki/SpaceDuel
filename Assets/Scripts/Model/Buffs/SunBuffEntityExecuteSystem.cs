@@ -1,6 +1,5 @@
 ﻿using System;
 using Leopotam.Ecs;
-using Model.Components;
 using Model.Components.Requests;
 using Model.Extensions;
 using Model.Extensions.EntityFactories;

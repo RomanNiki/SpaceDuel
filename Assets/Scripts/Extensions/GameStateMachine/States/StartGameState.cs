@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using Extensions.AssetLoaders;
 using Extensions.GameStateMachine.Transitions;
@@ -29,59 +28,59 @@ namespace Extensions.GameStateMachine.States
             _provider = provider;
         }
 
-        protected override async void OnEnter()
+        protected override void OnEnter()
         {
-            CheckTokenSource();
-            _cancellationTokenSource = new CancellationTokenSource();
-            _token = _cancellationTokenSource.Token;
-            var prepareScreen = await _provider.Load();
-            await WaitToStart(prepareScreen, _settings.SecondsToStart, _token);
+            StartGame().Forget();
         }
 
         protected override void OnRun()
         {
         }
-        
+
         public override void OnExit()
         {
-            CheckTokenSource();
+            _cancellationTokenSource?.Cancel();
         }
 
-        private void CheckTokenSource()
+        private async UniTaskVoid StartGame()
         {
-            if (_cancellationTokenSource == null) return;
-            _cancellationTokenSource.Cancel();
-            _provider.Unload();
+            try
+            {
+                var screen = await _provider.Load();
+                _cancellationTokenSource = new CancellationTokenSource();
+                await WaitStartAndDisappear(screen).AttachExternalCancellation(_cancellationTokenSource.Token);
+                if (_world.IsAlive())
+                {
+                    _world.SendMessage(new GameStartedEvent());
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+            }
+            finally
+            {
+                _cancellationTokenSource?.Dispose();
+                _cancellationTokenSource = null;
+                _provider.Unload();
+            }
         }
 
-        private async UniTask WaitToStart(PrepareScreen text, float secondsToStart, CancellationToken token)
+        private async UniTask WaitStartAndDisappear(PrepareScreen screen)
+        {
+            await WaitStart(screen, _settings.SecondsToStart);
+            await screen.Disappear();
+        }
+
+        private static async UniTask WaitStart(PrepareScreen text, float secondsToStart)
         {
             while (secondsToStart > 0f)
             {
-                if (token.IsCancellationRequested)
-                {
-                    return;
-                }
-
                 text.SetText(Mathf.CeilToInt(secondsToStart).ToString());
                 secondsToStart -= Time.deltaTime;
                 await UniTask.Yield();
             }
-
-            await Unload(text);
-            if (_world.IsAlive())
-            {
-                _world.SendMessage(new GameStartedEvent());
-            }
         }
-
-        private async Task Unload(PrepareScreen text)
-        {
-            await text.Disappear();
-            _provider.Unload();
-            _cancellationTokenSource = null;
-        }
-        
 
         [Serializable]
         public class Settings

@@ -12,31 +12,37 @@ namespace Installers
     public class GamePoolInstaller : MonoInstaller
     {
         [Inject] private GameAssetsLoadProvider _gameAssetsLoadProvider;
+        private const string PoolObjectPrefix = "[Pooled]";
 
         public override void InstallBindings()
         {
             Container.BindFactory<ProjectileView, ProjectileViewFactory>()
                 .FromPoolableMemoryPool<ProjectileView, BulletPool>(poolBinder =>
-                    poolBinder.WithInitialSize(20).FromComponentInNewPrefab(_gameAssetsLoadProvider.BulletView))
-                .WhenInjectedInto<ProjectileCreateSystem<BulletTag>>().NonLazy();
+                    poolBinder.WithInitialSize(20).FromComponentInNewPrefab(_gameAssetsLoadProvider.BulletView)
+                        .UnderTransformGroup(PoolObjectPrefix + "Bullets"))
+                .WhenInjectedInto<ProjectileCreateSystem<BulletTag>>();
             Container.BindFactory<ProjectileView, ProjectileViewFactory>()
                 .FromPoolableMemoryPool<ProjectileView, MinePool>(poolBinder =>
-                    poolBinder.WithInitialSize(3).FromComponentInNewPrefab(_gameAssetsLoadProvider.MineView))
-                .WhenInjectedInto<ProjectileCreateSystem<MineTag>>().NonLazy();
+                    poolBinder.WithInitialSize(3).FromComponentInNewPrefab(_gameAssetsLoadProvider.MineView)
+                        .UnderTransformGroup(PoolObjectPrefix + "Mines"))
+                .WhenInjectedInto<ProjectileCreateSystem<MineTag>>();
             Container.BindFactory<VisualEffectView, VisualEffectViewFactory>()
                 .FromPoolableMemoryPool<VisualEffectView, HitPool>(poolBinder =>
-                    poolBinder.WithInitialSize(10).FromComponentInNewPrefab(_gameAssetsLoadProvider.HitView))
-                .WhenInjectedInto<VisualEffectViewCreateSystem<HitTag>>().NonLazy();
+                    poolBinder.WithInitialSize(10).FromComponentInNewPrefab(_gameAssetsLoadProvider.HitView)
+                        .UnderTransformGroup(PoolObjectPrefix + "Impacts"))
+                .WhenInjectedInto<VisualEffectViewCreateSystem<HitTag>>();
             Container.BindFactory<VisualEffectView, VisualEffectViewFactory>()
                 .FromPoolableMemoryPool<VisualEffectView, ExplosionPool>(poolBinder =>
-                    poolBinder.WithInitialSize(10).FromComponentInNewPrefab(_gameAssetsLoadProvider.ExplosionView))
-                .WhenInjectedInto<VisualEffectViewCreateSystem<ExplosionTag>>().NonLazy();
+                    poolBinder.WithInitialSize(10).FromComponentInNewPrefab(_gameAssetsLoadProvider.ExplosionView)
+                        .UnderTransformGroup(PoolObjectPrefix + "Explosions"))
+                .WhenInjectedInto<VisualEffectViewCreateSystem<ExplosionTag>>();
             Container.BindFactory<GameObjectView, GameObjectViewFactory>()
                 .FromPoolableMemoryPool<GameObjectView, EnergyBuffPool>(poolBinder =>
-                    poolBinder.WithInitialSize(5).FromComponentInNewPrefab(_gameAssetsLoadProvider.EnergyBuffView))
-                .WhenInjectedInto<EnergyBuffViewCreateSystem>().NonLazy();
+                    poolBinder.WithInitialSize(5).FromComponentInNewPrefab(_gameAssetsLoadProvider.EnergyBuffView)
+                        .UnderTransformGroup(PoolObjectPrefix + "Buffs"))
+                .WhenInjectedInto<EnergyBuffViewCreateSystem>();
         }
-   
+
         private class BulletPool : MonoPoolableMemoryPool<IMemoryPool, ProjectileView>
         {
         }
