@@ -1,7 +1,6 @@
 ﻿using Cysharp.Threading.Tasks;
 using Extensions.MappingUnityToModel;
 using Leopotam.Ecs;
-using Views;
 
 namespace Extensions.AssetLoaders
 {

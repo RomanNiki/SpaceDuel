@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Cysharp.Threading.Tasks;
 using Extensions.AssetLoaders;
 
@@ -19,8 +18,8 @@ namespace Extensions.Loading.LoadingOperations
         public async UniTask Load(Action<float> onProgress)
         {
             onProgress?.Invoke(0.5f);
-            await Task.Delay(TimeSpan.FromSeconds(1));
             _assetsLoadProvider.UnloadAssets();
+            await UniTask.Yield();
             onProgress?.Invoke(1f);
         }
     }

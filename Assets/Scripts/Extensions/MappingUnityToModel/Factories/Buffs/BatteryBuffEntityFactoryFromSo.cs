@@ -1,7 +1,6 @@
 ﻿using System;
 using Leopotam.Ecs;
 using Model.Buffs.Components.Tags;
-using Model.Components.Requests;
 using Model.Unit.EnergySystems.Components;
 using Model.Unit.EnergySystems.Components.Requests;
 using UnityEngine;

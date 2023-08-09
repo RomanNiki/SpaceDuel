@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using Cysharp.Threading.Tasks;
 using Extensions.GameStateMachine.Transitions;
 using Leopotam.Ecs;
@@ -16,6 +17,7 @@ namespace Extensions.GameStateMachine.States
         private readonly EcsWorld _world;
         private readonly Settings _settings;
         private readonly IPauseService _pauseService;
+        private CancellationTokenSource _cancellationTokenSource;
 
         public RestartGameState(EcsWorld world, Settings settings, IPauseService pauseService,
             List<Transition> transitions) : base(transitions)
@@ -25,17 +27,36 @@ namespace Extensions.GameStateMachine.States
             _pauseService = pauseService;
         }
 
-        protected override async void OnEnter()
+        protected override void OnEnter()
         {
             _pauseService.SetPaused(false);
             _world.SendMessage(new GameRestartEvent());
 
-            await SlowDownTime();
+            SlowdownAndLoadScene().Forget();
+        }
 
-            var activeScene = SceneManager.GetActiveScene();
+        private async UniTaskVoid SlowdownAndLoadScene()
+        {
+            try
+            {
+                _cancellationTokenSource = new CancellationTokenSource();
+                await SlowDownTime().AttachExternalCancellation(_cancellationTokenSource.Token);
 
-            await SceneManager.LoadSceneAsync(activeScene.buildIndex).ToUniTask()
-                .ContinueWith(() => { Time.timeScale = 1f; });
+                var activeScene = SceneManager.GetActiveScene();
+
+                await SceneManager.LoadSceneAsync(activeScene.buildIndex)
+                    .WithCancellation(_cancellationTokenSource.Token)
+                    .ContinueWith(() => { Time.timeScale = 1f; });
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+            }
+            finally
+            {
+                _cancellationTokenSource.Dispose();
+                _cancellationTokenSource = null;
+            }
         }
 
         private async UniTask SlowDownTime()
@@ -46,6 +67,11 @@ namespace Extensions.GameStateMachine.States
                 Time.timeScale = Mathf.Lerp(1f, 0.5f, normalizedTime);
                 await UniTask.Yield();
             }
+        }
+
+        public override void OnExit()
+        {
+            _cancellationTokenSource?.Cancel();
         }
 
         [Serializable]

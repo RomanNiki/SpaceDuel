@@ -1,5 +1,4 @@
 ﻿using Leopotam.Ecs;
-using Model.Components;
 using Model.Extensions;
 using Model.Unit.Collisions.Components.Events;
 using Model.Unit.Damage.Components.Requests;

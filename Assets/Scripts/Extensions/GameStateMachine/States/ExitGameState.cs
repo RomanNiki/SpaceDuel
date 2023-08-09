@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 using Extensions.AssetLoaders;
 using Extensions.GameStateMachine.Transitions;
 using Extensions.Loading.LoadingOperations;
@@ -10,7 +11,6 @@ namespace Extensions.GameStateMachine.States
 {
     public class ExitGameState : State
     {
-        private readonly EcsFilter<ExitRequest> _filterFilter;
         private readonly EcsFilter<Score> _scoreFilter;
         private readonly LoadingScreenProvider _loadingScreenProvider;
         private readonly GameAssetsLoadProvider _gameAssetsLoadProvider;
@@ -33,8 +33,8 @@ namespace Extensions.GameStateMachine.States
             }
 
             var loadingOperations = new Queue<ILoadingOperation>();
-            loadingOperations.Enqueue(new LoadMenuLoadingOperation());
             loadingOperations.Enqueue(new UnloadGameAssets(_gameAssetsLoadProvider));
+            loadingOperations.Enqueue(new LoadMenuLoadingOperation());
             await _loadingScreenProvider.LoadAndDestroy(loadingOperations);
         }
     }

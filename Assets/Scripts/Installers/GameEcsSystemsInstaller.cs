@@ -5,7 +5,6 @@ using Extensions;
 using Extensions.UI;
 using Model;
 using Model.Buffs;
-using Model.Buffs.Components.Tags;
 using Model.Scores;
 using Model.Timers;
 using Model.Timers.Components;
@@ -89,7 +88,7 @@ namespace Installers
         private void AddTimers()
         {
             Container.AddRunSystem<TimerSystem<TimerBetweenShots>>();
-            Container.AddRunSystem<TimerSystem<LifeTime>>();
+            Container.AddRunSystem<TimerSystem<LifeTimer>>();
             Container.AddRunSystem<TimerSystem<TimerBetweenSpawn>>();
         }
 
@@ -130,8 +129,7 @@ namespace Installers
 
         private void AddDestroySystems()
         {
-            Container.AddFixedSystem<LifeTimeTimerSystem<VisualEffectTag>>();
-            Container.AddFixedSystem<LifeTimeTimerSystem<BuffTag>>();
+            Container.AddFixedSystem<LifeTimeTimerSystem>();
             AddRestartGameSystems();
             Container.AddFixedSystem<ViewDestroySystem>();
             AddExplosionSystems();

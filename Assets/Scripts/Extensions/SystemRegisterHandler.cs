@@ -11,12 +11,14 @@ namespace Extensions
 
         [Inject]
         public SystemRegisterHandler(
-            [Inject(Source = InjectSources.Local, Id = SystemsEnum.Run)] List<IEcsSystem> runSystems,
-            [Inject(Source = InjectSources.Local, Id = SystemsEnum.FixedRun)] List<IEcsSystem> fixedRunSystems)
+            [Inject(Id = SystemsEnum.Run)] List<IEcsSystem> runSystems,
+            [Inject(Id = SystemsEnum.FixedRun)] List<IEcsSystem> fixedRunSystems)
         {
             RunSystems = runSystems;
             FixedRunSystems = fixedRunSystems;
         }
+        
+        
     }
 
     public enum SystemsEnum

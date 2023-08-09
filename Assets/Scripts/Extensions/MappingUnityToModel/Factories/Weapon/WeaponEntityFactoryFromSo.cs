@@ -2,9 +2,7 @@
 using Extensions.MappingUnityToModel.Factories.Weapon.Bullets;
 using Leopotam.Ecs;
 using Model.Components;
-using Model.Components.Requests;
 using Model.Extensions.EntityFactories;
-using Model.Timers;
 using Model.Timers.Components;
 using Model.Unit.EnergySystems.Components.Requests;
 using Model.Weapons.Components;
@@ -18,12 +16,15 @@ namespace Extensions.MappingUnityToModel.Factories.Weapon
     {
         [SerializeField] private ProjectileEntityFactoryFromSo _bulletEntityFactoryFromSo;
         [SerializeField] private AudioClip _shot;
-        [SerializeField] private BulletStartForce _bulletStartForce = new BulletStartForce {Value = 15f};
-        [SerializeField] private DischargeShotContainer _dischargeShotContainer = new DischargeShotContainer {DischargeRequest = new DischargeRequest(){Value =.25f }};
-        [SerializeField] private Muzzle _muzzle = new Muzzle {Offset = 2f};
+        [SerializeField] private BulletStartForce _bulletStartForce = new() { Value = 15f };
+
+        [SerializeField] private DischargeShotContainer _dischargeShotContainer =
+            new() { DischargeRequest = new DischargeRequest() { Value = .25f } };
+
+        [SerializeField] private Muzzle _muzzle = new() { Offset = 2f };
 
         [SerializeField] private TimeBetweenShotsSetup _timeBetweenShotsSetup =
-            new TimeBetweenShotsSetup {TimeSec = 0.15f};
+            new() { TimeSec = 0.15f };
 
         public override EcsEntity CreateEntity(EcsWorld world)
         {

@@ -6,11 +6,10 @@ using Model.Unit.Destroy.Components.Requests;
 
 namespace Model.Timers
 {
-    public sealed class LifeTimeTimerSystem<TTag> : IEcsRunSystem
-    where TTag : struct
+    public sealed class LifeTimeTimerSystem : IEcsRunSystem
     {
-        private readonly EcsFilter<TTag>.Exclude<Timer<LifeTime>> _explosionFilter = null;
-        
+        private readonly EcsFilter<DieWithoutLifeTimerTag>.Exclude<Timer<LifeTimer>> _explosionFilter = null;
+
         public void Run()
         {
             foreach (var i in _explosionFilter)

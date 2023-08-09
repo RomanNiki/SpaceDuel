@@ -5,15 +5,19 @@ using Model.Enums;
 using Model.Extensions;
 using Model.Scores.Components;
 using Model.Unit.Input.Components;
-using Zenject;
 
 namespace Model.Scores
 {
     public sealed class UpdateCachedScoreSystem : IEcsRunSystem
     {
-        private PlayersScore _playersScore;
+        private readonly PlayersScore _playersScore;
         private readonly EcsFilter<Team, Score, ViewUpdateRequest> _updateScoreFilter;
 
+        public UpdateCachedScoreSystem(PlayersScore playersScore)
+        {
+            _playersScore = playersScore;
+        }
+        
         public void Run()
         {
             foreach (var i in _updateScoreFilter)

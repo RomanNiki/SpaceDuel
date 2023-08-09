@@ -1,6 +1,4 @@
 ﻿using Model.Extensions.Interfaces.Pool;
-using UnityEngine;
-using UnityEngine.VFX;
 
 namespace Views.Extensions.Pools
 {

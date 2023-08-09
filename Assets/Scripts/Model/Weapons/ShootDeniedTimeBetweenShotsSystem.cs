@@ -8,7 +8,7 @@ namespace Model.Weapons
     {
         private readonly EcsFilter<Shooting, Timer<TimerBetweenShots>> _weaponTimerFilter = null; 
         
-        void IEcsRunSystem.Run()
+        public void Run()
         {
             foreach (var i in _weaponTimerFilter)
             {

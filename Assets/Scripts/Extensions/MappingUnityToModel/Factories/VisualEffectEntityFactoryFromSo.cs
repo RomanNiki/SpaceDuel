@@ -18,9 +18,10 @@ namespace Extensions.MappingUnityToModel.Factories
         {
             var visualEffect = world.NewEntity();
             visualEffect.Get<VisualEffectTag>();
+            visualEffect.Get<DieWithoutLifeTimerTag>();
             visualEffect.Get<GravityResist>();
             visualEffect.Get<ViewCreateRequest>();
-            visualEffect.Get<Timer<LifeTime>>().TimeLeftSec = _lifeTime;
+            visualEffect.Get<Timer<LifeTimer>>().TimeLeftSec = _lifeTime;
             return visualEffect;
         }
     }

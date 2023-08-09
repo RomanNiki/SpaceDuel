@@ -4,13 +4,12 @@ using Extensions.UI;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 using Views;
-using Zenject;
 
 namespace Extensions.AssetLoaders
 {
     public class GameAssetsLoadProvider
     {
-        [Inject] private readonly Settings _settings;
+        private readonly Settings _settings;
         public ProjectileView BulletView { get; private set; }
         public ProjectileView MineView { get; private set; }
         public VisualEffectView HitView { get; private set; }
@@ -19,6 +18,11 @@ namespace Extensions.AssetLoaders
         public Transform FirstPlayer { get; private set; }
         public Transform SecondPlayer { get; private set; }
         public PlayerUIBars PlayerUIBar { get; private set; }
+
+        public GameAssetsLoadProvider(Settings settings)
+        {
+            _settings = settings;
+        }
 
         public async UniTask LoadAssets()
         {

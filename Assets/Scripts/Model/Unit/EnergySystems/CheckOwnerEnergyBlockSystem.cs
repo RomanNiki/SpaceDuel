@@ -1,7 +1,6 @@
 ﻿using Leopotam.Ecs;
 using Model.Unit.EnergySystems.Components;
 using Model.Weapons.Components;
-using UnityEngine.Scripting;
 
 namespace Model.Unit.EnergySystems
 {
@@ -10,7 +9,6 @@ namespace Model.Unit.EnergySystems
     {
         private readonly EcsFilter<PlayerOwner, TTag> _ownerEnergyFilter = null;
         
-        [Preserve]
         public void Run()
         {
             foreach (var i in _ownerEnergyFilter)

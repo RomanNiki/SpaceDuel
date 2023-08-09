@@ -9,6 +9,7 @@ namespace Extensions.Loading.LoadingOperations
     public class LoadMenuLoadingOperation : ILoadingOperation
     {
         public string Description { get; set; } = "Load menu...";
+        
         public async UniTask Load(Action<float> onProgress)
         {
             onProgress?.Invoke(0.5f);

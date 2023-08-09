@@ -2,8 +2,7 @@
 
 namespace Model.Components.Events
 {
-    public struct GameStartedEvent :IEcsIgnoreInFilter
+    public struct GameStartedEvent : IEcsIgnoreInFilter
     {
-        
     }
 }
