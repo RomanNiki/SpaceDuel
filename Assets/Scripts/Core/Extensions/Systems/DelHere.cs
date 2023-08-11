@@ -2,7 +2,7 @@
 
 namespace Core.Extensions.Systems
 {
-    public class DelHere<T> : ICleanupSystem where T : struct, IComponent
+    public sealed class DelHere<T> : ICleanupSystem where T : struct, IComponent
     {
         private Filter _filter;
         private Stash<T> _pool;

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Core.Sun.Systems
 {
-    public class GravitySystem : IFixedSystem
+    public sealed class GravitySystem : IFixedSystem
     {
         private const float G = 0.06674f; //6,7 * 10^-11
         private Filter _gravityFilter;

@@ -5,7 +5,7 @@ using Scellecs.Morpeh;
 
 namespace Core.Collisions.Systems
 {
-    public class DamagerCollisionSystem : CollisionSystemBase<DamageContainer>
+    public sealed class DamagerCollisionSystem : CollisionSystemBase<DamageContainer>
     {
         private Stash<Health> _healthPool;
         private Stash<DamageContainer> _damageContainerPool;

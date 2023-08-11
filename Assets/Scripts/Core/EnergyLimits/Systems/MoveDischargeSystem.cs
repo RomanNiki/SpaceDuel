@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Core.EnergyLimits.Systems
 {
-    public class MoveDischargeSystem : ISystem
+    public sealed class MoveDischargeSystem : ISystem
     {
         private const float MIN_ROTATION_FOR_DISCHARGE = 0.2f;
         private Filter _filter;

@@ -9,7 +9,7 @@ using UnityEngine;
 
 namespace Core.Input.Systems
 {
-    public class InputShootSystem : ISystem
+    public sealed class InputShootSystem : ISystem
     {
         private Filter _startShootFilter;
         private Filter _canceledShootFilter;

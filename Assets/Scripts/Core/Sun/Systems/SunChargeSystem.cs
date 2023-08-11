@@ -8,7 +8,7 @@ using WorldExtensions = Core.Extensions.WorldExtensions;
 
 namespace Core.Sun.Systems
 {
-    public class SunChargeSystem : ISystem
+    public sealed class SunChargeSystem : ISystem
     {
         private const float MIN_ROTATION_COEFICIENT = 0.1f;
         private Filter _entityFilter;

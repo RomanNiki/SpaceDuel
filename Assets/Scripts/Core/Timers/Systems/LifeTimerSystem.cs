@@ -5,7 +5,7 @@ using Scellecs.Morpeh;
 
 namespace Core.Timers.Systems
 {
-    public class LifeTimerSystem : ISystem
+    public sealed class LifeTimerSystem : ISystem
     {
         private Filter _filter;
         private Stash<KillRequest> _killRequestPool;

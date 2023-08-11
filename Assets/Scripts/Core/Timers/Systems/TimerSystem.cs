@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Core.Timers.Systems
 {
-    public class TimerSystem<TTimerFlag> : ISystem where TTimerFlag : struct, IComponent
+    public sealed class TimerSystem<TTimerFlag> : ISystem where TTimerFlag : struct, IComponent
     {
         private Filter _filter;
         private Stash<Timer<TTimerFlag>> _timerPool;

@@ -5,7 +5,7 @@ using Scellecs.Morpeh;
 
 namespace Core.Collisions.Systems
 {
-    public class GravityPointCollisionSystem : CollisionSystemBase<GravityPoint>
+    public sealed class GravityPointCollisionSystem : CollisionSystemBase<GravityPoint>
     {
         private Stash<KillRequest> _killRequest;
 

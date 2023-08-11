@@ -1,6 +1,7 @@
 ﻿using Core.Views.Components;
 using Entities;
 using Scellecs.Morpeh;
+using UnityEngine;
 
 namespace Views.Systems
 {
@@ -12,7 +13,7 @@ namespace Views.Systems
         protected Stash<TCreateData> CreateDataPool;
         protected Stash<ViewUpdateRequest> ViewUpdateRequestPool;
         public World World { get; set; }
-        
+
         public void OnAwake()
         {
             Filter = World.Filter.With<TCreateData>().With<TFlag>();
@@ -24,14 +25,16 @@ namespace Views.Systems
             foreach (var entity in Filter)
             {
                 ref var createRequest = ref CreateDataPool.Get(entity);
-                var provider = GetProvider(entity, createRequest);
+                var provider = GetProvider(entity);
+                SetData(provider, createRequest);
                 provider.Init(World, entity);
                 CreateDataPool.Remove(entity);
                 ViewUpdateRequestPool.Add(entity);
             }
         }
 
-        protected abstract EntityProvider GetProvider(in Entity entity, in TCreateData data);
+        protected abstract EntityProvider GetProvider(in Entity entity);
+        protected abstract void SetData(EntityProvider transform, in TCreateData data);
 
         public void Dispose()
         {

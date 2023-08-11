@@ -25,18 +25,16 @@ namespace Core.Movement.Systems
 
         public void OnUpdate(float deltaTime)
         {
-            using (var filter = _filter.AsNative())
+            using var filter = _filter.AsNative();
+            var job = new AccelerateJobReference()
             {
-                var job = new AccelerateJobReference()
-                {
-                    Entities = filter,
-                    VelocityComponents = _velocityPool.AsNative(),
-                    ForceRequestComponents = _forceRequestPool.AsNative()
-                };
+                Entities = filter,
+                VelocityComponents = _velocityPool.AsNative(),
+                ForceRequestComponents = _forceRequestPool.AsNative()
+            };
 
-                var handler = job.Schedule(filter.length, 64);
-                handler.Complete();
-            }
+            var handler = job.Schedule(filter.length, 64);
+            handler.Complete();
         }
 
         public void Dispose()

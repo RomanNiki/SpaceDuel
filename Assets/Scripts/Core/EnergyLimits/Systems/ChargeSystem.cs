@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Core.EnergyLimits.Systems
 {
-    public class ChargeSystem : ISystem
+    public sealed class ChargeSystem : ISystem
     {
         private Filter _filter;
         private Stash<Energy> _energyPool;
