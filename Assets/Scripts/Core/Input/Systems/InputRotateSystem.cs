@@ -1,10 +1,16 @@
-﻿using Core.Enums;
+﻿using Core.Characteristics.Enums;
+using Core.Characteristics.Player.Components;
 using Core.Input.Components;
-using Core.Player.Components;
 using Scellecs.Morpeh;
 
 namespace Core.Input.Systems
 {
+#if ENABLE_IL2CPP
+    using Unity.IL2CPP.CompilerServices;
+  
+    [Il2CppSetOption(Option.NullChecks, false)]
+    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+#endif
     public sealed class InputRotateSystem : ISystem
     {
         private Filter _rotationStartedFilter;
@@ -23,9 +29,9 @@ namespace Core.Input.Systems
             _rotationCanceledPool = World.GetStash<InputRotateCanceledEvent>();
             _teamPool = World.GetStash<Team>();
             _inputDataPool = World.GetStash<InputMoveData>();
-            _rotationStartedFilter = World.Filter.With<InputRotateStartedEvent>();
-            _rotationCanceledFilter = World.Filter.With<InputRotateCanceledEvent>();
-            _inputDataFilter = World.Filter.With<PlayerTag>().With<InputMoveData>().With<Team>();
+            _rotationStartedFilter = World.Filter.With<InputRotateStartedEvent>().Build();
+            _rotationCanceledFilter = World.Filter.With<InputRotateCanceledEvent>().Build();
+            _inputDataFilter = World.Filter.With<PlayerTag>().With<InputMoveData>().With<Team>().Build();
         }
 
         
@@ -42,7 +48,7 @@ namespace Core.Input.Systems
             foreach (var entity in _rotationCanceledFilter)
             {
                 ref var inputRotateCanceledEvent = ref _rotationCanceledPool.Get(entity);
-                ProcessRotation(inputRotateCanceledEvent.PlayerNumber, 0f);
+                ProcessRotation(inputRotateCanceledEvent.PlayerTeam, 0f);
             }
         }
 

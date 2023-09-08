@@ -1,5 +1,6 @@
-﻿using Core.Enums;
-using Core.Player.Components;
+﻿using Core.Characteristics.Damage.Components;
+using Core.Characteristics.EnergyLimits.Components;
+using Core.Characteristics.Enums;
 
 namespace Core.Extensions.Views
 {

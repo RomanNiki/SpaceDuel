@@ -1,8 +1,14 @@
 ﻿using System;
-using Core.Enums;
+using Core.Characteristics.Enums;
 
 namespace Core.Input.Components
 {
+#if ENABLE_IL2CPP
+    using Unity.IL2CPP.CompilerServices;
+  
+    [Il2CppSetOption(Option.NullChecks, false)]
+    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+#endif
     [Serializable]
     public struct ShootData
     {
@@ -14,5 +20,6 @@ namespace Core.Input.Components
         
         public TeamEnum TeamEnum { get; set; }
         public WeaponEnum Weapon { get; set; }
+        
     }
 }

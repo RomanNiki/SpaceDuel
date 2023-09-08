@@ -1,9 +1,16 @@
-﻿using Core.Extensions.Components;
-using Core.Movement.Components;
+﻿using Core.Movement.Components;
+using Core.Views.Components;
 using Scellecs.Morpeh;
 
 namespace Core.Movement.Systems
 {
+#if ENABLE_IL2CPP
+    using Unity.IL2CPP.CompilerServices;
+  
+    [Il2CppSetOption(Option.NullChecks, false)]
+    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+#endif
+    
     public sealed class ExecuteMoveSystem : IFixedSystem
     {
         private Filter _filter;
@@ -14,7 +21,7 @@ namespace Core.Movement.Systems
         
         public void OnAwake()
         {
-            _filter = World.Filter.With<Position>().With<Rotation>().With<ViewObject>();
+            _filter = World.Filter.With<Position>().With<Rotation>().With<ViewObject>().Build();
             _rotationPool = World.GetStash<Rotation>();
             _positionPool = World.GetStash<Position>();
             _viewPool = World.GetStash<ViewObject>();

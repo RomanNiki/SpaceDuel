@@ -1,4 +1,4 @@
-﻿using Core.Extensions.Pause;
+﻿using Core.Extensions.Pause.Components;
 using Scellecs.Morpeh;
 
 namespace Core.Extensions
@@ -10,42 +10,44 @@ namespace Core.Extensions
         {
             var pool = world.GetStash<T>();
             var entity = world.CreateEntity();
-            pool.Add(entity);
-            pool.Get(entity) = component;
+            pool.Add(entity, component);
         }
 
-        public static IFixedSystem AddExternalPause(this IFixedSystem system, IPauseService pauseService)
+        public static IFixedSystem AddExternalPause(this IFixedSystem system)
         {
-            return new FixedPauseProxySystem(system, pauseService);
+            return new FixedPauseProxySystem(system);
         }
 
-        public static ISystem AddExternalPause(this ISystem system, IPauseService pauseService)
+        public static ISystem AddExternalPause(this ISystem system)
         {
-            return new PauseProxySystem(system, pauseService);
+            return new PauseProxySystem(system);
         }
     }
 
-    public class PauseProxySystem : ISystem, IPauseHandler
+#if ENABLE_IL2CPP
+    using Unity.IL2CPP.CompilerServices;
+  
+    [Il2CppSetOption(Option.NullChecks, false)]
+    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+#endif
+    public class PauseProxySystem : ISystem
     {
         private readonly ISystem _system;
-        private readonly IPauseService _pauseService;
-        private bool _paused;
+        private Filter _pauseFilter;
 
-        public PauseProxySystem(ISystem system, IPauseService pauseService)
+        public PauseProxySystem(ISystem system)
         {
-            _pauseService = pauseService;
             _system = system;
         }
 
         public void Dispose()
         {
             _system.Dispose();
-            _pauseService.RemovePauseHandler(this);
         }
 
         public void OnAwake()
         {
-            _pauseService.AddPauseHandler(this);
+            _pauseFilter = World.Filter.With<PauseTag>().Build();
             _system.OnAwake();
         }
 
@@ -57,63 +59,22 @@ namespace Core.Extensions
 
         public void OnUpdate(float deltaTime)
         {
-            if (_paused)
+            if (_pauseFilter.IsEmpty())
             {
-                return;
+                _system.OnUpdate(deltaTime);
             }
-
-            _system.OnUpdate(deltaTime);
-        }
-
-        public void SetPaused(bool isPaused)
-        {
-            _paused = isPaused;
         }
     }
-
-    public class FixedPauseProxySystem : IFixedSystem, IPauseHandler
+#if ENABLE_IL2CPP
+    using Unity.IL2CPP.CompilerServices;
+  
+    [Il2CppSetOption(Option.NullChecks, false)]
+    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+#endif
+    public class FixedPauseProxySystem : PauseProxySystem, IFixedSystem
     {
-        private readonly IFixedSystem _system;
-        private readonly IPauseService _pauseService;
-        private bool _paused;
-        
-        public FixedPauseProxySystem(IFixedSystem system, IPauseService pauseService)
+        public FixedPauseProxySystem(ISystem system) : base(system)
         {
-            _pauseService = pauseService;
-            _system = system;
-        }
-
-        public void Dispose()
-        {
-            _system.Dispose();
-            _pauseService.RemovePauseHandler(this);
-        }
-
-        public void OnAwake()
-        {
-            _pauseService.AddPauseHandler(this);
-            _system.OnAwake();
-        }
-
-        public World World
-        {
-            get => _system.World;
-            set => _system.World = value;
-        }
-
-        public void OnUpdate(float deltaTime)
-        {
-            if (_paused)
-            {
-                return;
-            }
-
-            _system.OnUpdate(deltaTime);
-        }
-
-        public void SetPaused(bool isPaused)
-        {
-            _paused = isPaused;
         }
     }
 }

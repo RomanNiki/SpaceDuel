@@ -1,11 +1,18 @@
-﻿using Core.Input.Components;
+﻿using Core.Characteristics.EnergyLimits.Components;
+using Core.Input.Components;
 using Core.Movement.Components;
-using Core.Player.Components;
 using Scellecs.Morpeh;
 using UnityEngine;
 
 namespace Core.Movement.Systems
 {
+#if ENABLE_IL2CPP
+    using Unity.IL2CPP.CompilerServices;
+  
+    [Il2CppSetOption(Option.NullChecks, false)]
+    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+#endif
+    
     public sealed class ForceSystem : IFixedSystem
     {
         private Filter _filter;
@@ -20,7 +27,7 @@ namespace Core.Movement.Systems
         public void OnAwake()
         {
             _filter = World.Filter.With<InputMoveData>().With<Velocity>().With<Rotation>().With<Mass>()
-                .Without<NoEnergyBlock>();
+                .Without<NoEnergyBlock>().Build();
 
             _inputMoveDataPool = World.GetStash<InputMoveData>();
             _rotationPool = World.GetStash<Rotation>();
@@ -38,11 +45,7 @@ namespace Core.Movement.Systems
                 ref var rotation = ref _rotationPool.Get(entity);
                 ref var mass = ref _massPool.Get(entity);
                 ref var moveForce = ref _moveForcePool.Get(entity);
-                if (_forceRequestPool.Has(entity) == false)
-                {
-                    _forceRequestPool.Add(entity);
-                }
-
+                _forceRequestPool.Add(entity);
                 _forceRequestPool.Get(entity).Value += (Vector2)rotation.LookDir * (moveForce.Value / mass.Value);
             }
         }

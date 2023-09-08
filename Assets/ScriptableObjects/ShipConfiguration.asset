@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a1033d92e39491d89e0a8a70ee9fd47, type: 3}
+  m_Name: ShipConfiguration
+  m_EditorClassIdentifier: 
+  <Links>k__BackingField:
+  - rid: 7087135485716856841
+  - rid: 7087135485716856842
+  - rid: 7087135485716856843
+  - rid: 7087135485716856844
+  - rid: 7087135485716856845
+  - rid: 7087135485716856846
+  - rid: 7087135485716856847
+  references:
+    version: 2
+    RefIds:
+    - rid: 7087135485716856841
+      type: {class: FrictionConverter, ns: Engine.Converters.Movement, asm: Assembly-CSharp}
+      data:
+        _component:
+          Value: 0.02
+    - rid: 7087135485716856842
+      type: {class: MassConverter, ns: Engine.Converters.Movement, asm: Assembly-CSharp}
+      data:
+        _component:
+          Value: 5
+    - rid: 7087135485716856843
+      type: {class: VelocityConverter, ns: Engine.Converters.Movement, asm: Assembly-CSharp}
+      data:
+        _component:
+          Value: {x: 0, y: 0}
+    - rid: 7087135485716856844
+      type: {class: HealthConverter, ns: Engine.Converters.Damagers, asm: Assembly-CSharp}
+      data:
+        _component:
+          <MaxValue>k__BackingField: 100
+          <Value>k__BackingField: 100
+          <BaseValue>k__BackingField: 100
+          <MinValue>k__BackingField: 0
+    - rid: 7087135485716856845
+      type: {class: EnergyConverter, ns: Engine.Converters.EnergyLimits, asm: Assembly-CSharp}
+      data:
+        _component:
+          <MaxValue>k__BackingField: 100
+          <Value>k__BackingField: 100
+          <BaseValue>k__BackingField: 100
+          <MinValue>k__BackingField: 0
+    - rid: 7087135485716856846
+      type: {class: RotationSpeedConverter, ns: Engine.Converters.Movement, asm: Assembly-CSharp}
+      data:
+        _component:
+          Value: 80
+    - rid: 7087135485716856847
+      type: {class: SpeedConverter, ns: Engine.Converters.Movement, asm: Assembly-CSharp}
+      data:
+        _component:
+          Value: 5

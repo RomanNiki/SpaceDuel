@@ -4,6 +4,12 @@ using UnityEngine;
 
 namespace Core.Timers.Systems
 {
+#if ENABLE_IL2CPP
+    using Unity.IL2CPP.CompilerServices;
+  
+    [Il2CppSetOption(Option.NullChecks, false)]
+    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+#endif
     public sealed class TimerSystem<TTimerFlag> : ISystem where TTimerFlag : struct, IComponent
     {
         private Filter _filter;
@@ -12,7 +18,7 @@ namespace Core.Timers.Systems
         
         public void OnAwake()
         {
-            _filter = World.Filter.With<Timer<TTimerFlag>>();
+            _filter = World.Filter.With<Timer<TTimerFlag>>().Build();
             _timerPool = World.GetStash<Timer<TTimerFlag>>();
         }
         

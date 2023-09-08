@@ -1,10 +1,16 @@
-﻿using Core.Enums;
+﻿using Core.Characteristics.Enums;
+using Core.Characteristics.Player.Components;
 using Core.Input.Components;
-using Core.Player.Components;
 using Scellecs.Morpeh;
 
 namespace Core.Input.Systems
 {
+#if ENABLE_IL2CPP
+    using Unity.IL2CPP.CompilerServices;
+  
+    [Il2CppSetOption(Option.NullChecks, false)]
+    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+#endif
     public sealed class InputAccelerateSystem : ISystem
     {
         private Filter _accelerateStartedFilter;
@@ -16,6 +22,17 @@ namespace Core.Input.Systems
         private Stash<InputMoveData> _inputMoveDataPool;
         private Stash<Team> _teamPool;
 
+        public void OnAwake()
+        {
+            _accelerateCanceledPool = World.GetStash<InputAccelerateCanceledEvent>();
+            _accelerateStartedPool = World.GetStash<InputAccelerateStartedEvent>();
+            _teamPool = World.GetStash<Team>();
+            _inputMoveDataPool = World.GetStash<InputMoveData>();
+            _accelerateCancelledFilter = World.Filter.With<InputAccelerateCanceledEvent>().Build();
+            _accelerateStartedFilter = World.Filter.With<InputAccelerateStartedEvent>().Build();
+            _playersFilter = World.Filter.With<PlayerTag>().With<Team>().With<InputMoveData>().Build();
+        }
+        
         private void ProcessMove(TeamEnum playerTeam, in bool doMove)
         {
             foreach (var entity in _playersFilter)
@@ -25,17 +42,6 @@ namespace Core.Input.Systems
                 ref var inputMoveData = ref _inputMoveDataPool.Get(entity);
                 inputMoveData.Accelerate = doMove;
             }
-        }
-
-        public void OnAwake()
-        {
-            _accelerateCanceledPool = World.GetStash<InputAccelerateCanceledEvent>();
-            _accelerateStartedPool = World.GetStash<InputAccelerateStartedEvent>();
-            _teamPool = World.GetStash<Team>();
-            _inputMoveDataPool = World.GetStash<InputMoveData>();
-            _accelerateCancelledFilter = World.Filter.With<InputAccelerateCanceledEvent>();
-            _accelerateStartedFilter = World.Filter.With<InputAccelerateStartedEvent>();
-            _playersFilter = World.Filter.With<PlayerTag>().With<Team>().With<InputMoveData>();
         }
 
         public void OnUpdate(float deltaTime)

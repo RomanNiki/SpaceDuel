@@ -7,6 +7,13 @@ using Unity.Jobs;
 
 namespace Core.Movement.Systems
 {
+#if ENABLE_IL2CPP
+    using Unity.IL2CPP.CompilerServices;
+  
+    [Il2CppSetOption(Option.NullChecks, false)]
+    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+#endif
+    
     public sealed class FrictionSystem : IFixedSystem
     {
         private Filter _filter;
@@ -17,51 +24,49 @@ namespace Core.Movement.Systems
         
         public void OnAwake()
         {
-            _filter = World.Filter.With<Velocity>().With<Friction>();
+            _filter = World.Filter.With<Velocity>().With<Friction>().Build();
             _frictionPool = World.GetStash<Friction>();
             _velocityPool = World.GetStash<Velocity>();
         }
         
         public void OnUpdate(float deltaTime)
         {
-            using (var filter = _filter.AsNative())
+            var filter = _filter.AsNative();
+            var job = new FrictionJob()
             {
-                var job = new FrictionJob()
-                {
-                    FrictionComponents = _frictionPool.AsNative(),
-                    VelocityComponents = _velocityPool.AsNative(),
-                    Entities = filter
-                };
+                FrictionComponents = _frictionPool.AsNative(),
+                VelocityComponents = _velocityPool.AsNative(),
+                Entities = filter
+            };
 
-                var handler = job.Schedule(filter.length, 64);
-                handler.Complete();
-            }
+            var handler = job.Schedule(filter.length, 64);
+            handler.Complete();
         }
         
         public void Dispose()
         {
         }
-    }
-    
-    [BurstCompile]
-    public struct FrictionJob : IJobParallelFor
-    {
-        [ReadOnly] public NativeFilter Entities;
-        public NativeStash<Friction> FrictionComponents;
-        public NativeStash<Velocity> VelocityComponents;
         
-        public void Execute(int index)
+        [BurstCompile]
+        private struct FrictionJob : IJobParallelFor
         {
-            var entityId = Entities[index];
-
-            ref var friction = ref FrictionComponents.Get(entityId, out var forceRequestExists);
-            ref var velocity = ref VelocityComponents.Get(entityId, out var velocityExists);
-            if (velocityExists && forceRequestExists)
+            [ReadOnly] public NativeFilter Entities;
+            public NativeStash<Friction> FrictionComponents;
+            public NativeStash<Velocity> VelocityComponents;
+        
+            public void Execute(int index)
             {
-                var frictionDirection = -velocity.Value.normalized;
-                var frictionMagnitude = velocity.Value.magnitude * velocity.Value.magnitude;
-                var frictionVector = frictionMagnitude * frictionDirection;
-                velocity.Value += friction.Value * frictionVector;
+                var entityId = Entities[index];
+
+                ref var friction = ref FrictionComponents.Get(entityId, out var forceRequestExists);
+                ref var velocity = ref VelocityComponents.Get(entityId, out var velocityExists);
+                if (velocityExists && forceRequestExists)
+                {
+                    var frictionDirection = -velocity.Value.normalized;
+                    var frictionMagnitude = velocity.Value.magnitude * velocity.Value.magnitude;
+                    var frictionVector = frictionMagnitude * frictionDirection;
+                    velocity.Value += friction.Value * frictionVector;
+                }
             }
         }
     }

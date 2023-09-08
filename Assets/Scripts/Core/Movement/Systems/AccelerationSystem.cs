@@ -8,6 +8,13 @@ using UnityEngine;
 
 namespace Core.Movement.Systems
 {
+#if ENABLE_IL2CPP
+    using Unity.IL2CPP.CompilerServices;
+  
+    [Il2CppSetOption(Option.NullChecks, false)]
+    [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
+#endif
+    
     public sealed class AccelerationSystem : IFixedSystem
     {
         private Filter _filter;
@@ -18,47 +25,49 @@ namespace Core.Movement.Systems
 
         public void OnAwake()
         {
-            _filter = World.Filter.With<Velocity>().With<ForceRequest>();
+            _filter = World.Filter.With<Velocity>().With<ForceRequest>().Build();
             _forceRequestPool = World.GetStash<ForceRequest>();
             _velocityPool = World.GetStash<Velocity>();
         }
 
         public void OnUpdate(float deltaTime)
         {
-            using var filter = _filter.AsNative();
+            var filter = _filter.AsNative();
             var job = new AccelerateJobReference()
             {
                 Entities = filter,
                 VelocityComponents = _velocityPool.AsNative(),
                 ForceRequestComponents = _forceRequestPool.AsNative()
             };
-
             var handler = job.Schedule(filter.length, 64);
             handler.Complete();
+            foreach (var entity in _filter)
+            {
+                _forceRequestPool.Remove(entity);
+            }
         }
 
         public void Dispose()
         {
         }
-    }
 
-    [BurstCompile]
-    public struct AccelerateJobReference : IJobParallelFor
-    {
-        [ReadOnly] public NativeFilter Entities;
-        public NativeStash<ForceRequest> ForceRequestComponents;
-        public NativeStash<Velocity> VelocityComponents;
-
-        public void Execute(int index)
+        [BurstCompile]
+        private struct AccelerateJobReference : IJobParallelFor
         {
-            var entityId = Entities[index];
+            [ReadOnly] public NativeFilter Entities;
+            public NativeStash<ForceRequest> ForceRequestComponents;
+            public NativeStash<Velocity> VelocityComponents;
 
-            ref var forceRequest = ref ForceRequestComponents.Get(entityId, out var forceRequestExists);
-            ref var velocity = ref VelocityComponents.Get(entityId, out var velocityExists);
-            if (velocityExists && forceRequestExists)
+            public void Execute(int index)
             {
-                velocity.Value += forceRequest.Value;
-                forceRequest.Value = Vector2.zero;
+                var entityId = Entities[index];
+                ref var forceRequest = ref ForceRequestComponents.Get(entityId, out var forceRequestExists);
+                ref var velocity = ref VelocityComponents.Get(entityId, out var velocityExists);
+                if (velocityExists && forceRequestExists)
+                {
+                    velocity.Value += forceRequest.Value;
+                    forceRequest.Value = Vector2.zero;
+                }
             }
         }
     }
