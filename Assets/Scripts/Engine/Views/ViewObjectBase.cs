@@ -1,7 +1,7 @@
 ﻿using Core.Extensions.Views;
 using UnityEngine;
 
-namespace Views
+namespace Engine.Views
 {
     public abstract class ViewObjectBase : IViewObject
     {

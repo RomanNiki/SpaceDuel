@@ -34,8 +34,7 @@ namespace Core.Characteristics.EnergyLimits.Systems
             foreach (var entity in _filter)
             {
                 ref var weaponEntity = ref _shotMadeEventPool.Get(entity).Weapon;
-                if (weaponEntity.IsNullOrDisposed())
-                    continue;
+                if (weaponEntity.IsNullOrDisposed()) continue;
 
                 ref var owner = ref _ownerPool.Get(weaponEntity).Entity;
 

@@ -14,15 +14,11 @@ namespace Core.Extensions.Clear.Systems
         private Stash<TComponent> _componentPool;
         public World World { get; set; }
 
-        public void OnAwake()
-        {
-            _componentPool = World.GetStash<TComponent>();
-        }
+        public void OnAwake() => _componentPool = World.GetStash<TComponent>();
 
-        public void OnUpdate(float deltaTime)
-        {
-            _componentPool.RemoveAll();
-        }
+
+        public void OnUpdate(float deltaTime) => _componentPool.RemoveAll();
+
 
         public void Dispose()
         {

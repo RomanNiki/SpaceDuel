@@ -60,6 +60,10 @@ namespace Core.Movement.Systems
                 var entityId = Entities[index];
                 ref var velocity = ref VelocityComponents.Get(entityId);
                 ref var rotation = ref RotationComponents.Get(entityId);
+                if (velocity.Value.magnitude <= 0.1f)
+                {
+                    return;
+                }
                 rotation.Value = MathExtensions.CalculateRotationFromVelocity(velocity.Value);
             }
         }

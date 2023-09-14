@@ -9,15 +9,10 @@ namespace Core.Extensions
         protected SystemsGroup FeatureSystemGroup;
         protected World World;
 
-        protected void AddSystem(ISystem system)
-        {
-            FeatureSystemGroup.AddSystem(system);
-        }
+        protected void AddSystem(ISystem system) => FeatureSystemGroup.AddSystem(system);
 
-        protected void AddSystem(IInitializer system)
-        {
-            FeatureSystemGroup.AddInitializer(system);
-        }
+        protected void AddSystem(IInitializer system) => FeatureSystemGroup.AddInitializer(system);
+        
 
         public async UniTask InitializeFeatureAsync(World world, int order, bool enabled = true)
         {

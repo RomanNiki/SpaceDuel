@@ -17,7 +17,7 @@ namespace Core.Movement.Systems
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
-    
+
     public sealed class RotateSystem : IFixedSystem
     {
         private Filter _filter;
@@ -28,13 +28,13 @@ namespace Core.Movement.Systems
 
         public void OnAwake()
         {
-            _filter = World.Filter.With<Rotation>().With<RotationSpeed>().With<InputMoveData>()
-                .Without<NoEnergyBlock>().Build();
+            _filter = World.Filter.With<Rotation>().With<RotationSpeed>().With<InputMoveData>().Without<NoEnergyBlock>()
+                .Build();
             _rotationPool = World.GetStash<Rotation>();
             _inputDataPool = World.GetStash<InputMoveData>();
             _rotationSpeedPool = World.GetStash<RotationSpeed>();
         }
-        
+
         public void OnUpdate(float deltaTime)
         {
             var filter = _filter.AsNative();
@@ -54,7 +54,7 @@ namespace Core.Movement.Systems
         public void Dispose()
         {
         }
-        
+
         [BurstCompile]
         private struct RotateJob : IJobParallelFor
         {
@@ -63,11 +63,10 @@ namespace Core.Movement.Systems
             public NativeStash<InputMoveData> InputComponents;
             public NativeStash<RotationSpeed> RotationSpeedComponents;
             public float Delta;
-        
+
             public void Execute(int index)
             {
                 var entityId = Entities[index];
-
                 ref var inputData = ref InputComponents.Get(entityId);
                 if (MathF.Abs(inputData.Rotation) < 0.1f)
                     return;
@@ -77,11 +76,9 @@ namespace Core.Movement.Systems
 
                 Rotate(ref rotation, inputData.Rotation * (rotationSpeed.Value * Delta));
             }
-        
-            private static void Rotate(ref Rotation rotation, float delta)
-            {
+
+            private static void Rotate(ref Rotation rotation, float delta) =>
                 rotation.Value = Mathf.Repeat(rotation.Value + delta, 360f);
-            }
         }
     }
 }

@@ -11,6 +11,7 @@ namespace Engine.Providers
         {
             if (Entity == null)
                 return;
+            
             if (TryGetEntity(other.transform, out var otherEntity))
             {
                 World.SendMessage(new TriggerEnterRequest(Entity, otherEntity));
@@ -24,7 +25,7 @@ namespace Engine.Providers
                 return false;
             if (provider.Entity.IsNullOrDisposed())
                 return false;
-
+            
             entity = provider.Entity;
             return true;
         }

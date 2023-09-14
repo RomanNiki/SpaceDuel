@@ -2,6 +2,7 @@
 using Core.Extensions;
 using Core.Movement.Components;
 using Core.Movement.Gravity.Components;
+using Core.Timers.Components;
 using Scellecs.Morpeh;
 using UnityEngine;
 using WorldExtensions = Core.Extensions.WorldExtensions;
@@ -30,8 +31,8 @@ namespace Core.Characteristics.EnergyLimits.Systems
 
         public void OnAwake()
         {
-            _entityFilter = World.Filter.With<Energy>().With<Position>().With<Rotation>().Without<DischargeTag>()
-                .Build();
+            _entityFilter = World.Filter.With<Energy>().With<Position>().With<Rotation>().Without<SunDischargeTag>()
+                .Without<Timer<InvisibleTimer>>().Build();
             _sunFilter = World.Filter.With<GravityPoint>().With<Position>().With<ChargeContainer>().Build();
             _positionPool = World.GetStash<Position>();
             _rotationPool = World.GetStash<Rotation>();

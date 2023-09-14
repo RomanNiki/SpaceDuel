@@ -3,7 +3,6 @@ using Engine.Movement.Strategies;
 using Engine.Providers;
 using JetBrains.Annotations;
 using UnityEngine;
-using Views;
 
 namespace Engine.Views
 {
@@ -19,18 +18,15 @@ namespace Engine.Views
         [NotNull] private readonly Transform _transform;
         private readonly EntityProvider _provider;
         private readonly IMoveStrategy _moveStrategy;
-        
-        public UnityViewObject([NotNull]EntityProvider provider, IMoveStrategy moveStrategy)
+
+        public UnityViewObject([NotNull] EntityProvider provider, IMoveStrategy moveStrategy)
         {
             _moveStrategy = moveStrategy;
             _transform = provider.transform;
             _provider = provider;
         }
 
-        public override void MoveTo(Vector2 position)
-        {
-            _moveStrategy?.MoveTo(position);
-        }
+        public override void MoveTo(Vector2 position) => _moveStrategy?.MoveTo(position);
 
         public override void RotateTo(float rotation)
         {
@@ -41,10 +37,8 @@ namespace Engine.Views
 
         public override void Dispose()
         {
-            if (_provider != null)
-            {
-                _provider.Dispose();
-            }
+            if (_provider == null) return;
+            _provider.Dispose();
         }
     }
 }

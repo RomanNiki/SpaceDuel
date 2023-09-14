@@ -1,5 +1,8 @@
-﻿using Engine.Providers;
+﻿using Core.Extensions;
+using Core.Views.Components;
+using Engine.Providers;
 using Scellecs.Morpeh;
+using UnityEngine;
 
 namespace Engine.Views.Systems.Create
 {
@@ -16,14 +19,14 @@ namespace Engine.Views.Systems.Create
     {
         protected Filter Filter;
         protected Stash<TCreateData> CreateDataPool;
-        protected Stash<TFlag> FlagPool;
+        protected Stash<TFlag> TagPool;
         public World World { get; set; }
 
         public void OnAwake()
         {
             Filter = World.Filter.With<TCreateData>().Build();
             CreateDataPool = World.GetStash<TCreateData>();
-            FlagPool = World.GetStash<TFlag>();
+            TagPool = World.GetStash<TFlag>();
         }
 
         public void OnUpdate(float deltaTime)
@@ -31,25 +34,27 @@ namespace Engine.Views.Systems.Create
             foreach (var entity in Filter)
             {
                 ref var createRequest = ref CreateDataPool.Get(entity);
-                if (CheckEntityTag(createRequest) == false)
-                {
-                    continue;
-                }
+                var viewEntity = GetEntity(createRequest);
 
-                var provider = CreateView();
-                SetData(provider, createRequest);
-                InitProvider(provider, createRequest);
+                if (CheckEntityTag(viewEntity) == false)
+                    continue;
+
+                var provider = CreateView(createRequest);
+                provider.Init(World, viewEntity);
+                SetData(provider.transform, createRequest);
+
+                World.SendMessage(new ViewCreatedEvent { Entity = viewEntity });
                 World.RemoveEntity(entity);
             }
         }
 
-        protected abstract void InitProvider(EntityProvider provider, TCreateData createData);
+        private bool CheckEntityTag(Entity createdEntity) => TagPool.Has(createdEntity);
 
-        protected abstract bool CheckEntityTag(TCreateData entity);
+        protected abstract Entity GetEntity(TCreateData createRequest);
 
-        protected abstract EntityProvider CreateView();
+        protected abstract EntityProvider CreateView(TCreateData createData);
 
-        protected abstract void SetData(EntityProvider transform, in TCreateData data);
+        protected abstract void SetData(Transform transform, in TCreateData data);
 
         public void Dispose()
         {

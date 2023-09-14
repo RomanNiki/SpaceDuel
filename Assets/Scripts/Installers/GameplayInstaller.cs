@@ -4,10 +4,11 @@ using Core.Extensions.Pause.Services;
 using Core.Movement;
 using Engine.Extensions;
 using Engine.Factories.SystemsFactories;
-using Engine.Factories.ViewFactories;
 using Engine.Movement.Services;
 using Engine.Providers;
-using Modules.Pooling.Pool;
+using Modules.Pooling.Core.Pool;
+using Modules.Pooling.Engine.Factories;
+using Modules.Pooling.Engine.Pools;
 using Scellecs.Morpeh;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -17,10 +18,10 @@ namespace Installers
 {
     public class GameplayInstaller : MonoInstaller
     {
-        [SerializeField] private SystemsFactoryBaseSo _systemsFactoryBaseSo;
+        [SerializeField] private FeaturesFactoryBaseSo _featuresFactoryBaseSo;
         [SerializeField] private Camera _orthographicCamera;
         [SerializeField] private Settings _settings;
-        
+
         private void OnValidate()
         {
             if (_orthographicCamera.orthographic == false)
@@ -47,47 +48,31 @@ namespace Installers
             Container.Bind<ObjectPools>().FromInstance(objectPools).AsSingle();
         }
 
-        private MonoPool<PoolItemEntityProvider> CreateBulletPool()
-        {
-            return CreatePool(_settings.BulletReference);
-        } 
-        
-        private MonoPool<PoolItemEntityProvider> CreateMinePool()
-        {
-            return CreatePool(_settings.MineReference);
-        }
+        private MonoPool<PoolableEntityProvider> CreateBulletPool() => CreatePool(_settings.BulletReference);
 
-        private static MonoPool<PoolItemEntityProvider> CreatePool(AssetReference assetReference, int initialSize = 5)
+        private MonoPool<PoolableEntityProvider> CreateMinePool() => CreatePool(_settings.MineReference);
+
+        private static MonoPool<PoolableEntityProvider> CreatePool(AssetReference assetReference, int initialSize = 5)
         {
-            var factory = new AddressableViewFactory<PoolItemEntityProvider>(assetReference);
-            var settings = new PoolBase<PoolItemEntityProvider>.Settings(int.MaxValue, initialSize);
-            var pool = new MonoPool<PoolItemEntityProvider>(settings ,factory);
+            var factory = new AddressableViewFactory<PoolableEntityProvider>(assetReference);
+            var settings = new PoolBase<PoolableEntityProvider>.Settings(int.MaxValue, initialSize);
+            var pool = new MonoPool<PoolableEntityProvider>(settings, factory);
             return pool;
         }
 
-        private void BindSystemArgs()
-        {
-            Container.BindInterfacesAndSelfTo<SystemFactoryArgs>().AsSingle();
-        }
+        private void BindSystemArgs() => Container.BindInterfacesAndSelfTo<FeaturesFactoryArgs>().AsSingle();
 
-        private void BindSystemFactory()
-        {
-            Container.Bind<ISystemFactory>().FromInstance(_systemsFactoryBaseSo).AsSingle();
-        }
+        private void BindSystemFactory() =>
+            Container.Bind<IFeaturesFactory>().FromInstance(_featuresFactoryBaseSo).AsSingle();
 
-        private void BindPauseService()
-        {
-            Container.Bind<IPauseService>().To<PauseService>().AsSingle();
-        }
+        private void BindPauseService() => Container.Bind<IPauseService>().To<PauseService>().AsSingle();
 
-        private void BindMoveLoopService()
-        {
+        private void BindMoveLoopService() =>
             Container.Bind<IMoveLoopService>().To<MoveLoopService>().AsSingle().WithArguments(_orthographicCamera);
-        }
 
         private void BindEcsWorld()
         {
-            var world = World.Create();
+            var world = World.Default;
             Container.Bind<World>().FromInstance(world).AsSingle();
         }
 

@@ -14,6 +14,7 @@ namespace Core.Weapon
             AddSystem(new ShootDeniedTimeBetweenShotsSystem());
             AddSystem(new ExecuteShootSystem());
             AddSystem(new GunTimerBetweenShotsStartSystem());
+            AddSystem(new DellHereUpdateSystem<ShootingRequest>());
         }
     }
 }

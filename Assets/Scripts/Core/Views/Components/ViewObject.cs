@@ -15,9 +15,6 @@ namespace Core.Views.Components
     {
         public IViewObject Value;
 
-        public void Dispose()
-        {
-            Value?.Dispose();
-        }
+        public void Dispose() => Value?.Dispose();
     }
 }

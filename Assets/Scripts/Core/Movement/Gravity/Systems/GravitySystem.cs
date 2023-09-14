@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.Extensions;
 using Core.Movement.Components;
 using Core.Movement.Gravity.Components;
 using Scellecs.Morpeh;
@@ -20,7 +21,6 @@ namespace Core.Movement.Gravity.Systems
         private Filter _movableFilter;
         private Stash<Position> _positionPool;
         private Stash<Mass> _massPool;
-        private Stash<ForceRequest> _forceRequestPool;
         private Stash<GravityPoint> _gravityPoint;
 
         public World World { get; set; }
@@ -31,10 +31,9 @@ namespace Core.Movement.Gravity.Systems
             _movableFilter = World.Filter.With<Position>().With<Velocity>().Without<GravityResistTag>().Build();
             _positionPool = World.GetStash<Position>();
             _massPool = World.GetStash<Mass>();
-            _forceRequestPool = World.GetStash<ForceRequest>();
             _gravityPoint = World.GetStash<GravityPoint>();
         }
-        
+
         public void OnUpdate(float deltaTime)
         {
             foreach (var gravityPointEntity in _gravityFilter)
@@ -55,19 +54,9 @@ namespace Core.Movement.Gravity.Systems
 
                     var massProduct = pointMass.Value * mass.Value * G;
                     var force = CalculateForce(distance, gravityPoint, massProduct, targetDirection, mass);
-                    AddForceToEntity(movableEntity, force);
+                    World.SendMessage(new ForceRequest { Value = force, EntityId = movableEntity.ID });
                 }
             }
-        }
-
-        private void AddForceToEntity(Entity movableEntity, Vector2 force)
-        {
-            if (_forceRequestPool.Has(movableEntity) == false)
-            {
-                _forceRequestPool.Add(movableEntity);
-            }
-
-            _forceRequestPool.Get(movableEntity).Value += force;
         }
 
         private static Vector2 CalculateForce(in float distance, in GravityPoint gravityPoint, in float massProduct,

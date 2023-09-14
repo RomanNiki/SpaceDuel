@@ -3,9 +3,9 @@ using Core.Extensions.Factories;
 using Core.Timers.Components;
 using Core.Weapon.Components;
 using Engine.Factories.EntitiesFactories.Projectiles;
+using Engine.Views.Components;
 using Scellecs.Morpeh;
 using UnityEngine;
-using Views.Components;
 
 namespace Engine.Factories.EntitiesFactories.Weapons
 {

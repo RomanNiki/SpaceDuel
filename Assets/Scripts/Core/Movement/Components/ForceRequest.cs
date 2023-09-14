@@ -13,6 +13,7 @@ namespace Core.Movement.Components
     [Serializable]
     public struct ForceRequest : IComponent
     {
+        public EntityId EntityId;
         public Vector2 Value;
     }
 }

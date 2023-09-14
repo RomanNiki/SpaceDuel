@@ -1,6 +1,6 @@
 ﻿using Core.Characteristics.Damage.Components;
 using Core.Characteristics.EnergyLimits.Components;
-using Core.Characteristics.Enums;
+using Core.Common.Enums;
 
 namespace Core.Extensions.Views
 {

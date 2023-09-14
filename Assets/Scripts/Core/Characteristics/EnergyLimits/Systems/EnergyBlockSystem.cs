@@ -41,14 +41,14 @@ namespace Core.Characteristics.EnergyLimits.Systems
                 ref var energy = ref _energyPool.Get(energyEntity);
                 var hasEnergyBlock = _noEnergyBlockPool.Has(energyEntity);
                 
-                if (energy.Value > 0f && hasEnergyBlock)
+                switch (energy.Value)
                 {
-                    _noEnergyBlockPool.Remove(energyEntity);
-                }
-
-                if (energy.Value <= 0f && hasEnergyBlock == false)
-                {
-                    _noEnergyBlockPool.Add(energyEntity);
+                    case > 0f when hasEnergyBlock:
+                        _noEnergyBlockPool.Remove(energyEntity);
+                        break;
+                    case <= 0f when hasEnergyBlock == false:
+                        _noEnergyBlockPool.Add(energyEntity);
+                        break;
                 }
             }
         }

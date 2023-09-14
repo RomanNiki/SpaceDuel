@@ -1,4 +1,4 @@
-﻿using Core.Characteristics.Enums;
+﻿using Core.Common.Enums;
 using Core.Extensions;
 using Core.Input.Components;
 using Scellecs.Morpeh;
@@ -38,17 +38,13 @@ namespace Engine.Input.Systems
             World.SendMessage(messageEvent);
         }
 
-        private void ShootStartedEvent(TeamEnum teamEnum, WeaponEnum weaponEnum)
-        {
-            SendMessageInGame(new InputShootStartedEvent
-                { PlayerTeamEnum = teamEnum, Weapon = weaponEnum });
-        }
+        private void ShootStartedEvent(TeamEnum teamEnum, WeaponEnum weaponEnum) =>
+            SendMessageInGame(new InputShootStartedEvent { PlayerTeamEnum = teamEnum, Weapon = weaponEnum });
 
-        private void ShootCanceledEvent(TeamEnum teamEnum, WeaponEnum weaponEnum)
-        {
-            SendMessageInGame(new InputShootCanceledEvent
-                { PlayerTeam = teamEnum, Weapon = weaponEnum });
-        }
+
+        private void ShootCanceledEvent(TeamEnum teamEnum, WeaponEnum weaponEnum) =>
+            SendMessageInGame(new InputShootCanceledEvent { PlayerTeam = teamEnum, Weapon = weaponEnum });
+
 
         private void OnRotateAction(InputAction.CallbackContext callbackContext, TeamEnum teamEnum)
         {
@@ -94,49 +90,38 @@ namespace Engine.Input.Systems
 
         #region RedPlayer
 
-        void PlayerInput.IPlayer1Actions.OnRotate(InputAction.CallbackContext context)
-        {
+        void PlayerInput.IPlayer1Actions.OnRotate(InputAction.CallbackContext context) =>
             OnRotateAction(context, TeamEnum.Red);
-        }
 
-        void PlayerInput.IPlayer1Actions.OnAcceleration(InputAction.CallbackContext context)
-        {
+
+        void PlayerInput.IPlayer1Actions.OnAcceleration(InputAction.CallbackContext context) =>
             OnAccelerateAction(context, TeamEnum.Red);
-        }
 
-        void PlayerInput.IPlayer1Actions.OnFirstShoot(InputAction.CallbackContext context)
-        {
+        void PlayerInput.IPlayer1Actions.OnFirstShoot(InputAction.CallbackContext context) =>
             OnShootAction(context, TeamEnum.Red, WeaponEnum.Primary);
-        }
 
-        void PlayerInput.IPlayer1Actions.OnSecondShoot(InputAction.CallbackContext context)
-        {
+
+        void PlayerInput.IPlayer1Actions.OnSecondShoot(InputAction.CallbackContext context) =>
             OnShootAction(context, TeamEnum.Red, WeaponEnum.Secondary);
-        }
 
         #endregion
 
         #region BluePlayer
 
-        void PlayerInput.IPlayerActions.OnRotate(InputAction.CallbackContext context)
-        {
+        void PlayerInput.IPlayerActions.OnRotate(InputAction.CallbackContext context) =>
             OnRotateAction(context, TeamEnum.Blue);
-        }
 
-        void PlayerInput.IPlayerActions.OnAcceleration(InputAction.CallbackContext context)
-        {
+
+        void PlayerInput.IPlayerActions.OnAcceleration(InputAction.CallbackContext context) =>
             OnAccelerateAction(context, TeamEnum.Blue);
-        }
 
-        void PlayerInput.IPlayerActions.OnFirstShoot(InputAction.CallbackContext context)
-        {
+
+        void PlayerInput.IPlayerActions.OnFirstShoot(InputAction.CallbackContext context) =>
             OnShootAction(context, TeamEnum.Blue, WeaponEnum.Primary);
-        }
 
-        void PlayerInput.IPlayerActions.OnSecondShoot(InputAction.CallbackContext context)
-        {
+
+        void PlayerInput.IPlayerActions.OnSecondShoot(InputAction.CallbackContext context) =>
             OnShootAction(context, TeamEnum.Blue, WeaponEnum.Secondary);
-        }
 
         #endregion
 
@@ -147,10 +132,10 @@ namespace Engine.Input.Systems
                 SendMessageInGame(new InputPauseQuitEvent());
             }
         }
-        
+
         public void Dispose()
         {
-            _playerInput.Disable();
+            _playerInput?.Disable();
             _playerInput?.Dispose();
         }
     }

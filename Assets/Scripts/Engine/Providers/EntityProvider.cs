@@ -1,7 +1,8 @@
 using System;
-using Engine.Converters.Base;
-using Engine.ScriptableObjects.Settings;
+using Engine.Providers.MonoProviders.Base;
 using Scellecs.Morpeh;
+using Scellecs.Morpeh.Editor;
+using TriInspector;
 using UnityEngine;
 
 namespace Engine.Providers
@@ -12,42 +13,34 @@ namespace Engine.Providers
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
-    public class EntityProvider : Scellecs.Morpeh.Providers.EntityProvider, IDisposable
+    public class EntityProvider : MonoBehaviour, IDisposable
     {
-        [SerializeField] private EntityConfiguration[] _entityConfigurations;
-        [SerializeReference] private IConverter[] _converters;
         private bool _disposed = true;
         public World World { get; private set; }
+        public Entity Entity { get; private set; }
 
         public void Init(World world)
         {
-            cachedEntity = world.CreateEntity();
+            Entity = world.CreateEntity();
             World = world;
             Init();
         }
 
         public void Init(World world, Entity entity)
         {
-            cachedEntity = entity;
+            Entity = entity;
             World = world;
             Init();
         }
 
         private void Init()
         {
+            _entityViewer.getter = () => Entity;
             _disposed = false;
 
-            foreach (var link in _converters)
+            foreach (var provider in GetComponents<IProvider>())
             {
-                link.Resolve(World, Entity);
-            }
-
-            foreach (var entityConfiguration in _entityConfigurations)
-            {
-                foreach (var link in entityConfiguration.Links)
-                {
-                    link.Resolve(World, Entity);
-                }
+                provider.Resolve(World, Entity);
             }
 
             OnInit();
@@ -61,7 +54,7 @@ namespace Engine.Providers
         {
             if (_disposed) return;
             _disposed = true;
-            if (cachedEntity.IsNullOrDisposed() == false)
+            if (Entity.IsNullOrDisposed() == false)
                 World.RemoveEntity(Entity);
 
             World = null;
@@ -92,5 +85,14 @@ namespace Engine.Providers
 
             throw new NullReferenceException("Trying to get a component of a dead entity");
         }
+        
+#if UNITY_EDITOR
+        [PropertyOrder(100)]
+        [ShowInInspector]
+        [InlineProperty]
+        [HideLabel]
+        [Title("Debug Info", HorizontalLine = true)]
+        private readonly EntityViewer _entityViewer = new();
+#endif
     }
 }

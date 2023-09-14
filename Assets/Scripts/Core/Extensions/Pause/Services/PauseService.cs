@@ -16,7 +16,7 @@ namespace Core.Extensions.Pause.Services
         {
             _pauseHandlers = new List<IPauseHandler>();
         }
-        
+
         public void SetPaused(bool isPaused)
         {
             IsPause = isPaused;
@@ -26,14 +26,9 @@ namespace Core.Extensions.Pause.Services
             }
         }
 
-        public void AddPauseHandler(IPauseHandler pauseHandler)
-        {
-            _pauseHandlers.Add(pauseHandler);
-        }
+        public void AddPauseHandler(IPauseHandler pauseHandler) => _pauseHandlers.Add(pauseHandler);
 
-        public void RemovePauseHandler(IPauseHandler pauseHandler)
-        {
-            _pauseHandlers.Remove(pauseHandler);
-        }
+
+        public void RemovePauseHandler(IPauseHandler pauseHandler) => _pauseHandlers.Remove(pauseHandler);
     }
 }

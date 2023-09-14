@@ -25,7 +25,7 @@ namespace Core.Movement.Systems
 
         public void OnAwake()
         {
-            _filter = World.Filter.With<Velocity>().With<ForceRequest>().Build();
+            _filter = World.Filter.With<ForceRequest>().Build();
             _forceRequestPool = World.GetStash<ForceRequest>();
             _velocityPool = World.GetStash<Velocity>();
         }
@@ -41,10 +41,7 @@ namespace Core.Movement.Systems
             };
             var handler = job.Schedule(filter.length, 64);
             handler.Complete();
-            foreach (var entity in _filter)
-            {
-                _forceRequestPool.Remove(entity);
-            }
+            _forceRequestPool.RemoveAll();
         }
 
         public void Dispose()
@@ -62,11 +59,11 @@ namespace Core.Movement.Systems
             {
                 var entityId = Entities[index];
                 ref var forceRequest = ref ForceRequestComponents.Get(entityId, out var forceRequestExists);
-                ref var velocity = ref VelocityComponents.Get(entityId, out var velocityExists);
+                ref var velocityEntity = ref forceRequest.EntityId;
+                ref var velocity = ref VelocityComponents.Get(velocityEntity, out var velocityExists);
                 if (velocityExists && forceRequestExists)
                 {
                     velocity.Value += forceRequest.Value;
-                    forceRequest.Value = Vector2.zero;
                 }
             }
         }

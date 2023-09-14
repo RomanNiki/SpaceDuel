@@ -17,14 +17,8 @@ namespace Core.Extensions.Clear.Systems
         {
         }
 
-        public void OnAwake()
-        {
-            _pool = World.GetStash<T>();
-        }
-        
-        public void OnUpdate(float deltaTime)
-        {
-            _pool.RemoveAll();
-        }
+        public void OnAwake() => _pool = World.GetStash<T>();
+
+        public void OnUpdate(float deltaTime) => _pool.RemoveAll();
     }
 }

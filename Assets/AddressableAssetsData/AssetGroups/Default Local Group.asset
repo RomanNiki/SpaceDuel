@@ -17,11 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: 61c7719200c5d6c489177e3c0436334d
   m_SerializeEntries:
-  - m_GUID: ac5fd1bd5dbf8c24ebb3464f1243e2dd
-    m_Address: BulletPrefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: bf37154ae4d79354093a52eedcfa6313
     m_Address: SunPrefab
     m_ReadOnly: 0

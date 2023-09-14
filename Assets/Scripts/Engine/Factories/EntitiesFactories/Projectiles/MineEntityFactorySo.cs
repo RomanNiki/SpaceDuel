@@ -1,5 +1,5 @@
 ﻿using Core.Characteristics.EnergyLimits.Components;
-using Core.Explosions.Components;
+using Core.Effects.Components;
 using Core.Extensions;
 using Core.Movement.Gravity.Components;
 using Core.Timers.Components;
@@ -18,7 +18,7 @@ namespace Engine.Factories.EntitiesFactories.Projectiles
         protected override void OnCreateProjectileEntity(Entity entity, in World world)
         {
             world.AddComponentToEntity(entity, new MineTag());
-            world.AddComponentToEntity(entity, new DischargeTag());
+            world.AddComponentToEntity(entity, new SunDischargeTag());
             world.AddComponentToEntity(entity, new ExplosiveTag());
             world.AddComponentToEntity(entity, new GravityResistTag());
             world.AddComponentToEntity(entity, new Energy(_startEnergy));

@@ -1,6 +1,5 @@
 ﻿using System;
 using Scellecs.Morpeh;
-using UnityEngine;
 
 namespace Core.Movement.Gravity.Components
 {
@@ -13,7 +12,7 @@ namespace Core.Movement.Gravity.Components
     [Serializable]
     public struct GravityPoint : IComponent
     {
-        [Range(1, 100)] public float OuterRadius;
-        [Range(0.5f, 10)] public float InnerRadius;
+        public float OuterRadius;
+        public float InnerRadius;
     }
 }

@@ -1,6 +1,4 @@
-﻿using UnityEngine.Serialization;
-
-namespace Core.Collisions.Components
+﻿namespace Core.Collisions.Components
 {
     using System;
     using Scellecs.Morpeh;

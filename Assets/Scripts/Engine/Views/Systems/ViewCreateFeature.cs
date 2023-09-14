@@ -1,4 +1,6 @@
 ﻿using Core.Extensions;
+using Core.Extensions.Clear.Systems;
+using Core.Views.Components;
 using Core.Weapon.Components;
 using Cysharp.Threading.Tasks;
 using Engine.Extensions;
@@ -10,21 +12,16 @@ namespace Engine.Views.Systems
     {
         private readonly ObjectPools _pools;
 
-        public ViewCreateFeature(ObjectPools pools)
-        {
-            _pools = pools;
-        }
+        public ViewCreateFeature(ObjectPools pools) => _pools = pools;
         
         protected override async UniTask InitializeSystems()
         {
             await _pools.Load();
-            AddSystem(new ProjectileCreateSystem<BulletTag>(_pools.BulletFactory));
-            AddSystem(new ProjectileCreateSystem<MineTag>(_pools.MineFactory));
+            AddSystem(new DellHereUpdateSystem<ViewCreatedEvent>());
+            AddSystem(new ViewCreateSystem<BulletTag>(_pools.BulletFactory));
+            AddSystem(new ViewCreateSystem<MineTag>(_pools.MineFactory));
         }
 
-        protected override void OnDispose()
-        {
-            _pools.Dispose();
-        }
+        protected override void OnDispose() => _pools.Dispose();
     }
 }

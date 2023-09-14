@@ -18,7 +18,12 @@ MonoBehaviour:
   m_GUID: ef6037c182b04ab4ca7cf2b7632f58ac
   m_SerializeEntries:
   - m_GUID: 3cfda5c64c5510044a68dcda26e8403c
-    m_Address: MinePrefab
+    m_Address: Mine
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ac5fd1bd5dbf8c24ebb3464f1243e2dd
+    m_Address: Bullet
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0

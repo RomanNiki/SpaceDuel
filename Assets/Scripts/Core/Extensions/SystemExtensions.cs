@@ -13,15 +13,10 @@ namespace Core.Extensions
             pool.Add(entity, component);
         }
 
-        public static IFixedSystem AddExternalPause(this IFixedSystem system)
-        {
-            return new FixedPauseProxySystem(system);
-        }
+        public static IFixedSystem AddExternalPause(this IFixedSystem system) => new FixedPauseProxySystem(system);
 
-        public static ISystem AddExternalPause(this ISystem system)
-        {
-            return new PauseProxySystem(system);
-        }
+
+        public static ISystem AddExternalPause(this ISystem system) => new PauseProxySystem(system);
     }
 
 #if ENABLE_IL2CPP
@@ -40,11 +35,8 @@ namespace Core.Extensions
             _system = system;
         }
 
-        public void Dispose()
-        {
-            _system.Dispose();
-        }
-
+        public void Dispose() =>  _system.Dispose();
+        
         public void OnAwake()
         {
             _pauseFilter = World.Filter.With<PauseTag>().Build();

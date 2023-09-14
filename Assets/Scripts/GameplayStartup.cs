@@ -6,62 +6,40 @@ using Core.Movement;
 using Cysharp.Threading.Tasks;
 using Engine.Factories.SystemsFactories;
 using Scellecs.Morpeh;
-using UnityEngine;
+using TriInspector;
 using Zenject;
 using EntityProvider = Engine.Providers.EntityProvider;
 
 public sealed class GameplayStartup : BaseInstaller
 {
-    [SerializeReference]
-    private BaseMorpehFeature[] _updateFeatures = Array.Empty<BaseMorpehFeature>();
-    [SerializeReference]
-    private BaseMorpehFeature[] _fixedFeatures = Array.Empty<BaseMorpehFeature>();
-    [SerializeReference]
-    private BaseMorpehFeature[] _lateFeatures = Array.Empty<BaseMorpehFeature>();
-    private ISystemFactory _systemsFactory;
+    private IFeaturesFactory _featuresFactory;
     private IMoveLoopService _moveLoopService;
-    private SystemFactoryArgs _systemFactoryArgs;
-
+    private FeaturesFactoryArgs _featuresFactoryArgs;
+    
     [Inject]
-    public void Constructor(World world, ISystemFactory systemsFactory, SystemFactoryArgs systemFactoryArgs)
+    public void Constructor(World world, IFeaturesFactory featuresFactory, FeaturesFactoryArgs featuresFactoryArgs)
     {
-        _systemFactoryArgs = systemFactoryArgs;
         World = world;
         World.UpdateByUnity = true;
-        _systemsFactory = systemsFactory;
-        
+        _featuresFactoryArgs = featuresFactoryArgs;
+        _featuresFactory = featuresFactory;
         CreateFeatures();
     }
 
-    protected override async void OnEnable()
-    {
-        await EnableFeatures();
-    }
+    protected override async void OnEnable() => await EnableFeatures();
 
-    protected override void OnDisable()
-    {
-        DisableFeatures();
-    }
+    protected override void OnDisable() => DisableFeatures();
 
     private async UniTask EnableFeatures()
     {
-        var order = 0;
-        for (var i = 0; i < _updateFeatures.Length; i++, order++)
-            await World.AddFeatureAsync(order, _updateFeatures[i]);
-        for (var i = 0; i < _fixedFeatures.Length; i++, order++)
-            await World.AddFeatureAsync(order, _fixedFeatures[i]);
-        for (var i = 0; i < _lateFeatures.Length; i++, order++)
-            await World.AddFeatureAsync(order, _lateFeatures[i]);
+        for (var i = 0; i < _activeFeatures.Length; i++)
+            await World.AddFeatureAsync(i, _activeFeatures[i]);
     }
 
     private void DisableFeatures()
     {
-        for (var i = 0; i < _updateFeatures.Length; i++)
-            World.RemoveFeature(_updateFeatures[i]);
-        for (var i = 0; i < _fixedFeatures.Length; i++)
-            World.RemoveFeature(_fixedFeatures[i]);
-        for (var i = 0; i < _lateFeatures.Length; i++)
-            World.RemoveFeature(_lateFeatures[i]);
+        foreach (var t in _activeFeatures)
+            World.RemoveFeature(t);
     }
 
     private void Start()
@@ -72,31 +50,15 @@ public sealed class GameplayStartup : BaseInstaller
         }
     }
 
-    private void Update()
-    {
-        World?.Update(Time.deltaTime);
-    }
+    private void OnDestroy() => World?.Dispose();
 
-    private void FixedUpdate()
-    {
-        World?.FixedUpdate(Time.fixedDeltaTime);
-    }
-
-    private void LateUpdate()
-    {
-        World?.LateUpdate(Time.deltaTime);
-        World?.CleanupUpdate(Time.deltaTime);
-    }
-
-    private void OnDestroy()
-    {
-        World?.Dispose();
-    }
-
-    private void CreateFeatures()
-    {
-        _updateFeatures = _systemsFactory.CreateUpdateFeatures(_systemFactoryArgs).ToArray();
-        _fixedFeatures = _systemsFactory.CreateFixedUpdateFeatures(_systemFactoryArgs).ToArray();
-        _lateFeatures = _systemsFactory.CreateLateUpdateFeatures(_systemFactoryArgs).ToArray();
-    }
+    private void CreateFeatures() => _activeFeatures = _featuresFactory.Create(_featuresFactoryArgs).ToArray();
+    
+    #if DEBUG
+    [PropertySpace]
+    [ShowInInspector]
+    [PropertyOrder(-1)]
+    [ListDrawerSettings(HideAddButton = true, HideRemoveButton = true)]
+    #endif
+    private BaseMorpehFeature[] _activeFeatures = Array.Empty<BaseMorpehFeature>();
 }

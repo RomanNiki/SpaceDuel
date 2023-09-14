@@ -1,5 +1,5 @@
 ﻿using System;
-using Core.Characteristics.Enums;
+using Core.Common.Enums;
 
 namespace Core.Input.Components
 {

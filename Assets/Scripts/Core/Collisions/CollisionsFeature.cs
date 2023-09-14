@@ -14,11 +14,11 @@ namespace Core.Collisions
     {
         protected async override UniTask InitializeSystems()
         {
-            AddSystem(new TriggerSystemBetween<ProjectileTag, ProjectileTag>(new DamagerTriggerStrategy()));
-            AddSystem(new TriggerSystemBetween<ProjectileTag, PlayerTag>(new DamagerTriggerStrategy()));
-            AddSystem(new TriggerSystemBetween<GravityPoint, ProjectileTag>(new GravityPointTriggerStrategy()));
-            AddSystem(new TriggerSystemBetween<GravityPoint, PlayerTag>(new GravityPointTriggerStrategy()));
-            AddSystem(new TriggerSystemBetween<PlayerTag, PlayerTag>(new PlayersTriggerStrategy()));
+            AddSystem(new TriggerSystem<ProjectileTag, ProjectileTag>(new DamagerTriggerStrategy()));
+            AddSystem(new TriggerSystem<ProjectileTag, PlayerTag>(new DamagerTriggerStrategy()));
+            AddSystem(new TriggerSystem<GravityPoint, ProjectileTag>(new GravityPointTriggerStrategy()));
+            AddSystem(new TriggerSystem<GravityPoint, PlayerTag>(new GravityPointTriggerStrategy()));
+            AddSystem(new TriggerSystem<PlayerTag, PlayerTag>(new PlayersTriggerStrategy()));
             AddSystem(new DellHereFixedUpdateSystem<TriggerEnterRequest>());
         }
     }

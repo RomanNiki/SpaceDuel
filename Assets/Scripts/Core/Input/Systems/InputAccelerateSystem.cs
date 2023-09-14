@@ -1,5 +1,6 @@
-﻿using Core.Characteristics.Enums;
-using Core.Characteristics.Player.Components;
+﻿using Core.Characteristics.Player.Components;
+using Core.Common;
+using Core.Common.Enums;
 using Core.Input.Components;
 using Scellecs.Morpeh;
 

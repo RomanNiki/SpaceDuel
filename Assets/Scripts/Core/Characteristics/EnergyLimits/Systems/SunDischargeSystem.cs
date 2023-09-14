@@ -1,9 +1,9 @@
-﻿using Core.Characteristics.EnergyLimits.Components;
+﻿using System.Text;
+using Core.Characteristics.EnergyLimits.Components;
 using Core.Extensions;
 using Core.Movement.Components;
 using Core.Movement.Gravity.Components;
 using Core.Timers.Components;
-using UnityEngine;
 
 namespace Core.Characteristics.EnergyLimits.Systems
 {
@@ -28,7 +28,7 @@ namespace Core.Characteristics.EnergyLimits.Systems
 
         public void OnAwake()
         {
-            _entityFilter = World.Filter.With<Energy>().With<Position>().With<DischargeTag>().Without<Timer<InvisibleTimer>>().Build();
+            _entityFilter = World.Filter.With<Energy>().With<Position>().With<SunDischargeTag>().Without<Timer<InvisibleTimer>>().Build();
             _sunFilter = World.Filter.With<GravityPoint>().With<Position>().With<ChargeContainer>().Build();
             _positionPool = World.GetStash<Position>();
             _chargeContainerPool = World.GetStash<ChargeContainer>();
@@ -37,7 +37,6 @@ namespace Core.Characteristics.EnergyLimits.Systems
 
         public void OnUpdate(float deltaTime)
         {
-            
             foreach (var sunEntity in _sunFilter)
             {
                 ref var sunPosition = ref _positionPool.Get(sunEntity);

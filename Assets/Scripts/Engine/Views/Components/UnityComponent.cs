@@ -2,7 +2,7 @@
 using Scellecs.Morpeh;
 using Object = UnityEngine.Object;
 
-namespace Views.Components
+namespace Engine.Views.Components
 {
 #if ENABLE_IL2CPP
     using Unity.IL2CPP.CompilerServices;

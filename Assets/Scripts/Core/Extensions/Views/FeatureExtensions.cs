@@ -1,7 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 using Cysharp.Threading.Tasks;
 using Scellecs.Morpeh;
-using UnityEngine;
 
 namespace Core.Extensions.Views
 {

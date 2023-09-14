@@ -1,6 +1,5 @@
 ﻿using Core.Timers.Components;
 using Scellecs.Morpeh;
-using UnityEngine;
 
 namespace Core.Timers.Systems
 {
@@ -15,25 +14,25 @@ namespace Core.Timers.Systems
         private Filter _filter;
         private Stash<Timer<TTimerFlag>> _timerPool;
         public World World { get; set; }
-        
+
         public void OnAwake()
         {
             _filter = World.Filter.With<Timer<TTimerFlag>>().Build();
             _timerPool = World.GetStash<Timer<TTimerFlag>>();
         }
-        
+
         public void OnUpdate(float deltaTime)
         {
             foreach (var entity in _filter)
             {
                 ref var timer = ref _timerPool.Get(entity);
-                ExecuteTimer(ref timer, entity);
+                ExecuteTimer(ref timer, entity, deltaTime);
             }
         }
-        
-        private void ExecuteTimer(ref Timer<TTimerFlag> timer, in Entity entity)
+
+        private void ExecuteTimer(ref Timer<TTimerFlag> timer, Entity entity, float delta)
         {
-            timer.TimeLeftSec -= Time.deltaTime;
+            timer.TimeLeftSec -= delta;
 
             if (timer.TimeLeftSec <= 0)
             {

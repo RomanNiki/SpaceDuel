@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
-using Core.Characteristics.Enums;
 using Core.Characteristics.Player.Components;
+using Core.Common;
+using Core.Common.Enums;
 using Core.Extensions;
 using Core.Input.Components;
 using Core.Movement.Components;
@@ -27,7 +28,7 @@ namespace Core.Input.Systems
         private Stash<Owner> _ownerPool;
         private Stash<WeaponType> _weaponTypePool;
         private Stash<Rotation> _rotationPool;
-        private HashSet<ShootData> _numberPlayersIsShooting;
+        private HashSet<ShootData> _shootingPlayers;
 
         public World World { get; set; }
 
@@ -42,7 +43,7 @@ namespace Core.Input.Systems
             _ownerPool = World.GetStash<Owner>();
             _weaponTypePool = World.GetStash<WeaponType>();
             _rotationPool = World.GetStash<Rotation>();
-            _numberPlayersIsShooting = new HashSet<ShootData>();
+            _shootingPlayers = new HashSet<ShootData>();
         }
 
         public void OnUpdate(float deltaTime)
@@ -50,7 +51,7 @@ namespace Core.Input.Systems
             foreach (var startEntity in _startShootFilter)
             {
                 ref var startShootEvent = ref _inputShootStartedPool.Get(startEntity);
-                _numberPlayersIsShooting.Add(new ShootData()
+                _shootingPlayers.Add(new ShootData()
                     { Weapon = startShootEvent.Weapon, TeamEnum = startShootEvent.PlayerTeamEnum });
             }
 
@@ -59,15 +60,15 @@ namespace Core.Input.Systems
                 ref var shootCanceledEvent = ref _inputShootCanceledPool.Get(canceledEntity);
                 var weapon = shootCanceledEvent.Weapon;
                 var team = shootCanceledEvent.PlayerTeam;
-                if (_numberPlayersIsShooting.TryGetValue(new ShootData(team, weapon), out var actualValue))
+                if (_shootingPlayers.TryGetValue(new ShootData(team, weapon), out var actualValue))
                 {
-                    _numberPlayersIsShooting.Remove(actualValue);
+                    _shootingPlayers.Remove(actualValue);
                 }
             }
 
-            foreach (var i in _numberPlayersIsShooting)
+            foreach (var shootData in _shootingPlayers)
             {
-                ProcessShootEvent(i.TeamEnum, i.Weapon);
+                ProcessShootEvent(shootData.TeamEnum, shootData.Weapon);
             }
         }
 
@@ -96,8 +97,8 @@ namespace Core.Input.Systems
 
         private void MakeShooting(Entity gun, in Vector2 direction)
         {
-            var shooting = new ShootingRequest { Direction = direction, Entity = gun };
-            World.SendMessage(shooting);
+            var shootingRequest = new ShootingRequest { Direction = direction, Entity = gun };
+            World.SendMessage(shootingRequest);
         }
 
         public void Dispose()
