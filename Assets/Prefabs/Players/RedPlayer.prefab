@@ -20,16 +20,16 @@ GameObject:
   - component: {fileID: 973723180876731907}
   - component: {fileID: 5000025075928804480}
   - component: {fileID: 9126957134336371620}
-  - component: {fileID: 5693165961385719871}
-  - component: {fileID: 3988472348861500933}
   - component: {fileID: -7617282472079886786}
   - component: {fileID: 6569621176814566931}
   - component: {fileID: 1012770852546025023}
-  - component: {fileID: 2267763625736838388}
   - component: {fileID: 6808467245346738068}
   - component: {fileID: 5470284308221158755}
   - component: {fileID: 5331411588390065702}
   - component: {fileID: 2539683769939013754}
+  - component: {fileID: 8441732999200186554}
+  - component: {fileID: 5063155364044525515}
+  - component: {fileID: 1868411501246025003}
   m_Layer: 0
   m_Name: RedPlayer
   m_TagString: Untagged
@@ -246,34 +246,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _serializedComponent:
     Value: {x: 0, y: 0}
---- !u!114 &5693165961385719871
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185098763576395255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae1623de81254a0fbe3f9eef46714102, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _serializedComponent:
-    Value: 80
---- !u!114 &3988472348861500933
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185098763576395255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 985a99b604a34532be5237df00dd4c10, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _serializedComponent:
-    Value: 5
 --- !u!114 &-7617282472079886786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,21 +288,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _serializedComponent:
     Value: 0
---- !u!114 &2267763625736838388
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1185098763576395255}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e0c8d4c3f7314b3fab29a635b623fb9a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _serializedComponent:
-    Accelerate: 0
-    Rotation: 0
 --- !u!114 &6808467245346738068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,7 +335,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedComponent:
-    Value: 5
+    Value: 0.1
 --- !u!114 &2539683769939013754
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,4 +349,47 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedComponent:
-    Value: 3
+    Value: 0.05
+--- !u!114 &8441732999200186554
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185098763576395255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 985a99b604a34532be5237df00dd4c10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _serializedComponent:
+    Value: 5
+--- !u!114 &5063155364044525515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185098763576395255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae1623de81254a0fbe3f9eef46714102, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _serializedComponent:
+    Value: 80
+--- !u!114 &1868411501246025003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185098763576395255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0c8d4c3f7314b3fab29a635b623fb9a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _serializedComponent:
+    Accelerate: 0
+    Rotation: 0

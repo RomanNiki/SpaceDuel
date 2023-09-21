@@ -1,6 +1,5 @@
 ﻿using Cysharp.Threading.Tasks;
 using Modules.Pooling.Core.Factory;
-using UnityEngine;
 
 namespace Modules.Pooling.Core.Pool
 {
@@ -15,11 +14,10 @@ namespace Modules.Pooling.Core.Pool
         {
         }
 
-        public TComponent Spawn(Vector3 position = new(), float rotation = 0)
+        public TComponent Spawn()
         {
             var item = GetInternal();
             ReInitialize(item);
-            OnSpawn(item, position, rotation);
             return item;
         }
 
@@ -27,16 +25,9 @@ namespace Modules.Pooling.Core.Pool
         {
             item.OnSpawned(this);
         }
+        
+        public TComponent Create() => Spawn();
 
-        public TComponent Create(Vector3 position = new(), float rotation = 0) => Spawn(position, rotation);
-
-        protected virtual void OnSpawn(TComponent item, Vector3 position, float rotation)
-        {
-        }
-
-        public async UniTask Load()
-        {
-            await LoadInternal();
-        }
+        public async UniTask Load() => await LoadInternal();
     }
 }

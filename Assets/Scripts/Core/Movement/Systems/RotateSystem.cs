@@ -3,11 +3,15 @@ using Core.Characteristics.EnergyLimits.Components;
 using Core.Input.Components;
 using Core.Movement.Components;
 using Scellecs.Morpeh;
+using UnityEngine;
+
+#if MORPEH_BURST
 using Scellecs.Morpeh.Native;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
-using UnityEngine;
+#endif
+
 
 namespace Core.Movement.Systems
 {
@@ -37,6 +41,7 @@ namespace Core.Movement.Systems
 
         public void OnUpdate(float deltaTime)
         {
+#if MORPEH_BURST
             var filter = _filter.AsNative();
             var job = new RotateJob()
             {
@@ -47,14 +52,32 @@ namespace Core.Movement.Systems
                 RotationComponents = _rotationPool.AsNative()
             };
 
-            var handler = job.Schedule(filter.length, 64);
-            handler.Complete();
+            World.JobHandle = job.Schedule(filter.length, 64, World.JobHandle);
+            World.JobsComplete();
+#else
+            foreach (var entity in _filter)
+            {
+                ref var inputData = ref _inputDataPool.Get(entity);
+                if (MathF.Abs(inputData.Rotation) < 0.1f)
+                    return;
+
+                ref var rotation = ref _rotationPool.Get(entity);
+                ref var rotationSpeed = ref _rotationSpeedPool.Get(entity);
+
+                Rotate(ref rotation, inputData.Rotation * (rotationSpeed.Value * deltaTime));
+            }
+#endif
         }
 
         public void Dispose()
         {
         }
 
+        private static void Rotate(ref Rotation rotation, float delta) =>
+            rotation.Value = Mathf.Repeat(rotation.Value + delta, 360f);
+
+#if MORPEH_BURST
+        
         [BurstCompile]
         private struct RotateJob : IJobParallelFor
         {
@@ -76,9 +99,7 @@ namespace Core.Movement.Systems
 
                 Rotate(ref rotation, inputData.Rotation * (rotationSpeed.Value * Delta));
             }
-
-            private static void Rotate(ref Rotation rotation, float delta) =>
-                rotation.Value = Mathf.Repeat(rotation.Value + delta, 360f);
         }
+#endif
     }
 }

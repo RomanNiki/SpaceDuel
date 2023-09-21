@@ -1,14 +1,16 @@
 ﻿using System;
+using Core.Common;
+using Core.Common.Enums;
 using Core.Extensions.Pause;
 using Core.Extensions.Pause.Services;
 using Core.Movement;
-using Engine.Extensions;
+using Engine.Common;
+using Engine.Factories;
 using Engine.Factories.SystemsFactories;
 using Engine.Movement.Services;
+using Engine.Pools;
 using Engine.Providers;
 using Modules.Pooling.Core.Pool;
-using Modules.Pooling.Engine.Factories;
-using Modules.Pooling.Engine.Pools;
 using Scellecs.Morpeh;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
@@ -20,8 +22,8 @@ namespace Installers
     {
         [SerializeField] private FeaturesFactoryBaseSo _featuresFactoryBaseSo;
         [SerializeField] private Camera _orthographicCamera;
-        [SerializeField] private Settings _settings;
-
+        [SerializeField] private PoolsAssets _poolsAssets;
+        
         private void OnValidate()
         {
             if (_orthographicCamera.orthographic == false)
@@ -44,19 +46,21 @@ namespace Installers
         {
             var bulletPool = CreateBulletPool();
             var minePool = CreateMinePool();
-            var objectPools = new ObjectPools(bulletPool, minePool);
-            Container.Bind<ObjectPools>().FromInstance(objectPools).AsSingle();
+            var objectPools = new AssetsPools();
+            objectPools.AddPool(ObjectId.Bullet, bulletPool);
+            objectPools.AddPool(ObjectId.Mine, minePool);
+            Container.Bind<IAssets>().FromInstance(objectPools).AsSingle();
         }
 
-        private MonoPool<PoolableEntityProvider> CreateBulletPool() => CreatePool(_settings.BulletReference);
+        private EntityProviderPool CreateBulletPool() => CreatePool(_poolsAssets.BulletReference);
 
-        private MonoPool<PoolableEntityProvider> CreateMinePool() => CreatePool(_settings.MineReference);
+        private EntityProviderPool CreateMinePool() => CreatePool(_poolsAssets.MineReference);
 
-        private static MonoPool<PoolableEntityProvider> CreatePool(AssetReference assetReference, int initialSize = 5)
+        private static EntityProviderPool CreatePool(AssetReference assetReference, int initialSize = 5)
         {
             var factory = new AddressableViewFactory<PoolableEntityProvider>(assetReference);
-            var settings = new PoolBase<PoolableEntityProvider>.Settings(int.MaxValue, initialSize);
-            var pool = new MonoPool<PoolableEntityProvider>(settings, factory);
+            var settings = new PoolBase<PoolableEntityProvider>.Settings(initialSize, int.MaxValue);
+            var pool = new EntityProviderPool(settings, factory);
             return pool;
         }
 
@@ -77,7 +81,7 @@ namespace Installers
         }
 
         [Serializable]
-        public class Settings
+        public class PoolsAssets
         {
             public AssetReference BulletReference;
             public AssetReference MineReference;

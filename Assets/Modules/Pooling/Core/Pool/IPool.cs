@@ -15,6 +15,6 @@ namespace Modules.Pooling.Core.Pool
     
     public interface IPool<TComponent> : IDespawnablePool<TComponent>
     {
-        TComponent Spawn(Vector3 position = new Vector3(), float rotation = 0);
+        TComponent Spawn();
     }
 }

@@ -35,7 +35,6 @@ namespace Modules.Pooling.Core.Pool
         protected async UniTask LoadInternal()
         {
             await _factory.Load();
-
             for (var i = 0; i < _settings.InitialSize; i++)
             {
                 _inactiveItems.Push(CreateNew());
@@ -146,7 +145,7 @@ namespace Modules.Pooling.Core.Pool
             public int MaxSize;
             public int InitialSize;
 
-            public Settings(int maxSize, int initialSize)
+            public Settings(int initialSize, int maxSize)
             {
                 MaxSize = maxSize;
                 InitialSize = initialSize;

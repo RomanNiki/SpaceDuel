@@ -150,17 +150,8 @@ PrefabInstance:
       insertIndex: 2
       addedObject: {fileID: 4415605539351337892}
     - targetCorrespondingSourceObject: {fileID: 3498364768210247929, guid: 3b5866d121293c047a34371568e1e63d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -2713752822242567883}
-    - targetCorrespondingSourceObject: {fileID: 3498364768210247929, guid: 3b5866d121293c047a34371568e1e63d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: -519643221070727635}
-    - targetCorrespondingSourceObject: {fileID: 3498364768210247929, guid: 3b5866d121293c047a34371568e1e63d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 5514733463081109856}
-    - targetCorrespondingSourceObject: {fileID: 3498364768210247929, guid: 3b5866d121293c047a34371568e1e63d, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7507105912803093109}
+      insertIndex: 6
+      addedObject: {fileID: -1522101517431407928}
   m_SourcePrefab: {fileID: 100100000, guid: 3b5866d121293c047a34371568e1e63d, type: 3}
 --- !u!4 &2454159678292904761 stripped
 Transform:
@@ -193,7 +184,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &-2713752822242567883
+--- !u!114 &-1522101517431407928
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -203,46 +194,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 518fc84528ce48969ba1c27c104773a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-519643221070727635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5040165393686356861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3f8b43a6dc94d27aaad3d280aeb3c87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _serializedComponent:
-    <MaxValue>k__BackingField: 50
-    <Value>k__BackingField: 50
-    <BaseValue>k__BackingField: 50
-    <MinValue>k__BackingField: 0
---- !u!114 &5514733463081109856
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5040165393686356861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6146dfc969b44e7d95242ff750675410, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7507105912803093109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5040165393686356861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f0d00783ae5e4961ba8c5ce55c747206, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -1,9 +1,12 @@
 ﻿using Core.Movement.Components;
 using Scellecs.Morpeh;
+
+#if MORPEH_BURST
 using Scellecs.Morpeh.Native;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
+#endif
 
 namespace Core.Movement.Systems
 {
@@ -13,7 +16,7 @@ namespace Core.Movement.Systems
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
-    
+
     public sealed class VelocitySystem : IFixedSystem
     {
         private Filter _filter;
@@ -30,21 +33,33 @@ namespace Core.Movement.Systems
 
         public void OnUpdate(float deltaTime)
         {
+#if MORPEH_BURST
             var filter = _filter.AsNative();
-            var handler = new VelocityJob()
+            World.JobHandle = new VelocityJob()
             {
                 PositionComponents = _positionPool.AsNative(),
                 VelocityComponents = _velocityPool.AsNative(),
                 Delta = deltaTime,
                 Entities = filter
-            }.Schedule(filter.length, 64);
-            handler.Complete();
+            }.Schedule(filter.length, 64, World.JobHandle);
+            World.JobsComplete();
+#else
+            foreach (var entity in _filter)
+            {
+                ref var position = ref _positionPool.Get(entity);
+                ref var velocity = ref _velocityPool.Get(entity);
+        
+                position.Value += velocity.Value * deltaTime;
+            }
+#endif
         }
 
         public void Dispose()
         {
         }
 
+#if MORPEH_BURST
+        
         [BurstCompile]
         private struct VelocityJob : IJobParallelFor
         {
@@ -65,5 +80,6 @@ namespace Core.Movement.Systems
                 }
             }
         }
+#endif
     }
 }

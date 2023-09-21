@@ -37,7 +37,7 @@ namespace Engine.Providers
         {
             _entityViewer.getter = () => Entity;
             _disposed = false;
-
+            
             foreach (var provider in GetComponents<IProvider>())
             {
                 provider.Resolve(World, Entity);

@@ -1,10 +1,13 @@
 ﻿using Core.Extensions;
 using Core.Movement.Components;
 using Core.Weapon.Components;
+
+#if MORPEH_BURST
 using Scellecs.Morpeh.Native;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
+#endif
 
 namespace Core.Movement.Systems
 {
@@ -32,6 +35,7 @@ namespace Core.Movement.Systems
 
         public void OnUpdate(float deltaTime)
         {
+#if MORPEH_BURST
             var filter = _filter.AsNative();
             var job = new LookAtVelocityJob()
             {
@@ -40,13 +44,28 @@ namespace Core.Movement.Systems
                 RotationComponents = _rotationPool.AsNative()
             };
 
-            var handler = job.Schedule(filter.length, 64);
-            handler.Complete();
+            World.JobHandle = job.Schedule(filter.length, 64, World.JobHandle);
+            World.JobsComplete();
+#else
+            foreach (var entity in _filter)
+            {
+                ref var velocity = ref _velocityPool.Get(entity);
+                ref var rotation = ref _rotationPool.Get(entity);
+                if (velocity.Value.magnitude <= 0.1f)
+                {
+                    return;
+                }
+
+                rotation.Value = MathExtensions.CalculateRotationFromVelocity(velocity.Value);
+            }
+#endif
         }
 
         public void Dispose()
         {
         }
+
+#if MORPEH_BURST
 
         [BurstCompile]
         private struct LookAtVelocityJob : IJobParallelFor
@@ -64,8 +83,10 @@ namespace Core.Movement.Systems
                 {
                     return;
                 }
+
                 rotation.Value = MathExtensions.CalculateRotationFromVelocity(velocity.Value);
             }
         }
+#endif
     }
 }

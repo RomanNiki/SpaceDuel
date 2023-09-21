@@ -1,13 +1,13 @@
 ﻿using System;
+using Core.Common;
 using Core.Movement;
-using Engine.Extensions;
 
 namespace Engine.Factories.SystemsFactories
 {
     [Serializable]
-    public record FeaturesFactoryArgs(ObjectPools Pools, IMoveLoopService MoveLoopService)
+    public record FeaturesFactoryArgs(IAssets Pools, IMoveLoopService MoveLoopService)
     {
         public IMoveLoopService MoveLoopService { get; } = MoveLoopService;
-        public ObjectPools Pools { get; } = Pools;
+        public IAssets Pools { get; } = Pools;
     }
 }

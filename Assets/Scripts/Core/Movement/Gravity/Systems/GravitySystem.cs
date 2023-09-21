@@ -4,6 +4,12 @@ using Core.Movement.Components;
 using Core.Movement.Gravity.Components;
 using Scellecs.Morpeh;
 using UnityEngine;
+#if MORPEH_BURST
+using Scellecs.Morpeh.Native;
+using Unity.Burst;
+using Unity.Collections;
+using Unity.Jobs;
+#endif
 
 namespace Core.Movement.Gravity.Systems
 {
@@ -36,6 +42,7 @@ namespace Core.Movement.Gravity.Systems
 
         public void OnUpdate(float deltaTime)
         {
+#if MORPEH_BURST == false
             foreach (var gravityPointEntity in _gravityFilter)
             {
                 ref var gravityPointPosition = ref _positionPool.Get(gravityPointEntity);
@@ -54,10 +61,37 @@ namespace Core.Movement.Gravity.Systems
 
                     var massProduct = pointMass.Value * mass.Value * G;
                     var force = CalculateForce(distance, gravityPoint, massProduct, targetDirection, mass);
-                    World.SendMessage(new ForceRequest { Value = force, EntityId = movableEntity.ID });
+
+                    World.SendMessage(new ForceRequest { Value = force, Entity = movableEntity });
                 }
             }
+#else
+            var gravityPointsFilter = _gravityFilter.AsNative();
+            var movableFilter = _movableFilter.AsNative();
+            var length = gravityPointsFilter.length * movableFilter.length;
+            var forceRequests =
+                new NativeArray<ForceRequest>(length, Allocator.TempJob);
+            var job = new GravityJob()
+            {
+                GravityEntities = gravityPointsFilter,
+                MovableEntities = movableFilter,
+                ForceRequests = forceRequests,
+                MassComponents = _massPool.AsNative(),
+                PositionComponents = _positionPool.AsNative(),
+                GravityPointComponents = _gravityPoint.AsNative()
+            };
+
+            World.JobHandle = job.Schedule(length, 64, World.JobHandle);
+            World.JobsComplete();
+            foreach (var forceRequest in forceRequests)
+            {
+                World.SendMessage(forceRequest);
+            }
+
+            forceRequests.Dispose();
+#endif
         }
+
 
         private static Vector2 CalculateForce(in float distance, in GravityPoint gravityPoint, in float massProduct,
             in Vector2 targetDirection, in Mass mass)
@@ -73,5 +107,43 @@ namespace Core.Movement.Gravity.Systems
         public void Dispose()
         {
         }
+
+#if MORPEH_BURST
+        [BurstCompile]
+        private struct GravityJob : IJobParallelFor
+        {
+            [ReadOnly] public NativeFilter MovableEntities;
+            [ReadOnly] public NativeFilter GravityEntities;
+            public NativeArray<ForceRequest> ForceRequests;
+            public NativeStash<Position> PositionComponents;
+            public NativeStash<Mass> MassComponents;
+            public NativeStash<GravityPoint> GravityPointComponents;
+
+            public void Execute(int index)
+            {
+                var gravityPointIndex = index / MovableEntities.length;
+                var entityIndex = index % MovableEntities.length;
+                var entityId = MovableEntities[entityIndex];
+                var gravityId = GravityEntities[gravityPointIndex];
+                ref var position = ref PositionComponents.Get(entityId);
+                ref var mass = ref MassComponents.Get(entityId);
+                var targetDirection = PositionComponents.Get(gravityId).Value - position.Value;
+                var distance = targetDirection.magnitude;
+
+                ref var gravityPointComponent = ref GravityPointComponents.Get(gravityId);
+                if (IsInBounds(distance, gravityPointComponent))
+                    return;
+
+                var massProduct = MassComponents.Get(gravityId).Value * mass.Value * G;
+                var force = CalculateForce(distance, gravityPointComponent, massProduct, targetDirection, mass);
+                ForceRequests[index] = new ForceRequest { Value = force, EntityId = entityId };
+            }
+
+            private static bool IsInBounds(float distance, GravityPoint gravityPointComponent)
+            {
+                return distance <= gravityPointComponent.InnerRadius || distance >= gravityPointComponent.OuterRadius;
+            }
+        }
+#endif
     }
 }

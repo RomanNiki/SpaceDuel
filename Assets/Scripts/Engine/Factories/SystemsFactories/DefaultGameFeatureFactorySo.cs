@@ -7,9 +7,9 @@ using Core.Effects;
 using Core.Extensions;
 using Core.Movement;
 using Core.Timers;
+using Core.Views;
 using Core.Weapon;
 using Engine.Input;
-using Engine.Views.Systems;
 using UnityEngine;
 
 namespace Engine.Factories.SystemsFactories

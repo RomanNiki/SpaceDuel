@@ -2,7 +2,6 @@
 using Core.Extensions.Factories;
 using Core.Timers.Components;
 using Core.Weapon.Components;
-using Engine.Factories.EntitiesFactories.Projectiles;
 using Engine.Views.Components;
 using Scellecs.Morpeh;
 using UnityEngine;
@@ -12,7 +11,8 @@ namespace Engine.Factories.EntitiesFactories.Weapons
     [CreateAssetMenu(fileName = "Weapon", menuName = "SpaceDuel/Weapon", order = 10)]
     public class WeaponEntityFactorySo : EntityFactoryFromSo
     {
-        [SerializeField] private ProjectileEntityFactorySo _bulletEntityFactoryFromSo;
+        [SerializeField] private ShootObjectType _shootType;
+        [SerializeField] private EntityFactoryFromSo _entityFactory;
         [SerializeField] private AudioClip _shot;
         [SerializeField] private BulletStartForce _bulletStartForce = new() { Value = 15f };
 
@@ -31,7 +31,8 @@ namespace Engine.Factories.EntitiesFactories.Weapons
             world.AddComponentToEntity(entity, _bulletStartForce);
             world.AddComponentToEntity(entity, _timeBetweenShotsSetup);
             world.AddComponentToEntity(entity, _dischargeContainer);
-            world.AddComponentToEntity(entity, new EntityFactoryRef<IEntityFactory>(_bulletEntityFactoryFromSo));
+            world.AddComponentToEntity(entity, _shootType);
+            world.AddComponentToEntity(entity, new EntityFactoryRef<IEntityFactory> { Factory = _entityFactory });
             world.AddComponentToEntity(entity, new UnityComponent<AudioClip>(_shot));
 
             return entity;

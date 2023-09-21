@@ -1,4 +1,5 @@
-﻿using Core.Effects.Components;
+﻿using Core.Common.Enums;
+using Core.Effects.Components;
 using Core.Weapon.Components;
 
 namespace Core.Effects.Systems
@@ -13,5 +14,6 @@ namespace Core.Effects.Systems
 
     public sealed class HitEffectSystem : DestroyEffectCreateSystem<BulletTag, HitTag>
     {
+        protected override ObjectId GetObjectId() => ObjectId.HitMarker;
     }
 }

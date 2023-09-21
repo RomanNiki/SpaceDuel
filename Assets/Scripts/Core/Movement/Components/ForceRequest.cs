@@ -1,6 +1,7 @@
 ﻿using System;
 using Scellecs.Morpeh;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace Core.Movement.Components
 {
@@ -13,7 +14,11 @@ namespace Core.Movement.Components
     [Serializable]
     public struct ForceRequest : IComponent
     {
+#if MORPEH_BURST == false
+        public Entity Entity;
+#else
         public EntityId EntityId;
+#endif
         public Vector2 Value;
     }
 }

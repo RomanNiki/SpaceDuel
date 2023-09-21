@@ -40,15 +40,6 @@ namespace Modules.Pooling.Engine.Pools
             }
         }
 
-        protected override void OnSpawn(TComponent item, Vector3 position, float rotation)
-        {
-            var transform = item.transform;
-            var angles = transform.eulerAngles;
-            angles.z = rotation;
-            transform.eulerAngles = angles;
-            transform.position = position;
-        }
-
         protected override void ReInitialize(TComponent item)
         {
             item.OnSpawned(this);

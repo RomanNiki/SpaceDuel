@@ -1,4 +1,5 @@
-﻿using Core.Effects.Components;
+﻿using Core.Common.Enums;
+using Core.Effects.Components;
 
 namespace Core.Effects.Systems
 {
@@ -11,5 +12,6 @@ namespace Core.Effects.Systems
 
     public sealed class ExplosionCreateSystem : DestroyEffectCreateSystem<ExplosiveTag, ExplosionTag>
     {
+        protected override ObjectId GetObjectId() => ObjectId.Explosion;
     }
 }

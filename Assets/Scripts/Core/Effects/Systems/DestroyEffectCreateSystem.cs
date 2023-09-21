@@ -1,7 +1,6 @@
 ﻿using Core.Characteristics.Damage.Components;
 using Core.Common.Enums;
 using Core.Extensions;
-using Core.Movement.Components;
 using Core.Views.Components;
 using Scellecs.Morpeh;
 using UnityEngine;
@@ -14,7 +13,7 @@ namespace Core.Effects.Systems
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
-    public class DestroyEffectCreateSystem<TDestroyedTag, TEffectTag> : ISystem
+    public abstract class DestroyEffectCreateSystem<TDestroyedTag, TEffectTag> : ISystem
         where TDestroyedTag : struct, IComponent
         where TEffectTag : struct, IComponent
     {
@@ -43,8 +42,10 @@ namespace Core.Effects.Systems
         {
             var entity = World.CreateEntity();
             _effectTagPool.Add(entity);
-            World.SendMessage(new ViewCreateRequest(entity, position, 0f));
+            World.SendMessage(new SpawnRequest(entity, GetObjectId(), position, 0f));
         }
+
+        protected abstract ObjectId GetObjectId();
 
         public void Dispose()
         {

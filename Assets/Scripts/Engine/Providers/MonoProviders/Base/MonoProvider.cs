@@ -35,16 +35,9 @@ namespace Engine.Providers.MonoProviders.Base
         {
             get
             {
-                if (_cachedEntity.IsNullOrDisposed() == false)
-                {
-                    var data = _stash.Get(_cachedEntity, out var exist);
-                    if (exist)
-                    {
-                        return data;
-                    }
-                }
-
-                return _serializedComponent;
+                if (_cachedEntity.IsNullOrDisposed()) return _serializedComponent;
+                var data = _stash.Get(_cachedEntity, out var exist);
+                return exist ? data : _serializedComponent;
             }
             set
             {

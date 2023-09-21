@@ -1,4 +1,5 @@
 ﻿using Core.Characteristics.EnergyLimits.Components;
+using Core.Common.Enums;
 using Core.Extensions;
 using Core.Extensions.Factories;
 using Core.Movement.Components;
@@ -25,7 +26,8 @@ namespace Core.Weapon.Systems
         private Stash<Position> _positionPool;
         private Stash<Rotation> _rotationPool;
         private Stash<BulletStartForce> _startForcePool;
-        private Stash<EntityFactoryRef<IEntityFactory>> _entityFactoryPool;
+        private Stash<ShootObjectType> _shootTypePool;
+        private Stash<EntityFactoryRef<IEntityFactory>> _entityFactory;
         private Stash<Muzzle> _muzzlePool;
         public World World { get; set; }
 
@@ -38,7 +40,8 @@ namespace Core.Weapon.Systems
             _positionPool = World.GetStash<Position>();
             _rotationPool = World.GetStash<Rotation>();
             _startForcePool = World.GetStash<BulletStartForce>();
-            _entityFactoryPool = World.GetStash<EntityFactoryRef<IEntityFactory>>();
+            _shootTypePool = World.GetStash<ShootObjectType>();
+            _entityFactory = World.GetStash<EntityFactoryRef<IEntityFactory>>();
             _muzzlePool = World.GetStash<Muzzle>();
         }
 
@@ -60,27 +63,32 @@ namespace Core.Weapon.Systems
                     continue;
 
 
-                ref var factory = ref _entityFactoryPool.Get(weaponEntity);
+                ref var shootType = ref _shootTypePool.Get(weaponEntity);
                 ref var bulletForce = ref _startForcePool.Get(weaponEntity).Value;
                 var spawnPosition = _positionPool.Get(ownerEntity).Value +
                                     (Vector2)_rotationPool.Get(ownerEntity).LookDir *
                                     _muzzlePool.Get(weaponEntity).Offset;
-
-                CreateBullet(factory.Factory, spawnPosition, direction * bulletForce);
+                ref var entityFactory = ref _entityFactory.Get(weaponEntity);
+                CreateBullet(entityFactory.Factory, shootType.ObjectId, spawnPosition, direction * bulletForce);
                 MessageShotMade(weaponEntity);
             }
         }
 
-        private void MessageShotMade(Entity weaponEntity)
-            => World.SendMessage(new ShotMadeEvent { Weapon = weaponEntity });
+        private void MessageShotMade(Entity weaponEntity) =>
+            World.SendMessage(new ShotMadeEvent { Weapon = weaponEntity });
 
 
-        private void CreateBullet(IEntityFactory factory, Vector2 spawnPosition, Vector2 force)
+        private void CreateBullet(IEntityFactory entityFactory, ObjectId shootTypeId, Vector2 spawnPosition,
+            Vector2 force)
         {
-            var entity = factory.CreateEntity(World);
+            var entity = entityFactory.CreateEntity(World);
             var rotation = MathExtensions.CalculateRotationFromVelocity(force);
-            World.SendMessage(new ViewCreateRequest(entity, spawnPosition, rotation));
-            World.SendMessage(new ForceRequest(){Value = force, EntityId = entity.ID});
+            World.SendMessage(new SpawnRequest(entity, shootTypeId, spawnPosition, rotation));
+#if UNITY_WEBGL
+            World.SendMessage(new ForceRequest { Value = force, Entity = entity });
+#else
+            World.SendMessage(new ForceRequest { Value = force, EntityId = entity.ID });
+#endif
         }
 
         public void Dispose()

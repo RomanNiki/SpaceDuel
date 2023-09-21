@@ -3,6 +3,7 @@ using Core.Characteristics.Damage.Systems;
 using Core.Effects.Components;
 using Core.Extensions;
 using Core.Extensions.Clear.Systems;
+using Core.Weapon.Components;
 using Cysharp.Threading.Tasks;
 
 namespace Core.Characteristics.Damage
@@ -12,6 +13,7 @@ namespace Core.Characteristics.Damage
         protected async override UniTask InitializeSystems()
         {
             AddSystem(new DellHereUpdateSystem<DestroyedEvent<ExplosiveTag>>());
+            AddSystem(new DellHereUpdateSystem<DestroyedEvent<BulletTag>>());
             AddSystem(new DellHereUpdateSystem<HealthChangedEvent>());
             AddSystem(new InstantlyKillSystem());
             AddSystem(new KillWithoutHealthSystem());
@@ -20,6 +22,7 @@ namespace Core.Characteristics.Damage
             AddSystem(new CheckOwnerDeathSystem());
             AddSystem(new DeathSystem());
             AddSystem(new SendDestroyedEventSystem<ExplosiveTag>());
+            AddSystem(new SendDestroyedEventSystem<BulletTag>());
             AddSystem(new DestroySystem());
         }
     }
