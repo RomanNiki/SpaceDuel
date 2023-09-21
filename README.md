@@ -1,5 +1,5 @@
 # SpaceDuel
-A simple example of kspaceduel game using [Entity Component System (ECS)](https://en.wikipedia.org/wiki/Entity_component_system) implementation by [Morpeh]([https://github.com/scellecs/morpeh]) for gameplay logic and Unity Engine for rendering, physics, resource management and other.
+A simple example of kspaceduel game using [Entity Component System (ECS)](https://en.wikipedia.org/wiki/Entity_component_system) implementation by [Morpeh](https://github.com/scellecs/morpeh) for gameplay logic and Unity Engine for rendering, physics, resource management and other.
 # Gameplay
 #TODO: Create and Add gameplay gif
 ## How To Play
