@@ -1,5 +1,5 @@
 # SpaceDuel
-A simple example of kspaceduel game using [Entity Component System (ECS)](https://en.wikipedia.org/wiki/Entity_component_system) implementation by [Morpeh]([https://github.com/Leopotam/ecslite](https://github.com/scellecs/morpeh)) for gameplay logic and Unity Engine for rendering, physics, resource management and other.
+A simple example of kspaceduel game using [Entity Component System (ECS)](https://en.wikipedia.org/wiki/Entity_component_system) implementation by [Morpeh]([https://github.com/scellecs/morpeh]) for gameplay logic and Unity Engine for rendering, physics, resource management and other.
 # Gameplay
 #TODO: Create and Add gameplay gif
 ## How To Play
@@ -23,7 +23,7 @@ Projectiles can destroy mines, adding an element of strategy and timing to the g
 - **AD** / **Left Arrow/ Right Arrow** - turn direction
 - **Space** / **<** - primary weapon shot
 - **Left Ctrl** / **>** - secondary weapon shot
-All control logic is encapsulated in a class system [UnityInput](Assets/Scripts/Engine/Input/Systems/InputSystem.cs).
+All control logic is encapsulated in a class system [InputSystem](Assets/Scripts/Engine/Input/Systems/InputSystem.cs).
 
 # Architecture
 An important issue is how the core logic communicates with the engine's external logic. For dependency inversion uses interfaces within the core assembly referenced by the engine assembly. Thus, the core assembly does not know anything about the game engine used. ECS dictates a flat architecture and there is nothing special in core assembly. 
