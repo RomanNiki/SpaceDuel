@@ -3,18 +3,17 @@ using Core.Characteristics.Player.Components;
 using Core.Collisions.Components;
 using Core.Collisions.Strategies;
 using Core.Collisions.Systems;
-using Core.Extensions;
-using Core.Extensions.Clear.Systems;
-using Core.Movement.Gravity.Components;
+using Core.Movement.Components.Gravity;
 using Core.Weapon.Components;
-using Cysharp.Threading.Tasks;
+using Scellecs.Morpeh.Addons.Feature;
 
 namespace Core.Collisions
 {
-    public class CollisionsFeature : BaseMorpehFeature
+    public class CollisionsFeature : FixedUpdateFeature
     {
-        protected async override UniTask InitializeSystems()
+        protected override void Initialize()
         {
+            
             AddSystem(new TriggerSystem<ProjectileTag, ProjectileTag>(new DamageTargetStrategy()));
             AddSystem(new TriggerSystem<ProjectileTag, PlayerTag>(new DamageTargetStrategy()));
             AddSystem(new TriggerSystem<ProjectileTag, EnergyBuffTag>(new DamageTargetStrategy()));
@@ -23,7 +22,7 @@ namespace Core.Collisions
             AddSystem(new TriggerSystem<EnergyBuffTag, PlayerTag>(new ChargeTargetStrategy()));
             AddSystem(new TriggerSystem<PlayerTag, EnergyBuffTag>(new DestroyTargetStrategy()));
             AddSystem(new TriggerSystem<PlayerTag, PlayerTag>(new DamageTargetByHealthStrategy()));
-            AddSystem(new DellHereFixedUpdateSystem<TriggerEnterRequest>());
+            RegisterRequest<TriggerEnterRequest>();
         }
     }
 }

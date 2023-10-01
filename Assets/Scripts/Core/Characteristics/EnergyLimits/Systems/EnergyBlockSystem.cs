@@ -1,5 +1,6 @@
 ﻿using Core.Characteristics.EnergyLimits.Components;
 using Scellecs.Morpeh;
+using Scellecs.Morpeh.Addons.Systems;
 
 namespace Core.Characteristics.EnergyLimits.Systems
 {
@@ -10,15 +11,14 @@ namespace Core.Characteristics.EnergyLimits.Systems
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
 
-    public sealed class EnergyBlockSystem : ISystem
+    public sealed class EnergyBlockSystem : UpdateSystem
     {
         private Filter _filter;
         private Stash<EnergyChangedEvent> _energyChangedEventPool;
         private Stash<NoEnergyBlock> _noEnergyBlockPool;
         private Stash<Energy> _energyPool;
-        public World World { get; set; }
 
-        public void OnAwake()
+        public override void OnAwake()
         {
             _filter = World.Filter.With<EnergyChangedEvent>().Build();
             _energyChangedEventPool = World.GetStash<EnergyChangedEvent>();
@@ -26,7 +26,7 @@ namespace Core.Characteristics.EnergyLimits.Systems
             _noEnergyBlockPool = World.GetStash<NoEnergyBlock>();
         }
 
-        public void OnUpdate(float deltaTime)
+        public override void OnUpdate(float deltaTime)
         {
             foreach (var energyChangedEntity in _filter)
             {
@@ -51,10 +51,6 @@ namespace Core.Characteristics.EnergyLimits.Systems
                         break;
                 }
             }
-        }
-
-        public void Dispose()
-        {
         }
     }
 }

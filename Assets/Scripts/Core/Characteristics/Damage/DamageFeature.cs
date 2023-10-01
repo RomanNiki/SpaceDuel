@@ -1,20 +1,18 @@
 ﻿using Core.Characteristics.Damage.Components;
 using Core.Characteristics.Damage.Systems;
 using Core.Effects.Components;
-using Core.Extensions;
-using Core.Extensions.Clear.Systems;
 using Core.Weapon.Components;
-using Cysharp.Threading.Tasks;
+using Scellecs.Morpeh.Addons.Feature;
 
 namespace Core.Characteristics.Damage
 {
-    public class DamageFeature : BaseMorpehFeature
+    public class DamageFeature : UpdateFeature
     {
-        protected async override UniTask InitializeSystems()
+        protected override void Initialize()
         {
-            AddSystem(new DellHereUpdateSystem<DestroyedEvent<ExplosiveTag>>());
-            AddSystem(new DellHereUpdateSystem<DestroyedEvent<BulletTag>>());
-            AddSystem(new DellHereUpdateSystem<HealthChangedEvent>());
+            RegisterEvent<DestroyedEvent<ExplosiveTag>>();
+            RegisterEvent<DestroyedEvent<BulletTag>>();
+            RegisterEvent<HealthChangedEvent>();
             AddSystem(new InstantlyKillSystem());
             AddSystem(new KillWithoutHealthSystem());
             AddSystem(new DamageSystem());

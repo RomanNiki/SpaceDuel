@@ -4,12 +4,13 @@ using Core.Characteristics.Damage;
 using Core.Characteristics.EnergyLimits;
 using Core.Collisions;
 using Core.Effects;
-using Core.Extensions;
+using Core.Init;
 using Core.Movement;
 using Core.Timers;
 using Core.Views;
 using Core.Weapon;
 using Engine.Input;
+using Scellecs.Morpeh.Addons.Feature;
 using UnityEngine;
 
 namespace Engine.Factories.SystemsFactories
@@ -17,10 +18,11 @@ namespace Engine.Factories.SystemsFactories
     [CreateAssetMenu(menuName = "SystemsFactory/Default")]
     public sealed class DefaultGameFeatureFactorySo : FeaturesFactoryBaseSo
     {
-        protected override IEnumerable<BaseMorpehFeature> CreateUpdateFeatures(FeaturesFactoryArgs args)
+        public override IEnumerable<UpdateFeature> CreateUpdateFeatures(FeaturesFactoryArgs args)
         {
-            return new BaseMorpehFeature[]
+            return new UpdateFeature[]
             {
+                new InitFeature(args.SpawnPoints),
                 new InputFeature(),
                 new EnergyFeature(),
                 new DamageFeature(),
@@ -31,18 +33,18 @@ namespace Engine.Factories.SystemsFactories
             };
         }
         
-        protected override IEnumerable<BaseMorpehFeature> CreateFixedUpdateFeatures(FeaturesFactoryArgs args)
+        public override IEnumerable<FixedUpdateFeature> CreateFixedUpdateFeatures(FeaturesFactoryArgs args)
         {
-            return new BaseMorpehFeature[]
+            return new FixedUpdateFeature[]
             {
                 new MoveFeature(args.MoveLoopService),
                 new CollisionsFeature()
             };
         }
 
-        protected override IEnumerable<BaseMorpehFeature> CreateLateUpdateFeatures(FeaturesFactoryArgs args)
+        public override IEnumerable<LateUpdateFeature> CreateLateUpdateFeatures(FeaturesFactoryArgs args)
         {
-            return Array.Empty<BaseMorpehFeature>();
+            return Array.Empty<LateUpdateFeature>();
         }
     }
 }

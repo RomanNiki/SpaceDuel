@@ -11,10 +11,9 @@ namespace Engine.Movement.Strategies
             _transform = transform;
         }
         
-        public void MoveTo(Vector2 position)
+        public void MoveTo(Vector3 position)
         {
-            var translation = position - (Vector2)_transform.position;
-            _transform.Translate(translation);
+            _transform.position = position;
         }
     }
 }

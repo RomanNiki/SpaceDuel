@@ -1,6 +1,8 @@
 ﻿using Scellecs.Morpeh;
-using TriInspector;
 using UnityEngine;
+#if UNITY_EDITOR
+using TriInspector;
+#endif
 
 namespace Engine.Providers.MonoProviders.Base
 {
@@ -20,10 +22,10 @@ namespace Engine.Providers.MonoProviders.Base
                 _stash.Set(entity, _serializedComponent);
             }
         }
-
-        private string GetTypeName() => typeof(T).Name;
-
+        
 #if UNITY_EDITOR
+        private string GetTypeName() => typeof(T).Name;
+        
         [Title("$GetTypeName")]
         [PropertySpace]
         [ShowInInspector]
@@ -31,6 +33,7 @@ namespace Engine.Providers.MonoProviders.Base
         [HideLabel]
         [InlineProperty]
 #endif
+        
         protected T Data
         {
             get

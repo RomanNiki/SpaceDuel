@@ -18,49 +18,58 @@ namespace Modules.Pooling.Core.Pool
         {
             _settings = settings;
             _factory = factory;
-            _currentSize = _settings.InitialSize;
-            _inactiveItems = new Stack<TPoolObject>(_currentSize);
-            _activeItems = new List<TPoolObject>(_currentSize);
+            _currentSize = 0;
+            _inactiveItems = new Stack<TPoolObject>(_settings.InitialSize);
+            _activeItems = new List<TPoolObject>(_settings.InitialSize);
         }
 
         public int ActiveCount => _activeCount;
 
-        private TPoolObject CreateNew()
+        private async UniTask<TPoolObject> CreateNew()
         {
-            var item = _factory.Create();
+            var item = await _factory.Create();
             OnCreated(item);
             return item;
         }
 
+        public async UniTask Load()
+        {
+            await LoadInternal();
+        }
+        
         protected async UniTask LoadInternal()
         {
-            await _factory.Load();
             for (var i = 0; i < _settings.InitialSize; i++)
             {
-                _inactiveItems.Push(CreateNew());
+                _inactiveItems.Push(await CreateNew());
             }
         }
 
-        protected TPoolObject GetInternal()
+        protected async UniTask<TPoolObject> GetInternal()
         {
-            if (_inactiveItems.Count == 0)
+            TPoolObject item;
+            if (_inactiveItems.Count > 0)
             {
-                ExpandPool();
+                item = _inactiveItems.Pop();
             }
-
-            var item = _inactiveItems.Pop();
+            else
+            {
+                await ExpandPool();
+                item = await CreateNew();
+            }
+           
             _activeItems.Add(item);
             _activeCount++;
             OnSpawned(item);
             return item;
         }
 
-        private void ExpandPool()
+        private async UniTask ExpandPool()
         {
-            Resize(_currentSize * 2);
+            await Resize(_currentSize * 2);
         }
 
-        public void Resize(int desiredPoolSize)
+        public async UniTask Resize(int desiredPoolSize)
         {
             if (_inactiveItems.Count == desiredPoolSize)
             {
@@ -75,7 +84,7 @@ namespace Modules.Pooling.Core.Pool
 
             while (desiredPoolSize > _inactiveItems.Count)
             {
-                _inactiveItems.Push(CreateNew());
+                _inactiveItems.Push(await CreateNew());
             }
 
             _currentSize = desiredPoolSize;
@@ -83,10 +92,10 @@ namespace Modules.Pooling.Core.Pool
 
         void IPool.Despawn(object item)
         {
-            Despawn((TPoolObject)item);
+            Despawn((TPoolObject)item).Forget();
         }
 
-        public void Despawn(TPoolObject item)
+        public async UniTaskVoid Despawn(TPoolObject item)
         {
             _activeCount--;
             _inactiveItems.Push(item);
@@ -94,7 +103,7 @@ namespace Modules.Pooling.Core.Pool
             OnDespawned(item);
             if (_inactiveItems.Count > _settings.MaxSize)
             {
-                Resize(_settings.MaxSize);
+                await Resize(_settings.MaxSize);
             }
         }
 
@@ -116,20 +125,29 @@ namespace Modules.Pooling.Core.Pool
 
         public void Dispose()
         {
-            var activeItems = new List<TPoolObject>(_activeItems);
-            foreach (var activeItem in activeItems)
-            {
-                OnActiveItemDispose(activeItem);
-            }
-
+            Cleanup();
+            
             foreach (var inactiveItem in _inactiveItems)
             {
                 OnInactiveItemDispose(inactiveItem);
             }
-
-            _activeItems.Clear();
             _inactiveItems.Clear();
-            _factory?.Dispose();
+            OnDispose();
+        }
+        
+        public void Cleanup()
+        {
+            var activeItemsTemp = new List<TPoolObject>(_activeItems);
+            foreach (var activeItem in activeItemsTemp)
+            {
+                OnActiveItemDispose(activeItem);
+            }
+            
+            _activeItems.Clear();
+        }
+
+        protected virtual void OnDispose()
+        {
         }
 
         protected virtual void OnInactiveItemDispose(TPoolObject item)
@@ -145,7 +163,7 @@ namespace Modules.Pooling.Core.Pool
             public int MaxSize;
             public int InitialSize;
 
-            public Settings(int initialSize, int maxSize)
+            public Settings(int initialSize, int maxSize = int.MaxValue - 1)
             {
                 MaxSize = maxSize;
                 InitialSize = initialSize;
@@ -157,7 +175,7 @@ namespace Modules.Pooling.Core.Pool
                 InitialSize = 0;
             }
 
-            public static Settings Default => new Settings();
+            public static Settings Default => new(10, int.MaxValue);
         }
     }
 }

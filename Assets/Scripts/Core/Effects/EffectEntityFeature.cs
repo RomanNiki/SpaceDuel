@@ -1,12 +1,11 @@
 ﻿using Core.Effects.Systems;
-using Core.Extensions;
-using Cysharp.Threading.Tasks;
+using Scellecs.Morpeh.Addons.Feature;
 
 namespace Core.Effects
 {
-    public class EffectEntityFeature : BaseMorpehFeature
+    public class EffectEntityFeature : UpdateFeature
     {
-        protected async override UniTask InitializeSystems()
+        protected override void Initialize()
         {
             AddSystem(new ExplosionCreateSystem());
             AddSystem(new HitEffectSystem());

@@ -76,8 +76,7 @@ namespace Core.Weapon.Systems
 
         private void MessageShotMade(Entity weaponEntity) =>
             World.SendMessage(new ShotMadeEvent { Weapon = weaponEntity });
-
-
+        
         private void CreateBullet(IEntityFactory entityFactory, ObjectId shootTypeId, Vector2 spawnPosition,
             Vector2 force)
         {

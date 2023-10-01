@@ -1,19 +1,13 @@
 ﻿using System;
 using Core.Common;
-using Core.Common.Enums;
 using Core.Extensions.Pause;
 using Core.Extensions.Pause.Services;
 using Core.Movement;
+using Core.Services;
 using Engine.Common;
-using Engine.Factories;
 using Engine.Factories.SystemsFactories;
 using Engine.Movement.Services;
-using Engine.Pools;
-using Engine.Providers;
-using Modules.Pooling.Core.Pool;
-using Scellecs.Morpeh;
 using UnityEngine;
-using UnityEngine.AddressableAssets;
 using Zenject;
 
 namespace Installers
@@ -22,7 +16,9 @@ namespace Installers
     {
         [SerializeField] private FeaturesFactoryBaseSo _featuresFactoryBaseSo;
         [SerializeField] private Camera _orthographicCamera;
-        [SerializeField] private PoolsAssets _poolsAssets;
+        [SerializeField] private AssetPair[] _poolsAssets;
+        [SerializeField] private PlayersSpawnPoints _playersSpawnPoints;
+        
         
         private void OnValidate()
         {
@@ -34,7 +30,7 @@ namespace Installers
 
         public override void InstallBindings()
         {
-            BindEcsWorld();
+            BindPlayerSpawnPoints();
             BindMoveLoopService();
             BindPauseService();
             BindSystemFactory();
@@ -42,28 +38,18 @@ namespace Installers
             BindPools();
         }
 
+        private void BindPlayerSpawnPoints()
+        {
+            Container.Bind<PlayersSpawnPoints>().FromInstance(_playersSpawnPoints).AsSingle();
+        }
+
         private void BindPools()
         {
-            var bulletPool = CreateBulletPool();
-            var minePool = CreateMinePool();
-            var objectPools = new AssetsPools();
-            objectPools.AddPool(ObjectId.Bullet, bulletPool);
-            objectPools.AddPool(ObjectId.Mine, minePool);
-            Container.Bind<IAssets>().FromInstance(objectPools).AsSingle();
+            var assetsPools = new AssetsPools(_poolsAssets);
+            assetsPools.Load();
+            Container.Bind<IAssets>().FromInstance(assetsPools).AsSingle();
         }
-
-        private EntityProviderPool CreateBulletPool() => CreatePool(_poolsAssets.BulletReference);
-
-        private EntityProviderPool CreateMinePool() => CreatePool(_poolsAssets.MineReference);
-
-        private static EntityProviderPool CreatePool(AssetReference assetReference, int initialSize = 5)
-        {
-            var factory = new AddressableViewFactory<PoolableEntityProvider>(assetReference);
-            var settings = new PoolBase<PoolableEntityProvider>.Settings(initialSize, int.MaxValue);
-            var pool = new EntityProviderPool(settings, factory);
-            return pool;
-        }
-
+        
         private void BindSystemArgs() => Container.BindInterfacesAndSelfTo<FeaturesFactoryArgs>().AsSingle();
 
         private void BindSystemFactory() =>
@@ -73,18 +59,5 @@ namespace Installers
 
         private void BindMoveLoopService() =>
             Container.Bind<IMoveLoopService>().To<MoveLoopService>().AsSingle().WithArguments(_orthographicCamera);
-
-        private void BindEcsWorld()
-        {
-            var world = World.Default;
-            Container.Bind<World>().FromInstance(world).AsSingle();
-        }
-
-        [Serializable]
-        public class PoolsAssets
-        {
-            public AssetReference BulletReference;
-            public AssetReference MineReference;
-        }
     }
 }

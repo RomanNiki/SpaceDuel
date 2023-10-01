@@ -1,7 +1,7 @@
 ﻿using Core.Characteristics.EnergyLimits.Components;
 using Core.Effects.Components;
 using Core.Extensions;
-using Core.Movement.Gravity.Components;
+using Core.Movement.Components.Gravity;
 using Core.Timers.Components;
 using Core.Weapon.Components;
 using Scellecs.Morpeh;

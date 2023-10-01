@@ -1,23 +1,20 @@
-﻿using Core.Extensions;
-using Core.Extensions.Clear.Systems;
-using Core.Input.Components;
+﻿using Core.Input.Components;
 using Core.Input.Systems;
-using Cysharp.Threading.Tasks;
+using Scellecs.Morpeh.Addons.Feature;
 
 namespace Core.Input
 {
-    public abstract class InputFeatureBase : BaseMorpehFeature
+    public abstract class InputFeatureBase : UpdateFeature
     {
-        protected async override UniTask InitializeSystems()
+        protected override void Initialize()
         {
-            AddSystem(new DellComponentInCleanup<InputAccelerateStartedEvent>());
-            AddSystem(new DellComponentInCleanup<InputAccelerateCanceledEvent>());
-            AddSystem(new DellComponentInCleanup<InputRotateStartedEvent>());
-            AddSystem(new DellComponentInCleanup<InputRotateCanceledEvent>());
-            AddSystem(new DellComponentInCleanup<InputShootStartedEvent>());
-            AddSystem(new DellComponentInCleanup<InputShootCanceledEvent>());
-            
             InitializeInputSystem();
+            RegisterRequest<InputAccelerateStartedEvent>();
+            RegisterRequest<InputAccelerateCanceledEvent>();
+            RegisterRequest<InputRotateStartedEvent>();
+            RegisterRequest<InputRotateCanceledEvent>();
+            RegisterRequest<InputShootStartedEvent>();
+            RegisterRequest<InputShootCanceledEvent>();
             AddSystem(new InputAccelerateSystem());
             AddSystem(new InputRotateSystem());
             AddSystem(new InputShootSystem());

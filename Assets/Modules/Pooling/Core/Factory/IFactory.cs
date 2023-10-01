@@ -3,15 +3,13 @@ using Cysharp.Threading.Tasks;
 
 namespace Modules.Pooling.Core.Factory
 {
-    public interface IFactory<out TObject> : IDisposable
+    public interface IFactory<TObject> : IDisposable
     {
-        TObject Create();
-        UniTask Load();
+        UniTask<TObject> Create();
     }
 
-    public interface IFactory<in TArg1, in TArg2, out TEntity> : IDisposable
+    public interface IFactory<in TArg1, in TArg2, TEntity> : IDisposable, ICleanup
     {
-        TEntity Create(TArg1 arg1, TArg2 arg2);
-        UniTask Load();
+        UniTask<TEntity> Create(TArg1 arg1, TArg2 arg2);
     }
 }

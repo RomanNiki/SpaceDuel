@@ -2,6 +2,7 @@
 using Core.Extensions;
 using Core.Weapon.Components;
 using Scellecs.Morpeh;
+using Scellecs.Morpeh.Addons.Systems;
 
 namespace Core.Characteristics.EnergyLimits.Systems
 {
@@ -12,16 +13,14 @@ namespace Core.Characteristics.EnergyLimits.Systems
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
 
-    public class WeaponEnergyDischargeSystem : ISystem
+    public class WeaponEnergyDischargeSystem : UpdateSystem
     {
         private Filter _filter;
         private Stash<DischargeContainer> _dischargeContainerPool;
         private Stash<Owner> _ownerPool;
         private Stash<ShotMadeEvent> _shotMadeEventPool;
 
-        public World World { get; set; }
-
-        public void OnAwake()
+        public override void OnAwake()
         {
             _filter = World.Filter.With<ShotMadeEvent>().Build();
             _shotMadeEventPool = World.GetStash<ShotMadeEvent>();
@@ -29,7 +28,7 @@ namespace Core.Characteristics.EnergyLimits.Systems
             _ownerPool = World.GetStash<Owner>();
         }
 
-        public void OnUpdate(float deltaTime)
+        public override void OnUpdate(float deltaTime)
         {
             foreach (var entity in _filter)
             {
@@ -43,10 +42,6 @@ namespace Core.Characteristics.EnergyLimits.Systems
                 World.SendMessage(new DischargeRequest
                     { Entity = owner, Value = _dischargeContainerPool.Get(weaponEntity).Value });
             }
-        }
-
-        public void Dispose()
-        {
         }
     }
 }

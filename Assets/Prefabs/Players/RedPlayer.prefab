@@ -30,6 +30,7 @@ GameObject:
   - component: {fileID: 8441732999200186554}
   - component: {fileID: 5063155364044525515}
   - component: {fileID: 1868411501246025003}
+  - component: {fileID: 3761431937958972455}
   m_Layer: 0
   m_Name: RedPlayer
   m_TagString: Untagged
@@ -393,3 +394,15 @@ MonoBehaviour:
   _serializedComponent:
     Accelerate: 0
     Rotation: 0
+--- !u!114 &3761431937958972455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1185098763576395255}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67e3a750fa4141a8a0310bf34d203ffd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

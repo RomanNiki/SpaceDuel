@@ -1,10 +1,11 @@
 using System;
 using Engine.Providers.MonoProviders.Base;
 using Scellecs.Morpeh;
-using Scellecs.Morpeh.Editor;
 using TriInspector;
 using UnityEngine;
-
+#if UNITY_EDITOR
+using Scellecs.Morpeh.Editor;
+#endif
 namespace Engine.Providers
 {
 #if ENABLE_IL2CPP
@@ -18,7 +19,9 @@ namespace Engine.Providers
         private bool _disposed = true;
         public World World { get; private set; }
         public Entity Entity { get; private set; }
-
+        public event Action EntityInit; 
+        public event Action EntityDispose; 
+        
         public void Init(World world)
         {
             Entity = world.CreateEntity();
@@ -35,15 +38,18 @@ namespace Engine.Providers
 
         private void Init()
         {
+#if UNITY_EDITOR
             _entityViewer.getter = () => Entity;
+#endif
             _disposed = false;
             
             foreach (var provider in GetComponents<IProvider>())
             {
                 provider.Resolve(World, Entity);
             }
-
+            
             OnInit();
+            EntityInit?.Invoke();
         }
 
         protected virtual void OnInit()
@@ -56,9 +62,9 @@ namespace Engine.Providers
             _disposed = true;
             if (Entity.IsNullOrDisposed() == false)
                 World.RemoveEntity(Entity);
-
             World = null;
             OnDispose();
+            EntityDispose?.Invoke();
         }
 
         protected virtual void OnDispose()

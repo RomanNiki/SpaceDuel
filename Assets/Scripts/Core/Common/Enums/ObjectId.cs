@@ -7,6 +7,7 @@
         Bullet,
         Mine,
         Explosion,
-        HitMarker
+        HitMarker,
+        EnergyBuff
     }
 }

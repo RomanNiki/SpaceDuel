@@ -1,7 +1,7 @@
 ﻿using Core.Extensions;
 using Core.Movement.Components;
 using Core.Weapon.Components;
-
+using Scellecs.Morpeh;
 #if MORPEH_BURST
 using Scellecs.Morpeh.Native;
 using Unity.Burst;
@@ -11,7 +11,7 @@ using Unity.Jobs;
 
 namespace Core.Movement.Systems
 {
-    using Scellecs.Morpeh;
+    
 #if ENABLE_IL2CPP
     using Unity.IL2CPP.CompilerServices;
   
@@ -19,7 +19,7 @@ namespace Core.Movement.Systems
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
 
-    public sealed class ProjectileLookAtVelocitySystem : ISystem
+    public sealed class ProjectileLookAtVelocitySystem : IFixedSystem
     {
         private Filter _filter;
         private Stash<Velocity> _velocityPool;

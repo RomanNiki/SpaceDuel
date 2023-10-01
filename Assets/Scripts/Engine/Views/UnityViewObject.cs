@@ -26,13 +26,11 @@ namespace Engine.Views
             _provider = provider;
         }
 
-        public override void MoveTo(Vector2 position) => _moveStrategy?.MoveTo(position);
+        public override void MoveTo(Vector2 position) => _moveStrategy?.MoveTo(new Vector3(position.x, position.y, 0f));
 
         public override void RotateTo(float rotation)
         {
-            var angles = _transform.eulerAngles;
-            angles.z = rotation;
-            _transform.eulerAngles = angles;
+            _transform.rotation = Quaternion.Euler(0f, 0f, rotation);
         }
 
         public override void Dispose()

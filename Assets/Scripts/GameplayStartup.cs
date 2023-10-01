@@ -1,64 +1,41 @@
-using System;
 using System.Linq;
-using Core.Extensions;
-using Core.Extensions.Views;
 using Core.Movement;
-using Cysharp.Threading.Tasks;
 using Engine.Factories.SystemsFactories;
 using Scellecs.Morpeh;
-using TriInspector;
+using Scellecs.Morpeh.Addons.Feature;
+using Scellecs.Morpeh.Addons.Feature.Unity;
 using Zenject;
 using EntityProvider = Engine.Providers.EntityProvider;
 
-public sealed class GameplayStartup : BaseInstaller
+public sealed class GameplayStartup : BaseFeaturesInstaller
 {
     private IFeaturesFactory _featuresFactory;
     private IMoveLoopService _moveLoopService;
     private FeaturesFactoryArgs _featuresFactoryArgs;
-    
+    private World _world;
+
     [Inject]
-    public void Constructor(World world, IFeaturesFactory featuresFactory, FeaturesFactoryArgs featuresFactoryArgs)
+    public void Constructor(IFeaturesFactory featuresFactory, FeaturesFactoryArgs featuresFactoryArgs)
     {
-        World = world;
-        World.UpdateByUnity = true;
         _featuresFactoryArgs = featuresFactoryArgs;
         _featuresFactory = featuresFactory;
-        CreateFeatures();
     }
-
-    protected override async void OnEnable() => await EnableFeatures();
-
-    protected override void OnDisable() => DisableFeatures();
-
-    private async UniTask EnableFeatures()
+    
+    protected override void InitializeShared()
     {
-        for (var i = 0; i < _activeFeatures.Length; i++)
-            await World.AddFeatureAsync(i, _activeFeatures[i]);
-    }
-
-    private void DisableFeatures()
-    {
-        foreach (var t in _activeFeatures)
-            World.RemoveFeature(t);
-    }
-
-    private void Start()
-    {
+        _world = World.Default;
         foreach (var entity in FindObjectsOfType<EntityProvider>())
         {
-            entity.Init(World);
+            entity.Init(_world);
         }
     }
 
-    private void OnDestroy() => World?.Dispose();
+    protected override UpdateFeature[] InitializeUpdateFeatures() =>
+        _featuresFactory.CreateUpdateFeatures(_featuresFactoryArgs).ToArray();
 
-    private void CreateFeatures() => _activeFeatures = _featuresFactory.Create(_featuresFactoryArgs).ToArray();
-    
-    #if DEBUG
-    [PropertySpace]
-    [ShowInInspector]
-    [PropertyOrder(-1)]
-    [ListDrawerSettings(HideAddButton = true, HideRemoveButton = true)]
-    #endif
-    private BaseMorpehFeature[] _activeFeatures = Array.Empty<BaseMorpehFeature>();
+    protected override FixedUpdateFeature[] InitializeFixedUpdateFeatures() =>
+        _featuresFactory.CreateFixedUpdateFeatures(_featuresFactoryArgs).ToArray();
+
+    protected override LateUpdateFeature[] InitializeLateUpdateFeatures() =>
+        _featuresFactory.CreateLateUpdateFeatures(_featuresFactoryArgs).ToArray();
 }

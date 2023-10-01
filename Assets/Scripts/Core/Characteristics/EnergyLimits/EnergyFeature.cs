@@ -1,16 +1,15 @@
 ﻿using Core.Characteristics.EnergyLimits.Components;
 using Core.Characteristics.EnergyLimits.Systems;
-using Core.Extensions;
-using Core.Extensions.Clear.Systems;
-using Cysharp.Threading.Tasks;
+using Scellecs.Morpeh.Addons.Feature;
 
 namespace Core.Characteristics.EnergyLimits
 {
-    public class EnergyFeature : BaseMorpehFeature
+    public class EnergyFeature : UpdateFeature
     {
-        protected async override UniTask InitializeSystems()
+        protected override void Initialize()
         {
-            AddSystem(new DellHereFixedUpdateSystem<EnergyChangedEvent>());
+            RegisterEvent<EnergyChangedEvent>();
+            AddSystem(new NoEnergyGravityResistSystem());
             AddSystem(new MoveDischargeSystem());
             AddSystem(new WeaponEnergyDischargeSystem());
             AddSystem(new SunDischargeSystem());

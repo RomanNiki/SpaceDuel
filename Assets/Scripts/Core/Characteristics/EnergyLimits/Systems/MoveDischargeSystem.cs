@@ -2,6 +2,7 @@
 using Core.Extensions;
 using Core.Input.Components;
 using Scellecs.Morpeh;
+using Scellecs.Morpeh.Addons.Systems;
 using UnityEngine;
 
 namespace Core.Characteristics.EnergyLimits.Systems
@@ -13,16 +14,15 @@ namespace Core.Characteristics.EnergyLimits.Systems
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
     
-    public sealed class MoveDischargeSystem : ISystem
+    public sealed class MoveDischargeSystem : UpdateSystem
     {
         private const float MIN_ROTATION_FOR_DISCHARGE = 0.2f;
         private Filter _filter;
         private Stash<RotateDischargeAmount> _rotateDischargeAmountPool;
         private Stash<AccelerateDischargeAmount> _accelerateDischargeAmountPool;
         private Stash<InputMoveData> _inputMovePool;
-        public World World { get; set; }
-        
-        public void OnAwake()
+
+        public override void OnAwake()
         {
             _filter = World.Filter.With<InputMoveData>().With<AccelerateDischargeAmount>().With<RotateDischargeAmount>()
                 .Without<NoEnergyBlock>().Build();
@@ -31,7 +31,7 @@ namespace Core.Characteristics.EnergyLimits.Systems
             _inputMovePool = World.GetStash<InputMoveData>();
         }
 
-        public void OnUpdate(float deltaTime)
+        public override void OnUpdate(float deltaTime)
         {
             foreach (var entity in _filter)
             {
@@ -55,10 +55,6 @@ namespace Core.Characteristics.EnergyLimits.Systems
         {
             if (dischargeAmount <= 0f) return;
             World.SendMessage(new DischargeRequest{Value = dischargeAmount, Entity = entity});
-        }
-
-        public void Dispose()
-        {
         }
     }
 }

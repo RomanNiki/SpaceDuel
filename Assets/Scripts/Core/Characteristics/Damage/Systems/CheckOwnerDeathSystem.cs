@@ -10,15 +10,15 @@ namespace Core.Characteristics.Damage.Systems
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
-    
+
     public class CheckOwnerDeathSystem : ISystem
     {
         private Filter _filter;
         private Stash<Owner> _ownerPool;
         private Stash<DeadTag> _deadTag;
- 
+
         public World World { get; set; }
-        
+
         public void OnAwake()
         {
             _filter = World.Filter.With<Owner>().Build();
@@ -31,13 +31,13 @@ namespace Core.Characteristics.Damage.Systems
             foreach (var entity in _filter)
             {
                 ref var owner = ref _ownerPool.Get(entity).Entity;
-                if (_deadTag.Has(owner) || owner.IsNullOrDisposed())
+                if (owner.IsNullOrDisposed() || _deadTag.Has(owner))
                 {
                     _deadTag.Add(entity);
                 }
             }
         }
-        
+
         public void Dispose()
         {
         }

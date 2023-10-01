@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
-using Core.Extensions;
+using Scellecs.Morpeh.Addons.Feature;
 
 namespace Engine.Factories.SystemsFactories
 {
     public interface IFeaturesFactory
     {
-        IEnumerable<BaseMorpehFeature> Create(FeaturesFactoryArgs args);
+        IEnumerable<LateUpdateFeature> CreateLateUpdateFeatures(FeaturesFactoryArgs args);
+        IEnumerable<FixedUpdateFeature> CreateFixedUpdateFeatures(FeaturesFactoryArgs args);
+        IEnumerable<UpdateFeature> CreateUpdateFeatures(FeaturesFactoryArgs args);
     }
 }

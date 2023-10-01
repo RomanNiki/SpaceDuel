@@ -14,7 +14,7 @@ namespace Engine.Providers.MonoProviders.Timers
             var dieWithoutTimerTagStash = world.GetStash<DieWithoutLifeTimerTag>();
             dieWithoutTimerTagStash.Set(entity);
             var lifeCycleTimer = world.GetStash<Timer<LifeTimer>>();
-            lifeCycleTimer.Set(entity, new Timer<LifeTimer> { TimeLeftSec = _particleSystem.main.duration + 0.1f });
+            lifeCycleTimer.Set(entity, new Timer<LifeTimer> { TimeLeftSec = _particleSystem.main.duration });
         }
     }
 }

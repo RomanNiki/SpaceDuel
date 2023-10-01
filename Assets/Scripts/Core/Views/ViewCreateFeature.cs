@@ -1,25 +1,27 @@
 ﻿using Core.Common;
-using Core.Extensions;
-using Core.Extensions.Clear.Systems;
+using Core.Services;
 using Core.Views.Components;
 using Core.Views.Systems.Create;
-using Cysharp.Threading.Tasks;
+using Scellecs.Morpeh.Addons.Feature;
 
 namespace Core.Views
 {
-    public class ViewCreateFeature : BaseMorpehFeature
+    public class ViewCreateFeature : UpdateFeature
     {
         private readonly IAssets _pools;
 
         public ViewCreateFeature(IAssets pools) => _pools = pools;
-        
-        protected override async UniTask InitializeSystems()
+
+        public override void Dispose()
         {
-            await _pools.Load();
-            AddSystem(new DellHereUpdateSystem<SpawnedEvent>());
+            _pools.Cleanup();
+            base.Dispose();
+        }
+        
+        protected override void Initialize()
+        {
+            RegisterEvent<SpawnedEvent>();
             AddSystem(new SpawnSystem(_pools));
         }
-
-        protected override void OnDispose() => _pools.Dispose();
     }
 }

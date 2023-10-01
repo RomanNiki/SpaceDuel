@@ -1,43 +1,38 @@
-﻿using Modules.Pooling.Core.Factory;
+﻿using System;
+using Modules.Pooling.Core.Factory;
 using Modules.Pooling.Core.Pool;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using Object = UnityEngine.Object;
 
 namespace Modules.Pooling.Engine.Pools
 {
     public class MonoPool<TComponent> : Pool<TComponent>
         where TComponent : Component, IPoolItem
     {
-        private Transform _originalParent;
+        private readonly Vector3 _outGamePoint = new(-25, -25, -25);
+        private readonly Lazy<Scene> _rootScene;
 
-        public MonoPool(Settings settings, IFactory<TComponent> factory) : base(settings, factory)
+        public MonoPool(Settings settings, IFactory<TComponent> factory, string name) : base(settings, factory)
         {
-        }
-
-        public MonoPool(IFactory<TComponent> factory) : base(factory)
-        {
+            _rootScene = new Lazy<Scene>(() => SceneManager.CreateScene($"[Pool] {name}"));
         }
 
         protected override void OnCreated(TComponent item)
         {
-            item.gameObject.SetActive(false);
-            _originalParent = item.transform.parent;
-        }
-
-        protected override void OnDestroyed(TComponent item)
-        {
-            Object.Destroy(item.gameObject);
+            MoveToPool(item);
         }
 
         protected override void OnDespawned(TComponent item)
         {
             if (item == null) return;
             item.OnDespawned();
-            item.gameObject.SetActive(false);
+            MoveToPool(item);
+        }
 
-            if (item.transform.parent != _originalParent)
-            {
-                item.transform.SetParent(_originalParent);
-            }
+        protected override void OnDestroyed(TComponent item)
+        {
+            Object.Destroy(item.gameObject);
         }
 
         protected override void ReInitialize(TComponent item)
@@ -48,10 +43,7 @@ namespace Modules.Pooling.Engine.Pools
 
         protected override void OnActiveItemDispose(TComponent item)
         {
-            if (item)
-            {
-                item.Dispose();
-            }
+            item.Dispose();
         }
 
         protected override void OnInactiveItemDispose(TComponent item)
@@ -60,6 +52,19 @@ namespace Modules.Pooling.Engine.Pools
             {
                 Object.Destroy(item.gameObject);
             }
+        }
+        
+        private void MoveToPool(TComponent item)
+        {
+            item.transform.position = _outGamePoint;
+            var gameObject = item.gameObject;
+            gameObject.SetActive(false);
+            SceneManager.MoveGameObjectToScene(gameObject, _rootScene.Value);
+        }
+
+        protected override void OnDispose()
+        {
+            SceneManager.UnloadSceneAsync(_rootScene.Value);
         }
     }
 }

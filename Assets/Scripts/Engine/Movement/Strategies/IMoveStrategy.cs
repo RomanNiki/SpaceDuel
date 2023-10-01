@@ -4,6 +4,6 @@ namespace Engine.Movement.Strategies
 {
     public interface IMoveStrategy
     {
-        public void MoveTo(Vector2 position);
+        public void MoveTo(Vector3 position);
     }
 }

@@ -1,6 +1,5 @@
 ﻿using Core.Collisions.Components;
 using Core.Collisions.Strategies;
-using UnityEngine;
 
 namespace Core.Collisions.Systems
 {

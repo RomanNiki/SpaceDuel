@@ -1,13 +1,12 @@
-﻿using Core.Extensions;
-using Core.Timers.Components;
+﻿using Core.Timers.Components;
 using Core.Timers.Systems;
-using Cysharp.Threading.Tasks;
+using Scellecs.Morpeh.Addons.Feature;
 
 namespace Core.Timers
 {
-    public class TimerFeature : BaseMorpehFeature
+    public class TimerFeature : UpdateFeature
     {
-        protected async override UniTask InitializeSystems()
+        protected override void Initialize()
         {
             AddSystem(new LifeCycleSystem());
             AddSystem(new TimerSystem<TimerBetweenShots>());

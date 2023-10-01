@@ -1,9 +1,9 @@
-﻿using System.Text;
-using Core.Characteristics.EnergyLimits.Components;
+﻿using Core.Characteristics.EnergyLimits.Components;
 using Core.Extensions;
 using Core.Movement.Components;
-using Core.Movement.Gravity.Components;
+using Core.Movement.Components.Gravity;
 using Core.Timers.Components;
+using Scellecs.Morpeh.Addons.Systems;
 
 namespace Core.Characteristics.EnergyLimits.Systems
 {
@@ -15,7 +15,7 @@ namespace Core.Characteristics.EnergyLimits.Systems
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
 
-    public sealed class SunDischargeSystem : ISystem
+    public sealed class SunDischargeSystem : UpdateSystem
     {
         private const float MIN_DISCHARGE_AMOUNT = 0.01f;
         private Filter _entityFilter;
@@ -24,9 +24,7 @@ namespace Core.Characteristics.EnergyLimits.Systems
         private Stash<ChargeContainer> _chargeContainerPool;
         private Stash<GravityPoint> _gravityPointPool;
         
-        public World World { get; set; }
-
-        public void OnAwake()
+        public override void OnAwake()
         {
             _entityFilter = World.Filter.With<Energy>().With<Position>().With<SunDischargeTag>().Without<Timer<InvisibleTimer>>().Build();
             _sunFilter = World.Filter.With<GravityPoint>().With<Position>().With<ChargeContainer>().Build();
@@ -35,7 +33,7 @@ namespace Core.Characteristics.EnergyLimits.Systems
             _gravityPointPool = World.GetStash<GravityPoint>();
         }
 
-        public void OnUpdate(float deltaTime)
+        public override void OnUpdate(float deltaTime)
         {
             foreach (var sunEntity in _sunFilter)
             {
@@ -54,10 +52,6 @@ namespace Core.Characteristics.EnergyLimits.Systems
                     World.SendMessage(new DischargeRequest { Entity = entity, Value = dischargeAmount });
                 }
             }
-        }
-
-        public void Dispose()
-        {
         }
     }
 }

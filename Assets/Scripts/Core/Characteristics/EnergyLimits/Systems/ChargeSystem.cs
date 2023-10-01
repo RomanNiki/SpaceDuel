@@ -1,6 +1,7 @@
 ﻿using Core.Characteristics.EnergyLimits.Components;
 using Core.Extensions;
 using Scellecs.Morpeh;
+using Scellecs.Morpeh.Addons.Systems;
 using UnityEngine;
 
 namespace Core.Characteristics.EnergyLimits.Systems
@@ -12,22 +13,20 @@ namespace Core.Characteristics.EnergyLimits.Systems
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
     
-    public sealed class ChargeSystem : ISystem
+    public sealed class ChargeSystem : UpdateSystem
     {
         private Filter _filter;
         private Stash<Energy> _energyPool;
         private Stash<ChargeRequest> _chargeRequestPool;
-
-        public World World { get; set; }
-
-        public void OnAwake()
+        
+        public override void OnAwake()
         {
             _filter = World.Filter.With<ChargeRequest>().Build();
             _energyPool = World.GetStash<Energy>();
             _chargeRequestPool = World.GetStash<ChargeRequest>();
         }
 
-        public void OnUpdate(float deltaTime)
+        public override void OnUpdate(float deltaTime)
         {
             foreach (var requestEntity in _filter)
             {
@@ -41,10 +40,6 @@ namespace Core.Characteristics.EnergyLimits.Systems
 
                 World.RemoveEntity(requestEntity);
             }
-        }
-
-        public void Dispose()
-        {
         }
     }
 }

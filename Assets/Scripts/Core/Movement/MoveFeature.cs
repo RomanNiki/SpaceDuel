@@ -1,11 +1,9 @@
-﻿using Core.Extensions;
-using Core.Movement.Gravity.Systems;
-using Core.Movement.Systems;
-using Cysharp.Threading.Tasks;
+﻿using Core.Movement.Systems;
+using Scellecs.Morpeh.Addons.Feature;
 
 namespace Core.Movement
 {
-    public class MoveFeature : BaseMorpehFeature
+    public class MoveFeature : FixedUpdateFeature
     {
         private readonly IMoveLoopService _loopService;
 
@@ -13,10 +11,9 @@ namespace Core.Movement
         {
             _loopService = loopService;
         }
-
-        protected override async UniTask InitializeSystems()
+        
+        protected override void Initialize()
         {
-            AddSystem(new NoEnergyGravityResistSystem());
             AddSystem(new RotateSystem());
             AddSystem(new ForceSystem());
             AddSystem(new GravitySystem());

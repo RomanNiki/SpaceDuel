@@ -16,12 +16,7 @@ MonoBehaviour:
   m_Data:
     m_SerializedData: []
   m_GUID: 61c7719200c5d6c489177e3c0436334d
-  m_SerializeEntries:
-  - m_GUID: bf37154ae4d79354093a52eedcfa6313
-    m_Address: SunPrefab
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
+  m_SerializeEntries: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: b542045fbaf0c624ebce8876aed210bd, type: 2}
   m_SchemaSet:

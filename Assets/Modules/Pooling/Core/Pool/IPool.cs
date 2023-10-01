@@ -1,20 +1,20 @@
-﻿using UnityEngine;
+﻿using Cysharp.Threading.Tasks;
 
 namespace Modules.Pooling.Core.Pool
 {
-    public interface IPool
+    public interface IPool : ILoadingResource
     {
-        void Resize(int desiredPoolSize);
+        UniTask Resize(int desiredPoolSize);
         void Despawn(object obj);
     }
 
     public interface IDespawnablePool<TComponent> : IPool
     {
-        void Despawn(TComponent item);
+        UniTaskVoid Despawn(TComponent item);
     }
-    
+
     public interface IPool<TComponent> : IDespawnablePool<TComponent>
     {
-        TComponent Spawn();
+        UniTask<TComponent> Spawn();
     }
 }

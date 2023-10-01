@@ -1,4 +1,5 @@
 ﻿using Core.Common;
+using Core.Services;
 using Core.Views.Components;
 using Scellecs.Morpeh;
 
@@ -17,7 +18,9 @@ namespace Core.Views.Systems.Create
     
         public SpawnSystem(IAssets pools) => _pools = pools;
 
-        protected override Entity CreateView(SpawnRequest spawnRequest) =>
+        protected override Entity CreateView(SpawnRequest spawnRequest) {
             _pools.Create(spawnRequest, World);
+            return spawnRequest.Entity;
+        }
     }
 }

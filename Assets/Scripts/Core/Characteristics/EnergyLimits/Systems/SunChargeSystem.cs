@@ -1,9 +1,10 @@
 ﻿using Core.Characteristics.EnergyLimits.Components;
 using Core.Extensions;
 using Core.Movement.Components;
-using Core.Movement.Gravity.Components;
+using Core.Movement.Components.Gravity;
 using Core.Timers.Components;
 using Scellecs.Morpeh;
+using Scellecs.Morpeh.Addons.Systems;
 using UnityEngine;
 using WorldExtensions = Core.Extensions.WorldExtensions;
 
@@ -16,7 +17,7 @@ namespace Core.Characteristics.EnergyLimits.Systems
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
 
-    public sealed class SunChargeSystem : ISystem
+    public sealed class SunChargeSystem : UpdateSystem
     {
         private const float MIN_CHARGE_AMOUNT = 0.01f;
         private const float MIN_ROTATION_COEFICIENT = 0.01f;
@@ -26,10 +27,8 @@ namespace Core.Characteristics.EnergyLimits.Systems
         private Stash<Position> _positionPool;
         private Stash<ChargeContainer> _chargeContainerPool;
         private Stash<GravityPoint> _gravityPointPool;
-
-        public World World { get; set; }
-
-        public void OnAwake()
+        
+        public override void OnAwake()
         {
             _entityFilter = World.Filter.With<Energy>().With<Position>().With<Rotation>().Without<SunDischargeTag>()
                 .Without<Timer<InvisibleTimer>>().Build();
@@ -40,7 +39,7 @@ namespace Core.Characteristics.EnergyLimits.Systems
             _gravityPointPool = World.GetStash<GravityPoint>();
         }
 
-        public void OnUpdate(float deltaTime)
+        public override void OnUpdate(float deltaTime)
         {
             foreach (var sunEntity in _sunFilter)
             {
@@ -74,10 +73,6 @@ namespace Core.Characteristics.EnergyLimits.Systems
             }
 
             return 0f;
-        }
-
-        public void Dispose()
-        {
         }
     }
 }

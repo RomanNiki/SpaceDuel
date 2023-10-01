@@ -7,7 +7,7 @@ namespace Engine.Input
     {
         protected override void InitializeInputSystem()
         {
-            AddSystem(new InputSystem(new PlayerInput()));
+            AddInitializer(new InputSystem(new PlayerInput()));
         }
     }
 }

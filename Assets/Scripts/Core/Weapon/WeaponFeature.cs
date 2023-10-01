@@ -1,20 +1,18 @@
-﻿using Core.Extensions;
-using Core.Extensions.Clear.Systems;
-using Core.Weapon.Components;
+﻿using Core.Weapon.Components;
 using Core.Weapon.Systems;
-using Cysharp.Threading.Tasks;
+using Scellecs.Morpeh.Addons.Feature;
 
 namespace Core.Weapon
 {
-    public class WeaponFeature : BaseMorpehFeature
+    public class WeaponFeature : UpdateFeature
     {
-        protected async override UniTask InitializeSystems()
+        protected override void Initialize()
         {
-            AddSystem(new DellHereUpdateSystem<ShotMadeEvent>());
+            RegisterEvent<ShotMadeEvent>();
             AddSystem(new ShootDeniedTimeBetweenShotsSystem());
             AddSystem(new ExecuteShootSystem());
             AddSystem(new GunTimerBetweenShotsStartSystem());
-            AddSystem(new DellHereUpdateSystem<ShootingRequest>());
+            RegisterRequest<ShootingRequest>();
         }
     }
 }
