@@ -1,8 +1,8 @@
 ﻿using Core.Characteristics.EnergyLimits.Components;
 using Core.Common.Enums;
 using Core.Extensions;
-using Core.Extensions.Factories;
 using Core.Movement.Components;
+using Core.Services.Factories;
 using Core.Views.Components;
 using Core.Weapon.Components;
 using Scellecs.Morpeh;

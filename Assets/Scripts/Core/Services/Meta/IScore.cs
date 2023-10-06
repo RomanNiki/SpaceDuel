@@ -6,8 +6,8 @@ namespace Core.Services.Meta
     {
         int BlueScore { get; }
         int RedScore { get; }
-        event Action BlueScoreChanged;
-        event Action RedScoreChanged;
+        event Action<int> BlueScoreChanged;
+        event Action<int> RedScoreChanged;
         void IncreaseBlue();
         void IncreaseRed();
         void Reset();

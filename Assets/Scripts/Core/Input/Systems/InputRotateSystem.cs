@@ -1,7 +1,7 @@
-﻿using Core.Characteristics.Player.Components;
-using Core.Common;
+﻿using Core.Common;
 using Core.Common.Enums;
 using Core.Input.Components;
+using Core.Player.Components;
 using Scellecs.Morpeh;
 
 namespace Core.Input.Systems

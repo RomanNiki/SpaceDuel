@@ -1,7 +1,7 @@
 ﻿using System;
 using Scellecs.Morpeh;
 
-namespace Core.Characteristics.Player.Components
+namespace Core.Player.Components
 {
 #if ENABLE_IL2CPP
     using Unity.IL2CPP.CompilerServices;

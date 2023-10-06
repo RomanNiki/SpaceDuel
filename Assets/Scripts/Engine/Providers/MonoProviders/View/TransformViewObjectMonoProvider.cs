@@ -1,6 +1,6 @@
 ﻿using Core.Views.Components;
-using Engine.Movement.Strategies;
 using Engine.Providers.MonoProviders.Base;
+using Engine.Services.Movement.Strategies;
 using Engine.Views;
 using Scellecs.Morpeh;
 using UnityEngine;

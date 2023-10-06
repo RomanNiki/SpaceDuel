@@ -6,6 +6,7 @@ using UnityEngine;
 #if UNITY_EDITOR
 using Scellecs.Morpeh.Editor;
 #endif
+
 namespace Engine.Providers
 {
 #if ENABLE_IL2CPP
@@ -19,35 +20,34 @@ namespace Engine.Providers
         private bool _disposed = true;
         public World World { get; private set; }
         public Entity Entity { get; private set; }
-        public event Action EntityInit; 
-        public event Action EntityDispose; 
-        
+        public event Action EntityInit;
+        public event Action EntityDispose;
+
         public void Init(World world)
         {
-            Entity = world.CreateEntity();
-            World = world;
-            Init();
+            Init(world, world.CreateEntity());
         }
 
         public void Init(World world, Entity entity)
         {
+            if (Entity.IsNullOrDisposed() == false)
+            {
+                world.RemoveEntity(Entity);
+            }
+
             Entity = entity;
             World = world;
-            Init();
-        }
-
-        private void Init()
-        {
+            
 #if UNITY_EDITOR
             _entityViewer.getter = () => Entity;
 #endif
             _disposed = false;
-            
+
             foreach (var provider in GetComponents<IProvider>())
             {
                 provider.Resolve(World, Entity);
             }
-            
+
             OnInit();
             EntityInit?.Invoke();
         }
@@ -91,13 +91,9 @@ namespace Engine.Providers
 
             throw new NullReferenceException("Trying to get a component of a dead entity");
         }
-        
+
 #if UNITY_EDITOR
-        [PropertyOrder(100)]
-        [ShowInInspector]
-        [InlineProperty]
-        [HideLabel]
-        [Title("Debug Info", HorizontalLine = true)]
+        [PropertyOrder(100)] [ShowInInspector] [InlineProperty] [HideLabel] [Title("Debug Info", HorizontalLine = true)]
         private readonly EntityViewer _entityViewer = new();
 #endif
     }

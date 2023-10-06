@@ -1,7 +1,7 @@
-﻿using Core.Characteristics.Player.Components;
-using Core.Common;
+﻿using Core.Common;
 using Core.Common.Enums;
 using Core.Extensions;
+using Core.Player.Components;
 using Core.Views.Components;
 using Scellecs.Morpeh;
 using UnityEngine;

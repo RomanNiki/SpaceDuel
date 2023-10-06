@@ -1,5 +1,5 @@
 ﻿using Core.Common.Enums;
-using Core.Extensions.Factories;
+using Core.Services.Factories;
 using Core.Weapon.Components;
 using Engine.Factories.EntitiesFactories.Weapons;
 using Scellecs.Morpeh;

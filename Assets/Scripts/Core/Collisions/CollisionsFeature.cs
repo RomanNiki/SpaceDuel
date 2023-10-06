@@ -1,9 +1,9 @@
 ﻿using Core.Buffs.Components;
-using Core.Characteristics.Player.Components;
 using Core.Collisions.Components;
 using Core.Collisions.Strategies;
 using Core.Collisions.Systems;
 using Core.Movement.Components.Gravity;
+using Core.Player.Components;
 using Core.Weapon.Components;
 using Scellecs.Morpeh.Addons.Feature;
 

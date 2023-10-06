@@ -1,6 +1,6 @@
 ﻿using System;
-using Engine.Movement.Strategies;
 using Engine.Providers;
+using Engine.Services.Movement.Strategies;
 using JetBrains.Annotations;
 using UnityEngine;
 
@@ -28,10 +28,7 @@ namespace Engine.Views
 
         public override void MoveTo(Vector2 position) => _moveStrategy?.MoveTo(new Vector3(position.x, position.y, 0f));
 
-        public override void RotateTo(float rotation)
-        {
-            _transform.rotation = Quaternion.Euler(0f, 0f, rotation);
-        }
+        public override void RotateTo(float rotation) => _transform.rotation = Quaternion.Euler(0f, 0f, rotation);
 
         public override void Dispose()
         {
