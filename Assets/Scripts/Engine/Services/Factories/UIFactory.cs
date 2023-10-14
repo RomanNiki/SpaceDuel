@@ -1,7 +1,7 @@
 ﻿using System;
-using System.Threading.Tasks;
 using Core.Services.Factories;
 using Core.Services.Meta;
+using Cysharp.Threading.Tasks;
 using Engine.Services.AssetLoaders;
 using UnityEngine;
 
@@ -21,7 +21,7 @@ namespace Engine.Services.Factories
             _score = score;
         }
 
-        public async Task OpenGameplayHud()
+        public async UniTask OpenGameplayHud()
         {
             try
             {
@@ -34,7 +34,7 @@ namespace Engine.Services.Factories
             }
         }
 
-        public async Task OpenControlsWindow(Action startGameAction)
+        public async UniTask OpenControlsWindow(Action startGameAction)
         {
             try
             {

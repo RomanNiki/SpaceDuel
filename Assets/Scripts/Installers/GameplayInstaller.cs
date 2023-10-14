@@ -67,8 +67,10 @@ namespace Installers
             Container.Bind<GameplayHudAssetLoader>().AsSingle();
         }
 
-        private void BindPlayerSpawnPoints() =>
+        private void BindPlayerSpawnPoints()
+        {
             Container.Bind<PlayersSpawnPoints>().FromInstance(_playersSpawnPoints).AsSingle();
+        }
 
         private void BindPools()
         {

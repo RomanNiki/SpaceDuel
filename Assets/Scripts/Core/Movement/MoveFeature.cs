@@ -1,4 +1,5 @@
-﻿using Core.Movement.Systems;
+﻿using Core.Movement.Components.Events;
+using Core.Movement.Systems;
 using Scellecs.Morpeh.Addons.Feature;
 
 namespace Core.Movement
@@ -14,8 +15,13 @@ namespace Core.Movement
         
         protected override void Initialize()
         {
+            RegisterEvent<StartAccelerationEvent>();
+            RegisterEvent<StopAccelerationEvent>();
+            RegisterEvent<StartRotationEvent>();
+            RegisterEvent<StopRotationEvent>();
             AddSystem(new RotateSystem());
             AddSystem(new ForceSystem());
+            AddSystem(new MoveEventSystem());
             AddSystem(new GravitySystem());
             AddSystem(new AccelerationSystem());
             AddSystem(new VelocitySystem());

@@ -1,7 +1,7 @@
-﻿using System.Threading.Tasks;
-using Core.Services;
+﻿using Core.Services;
 using Core.Services.Factories;
 using Core.Services.Time;
+using Cysharp.Threading.Tasks;
 using Scellecs.Morpeh.Addons.Feature.Unity;
 
 namespace Engine
@@ -21,16 +21,16 @@ namespace Engine
 
         public bool IsPlaying { get; private set; }
 
-        public async Task Start()
+        public async UniTask Start()
         {
             await _uiFactory.OpenControlsWindow(StartInternal);
         }
 
-        public async Task Restart()
+        public async UniTask Restart()
         {
             await _timeScale.SlowDown(0.2f);
             IsPlaying = false;
-            await Task.Yield();
+            await UniTask.Yield();
             _featuresInstaller.gameObject.SetActive(false);
             await _uiFactory.OpenControlsWindow(StartInternal);
             await _timeScale.Accelerate(1, 1f);

@@ -71,7 +71,7 @@ namespace Engine.Services.AssetManagement
             AddPool(objectId, pool);
         }
 
-        public async Task<Entity> Create(SpawnRequest spawnRequest, World world)
+        public async UniTask<Entity> Create(SpawnRequest spawnRequest, World world)
         {
             var (success, entity) = await TryCreateEntity(spawnRequest, world);
             if (success == false)

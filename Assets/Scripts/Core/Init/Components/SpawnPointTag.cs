@@ -1,8 +1,7 @@
 ﻿using System;
 using Scellecs.Morpeh;
-using UnityEngine;
 
-namespace Core.Movement.Components
+namespace Core.Init.Components
 {
 #if ENABLE_IL2CPP
     using Unity.IL2CPP.CompilerServices;
@@ -10,14 +9,9 @@ namespace Core.Movement.Components
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
+
     [Serializable]
-    public struct ForceRequest : IComponent
+    public struct SpawnPointTag : IComponent
     {
-#if MORPEH_BURST == false
-        public Entity Entity;
-#else
-        public EntityId EntityId;
-#endif
-        public Vector2 Value;
     }
 }

@@ -11,6 +11,7 @@ using Core.Timers;
 using Core.Views;
 using Core.Weapon;
 using Engine.Input;
+using Engine.Sounds;
 using Scellecs.Morpeh.Addons.Feature;
 using UnityEngine;
 
@@ -28,6 +29,7 @@ namespace Engine.Services.Factories.SystemsFactories
                 new EnergyFeature(),
                 new DamageFeature(),
                 new EffectEntityFeature(),
+                new SoundFeature(),
                 new TimerFeature(),
                 new WeaponFeature(),
                 new ViewCreateFeature(args.Pools),

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 
 namespace Core.Services.Factories
 {
     public interface IUIFactory
     {
-        Task OpenGameplayHud();
-        Task OpenControlsWindow(Action startGameAction);
+        UniTask OpenGameplayHud();
+        UniTask OpenControlsWindow(Action startGameAction);
         void CloseGameplayHud();
         void CloseControlsWindow();
     }

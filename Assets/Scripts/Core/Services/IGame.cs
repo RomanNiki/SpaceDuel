@@ -1,12 +1,12 @@
-using System.Threading.Tasks;
+using Cysharp.Threading.Tasks;
 
 namespace Core.Services
 {
     public interface IGame
     {
         bool IsPlaying { get; }
-        Task Start();
-        Task Restart();
+        UniTask Start();
+        UniTask Restart();
         void Stop();
     }
 }

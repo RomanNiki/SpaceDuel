@@ -24,5 +24,15 @@ namespace Engine.Common
             {
             }
         }
+        
+        private static async UniTask Lerp(this float item, float target, float duration)
+        {
+            for (var t = 0f; t < duration; t += UnityEngine.Time.deltaTime)
+            {
+                var normalizedTime = t / duration;
+                item = Mathf.Lerp(item, target, normalizedTime);
+                await UniTask.Yield();
+            }
+        }
     }
 }
