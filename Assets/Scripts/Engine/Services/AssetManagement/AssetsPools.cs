@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using Core.Common.Enums;
 using Core.Services;
 using Core.Views.Components;
@@ -63,21 +62,24 @@ namespace Engine.Services.AssetManagement
 
         private async UniTask CreatePool(ObjectId objectId, AssetReference reference, int initializeSize)
         {
-            var settings = PoolBase<PoolableEntityProvider>.Settings.Default;
-            settings.InitialSize = initializeSize;
+            var settings = new PoolBase<PoolableEntityProvider>.Settings(initializeSize);
             var factory = new AddressableViewFactory<PoolableEntityProvider>(reference);
-            var pool = new EntityProviderPool(settings, factory, objectId.ToString());
-            await pool.Load();
+            var pool = new EntityProviderPool(factory, objectId.ToString(), settings);
+            if (pool is ILoadingResource loadingResource)
+            {
+                await loadingResource.Load();
+            }
+
             AddPool(objectId, pool);
         }
 
         public async UniTask<Entity> Create(SpawnRequest spawnRequest, World world)
         {
-            var (success, entity) = await TryCreateEntity(spawnRequest, world);
+            var (success, entity) = TryCreateEntity(spawnRequest, world);
             if (success == false)
             {
                 await Load();
-                (success, entity) = await TryCreateEntity(spawnRequest, world);
+                (success, entity) = TryCreateEntity(spawnRequest, world);
             }
 
             if (success)
@@ -88,11 +90,11 @@ namespace Engine.Services.AssetManagement
             throw new KeyNotFoundException($"Key [{spawnRequest.Id}] was not found");
         }
 
-        private async UniTask<(bool, Entity)> TryCreateEntity(SpawnRequest spawnRequest, World world)
+        private (bool, Entity) TryCreateEntity(SpawnRequest spawnRequest, World world)
         {
             if (_pools.TryGetValue(spawnRequest.Id, out var factory))
             {
-                var entity = await CreateEntity(spawnRequest, world, factory);
+                var entity = CreateEntity(spawnRequest, world, factory);
                 return (true, entity);
             }
 
@@ -100,10 +102,10 @@ namespace Engine.Services.AssetManagement
             return (false, null);
         }
 
-        private static async Task<Entity> CreateEntity(SpawnRequest spawnRequest, World world,
+        private static Entity CreateEntity(SpawnRequest spawnRequest, World world,
             IFactory<SpawnRequest, World, EntityProvider> factory)
         {
-            var entityProvider = await factory.Create(spawnRequest, world);
+            var entityProvider = factory.Create(spawnRequest, world);
             entityProvider.transform.position = spawnRequest.Position;
             entityProvider.transform.rotation = Quaternion.Euler(0, 0, spawnRequest.Rotation);
             return entityProvider.Entity;
@@ -121,9 +123,12 @@ namespace Engine.Services.AssetManagement
 
         public void Cleanup()
         {
-            foreach (var (_, factory) in _pools)
+            foreach (var (_, pool) in _pools)
             {
-                factory.Cleanup();
+                if (pool is ICleanup cleanup)
+                {
+                    cleanup.Cleanup();
+                }
             }
         }
 
@@ -135,7 +140,7 @@ namespace Engine.Services.AssetManagement
                 {
                     continue;
                 }
-                
+
                 await CreatePool(reference.Id, reference.AssetReference, reference.InitializeSize);
             }
         }

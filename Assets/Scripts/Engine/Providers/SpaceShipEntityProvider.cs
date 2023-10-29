@@ -1,7 +1,7 @@
 ﻿using Core.Common.Enums;
 using Core.Services.Factories;
 using Core.Weapon.Components;
-using Engine.Factories.EntitiesFactories.Weapons;
+using Engine.Services.Factories.EntitiesFactories.Weapons;
 using Scellecs.Morpeh;
 using UnityEngine;
 

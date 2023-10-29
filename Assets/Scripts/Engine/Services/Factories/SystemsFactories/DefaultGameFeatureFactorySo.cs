@@ -5,6 +5,7 @@ using Core.Characteristics.EnergyLimits;
 using Core.Collisions;
 using Core.Effects;
 using Core.Init;
+using Core.Input;
 using Core.Meta;
 using Core.Movement;
 using Core.Timers;
@@ -25,7 +26,7 @@ namespace Engine.Services.Factories.SystemsFactories
             return new UpdateFeature[]
             {
                 new InitFeature(args.SpawnPoints),
-                new InputFeature(),
+                new InputFeature(args.Input),
                 new EnergyFeature(),
                 new DamageFeature(),
                 new EffectEntityFeature(),

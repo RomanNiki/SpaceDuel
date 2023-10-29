@@ -29,6 +29,7 @@ namespace Core.Weapon.Systems
         private Stash<ShootObjectType> _shootTypePool;
         private Stash<EntityFactoryRef<IEntityFactory>> _entityFactory;
         private Stash<Muzzle> _muzzlePool;
+        private Stash<Velocity> _velocityPool;
         public World World { get; set; }
 
         public void OnAwake()
@@ -39,6 +40,7 @@ namespace Core.Weapon.Systems
             _shootingPool = World.GetStash<ShootingRequest>();
             _positionPool = World.GetStash<Position>();
             _rotationPool = World.GetStash<Rotation>();
+            _velocityPool = World.GetStash<Velocity>();
             _startForcePool = World.GetStash<BulletStartForce>();
             _shootTypePool = World.GetStash<ShootObjectType>();
             _entityFactory = World.GetStash<EntityFactoryRef<IEntityFactory>>();
@@ -65,18 +67,22 @@ namespace Core.Weapon.Systems
 
                 ref var shootType = ref _shootTypePool.Get(weaponEntity);
                 ref var bulletForce = ref _startForcePool.Get(weaponEntity).Value;
+                ref var ownerVelocity = ref _velocityPool.Get(ownerEntity);
                 var spawnPosition = _positionPool.Get(ownerEntity).Value +
                                     (Vector2)_rotationPool.Get(ownerEntity).LookDir *
                                     _muzzlePool.Get(weaponEntity).Offset;
                 ref var entityFactory = ref _entityFactory.Get(weaponEntity);
-                CreateBullet(entityFactory.Factory, shootType.ObjectId, spawnPosition, direction * bulletForce);
+
+                var bulletVelocity = direction * bulletForce;
+                bulletVelocity += bulletForce > 0f ? 1f * ownerVelocity.Value : Vector2.zero;
+                CreateBullet(entityFactory.Factory, shootType.ObjectId, spawnPosition, bulletVelocity);
                 MessageShotMade(weaponEntity);
             }
         }
 
         private void MessageShotMade(Entity weaponEntity) =>
             World.SendMessage(new ShotMadeEvent { Weapon = weaponEntity });
-        
+
         private void CreateBullet(IEntityFactory entityFactory, ObjectId shootTypeId, Vector2 spawnPosition,
             Vector2 force)
         {

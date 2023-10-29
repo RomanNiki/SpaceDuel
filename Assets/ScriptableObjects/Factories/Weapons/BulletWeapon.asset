@@ -17,10 +17,10 @@ MonoBehaviour:
   _entityFactory: {fileID: 11400000, guid: 7a0f87f302cb32d4a863b943155d5bf1, type: 2}
   _shot: {fileID: 8300000, guid: 38ba1d730903e954e9815e05e0a01675, type: 3}
   _bulletStartForce:
-    Value: 15
+    Value: 20
   _dischargeContainer:
     Value: 0.25
   _muzzle:
-    Offset: 1.5
+    Offset: 2
   _timeBetweenShotsSetup:
     TimeSec: 0.2

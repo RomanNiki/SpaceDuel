@@ -1,8 +1,8 @@
 ﻿using System;
-using Engine.Providers;
 using Engine.Services.Movement.Strategies;
 using JetBrains.Annotations;
 using UnityEngine;
+using EntityProvider = Engine.Providers.EntityProvider;
 
 namespace Engine.Views
 {

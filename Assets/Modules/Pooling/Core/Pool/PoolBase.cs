@@ -5,7 +5,7 @@ using Modules.Pooling.Core.Factory;
 
 namespace Modules.Pooling.Core.Pool
 {
-    public class PoolBase<TPoolObject> : IPool, IDisposable
+    public class PoolBase<TPoolObject> : IPool, ILoadingResource, IDisposable, ICleanup
     {
         private readonly Stack<TPoolObject> _inactiveItems;
         private readonly List<TPoolObject> _activeItems;
@@ -25,9 +25,9 @@ namespace Modules.Pooling.Core.Pool
 
         public int ActiveCount => _activeCount;
 
-        private async UniTask<TPoolObject> CreateNew()
+        private TPoolObject CreateNew()
         {
-            var item = await _factory.Create();
+            var item = _factory.Create();
             OnCreated(item);
             return item;
         }
@@ -36,16 +36,21 @@ namespace Modules.Pooling.Core.Pool
         {
             await LoadInternal();
         }
-        
+
         protected async UniTask LoadInternal()
         {
+            if (_factory is ILoadingResource loadingResource)
+            {
+                await loadingResource.Load();
+            }
+
             for (var i = 0; i < _settings.InitialSize; i++)
             {
-                _inactiveItems.Push(await CreateNew());
+                _inactiveItems.Push(CreateNew());
             }
         }
 
-        protected async UniTask<TPoolObject> GetInternal()
+        protected TPoolObject GetInternal()
         {
             TPoolObject item;
             if (_inactiveItems.Count > 0)
@@ -54,22 +59,22 @@ namespace Modules.Pooling.Core.Pool
             }
             else
             {
-                await ExpandPool();
-                item = await CreateNew();
+                ExpandPool();
+                item = CreateNew();
             }
-           
+
             _activeItems.Add(item);
             _activeCount++;
             OnSpawned(item);
             return item;
         }
 
-        private async UniTask ExpandPool()
+        private void ExpandPool()
         {
-            await Resize(_currentSize * 2);
+            Resize(_currentSize * 2);
         }
 
-        public async UniTask Resize(int desiredPoolSize)
+        public void Resize(int desiredPoolSize)
         {
             if (_inactiveItems.Count == desiredPoolSize)
             {
@@ -84,7 +89,7 @@ namespace Modules.Pooling.Core.Pool
 
             while (desiredPoolSize > _inactiveItems.Count)
             {
-                _inactiveItems.Push(await CreateNew());
+                _inactiveItems.Push(CreateNew());
             }
 
             _currentSize = desiredPoolSize;
@@ -92,10 +97,10 @@ namespace Modules.Pooling.Core.Pool
 
         void IPool.Despawn(object item)
         {
-            Despawn((TPoolObject)item).Forget();
+            Despawn((TPoolObject)item);
         }
 
-        public async UniTaskVoid Despawn(TPoolObject item)
+        public void Despawn(TPoolObject item)
         {
             _activeCount--;
             _inactiveItems.Push(item);
@@ -103,7 +108,7 @@ namespace Modules.Pooling.Core.Pool
             OnDespawned(item);
             if (_inactiveItems.Count > _settings.MaxSize)
             {
-                await Resize(_settings.MaxSize);
+                Resize(_settings.MaxSize);
             }
         }
 
@@ -126,15 +131,16 @@ namespace Modules.Pooling.Core.Pool
         public void Dispose()
         {
             Cleanup();
-            
+
             foreach (var inactiveItem in _inactiveItems)
             {
                 OnInactiveItemDispose(inactiveItem);
             }
+
             _inactiveItems.Clear();
             OnDispose();
         }
-        
+
         public void Cleanup()
         {
             var activeItemsTemp = new List<TPoolObject>(_activeItems);
@@ -142,7 +148,7 @@ namespace Modules.Pooling.Core.Pool
             {
                 OnActiveItemDispose(activeItem);
             }
-            
+
             _activeItems.Clear();
         }
 

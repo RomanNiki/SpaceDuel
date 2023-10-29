@@ -7,7 +7,7 @@ using Scellecs.Morpeh;
 
 namespace Core.Services
 {
-    public interface IAssets : IDisposable, ICleanup
+    public interface IAssets : IDisposable, ICleanup, ILoadingResource
     {
         UniTask<Entity> Create(SpawnRequest spawnRequest, World world);
     }

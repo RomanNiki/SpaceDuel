@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Core.Characteristics.EnergyLimits.Components;
 using Core.Common;
 using Core.Common.Enums;

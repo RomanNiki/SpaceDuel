@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.Services;
 using Cysharp.Threading.Tasks;
 using Modules.Pooling.Core;
 
@@ -8,7 +9,7 @@ namespace Engine.Services.Loading.LoadingOperations
     {
         private readonly ILoadingResource _assetsLoadProvider;
         
-        public LoadGameAssets(ILoadingResource assetsLoadProvider)
+        public LoadGameAssets(IAssets assetsLoadProvider)
         {
             _assetsLoadProvider = assetsLoadProvider;
         }

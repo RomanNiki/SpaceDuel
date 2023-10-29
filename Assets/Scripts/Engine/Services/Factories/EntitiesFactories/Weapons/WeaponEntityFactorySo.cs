@@ -2,11 +2,12 @@
 using Core.Services.Factories;
 using Core.Timers.Components;
 using Core.Weapon.Components;
+using Engine.Factories.EntitiesFactories;
 using Engine.Views.Components;
 using Scellecs.Morpeh;
 using UnityEngine;
 
-namespace Engine.Factories.EntitiesFactories.Weapons
+namespace Engine.Services.Factories.EntitiesFactories.Weapons
 {
     [CreateAssetMenu(fileName = "Weapon", menuName = "SpaceDuel/Weapon", order = 10)]
     public class WeaponEntityFactorySo : EntityFactoryFromSo

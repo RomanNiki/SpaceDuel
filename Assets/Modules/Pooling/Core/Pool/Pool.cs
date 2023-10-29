@@ -14,9 +14,9 @@ namespace Modules.Pooling.Core.Pool
         {
         }
 
-        public async UniTask<TComponent> Spawn()
+        public TComponent Spawn()
         {
-            var item = await GetInternal();
+            var item = GetInternal();
             ReInitialize(item);
             return item;
         }
@@ -26,6 +26,6 @@ namespace Modules.Pooling.Core.Pool
             item.OnSpawned(this);
         }
 
-        public async UniTask<TComponent> Create() => await Spawn();
+        public TComponent Create() => Spawn();
     }
 }

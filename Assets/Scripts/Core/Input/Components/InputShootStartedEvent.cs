@@ -13,7 +13,7 @@ namespace Core.Input.Components
     [Serializable]
     public struct InputShootStartedEvent : IComponent
     {
-        public TeamEnum PlayerTeamEnum;
+        public TeamEnum PlayerTeam;
         public WeaponEnum Weapon;
     }
 }

@@ -1,10 +1,10 @@
 using System.Linq;
+using Engine.Providers;
 using Engine.Services.Factories.SystemsFactories;
 using Scellecs.Morpeh;
 using Scellecs.Morpeh.Addons.Feature;
 using Scellecs.Morpeh.Addons.Feature.Unity;
-using Zenject;
-using EntityProvider = Engine.Providers.EntityProvider;
+using VContainer;
 
 public sealed class GameplayFeaturesInstaller : BaseFeaturesInstaller
 {

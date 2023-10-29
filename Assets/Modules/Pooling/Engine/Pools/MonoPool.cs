@@ -7,13 +7,12 @@ using Object = UnityEngine.Object;
 
 namespace Modules.Pooling.Engine.Pools
 {
-    public class MonoPool<TComponent> : Pool<TComponent>
-        where TComponent : Component, IPoolItem
+    public class MonoPool<TComponent> : Pool<TComponent> where TComponent : MonoBehaviour, IPoolItem
     {
         private readonly Vector3 _outGamePoint = new(-25, -25, -25);
         private readonly Lazy<Scene> _rootScene;
 
-        public MonoPool(Settings settings, IFactory<TComponent> factory, string name) : base(settings, factory)
+        public MonoPool(IFactory<TComponent> factory, string name, Settings settings) : base(settings, factory)
         {
             _rootScene = new Lazy<Scene>(() => SceneManager.CreateScene($"[Pool] {name}"));
         }
@@ -53,18 +52,20 @@ namespace Modules.Pooling.Engine.Pools
                 Object.Destroy(item.gameObject);
             }
         }
-        
+
         private void MoveToPool(TComponent item)
         {
             item.transform.position = _outGamePoint;
             var gameObject = item.gameObject;
             gameObject.SetActive(false);
-            SceneManager.MoveGameObjectToScene(gameObject, _rootScene.Value);
+            if (_rootScene.Value.isLoaded)
+                SceneManager.MoveGameObjectToScene(gameObject, _rootScene.Value);
         }
 
         protected override void OnDispose()
         {
-            SceneManager.UnloadSceneAsync(_rootScene.Value);
+            if (_rootScene.Value.isLoaded)
+                SceneManager.UnloadSceneAsync(_rootScene.Value);
         }
     }
 }

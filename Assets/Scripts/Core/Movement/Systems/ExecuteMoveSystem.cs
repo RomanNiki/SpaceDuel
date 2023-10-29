@@ -1,4 +1,5 @@
-﻿using Core.Movement.Components;
+﻿using Core.Movement.Aspects;
+using Core.Movement.Components;
 using Core.Views.Components;
 using Scellecs.Morpeh;
 
@@ -14,16 +15,14 @@ namespace Core.Movement.Systems
     public sealed class ExecuteMoveSystem : IFixedSystem
     {
         private Filter _filter;
-        private Stash<Rotation> _rotationPool;
-        private Stash<Position> _positionPool;
+        private AspectFactory<TransformAspect> _transformAspect;
         private Stash<ViewObject> _viewPool;
         public World World { get; set; }
         
         public void OnAwake()
         {
-            _filter = World.Filter.With<Position>().With<Rotation>().With<ViewObject>().Build();
-            _rotationPool = World.GetStash<Rotation>();
-            _positionPool = World.GetStash<Position>();
+            _filter = World.Filter.Extend<TransformAspect>().With<ViewObject>().Build();
+            _transformAspect = World.GetAspectFactory<TransformAspect>();
             _viewPool = World.GetStash<ViewObject>();
         }
         
@@ -31,12 +30,11 @@ namespace Core.Movement.Systems
         {
             foreach (var entity in _filter)
             {
-                ref var position = ref _positionPool.Get(entity);
-                ref var rotation = ref _rotationPool.Get(entity);
+                var transform = _transformAspect.Get(entity);
                 ref var view = ref _viewPool.Get(entity);
                 
-                view.Value.MoveTo(position.Value);
-                view.Value.RotateTo(rotation.Value);
+                view.Value.MoveTo(transform.Position.Value);
+                view.Value.RotateTo(transform.Rotation.Value);
             }
         }
 

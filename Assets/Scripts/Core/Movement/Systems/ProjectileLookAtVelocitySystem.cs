@@ -7,6 +7,7 @@ using Scellecs.Morpeh.Native;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
+using UnityEngine;
 #endif
 
 namespace Core.Movement.Systems
@@ -28,7 +29,7 @@ namespace Core.Movement.Systems
 
         public void OnAwake()
         {
-            _filter = World.Filter.With<Velocity>().With<Rotation>().With<ProjectileTag>().Build();
+            _filter = World.Filter.With<Velocity>().With<Rotation>().With<BulletTag>().Build();
             _velocityPool = World.GetStash<Velocity>();
             _rotationPool = World.GetStash<Rotation>();
         }
@@ -83,7 +84,6 @@ namespace Core.Movement.Systems
                 {
                     return;
                 }
-
                 rotation.Value = MathExtensions.CalculateRotationFromVelocity(velocity.Value);
             }
         }

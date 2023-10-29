@@ -1,19 +1,18 @@
 ﻿using Core.Services;
 using Core.Services.Time;
-using Modules.Pooling.Core;
 using Scellecs.Morpeh;
 using UnityEngine;
-using Zenject;
+using VContainer;
 
 public class EntryPoint : MonoBehaviour
 {
     private World _world;
     private IGame _game;
-    private ILoadingResource _loadingResource;
+    private IAssets _loadingResource;
     private ITimeScale _timeScale;
 
     [Inject]
-    private void Constuct(IGame game, ITimeScale timeScale, ILoadingResource loadingResource)
+    private void Constuct(IGame game, ITimeScale timeScale, IAssets loadingResource)
     {
         _game = game;
         _loadingResource = loadingResource;

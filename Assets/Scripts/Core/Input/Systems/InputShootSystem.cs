@@ -51,7 +51,7 @@ namespace Core.Input.Systems
             {
                 ref var startShootEvent = ref _inputShootStartedPool.Get(startEntity);
                 _shootingPlayers.Add(new ShootData()
-                    { Weapon = startShootEvent.Weapon, TeamEnum = startShootEvent.PlayerTeamEnum });
+                    { Weapon = startShootEvent.Weapon, TeamEnum = startShootEvent.PlayerTeam });
             }
 
             foreach (var canceledEntity in _canceledShootFilter)

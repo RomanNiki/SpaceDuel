@@ -1,5 +1,6 @@
 ﻿using System;
 using Core.Common;
+using Core.Input;
 using Core.Movement;
 using Core.Services;
 using Core.Services.Factories;
@@ -9,20 +10,22 @@ using Core.Services.Pause.Services;
 using Core.Services.Time;
 using Engine;
 using Engine.Common;
+using Engine.Input;
 using Engine.Services.AssetLoaders;
 using Engine.Services.AssetManagement;
 using Engine.Services.Factories;
 using Engine.Services.Factories.SystemsFactories;
 using Engine.Services.Movement;
 using Engine.Services.Time;
-using Modules.Pooling.Core;
+using Scellecs.Morpeh;
 using Scellecs.Morpeh.Addons.Feature.Unity;
 using UnityEngine;
-using Zenject;
+using VContainer;
+using VContainer.Unity;
 
 namespace Installers
 {
-    public class GameplayInstaller : MonoInstaller
+    public class GameplayInstaller : LifetimeScope
     {
         [SerializeField] private FeaturesFactoryBaseSo _featuresFactoryBaseSo;
         [SerializeField] private BaseFeaturesInstaller _featuresInstaller;
@@ -38,54 +41,67 @@ namespace Installers
             }
         }
 
-        public override void InstallBindings()
+        protected override void Configure(IContainerBuilder builder)
         {
-            BindPools();
-            BindPlayerSpawnPoints();
-            BindMoveLoopService();
-            BindPauseService();
-            BindSystemFactory();
-            BindSystemArgs();
-            BindAssetLoaders();
-            BindUIFactory();
-            BindScore();
-            BindGame();
-            BindTime();
+            RegisterPools(builder);
+            RegisterInput(builder);
+            RegisterPlayerSpawnPoints(builder);
+            RegisterMoveLoopService(builder);
+            RegisterPauseService(builder);
+            RegisterSystemFactory(builder);
+            RegisterSystemArgs(builder);
+            RegisterAssetLoaders(builder);
+            RegisterUIFactory(builder);
+            RegisterScore(builder);
+            RegisterGame(builder);
+            RegisterTime(builder);
         }
 
-        private void BindTime() => Container.Bind<ITimeScale>().To<BaseTimeScale>().AsSingle();
-
-        private void BindScore() => Container.Bind<IScore>().To<ScoreService>().AsSingle();
-
-        private void BindGame() => Container.Bind<IGame>().To<Game>().AsSingle().WithArguments(_featuresInstaller);
-
-        private void BindUIFactory() => Container.Bind<IUIFactory>().To<UIFactory>().AsSingle();
-
-        private void BindAssetLoaders()
+        private static void RegisterInput(IContainerBuilder builder)
         {
-            Container.Bind<ControlsWindowAssetLoader>().AsSingle();
-            Container.Bind<GameplayHudAssetLoader>().AsSingle();
+            builder.Register<PlayerInput>(Lifetime.Singleton);
+            builder.Register<IInput, KeyboardInput>(Lifetime.Singleton);
         }
 
-        private void BindPlayerSpawnPoints()
+        private static void RegisterTime(IContainerBuilder builder) =>
+            builder.Register<ITimeScale, BaseTimeScale>(Lifetime.Singleton);
+
+        private static void RegisterScore(IContainerBuilder builder) =>
+            builder.Register<IScore, ScoreService>(Lifetime.Singleton);
+
+        private void RegisterGame(IContainerBuilder builder) =>
+            builder.Register<IGame, Game>(Lifetime.Singleton).WithParameter(_featuresInstaller);
+
+        private static void RegisterUIFactory(IContainerBuilder builder) =>
+            builder.Register<IUIFactory, UIFactory>(Lifetime.Singleton);
+
+        private static void RegisterAssetLoaders(IContainerBuilder builder)
         {
-            Container.Bind<PlayersSpawnPoints>().FromInstance(_playersSpawnPoints).AsSingle();
+            builder.Register<ControlsWindowAssetLoader>(Lifetime.Singleton);
+            builder.Register<GameplayHudAssetLoader>(Lifetime.Singleton);
         }
 
-        private void BindPools()
+        private void RegisterPlayerSpawnPoints(IContainerBuilder builder)
+        {
+            builder.RegisterInstance(_playersSpawnPoints).AsSelf();
+        }
+
+        private void RegisterPools(IContainerBuilder builder)
         {
             var assetsPools = new AssetsPools(_poolsAssets);
-            Container.Bind(typeof(IAssets), typeof(ILoadingResource)).FromInstance(assetsPools).AsSingle();
+            builder.RegisterInstance(assetsPools).As<IAssets>();
         }
 
-        private void BindSystemArgs() => Container.BindInterfacesAndSelfTo<FeaturesFactoryArgs>().AsSingle();
+        private static void RegisterSystemArgs(IContainerBuilder builder) =>
+            builder.Register<FeaturesFactoryArgs>(Lifetime.Singleton);
 
-        private void BindSystemFactory() =>
-            Container.Bind<IFeaturesFactory>().FromInstance(_featuresFactoryBaseSo).AsSingle();
+        private void RegisterSystemFactory(IContainerBuilder builder) =>
+            builder.RegisterInstance<IFeaturesFactory>(_featuresFactoryBaseSo);
 
-        private void BindPauseService() => Container.Bind<IPauseService>().To<PauseService>().AsSingle();
+        private static void RegisterPauseService(IContainerBuilder builder) =>
+            builder.Register<IPauseService, PauseService>(Lifetime.Singleton);
 
-        private void BindMoveLoopService() =>
-            Container.Bind<IMoveLoopService>().To<MoveLoopService>().AsSingle().WithArguments(_orthographicCamera);
+        private void RegisterMoveLoopService(IContainerBuilder builder) =>
+            builder.Register<IMoveLoopService, MoveLoopService>(Lifetime.Singleton).WithParameter(_orthographicCamera);
     }
 }
