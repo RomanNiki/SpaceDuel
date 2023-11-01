@@ -18,7 +18,7 @@ namespace Core.Collisions.Strategies
             }
             
             var killSelfRequest = world.GetStash<KillSelfRequest>();
-            var damages = world.GetStash<DamageContainer>();
+            var damages = world.GetStash<Damage>();
             var positions = world.GetStash<Position>();
             var damage = damages.Get(sender);
             var position = positions.Get(sender);

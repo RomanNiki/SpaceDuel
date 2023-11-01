@@ -26,7 +26,7 @@ namespace Engine.Services.Factories.EntitiesFactories.Projectiles
             world.AddComponentToEntity(entity, _friction);
             world.AddComponentToEntity(entity, _mass);
             world.AddComponentToEntity(entity, new Velocity());
-            world.AddComponentToEntity(entity, new DamageContainer { Value = _damage });
+            world.AddComponentToEntity(entity, new Damage { Value = _damage });
             return entity;
         }
 

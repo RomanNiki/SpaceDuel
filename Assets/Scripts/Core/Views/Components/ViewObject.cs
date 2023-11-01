@@ -11,10 +11,8 @@ namespace Core.Views.Components
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
     [Serializable]
-    public struct ViewObject : IComponent, IDisposable
+    public struct ViewObject : IComponent
     {
         public IViewObject Value;
-
-        public void Dispose() => Value?.Dispose();
     }
 }

@@ -21,7 +21,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "184573e077a73a290541d2f9ad1a1c3180b2f913"
+      "hash": "edf25dbb28e3cf303b77f14f636e0d3778c46971"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
@@ -39,11 +39,11 @@
       }
     },
     "com.unity.addressables": {
-      "version": "1.21.18",
+      "version": "1.21.19",
       "depth": 0,
       "source": "registry",
       "dependencies": {
-        "com.unity.scriptablebuildpipeline": "1.21.20",
+        "com.unity.scriptablebuildpipeline": "1.21.21",
         "com.unity.modules.assetbundle": "1.0.0",
         "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0",
@@ -232,7 +232,7 @@
       }
     },
     "com.unity.scriptablebuildpipeline": {
-      "version": "1.21.20",
+      "version": "1.21.21",
       "depth": 1,
       "source": "registry",
       "dependencies": {},
@@ -386,7 +386,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "fdf036ac40257b817ed0bdfcc0d516fc67a3ea7d"
+      "hash": "c08a1db0674113d8490babeba3d81b29d510a9ce"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

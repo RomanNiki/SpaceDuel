@@ -24,7 +24,7 @@ public sealed class GameplayFeaturesInstaller : BaseFeaturesInstaller
         _world = World.Default;
         foreach (var entity in FindObjectsOfType<EntityProvider>())
         {
-            entity.Init(_world);
+            entity.Resolve(_world, _world.CreateEntity());
         }
     }
 

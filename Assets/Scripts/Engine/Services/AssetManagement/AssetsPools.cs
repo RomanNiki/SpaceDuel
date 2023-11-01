@@ -1,25 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using Core.Common.Enums;
+using Core.Movement.Aspects;
 using Core.Services;
 using Core.Views.Components;
 using Cysharp.Threading.Tasks;
 using Engine.Common;
-using Engine.Providers;
-using Engine.Services.AssetManagement.Pools;
+using Engine.Providers.MonoProviders.Base;
+using Engine.Providers.MonoProviders.View;
 using Engine.Services.Factories;
 using Modules.Pooling.Core;
 using Modules.Pooling.Core.Factory;
 using Modules.Pooling.Core.Pool;
+using Modules.Pooling.Engine.Pools;
 using Scellecs.Morpeh;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
 
 namespace Engine.Services.AssetManagement
 {
-    public class AssetsPools : IAssets, ILoadingResource
+    public class AssetsPools : IAssets
     {
-        private readonly Dictionary<ObjectId, IFactory<SpawnRequest, World, EntityProvider>> _pools = new();
+        private readonly Dictionary<ObjectId, IFactory<PoolMonoProvider>> _pools = new();
         private readonly List<AssetPair> _assetReferences = new();
 
         public AssetsPools()
@@ -34,7 +36,7 @@ namespace Engine.Services.AssetManagement
             }
         }
 
-        private void AddPool(ObjectId objectId, IFactory<SpawnRequest, World, EntityProvider> pool)
+        private void AddPool(ObjectId objectId, IFactory<PoolMonoProvider> pool)
         {
             var isExists = _pools.TryGetValue(objectId, out _);
 #if DEBUG
@@ -62,9 +64,9 @@ namespace Engine.Services.AssetManagement
 
         private async UniTask CreatePool(ObjectId objectId, AssetReference reference, int initializeSize)
         {
-            var settings = new PoolBase<PoolableEntityProvider>.Settings(initializeSize);
-            var factory = new AddressableViewFactory<PoolableEntityProvider>(reference);
-            var pool = new EntityProviderPool(factory, objectId.ToString(), settings);
+            var settings = new PoolBase<PoolMonoProvider>.Settings(initializeSize);
+            var factory = new AddressableViewFactory<PoolMonoProvider>(reference);
+            var pool = new MonoPool<PoolMonoProvider>(factory, objectId.ToString(), settings);
             if (pool is ILoadingResource loadingResource)
             {
                 await loadingResource.Load();
@@ -103,12 +105,23 @@ namespace Engine.Services.AssetManagement
         }
 
         private static Entity CreateEntity(SpawnRequest spawnRequest, World world,
-            IFactory<SpawnRequest, World, EntityProvider> factory)
+            IFactory<PoolMonoProvider> factory)
         {
-            var entityProvider = factory.Create(spawnRequest, world);
+            var entityProvider = factory.Create();
+            SetEntityTransform(spawnRequest, world, entityProvider);
+            return spawnRequest.Entity;
+        }
+
+        private static void SetEntityTransform(SpawnRequest spawnRequest, World world, MonoProviderBase entityProvider)
+        {
+            var transformFactory = world.GetAspectFactory<TransformAspect>();
+            var entity = spawnRequest.Entity;
+            var aspectTransform = transformFactory.Get(entity);
             entityProvider.transform.position = spawnRequest.Position;
             entityProvider.transform.rotation = Quaternion.Euler(0, 0, spawnRequest.Rotation);
-            return entityProvider.Entity;
+            entityProvider.Resolve(world, entity);
+            aspectTransform.Position.Value = spawnRequest.Position;
+            aspectTransform.Rotation.Value = spawnRequest.Rotation;
         }
 
         public void Dispose()

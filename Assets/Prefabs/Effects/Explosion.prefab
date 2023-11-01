@@ -140,6 +140,17 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: -8858034521756474750}
   m_SourcePrefab: {fileID: 100100000, guid: ffa261cc4d4f23f4582ba3775de3ae1d, type: 3}
+--- !u!114 &1515107131571248670 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6253071902816654755, guid: ffa261cc4d4f23f4582ba3775de3ae1d, type: 3}
+  m_PrefabInstance: {fileID: 4882432146828676029}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3273740169058670324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d65a7f8972377943bb43566593e30d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3273740169058670324 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7975676469097569609, guid: ffa261cc4d4f23f4582ba3775de3ae1d, type: 3}
@@ -157,7 +168,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 495dc68d0d5f41a0aa1392ee30c11fc9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _entityProvider: {fileID: 8726506889950447257}
+  _entityProvider: {fileID: 1515107131571248670}
 --- !u!82 &7062399684061175383
 AudioSource:
   m_ObjectHideFlags: 0
@@ -307,17 +318,6 @@ MonoBehaviour:
     m_DissipationDistance: 100
     m_PropagationSpeed: 343
   m_DefaultVelocity: {x: 0, y: -1, z: 0}
---- !u!114 &8726506889950447257 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4241025132578278692, guid: ffa261cc4d4f23f4582ba3775de3ae1d, type: 3}
-  m_PrefabInstance: {fileID: 4882432146828676029}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3273740169058670324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 462760b3591f409db9c359af4b69078a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &9098064613539359815 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4432443240653481978, guid: ffa261cc4d4f23f4582ba3775de3ae1d, type: 3}

@@ -10,7 +10,7 @@ namespace Core.Characteristics.Damage.Components
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
     [Serializable]
-    public struct DamageContainer : IComponent
+    public struct Damage : IComponent
     {
         public float Value;
     }

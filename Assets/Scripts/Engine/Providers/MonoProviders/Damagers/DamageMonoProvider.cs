@@ -3,7 +3,7 @@ using Engine.Providers.MonoProviders.Base;
 
 namespace Engine.Providers.MonoProviders.Damagers
 {
-    public class DamageContainerMonoProvider : MonoProvider<DamageContainer>
+    public class DamageMonoProvider : MonoProvider<Damage>
     {
     }
 }

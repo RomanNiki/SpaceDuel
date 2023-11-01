@@ -23,14 +23,14 @@ namespace Core.Characteristics.Damage.Systems
         {
             _viewDestroyFilter = World.Filter.With<DestroySelfRequest>().With<ViewObject>().Build();
             _destroyEntityFilter = World.Filter.With<DestroySelfRequest>().Without<ViewObject>().Build();
-            _viewPool = World.GetStash<ViewObject>().AsDisposable();
+            _viewPool = World.GetStash<ViewObject>();
         }
 
         public void OnUpdate(float deltaTime)
         {
             foreach (var entity in _viewDestroyFilter)
             {
-                _viewPool.Remove(entity);
+                _viewPool.Get(entity).Value.Dispose();
             }
 
             foreach (var entity in _destroyEntityFilter)
