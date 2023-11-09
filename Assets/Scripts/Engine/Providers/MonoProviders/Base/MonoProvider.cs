@@ -20,12 +20,17 @@ namespace Engine.Providers.MonoProviders.Base
                 _cachedEntity = entity;
                 _stash = world.GetStash<T>();
                 _stash.Set(entity, _serializedComponent);
+                OnResolve(world, entity);
             }
         }
-        
+
+        protected virtual void OnResolve(World world, Entity entity)
+        {
+        }
+
 #if UNITY_EDITOR
         private string GetTypeName() => typeof(T).Name;
-        
+
         [Title("$GetTypeName")]
         [PropertySpace]
         [ShowInInspector]
@@ -33,7 +38,7 @@ namespace Engine.Providers.MonoProviders.Base
         [HideLabel]
         [InlineProperty]
 #endif
-        
+
         protected T Data
         {
             get

@@ -13,14 +13,15 @@ namespace Core.Collisions
     {
         protected override void Initialize()
         {
-            
-            AddSystem(new TriggerSystem<ProjectileTag, ProjectileTag>(new DamageTargetStrategy()));
-            AddSystem(new TriggerSystem<ProjectileTag, PlayerTag>(new DamageTargetStrategy()));
-            AddSystem(new TriggerSystem<ProjectileTag, EnergyBuffTag>(new DamageTargetStrategy()));
+            var damageKillSelfStrategy = new CombineStrategies(new DamageTargetStrategy(), new KillSenderStrategy());
+            var excludeStrategy = new InvisibleStrategy(damageKillSelfStrategy);
+            AddSystem(new TriggerSystem<ProjectileTag, ProjectileTag>(excludeStrategy));
+            AddSystem(new TriggerSystem<ProjectileTag, PlayerTag>(excludeStrategy));
+            AddSystem(new TriggerSystem<ProjectileTag, BuffTag>(excludeStrategy));
             AddSystem(new TriggerSystem<GravityPoint, ProjectileTag>(new DestroyTargetStrategy()));
             AddSystem(new TriggerSystem<GravityPoint, PlayerTag>(new DestroyTargetStrategy()));
-            AddSystem(new TriggerSystem<EnergyBuffTag, PlayerTag>(new ChargeTargetStrategy()));
-            AddSystem(new TriggerSystem<PlayerTag, EnergyBuffTag>(new DestroyTargetStrategy()));
+            AddSystem(new TriggerSystem<BuffTag, PlayerTag>(new CreateBuffStrategy()));
+            AddSystem(new TriggerSystem<PlayerTag, BuffTag>(new DestroyTargetStrategy()));
             AddSystem(new TriggerSystem<PlayerTag, PlayerTag>(new DamageTargetByHealthStrategy()));
             RegisterRequest<TriggerEnterRequest>();
         }

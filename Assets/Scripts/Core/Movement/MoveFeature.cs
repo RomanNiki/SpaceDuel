@@ -27,7 +27,8 @@ namespace Core.Movement
             AddSystem(new VelocitySystem());
             AddSystem(new FrictionSystem());
             AddSystem(new ProjectileLookAtVelocitySystem());
-            AddSystem(new MoveClampSystem(_loopService));
+            AddSystem(new MoveClampSystem(_loopService));     
+            AddSystem(new FollowSystem());
             AddSystem(new ExecuteMoveSystem());
         }
     }

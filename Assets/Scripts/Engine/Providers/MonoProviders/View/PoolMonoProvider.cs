@@ -1,14 +1,21 @@
-﻿using Engine.Providers.MonoProviders.Base;
+﻿using System;
+using Engine.Providers.MonoProviders.Base;
 using Modules.Pooling.Core.Pool;
 using Scellecs.Morpeh;
 using UnityEngine;
 
 namespace Engine.Providers.MonoProviders.View
 {
+    [RequireComponent(typeof(EntityProvider))]
     public class PoolMonoProvider : EntityProviderBase, IPoolItem
     {
-        [SerializeField] private EntityProvider _entityProvider;
+        private EntityProvider _entityProvider;
         private IPool _memoryPool;
+
+        private void Awake()
+        {
+            _entityProvider = GetComponent<EntityProvider>();
+        }
 
         public override void Resolve(World world, Entity entity)
         {

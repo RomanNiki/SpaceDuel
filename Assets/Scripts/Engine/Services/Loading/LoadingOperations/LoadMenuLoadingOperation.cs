@@ -17,8 +17,8 @@ namespace Engine.Services.Loading.LoadingOperations
             {
                 await UniTask.Delay(1);
             }
+            
             onProgress?.Invoke(1f);
         }
-        
     }
 }

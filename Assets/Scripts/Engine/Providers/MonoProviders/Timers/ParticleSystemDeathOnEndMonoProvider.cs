@@ -13,8 +13,8 @@ namespace Engine.Providers.MonoProviders.Timers
         {
             var dieWithoutTimerTagStash = world.GetStash<DieWithoutLifeTimerTag>();
             dieWithoutTimerTagStash.Set(entity);
-            var lifeCycleTimer = world.GetStash<Timer<LifeTimer>>();
-            lifeCycleTimer.Set(entity, new Timer<LifeTimer> { TimeLeftSec = _particleSystem.main.duration });
+            var lifeCycleTimerPool = world.GetStash<Timer<LifeTimer>>();
+            lifeCycleTimerPool.Set(entity, new Timer<LifeTimer>(_particleSystem.main.duration));
         }
     }
 }

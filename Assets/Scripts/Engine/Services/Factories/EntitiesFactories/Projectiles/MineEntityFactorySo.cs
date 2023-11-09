@@ -22,7 +22,7 @@ namespace Engine.Services.Factories.EntitiesFactories.Projectiles
             world.AddComponentToEntity(entity, new ExplosiveTag());
             world.AddComponentToEntity(entity, new GravityResistTag());
             world.AddComponentToEntity(entity, new Energy(_startEnergy));
-            world.AddComponentToEntity(entity, new Timer<InvisibleTimer> { TimeLeftSec = _invisibleTimeSec });
+            world.AddComponentToEntity(entity, new Timer<InvisibleTimer>(_invisibleTimeSec));
         }
     }
 }

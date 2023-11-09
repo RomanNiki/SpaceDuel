@@ -8,6 +8,7 @@
         Mine,
         Explosion,
         HitMarker,
-        EnergyBuff
+        EnergyBuff,
+        PlayerUI,
     }
 }

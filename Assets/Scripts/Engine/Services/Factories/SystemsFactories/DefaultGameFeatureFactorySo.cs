@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Core.Buffs;
 using Core.Characteristics.Damage;
 using Core.Characteristics.EnergyLimits;
 using Core.Collisions;
@@ -11,8 +12,8 @@ using Core.Movement;
 using Core.Timers;
 using Core.Views;
 using Core.Weapon;
-using Engine.Input;
 using Engine.Sounds;
+using Engine.UI.Statistics;
 using Scellecs.Morpeh.Addons.Feature;
 using UnityEngine;
 
@@ -33,8 +34,10 @@ namespace Engine.Services.Factories.SystemsFactories
                 new SoundFeature(),
                 new TimerFeature(),
                 new WeaponFeature(),
-                new ViewCreateFeature(args.Pools),
-                new MetaFeature(args.UIFactory, args.Score, args.Game)
+                new ViewCreateFeature(args.Assets),
+                new MetaFeature(args.UIFactory, args.Score, args.Game),
+                new UIStatisticFeature(),
+                new BuffFeature(),
             };
         }
         

@@ -41,8 +41,8 @@ namespace Engine.Services.Loading
                 {
                     ResetFill();
                     _loaderText.text = operation.Description;
-                    await operation.Load(OnProgress).AttachExternalCancellation(_token);
-                    await WaitForBarFill().AttachExternalCancellation(_token);
+                    await operation.Load(OnProgress);
+                    await WaitForBarFill();
                 }
             }
             catch (Exception e)
@@ -95,10 +95,10 @@ namespace Engine.Services.Loading
         {
             while (_progressFill.Value < _targetProgress)
             {
-                await UniTask.Yield(cancellationToken: _token);
+                await UniTask.Yield();
             }
 
-            await UniTask.Delay(TimeSpan.FromSeconds(0.15f), cancellationToken: _token);
+            await UniTask.Delay(TimeSpan.FromSeconds(0.15f));
         }
 
         private async UniTask UpdateProgressBar(CancellationToken token = default)

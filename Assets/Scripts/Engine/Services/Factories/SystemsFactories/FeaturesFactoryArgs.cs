@@ -9,11 +9,11 @@ using Core.Services.Meta;
 namespace Engine.Services.Factories.SystemsFactories
 {
     [Serializable]
-    public record FeaturesFactoryArgs(IAssets Pools, IMoveLoopService MoveLoopService, PlayersSpawnPoints SpawnPoints,
+    public record FeaturesFactoryArgs(IAssets Assets, IMoveLoopService MoveLoopService, PlayersSpawnPoints SpawnPoints,
         IGame Game, IScore Score, IUIFactory UIFactory, IInput Input)
     {
         public IMoveLoopService MoveLoopService { get; } = MoveLoopService;
-        public IAssets Pools { get; } = Pools;
+        public IAssets Assets { get; } = Assets;
         public IInput Input { get; } = Input;
         public PlayersSpawnPoints SpawnPoints { get; } = SpawnPoints;
         public IGame Game { get; } = Game;

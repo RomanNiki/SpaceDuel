@@ -1,9 +1,9 @@
 ﻿using Cysharp.Threading.Tasks;
-using Engine.UI;
+using Engine.UI.Controls;
 
 namespace Engine.Services.AssetLoaders
 {
-    public class ControlsWindowAssetLoader : LocalAssetLoader
+    public sealed class ControlsWindowAssetLoader : LocalAssetLoader
     {
         public async UniTask<ControlsWindow> LoadAndInstantiate()
         {

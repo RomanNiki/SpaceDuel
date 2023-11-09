@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: UISpace
-  m_Shader: {fileID: -6465566751694194690, guid: 7b23bb4c86b60e0479c2d5eeaea3ffc8, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 21c20da8f35f5664cbc7d28c0e8e494e, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
@@ -112,9 +112,11 @@ Material:
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
     - _FormUIParam: 0.7
+    - _FormUParam: 0.7
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
+    - _Iterations: 17
     - _Metallic: 0
     - _OcclusionStrength: 1
     - _Parallax: 0.005
@@ -131,12 +133,13 @@ Material:
     - _StepSize: 0.1
     - _Surface: 0
     - _Tile: 1.12
+    - _Volsteps: 17
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _Zoom: 0.53
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 0, g: 0, b: 0, a: 1}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []

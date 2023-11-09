@@ -31,7 +31,7 @@ namespace Core.Characteristics.EnergyLimits.Systems
         public override void OnAwake()
         {
             _entityFilter = World.Filter.With<Energy>().With<Position>().With<Rotation>().Without<SunDischargeTag>()
-                .Without<Timer<InvisibleTimer>>().Build();
+                .Without<Timer<InvisibleTimer>>().Without<NonСhargeableTag>().Build();
             _sunFilter = World.Filter.With<GravityPoint>().With<Position>().With<ChargeContainer>().Build();
             _positionPool = World.GetStash<Position>();
             _rotationPool = World.GetStash<Rotation>();

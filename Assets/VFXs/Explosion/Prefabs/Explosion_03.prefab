@@ -49,7 +49,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 5
   simulationSpeed: 1
-  stopAction: 2
+  stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -6289,15 +6289,15 @@ ParticleSystem:
         ctime6: 0
         ctime7: 0
         atime0: 0
-        atime1: 6554
-        atime2: 37972
+        atime1: 5204
+        atime2: 53970
         atime3: 65535
         atime4: 65535
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 3
         m_NumAlphaKeys: 4
       minGradient:
@@ -11176,14 +11176,14 @@ ParticleSystem:
         ctime7: 0
         atime0: 0
         atime1: 6554
-        atime2: 37972
+        atime2: 47417
         atime3: 65535
         atime4: 65535
         atime5: 0
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 3
         m_NumAlphaKeys: 4
       minGradient:
@@ -14772,6 +14772,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.size
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2345410000471274752, guid: 8d0855c4cb4ea41e59903544501150c1, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.key1.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2345410000471274752, guid: 8d0855c4cb4ea41e59903544501150c1, type: 3}
+      propertyPath: ColorModule.gradient.maxGradient.m_ColorSpace
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4315118612069136428, guid: 8d0855c4cb4ea41e59903544501150c1, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -14842,6 +14850,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 8687783849561858935}
     m_Modifications:
+    - target: {fileID: 1649053585494165329, guid: a4a3537d2451a44198e0d4f66f73e725, type: 3}
+      propertyPath: m_BoundingSphereOverride.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1649053585494165329, guid: a4a3537d2451a44198e0d4f66f73e725, type: 3}
+      propertyPath: m_BoundingSphereOverride.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1953979846991783967, guid: a4a3537d2451a44198e0d4f66f73e725, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2716833950405672668, guid: a4a3537d2451a44198e0d4f66f73e725, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -14886,6 +14906,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5099427351150227474, guid: a4a3537d2451a44198e0d4f66f73e725, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6565479837771106285, guid: a4a3537d2451a44198e0d4f66f73e725, type: 3}
       propertyPath: m_Name
       value: ParticleSystem_Flash
@@ -14902,16 +14926,71 @@ PrefabInstance:
       propertyPath: stopAction
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7972431601860398875, guid: a4a3537d2451a44198e0d4f66f73e725, type: 3}
+      propertyPath: LightsModule.range
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972431601860398875, guid: a4a3537d2451a44198e0d4f66f73e725, type: 3}
+      propertyPath: LightsModule.enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972431601860398875, guid: a4a3537d2451a44198e0d4f66f73e725, type: 3}
+      propertyPath: LightsModule.maxLights
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972431601860398875, guid: a4a3537d2451a44198e0d4f66f73e725, type: 3}
+      propertyPath: LightsModule.intensityCurve.scalar
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972431601860398875, guid: a4a3537d2451a44198e0d4f66f73e725, type: 3}
+      propertyPath: LightsModule.intensityCurve.minScalar
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7972431601860398875, guid: a4a3537d2451a44198e0d4f66f73e725, type: 3}
+      propertyPath: LightsModule.intensityCurve.minMaxState
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5099427351150227474, guid: a4a3537d2451a44198e0d4f66f73e725, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3076471057045207947}
   m_SourcePrefab: {fileID: 100100000, guid: a4a3537d2451a44198e0d4f66f73e725, type: 3}
 --- !u!4 &544754231029067996 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2716833950405672668, guid: a4a3537d2451a44198e0d4f66f73e725, type: 3}
   m_PrefabInstance: {fileID: 2466698276347727360}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &7277736918417030674 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5099427351150227474, guid: a4a3537d2451a44198e0d4f66f73e725, type: 3}
+  m_PrefabInstance: {fileID: 2466698276347727360}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3076471057045207947
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7277736918417030674}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Version: 3
+  m_UsePipelineSettings: 1
+  m_AdditionalLightsShadowResolutionTier: 2
+  m_LightLayerMask: 1
+  m_RenderingLayers: 1
+  m_CustomShadowLayers: 0
+  m_ShadowLayerMask: 1
+  m_ShadowRenderingLayers: 1
+  m_LightCookieSize: {x: 1, y: 1}
+  m_LightCookieOffset: {x: 0, y: 0}
+  m_SoftShadowQuality: 0
 --- !u!1001 &2761561523060607688
 PrefabInstance:
   m_ObjectHideFlags: 0

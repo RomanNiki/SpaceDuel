@@ -33,7 +33,7 @@ namespace Core.Characteristics.Damage.Systems
                 ref var owner = ref _ownerPool.Get(entity).Entity;
                 if (owner.IsNullOrDisposed() || _deadTag.Has(owner))
                 {
-                    _deadTag.Add(entity);
+                    _deadTag.Set(entity);
                 }
             }
         }

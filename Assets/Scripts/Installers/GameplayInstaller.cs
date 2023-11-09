@@ -9,15 +9,12 @@ using Core.Services.Pause;
 using Core.Services.Pause.Services;
 using Core.Services.Time;
 using Engine;
-using Engine.Common;
 using Engine.Input;
 using Engine.Services.AssetLoaders;
-using Engine.Services.AssetManagement;
 using Engine.Services.Factories;
 using Engine.Services.Factories.SystemsFactories;
 using Engine.Services.Movement;
 using Engine.Services.Time;
-using Scellecs.Morpeh;
 using Scellecs.Morpeh.Addons.Feature.Unity;
 using UnityEngine;
 using VContainer;
@@ -30,7 +27,6 @@ namespace Installers
         [SerializeField] private FeaturesFactoryBaseSo _featuresFactoryBaseSo;
         [SerializeField] private BaseFeaturesInstaller _featuresInstaller;
         [SerializeField] private Camera _orthographicCamera;
-        [SerializeField] private AssetPair[] _poolsAssets;
         [SerializeField] private PlayersSpawnPoints _playersSpawnPoints;
 
         private void OnValidate()
@@ -43,7 +39,6 @@ namespace Installers
 
         protected override void Configure(IContainerBuilder builder)
         {
-            RegisterPools(builder);
             RegisterInput(builder);
             RegisterPlayerSpawnPoints(builder);
             RegisterMoveLoopService(builder);
@@ -84,12 +79,6 @@ namespace Installers
         private void RegisterPlayerSpawnPoints(IContainerBuilder builder)
         {
             builder.RegisterInstance(_playersSpawnPoints).AsSelf();
-        }
-
-        private void RegisterPools(IContainerBuilder builder)
-        {
-            var assetsPools = new AssetsPools(_poolsAssets);
-            builder.RegisterInstance(assetsPools).As<IAssets>();
         }
 
         private static void RegisterSystemArgs(IContainerBuilder builder) =>

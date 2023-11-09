@@ -3,7 +3,7 @@ using Engine.UI;
 
 namespace Engine.Services.AssetLoaders
 {
-    public class GameplayHudAssetLoader : LocalAssetLoader
+    public sealed class GameplayHudAssetLoader : LocalAssetLoader
     {
         public async UniTask<GameplayHud> LoadAndInstantiate()
         {

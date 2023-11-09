@@ -13,6 +13,13 @@ namespace Core.Timers.Components
     public struct Timer<TTimerFlag> : IComponent
     where TTimerFlag : struct, IComponent
     {
+        public float InitialTimeSec;
         public float TimeLeftSec;
+
+        public Timer(float initialTimeSec)
+        {
+            InitialTimeSec = initialTimeSec;
+            TimeLeftSec = initialTimeSec;
+        }
     }
 }

@@ -54,7 +54,7 @@ namespace Core.Movement.Systems
                     var targetDirection = gravityPointPosition.Value - position.Value;
                     var distance = targetDirection.magnitude;
 
-                    if (distance <= gravityPoint.InnerRadius || distance >= gravityPoint.OuterRadius)
+                    if (IsInBounds(distance, gravityPoint))
                         continue;
 
                     var massProduct = pointMass.Value * mass.Value * G;
@@ -102,6 +102,11 @@ namespace Core.Movement.Systems
             return force;
         }
 
+        private static bool IsInBounds(float distance, in GravityPoint gravityPointComponent)
+        {
+            return distance <= gravityPointComponent.InnerRadius || distance >= gravityPointComponent.OuterRadius;
+        }
+
         public void Dispose()
         {
         }
@@ -135,11 +140,6 @@ namespace Core.Movement.Systems
                 var massProduct = MassComponents.Get(gravityId).Value * mass.Value * G;
                 var force = CalculateForce(distance, gravityPointComponent, massProduct, targetDirection, mass);
                 ForceRequests[index] = new ForceRequest { Value = force, EntityId = entityId };
-            }
-
-            private static bool IsInBounds(float distance, GravityPoint gravityPointComponent)
-            {
-                return distance <= gravityPointComponent.InnerRadius || distance >= gravityPointComponent.OuterRadius;
             }
         }
 #endif

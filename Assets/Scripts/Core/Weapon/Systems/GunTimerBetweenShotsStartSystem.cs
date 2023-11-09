@@ -38,8 +38,7 @@ namespace Core.Weapon.Systems
                 if (_timerPool.Has(weaponEntity))
                     continue;
 
-                _timerPool.Add(weaponEntity) = new Timer<TimerBetweenShots>
-                    { TimeLeftSec = _timerSetupPool.Get(weaponEntity).TimeSec };
+                _timerPool.Add(weaponEntity) = new Timer<TimerBetweenShots>(_timerSetupPool.Get(weaponEntity).TimeSec);
             }
         }
 

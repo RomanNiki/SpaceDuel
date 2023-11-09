@@ -24,9 +24,9 @@ namespace Engine.Services.AssetLoaders
 
         private async UniTask<T> LoadHandler<T>(AsyncOperationHandle<GameObject> operation)
         {
-            if (_cachedObject!= null)
+            if (_cachedObject != null)
             {
-                Addressables.ReleaseInstance(_cachedObject);
+                UnloadInternal();
             }
             var gameObject = await operation.Task;
             _cachedObject = gameObject;

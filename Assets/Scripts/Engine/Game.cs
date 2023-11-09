@@ -1,8 +1,10 @@
-﻿using Core.Services;
+﻿using System;
+using Core.Services;
 using Core.Services.Factories;
 using Core.Services.Time;
 using Cysharp.Threading.Tasks;
 using Scellecs.Morpeh.Addons.Feature.Unity;
+using UnityEngine;
 
 namespace Engine
 {
@@ -28,12 +30,19 @@ namespace Engine
 
         public async UniTask Restart()
         {
-            await _timeScale.SlowDown(0.2f);
-            IsPlaying = false;
-            await UniTask.Yield();
-            _featuresInstaller.gameObject.SetActive(false);
-            await _uiFactory.OpenControlsWindow(StartInternal);
-            await _timeScale.Accelerate(1, 1f);
+            try
+            {
+                await _timeScale.SlowDown(0.2f);
+                IsPlaying = false;
+                await UniTask.Yield();
+                _featuresInstaller.gameObject.SetActive(false);
+                await _uiFactory.OpenControlsWindow(StartInternal);
+                await _timeScale.Accelerate(1, 1f);
+            }
+            catch (Exception e)
+            {
+                Debug.LogError(e);
+            }
         }
 
         private void StartInternal()
