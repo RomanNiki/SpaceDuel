@@ -7,14 +7,14 @@
       "dependencies": {
         "com.unity.localization": "1.0.0"
       },
-      "hash": "6290f2934cc92239dc76319f7d08ffbf26d1f499"
+      "hash": "86fed7a83099b9d8f5b9f82b5c146873023a6e5c"
     },
     "com.cysharp.unitask": {
       "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "6f5d81854456a351ff99a5d8dca85d49cf6f6a0d"
+      "hash": "5cc97c7f0085624b6ef57853d70b404440060cef"
     },
     "com.scellecs.morpeh": {
       "version": "https://github.com/scellecs/morpeh.git#stage-2023.1",
