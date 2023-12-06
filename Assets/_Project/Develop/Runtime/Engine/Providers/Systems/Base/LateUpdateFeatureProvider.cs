@@ -6,6 +6,6 @@ namespace _Project.Develop.Runtime.Engine.Providers.Systems.Base
     public class LateUpdateFeatureProvider<TFeature> : BaseLateUpdateFeatureProvider
     where TFeature : LateUpdateFeature, new()
     {
-        public override LateUpdateFeature GetFeature(FeaturesFactoryArgs args) => new TFeature();
+        public override LateUpdateFeature GetFeature(FeaturesArgs args) => new TFeature();
     }
 }

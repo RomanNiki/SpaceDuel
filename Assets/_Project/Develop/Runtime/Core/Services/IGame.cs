@@ -1,10 +1,14 @@
+using _Project.Develop.Runtime.Core.Services.Pause;
+using Cysharp.Threading.Tasks;
+
 namespace _Project.Develop.Runtime.Core.Services
 {
-    public interface IGame
+    public interface IGame : IPauseHandler
     {
         bool IsPlaying { get; }
-        void Start();
-        void Restart();
+        bool IsRestarting { get; }
+        UniTask Start();
+        UniTaskVoid Restart();
         void Stop();
     }
 }

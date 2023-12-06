@@ -7,6 +7,6 @@ namespace _Project.Develop.Runtime.Engine.Providers.Systems.Base
     public abstract class BaseFeatureProvider<TFeature> : ScriptableObject
     where TFeature : BaseFeature
     {
-        public abstract TFeature GetFeature(FeaturesFactoryArgs args);
+        public abstract TFeature GetFeature(FeaturesArgs args);
     }
 }

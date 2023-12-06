@@ -46,7 +46,9 @@ namespace _Project.Develop.Runtime
         {
             if (_game is { IsPlaying: true })
             {
-                _world?.LateUpdate(Time.deltaTime * _timeScale.TimeScale);
+                var deltaTime = Time.deltaTime * _timeScale.TimeScale;
+                _world?.LateUpdate(deltaTime);
+                _world?.CleanupUpdate(deltaTime);
             }
         }
     }

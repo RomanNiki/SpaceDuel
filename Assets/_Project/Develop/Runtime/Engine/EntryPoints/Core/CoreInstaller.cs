@@ -45,7 +45,7 @@ namespace _Project.Develop.Runtime.Engine.EntryPoints.Core
             builder.Register<IUIFactory, UIFactory>(Lifetime.Singleton);
         
         private static void RegisterSystemArgs(IContainerBuilder builder) =>
-            builder.Register<FeaturesFactoryArgs>(Lifetime.Singleton);
+            builder.Register<FeaturesArgs>(Lifetime.Singleton);
 
         private void RegisterSystemFactory(IContainerBuilder builder) =>
             builder.RegisterInstance<IFeaturesFactory>(_baseFeaturesFactorySo);

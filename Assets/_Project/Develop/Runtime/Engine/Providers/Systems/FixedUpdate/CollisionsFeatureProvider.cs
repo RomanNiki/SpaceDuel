@@ -5,6 +5,6 @@ using UnityEngine;
 namespace _Project.Develop.Runtime.Engine.Providers.Systems.FixedUpdate
 {
     [CreateAssetMenu(menuName = "SpaceDuel/ECS/Systems/FixedUpdate/" + nameof(CollisionsFeature))]
-    public class CollisionsFeatureProvider : FixedUpdateFeatureProvider<CollisionsFeature>
+    public sealed class CollisionsFeatureProvider : FixedUpdateFeatureProvider<CollisionsFeature>
     {}
 }

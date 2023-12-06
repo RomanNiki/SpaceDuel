@@ -1,7 +1,7 @@
-﻿using _Project.Develop.Runtime.Engine.Providers;
+﻿using _Project.Develop.Runtime.Core.Services.Random;
+using _Project.Develop.Runtime.Engine.Providers;
 using Cinemachine;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
 namespace _Project.Develop.Runtime.Engine.Services
 {
@@ -11,7 +11,7 @@ namespace _Project.Develop.Runtime.Engine.Services
         private static readonly Vector2 ImpulseVelocityFactor = new(-2, 2);
         [SerializeField] private EntityProvider _entityProvider;
         private CinemachineImpulseSource _impulseSource;
-
+        private readonly IRandom _random = FastRandom.Singleton;
         private void Awake()
         {
             _impulseSource = GetComponent<CinemachineImpulseSource>();
@@ -32,10 +32,10 @@ namespace _Project.Develop.Runtime.Engine.Services
             _impulseSource.GenerateImpulseAtPositionWithVelocity(transform.position, GetVelocity());
         }
 
-        private static Vector3 GetVelocity()
+        private Vector3 GetVelocity()
         {
-            var x = Random.Range(ImpulseVelocityFactor.x, ImpulseVelocityFactor.y);
-            var y = Random.Range(ImpulseVelocityFactor.x, ImpulseVelocityFactor.y);
+            var x = _random.Range(ImpulseVelocityFactor.x, ImpulseVelocityFactor.y);
+            var y = _random.Range(ImpulseVelocityFactor.x, ImpulseVelocityFactor.y);
             return new Vector3(x, y, 0f);
         }
     }

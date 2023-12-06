@@ -62,18 +62,6 @@ namespace _Project.Develop.Runtime.Engine.Services.AssetManagement
             }
         }
 
-        private void AddPool(ObjectId objectId, IFactory<PoolMonoProvider> pool)
-        {
-            var isExists = _pools.TryGetValue(objectId, out _);
-#if DEBUG
-            if (isExists)
-            {
-                throw new ArgumentException($"Pool for key: {objectId} is exists");
-            }
-#endif
-            _pools.Add(objectId, pool);
-        }
-
         public void Add(ObjectId objectId, AssetReference reference, int initializeSize = 10)
         {
             var assetPair = new AssetPair(objectId, reference, initializeSize);
@@ -101,6 +89,7 @@ namespace _Project.Develop.Runtime.Engine.Services.AssetManagement
         
         public void Dispose()
         {
+          
             foreach (var (_, factory) in _pools)
             {
                 factory.Dispose();
@@ -120,6 +109,18 @@ namespace _Project.Develop.Runtime.Engine.Services.AssetManagement
             }
 
             AddPool(objectId, pool);
+        }
+        
+        private void AddPool(ObjectId objectId, IFactory<PoolMonoProvider> pool)
+        {
+            var isExists = _pools.TryGetValue(objectId, out _);
+#if DEBUG
+            if (isExists)
+            {
+                throw new ArgumentException($"Pool for key: {objectId} is exists");
+            }
+#endif
+            _pools.Add(objectId, pool);
         }
 
         private (bool, Entity) TryCreateEntity(SpawnRequest spawnRequest, World world)

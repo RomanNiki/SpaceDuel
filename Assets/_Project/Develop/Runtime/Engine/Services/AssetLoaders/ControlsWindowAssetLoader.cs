@@ -5,9 +5,9 @@ namespace _Project.Develop.Runtime.Engine.Services.AssetLoaders
 {
     public sealed class ControlsWindowAssetLoader : LocalAssetLoader
     {
-        public async UniTask<ControlsWindow> LoadAndInstantiate()
+        public async UniTask<ControlsWindowView> LoadAndInstantiate()
         {
-            return await LoadAndInstantiateInternal<ControlsWindow>(nameof(ControlsWindow));
+            return await LoadAndInstantiateInternal<ControlsWindowView>(nameof(ControlsWindowView));
         }
 
         public void DestroyAndUnload()

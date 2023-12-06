@@ -21,7 +21,10 @@ namespace _Project.Develop.Runtime.Engine.Input
 
         public void OnMenu(InputAction.CallbackContext context)
         {
-            Menu?.Invoke();
+            if (context.performed)
+            {
+                Menu?.Invoke();
+            }
         }
 
         public void Dispose()

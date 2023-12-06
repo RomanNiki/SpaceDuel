@@ -73,7 +73,7 @@ namespace _Project.Develop.Runtime.Core.Input.Systems
 
         private void OnMenu()
         {
-            SendMessageInGame(new InputPauseQuitEvent());
+            SendMessageInGame(new InputMenuEvent());
         }
 
         public void Dispose()

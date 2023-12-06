@@ -25,6 +25,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 412de0ea9c6350f4c91709b24fb706fe, type: 2}
   - {fileID: 11400000, guid: 06d535cb31c174743a8b6af92f5287ee, type: 2}
   - {fileID: 11400000, guid: 6631c3845dfb4b9459840652e3ef9dc6, type: 2}
+  - {fileID: 11400000, guid: 837daf3d65aba5e4ab21db2f5dee89d7, type: 2}
   _fixedUpdateFeatures:
   - {fileID: 11400000, guid: 23e0a5692c638b3428cd30e9c0d91100, type: 2}
   - {fileID: 11400000, guid: c92fe0bca792a834d90e8d1a9e1ac26f, type: 2}

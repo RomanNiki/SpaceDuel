@@ -18,5 +18,5 @@ MonoBehaviour:
     Value: 0.001
   _mass:
     Value: 0.1
-  _startEnergy: 40
+  _startEnergy: 100
   _invisibleTimeSec: 1

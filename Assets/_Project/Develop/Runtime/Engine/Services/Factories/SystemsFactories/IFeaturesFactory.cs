@@ -5,8 +5,8 @@ namespace _Project.Develop.Runtime.Engine.Services.Factories.SystemsFactories
 {
     public interface IFeaturesFactory
     {
-        IEnumerable<LateUpdateFeature> CreateLateUpdateFeatures(FeaturesFactoryArgs args);
-        IEnumerable<FixedUpdateFeature> CreateFixedUpdateFeatures(FeaturesFactoryArgs args);
-        IEnumerable<UpdateFeature> CreateUpdateFeatures(FeaturesFactoryArgs args);
+        IEnumerable<LateUpdateFeature> CreateLateUpdateFeatures(FeaturesArgs args);
+        IEnumerable<FixedUpdateFeature> CreateFixedUpdateFeatures(FeaturesArgs args);
+        IEnumerable<UpdateFeature> CreateUpdateFeatures(FeaturesArgs args);
     }
 }

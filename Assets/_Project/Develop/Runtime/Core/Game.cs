@@ -12,44 +12,40 @@ namespace _Project.Develop.Runtime.Core
         private readonly ISystemsController _systemsController;
         private readonly ITimeScale _timeScale;
         private readonly IUIFactory _uiFactory;
-        private bool _isRestarting;
-        
+
         public Game(ISystemsController systemsController, IUIFactory uiFactory, ITimeScale timeScale)
         {
             _systemsController = systemsController;
             _uiFactory = uiFactory;
             _timeScale = timeScale;
         }
+
+        public bool IsRestarting { get; private set; }
         public bool IsPlaying { get; private set; }
 
-        public void Start()
-        {
-            StartAsync().Forget();
-        }
-
-        private async UniTaskVoid StartAsync()
+        public async UniTask Start()
         {
             await _uiFactory.OpenControlsWindow(StartInternal);
-        } 
+        }
 
-        public void Restart()
+        public async UniTaskVoid Restart()
         {
-            if (_isRestarting == false)
+            if (IsRestarting == false)
             {
-                RestartAsync().Forget();
-                _isRestarting = true;
+                await RestartAsync();
             }
         }
 
-        private async UniTaskVoid RestartAsync()
+        private async UniTask RestartAsync()
         {
+            IsRestarting = true;
             try
             {
                 await _timeScale.SlowDown(0.2f);
                 IsPlaying = false;
                 await UniTask.Yield();
                 _systemsController.DisableSystems();
-                await _uiFactory.OpenControlsWindow(StartInternal);
+                await Start();
                 await _timeScale.Accelerate(1f, 0f);
             }
             catch (Exception e)
@@ -58,7 +54,7 @@ namespace _Project.Develop.Runtime.Core
             }
             finally
             {
-                _isRestarting = false;
+                IsRestarting = false;
             }
         }
 
@@ -73,6 +69,30 @@ namespace _Project.Develop.Runtime.Core
             _uiFactory.CloseControlsWindow();
             _systemsController.EnableSystems();
             IsPlaying = true;
+        }
+
+        private async UniTask Pause()
+        {
+            await _timeScale.SlowDown(0.0f, 0.1f);
+            await _uiFactory.OpenPauseMenu();
+        }
+
+        private async UniTask UnPause()
+        {
+            _uiFactory.ClosePauseMenu();
+            await _timeScale.Accelerate(1f, 0.1f);
+        }
+
+        public async UniTask SetPaused(bool isPaused)
+        {
+            if (isPaused == false)
+            {
+                await Pause();
+            }
+            else
+            {
+                await UnPause();
+            }
         }
     }
 }

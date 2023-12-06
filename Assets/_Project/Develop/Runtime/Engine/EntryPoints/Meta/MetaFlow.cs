@@ -1,46 +1,43 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using _Project.Develop.Runtime.Core.Services;
 using _Project.Develop.Runtime.Engine.Services.AssetLoaders;
 using _Project.Develop.Runtime.Engine.Services.Loading.LoadingOperations;
 using _Project.Develop.Runtime.Engine.UI.Menu;
+using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
 using VContainer.Unity;
 
 namespace _Project.Develop.Runtime.Engine.EntryPoints.Meta
 {
-    public class MetaFlow : IStartable, IDisposable
+    public class MetaFlow : IAsyncStartable, IDisposable
     {
         private readonly IAssets _assets;
         private readonly LoadingScreenAssetLoader _loadingScreenAssetLoader;
-        private readonly BackgroundAssetLoader _backgroundAssetLoader;
         private readonly Queue<ILoadingOperation> _loadingOperations = new();
-        private readonly Menu _menu;
+        private readonly MenuView _menuView;
         private bool _isStarting;
 
-        public MetaFlow(IAssets assets, LoadingScreenAssetLoader loadingScreenAssetLoader,
-            BackgroundAssetLoader backgroundAssetLoader, Menu menu)
+        public MetaFlow(IAssets assets, LoadingScreenAssetLoader loadingScreenAssetLoader, MenuView menuView)
         {
             _assets = assets;
             _loadingScreenAssetLoader = loadingScreenAssetLoader;
-            _backgroundAssetLoader = backgroundAssetLoader;
-            _menu = menu;
+            _menuView = menuView;
         }
 
-        public async void Start()
+        public async UniTask StartAsync(CancellationToken cancellation)
         {
             CreateLoadingQueue();
-            await _backgroundAssetLoader.LoadBackgroundAsync();
-            _menu.StartButtonClick += StartGame;
+            _menuView.StartButtonClick += StartGame;
         }
 
-        private Queue<ILoadingOperation> CreateLoadingQueue()
+        private void CreateLoadingQueue()
         {
             _loadingOperations.Clear();
             _loadingOperations.Enqueue(new LoadGameAssetsLoadingOperation(_assets));
             _loadingOperations.Enqueue(new UnloadSceneLoadingOperation(SceneManager.GetActiveScene()));
             _loadingOperations.Enqueue(new LoadGameLoadingOperation());
-            return _loadingOperations;
         }
 
         private void StartGame()
@@ -49,6 +46,7 @@ namespace _Project.Develop.Runtime.Engine.EntryPoints.Meta
             {
                 return;
             }
+
             _loadingScreenAssetLoader.LoadAndDestroy(_loadingOperations).Forget();
             _isStarting = true;
         }
@@ -56,7 +54,7 @@ namespace _Project.Develop.Runtime.Engine.EntryPoints.Meta
         public void Dispose()
         {
             _isStarting = false;
-            _menu.StartButtonClick -= StartGame;
+            _menuView.StartButtonClick -= StartGame;
         }
     }
 }

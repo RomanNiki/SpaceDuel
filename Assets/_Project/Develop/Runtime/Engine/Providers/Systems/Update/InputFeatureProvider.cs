@@ -7,8 +7,8 @@ using UnityEngine;
 namespace _Project.Develop.Runtime.Engine.Providers.Systems.Update
 {
     [CreateAssetMenu(menuName = "SpaceDuel/ECS/Systems/Update/" + nameof(InputFeature))]
-    public class InputFeatureProvider : BaseUpdateFeatureProvider
+    public sealed class InputFeatureProvider : BaseUpdateFeatureProvider
     {
-        public override UpdateFeature GetFeature(FeaturesFactoryArgs args) => new InputFeature(args.Input);
+        public override UpdateFeature GetFeature(FeaturesArgs args) => new InputFeature(args.Input);
     }
 }

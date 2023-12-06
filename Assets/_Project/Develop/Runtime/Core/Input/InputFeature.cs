@@ -16,15 +16,15 @@ namespace _Project.Develop.Runtime.Core.Input
         protected override void Initialize()
         {
             AddSystem(new InputSystem(_input));
+            AddSystem(new InputAccelerateSystem());
+            AddSystem(new InputRotateSystem());
+            AddSystem(new InputShootSystem());
             RegisterRequest<InputAccelerateStartedEvent>();
             RegisterRequest<InputAccelerateCanceledEvent>();
             RegisterRequest<InputRotateStartedEvent>();
             RegisterRequest<InputRotateCanceledEvent>();
             RegisterRequest<InputShootStartedEvent>();
             RegisterRequest<InputShootCanceledEvent>();
-            AddSystem(new InputAccelerateSystem());
-            AddSystem(new InputRotateSystem());
-            AddSystem(new InputShootSystem());
         }
         
     }

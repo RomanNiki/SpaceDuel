@@ -13,6 +13,8 @@ namespace _Project.Develop.Runtime.Engine.Services.Loading.LoadingOperations
         {
             onProgress?.Invoke(0.5f);
             await SceneManager.LoadSceneAsync(Scenes.Meta, LoadSceneMode.Additive);
+            var scene = SceneManager.GetSceneByBuildIndex(Scenes.Meta);
+            SceneManager.SetActiveScene(scene);
             onProgress?.Invoke(1f);
         }
     }

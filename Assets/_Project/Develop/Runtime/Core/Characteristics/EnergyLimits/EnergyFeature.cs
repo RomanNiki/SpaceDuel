@@ -9,6 +9,7 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits
         protected override void Initialize()
         {
             RegisterEvent<EnergyChangedEvent>();
+            RegisterRequest<ChargeRequest>();
             AddSystem(new NoEnergyGravityResistSystem());
             AddSystem(new MoveDischargeSystem());
             AddSystem(new WeaponEnergyDischargeSystem());

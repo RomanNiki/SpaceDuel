@@ -195,10 +195,10 @@ MonoBehaviour:
     InitializeSize: 50
   - Id: 3
     AssetReference:
-      m_AssetGUID: 3cfda5c64c5510044a68dcda26e8403c
+      m_AssetGUID: 50c5c2832914d4d4d8f067f5acaabff9
       m_SubObjectName: 
       m_SubObjectType: 
-      m_EditorAssetChanged: 1
+      m_EditorAssetChanged: 0
     InitializeSize: 10
   - Id: 4
     AssetReference:

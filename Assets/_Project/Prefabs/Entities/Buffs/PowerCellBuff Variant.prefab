@@ -62,6 +62,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 0446214efb8d44c40ba0147e30ebf1c6, type: 3}
   m_PrefabInstance: {fileID: 2119818078586095247}
   m_PrefabAsset: {fileID: 0}
+--- !u!23 &2880681624483468843 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 4220198183357534372, guid: 0446214efb8d44c40ba0147e30ebf1c6, type: 3}
+  m_PrefabInstance: {fileID: 2119818078586095247}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9039293725419825720
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -114,7 +119,16 @@ PrefabInstance:
       propertyPath: m_Name
       value: PowerCellBuff Variant
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 8029565538056756321, guid: c9e9a3984830293428e9b4b8bfc4ab33, type: 3}
+      propertyPath: _serializedComponent.TimeLeftSec
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 8029565538056756321, guid: c9e9a3984830293428e9b4b8bfc4ab33, type: 3}
+      propertyPath: _serializedComponent.InitialTimeSec
+      value: 15
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: -1694633643549491517, guid: c9e9a3984830293428e9b4b8bfc4ab33, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 4745448531141727946, guid: c9e9a3984830293428e9b4b8bfc4ab33, type: 3}
@@ -124,6 +138,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6997732416532883821, guid: c9e9a3984830293428e9b4b8bfc4ab33, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4845179483372519619}
+    - targetCorrespondingSourceObject: {fileID: 6997732416532883821, guid: c9e9a3984830293428e9b4b8bfc4ab33, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1344559557016458644}
     - targetCorrespondingSourceObject: {fileID: 2950773593996559479, guid: c9e9a3984830293428e9b4b8bfc4ab33, type: 3}
       insertIndex: -1
       addedObject: {fileID: 323040014772793724}
@@ -147,6 +164,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _serializedComponent:
     Value: 30
+--- !u!114 &1344559557016458644
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2048844599828235093}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fca0620efed84191b9dbd59e6b145c86, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _startColor: {r: 0.9245283, g: 0.87263316, b: 0.18752226, a: 0}
+  _endColor: {r: 0.103773594, g: 0.09901521, b: 0.0014684916, a: 0}
+  _intencity: 2
+  _renderer: {fileID: 2880681624483468843}
+  _materialIndex: 0
 --- !u!4 &4371092583410760946 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4745448531141727946, guid: c9e9a3984830293428e9b4b8bfc4ab33, type: 3}

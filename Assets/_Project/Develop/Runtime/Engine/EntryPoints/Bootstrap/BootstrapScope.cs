@@ -1,5 +1,6 @@
 ﻿using _Project.Develop.Runtime.Core.Input;
 using _Project.Develop.Runtime.Core.Services;
+using _Project.Develop.Runtime.Core.Services.Random;
 using _Project.Develop.Runtime.Core.Services.Time;
 using _Project.Develop.Runtime.Engine.Common;
 using _Project.Develop.Runtime.Engine.Input;
@@ -30,13 +31,15 @@ namespace _Project.Develop.Runtime.Engine.EntryPoints.Bootstrap
             RegisterBackgroundAssetLoader(builder);
             RegisterInput(builder);
             RegisterTime(builder);
+            RegisterRandom(builder);
             builder.RegisterEntryPoint<BootstrapFlow>();
         }
 
-        private static void RegisterBackgroundAssetLoader(IContainerBuilder builder)
-        {
+        private static void RegisterRandom(IContainerBuilder builder) =>
+            builder.RegisterInstance(new FastRandom()).AsImplementedInterfaces();
+
+        private static void RegisterBackgroundAssetLoader(IContainerBuilder builder) =>
             builder.Register<BackgroundAssetLoader>(Lifetime.Singleton);
-        }
 
         private void RegisterPools(IContainerBuilder builder)
         {
@@ -49,8 +52,9 @@ namespace _Project.Develop.Runtime.Engine.EntryPoints.Bootstrap
             builder.Register<LoadingScreenAssetLoader>(Lifetime.Singleton);
             builder.Register<ControlsWindowAssetLoader>(Lifetime.Singleton);
             builder.Register<GameplayHudAssetLoader>(Lifetime.Singleton);
+            builder.Register<PauseMenuAssetLoader>(Lifetime.Singleton);
         }
-        
+
         private static void RegisterInput(IContainerBuilder builder)
         {
             builder.Register<PlayerInput>(Lifetime.Singleton);

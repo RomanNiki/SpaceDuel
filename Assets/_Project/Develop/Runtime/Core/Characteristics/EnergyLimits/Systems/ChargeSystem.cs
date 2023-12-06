@@ -32,13 +32,17 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
             {
                 ref var chargeRequest = ref _chargeRequestPool.Get(requestEntity);
                 ref var chargeRequestEntity = ref chargeRequest.Entity;
+                if (chargeRequestEntity.IsNullOrDisposed())
+                {
+                    continue;
+                }
                 ref var energy = ref _energyPool.Get(chargeRequestEntity);
-                var chargeAmount = chargeRequest.Value;
-                energy.Value = Mathf.Min(energy.MaxValue, energy.Value + chargeAmount);
+                var chargeAmount = chargeRequest.Value * deltaTime;
+                var targetEnergy =  Mathf.Min(energy.MaxValue, energy.Value + chargeAmount);
+
+                energy.Value = targetEnergy;
 
                 World.SendMessage(new EnergyChangedEvent { Entity = chargeRequestEntity });
-
-                World.RemoveEntity(requestEntity);
             }
         }
     }

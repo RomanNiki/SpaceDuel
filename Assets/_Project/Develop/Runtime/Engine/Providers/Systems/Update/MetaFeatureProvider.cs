@@ -7,9 +7,9 @@ using UnityEngine;
 namespace _Project.Develop.Runtime.Engine.Providers.Systems.Update
 {
     [CreateAssetMenu(menuName = "SpaceDuel/ECS/Systems/Update/" + nameof(MetaFeature))]
-    public class MetaFeatureProvider : BaseUpdateFeatureProvider
+    public sealed class MetaFeatureProvider : BaseUpdateFeatureProvider
     {
-        public override UpdateFeature GetFeature(FeaturesFactoryArgs args) =>
-            new MetaFeature(args.UIFactory, args.Score, args.Game);
+        public override UpdateFeature GetFeature(FeaturesArgs args) =>
+            new MetaFeature(args.UIFactory, args.Score, args.Game, args.PauseService);
     }
 }

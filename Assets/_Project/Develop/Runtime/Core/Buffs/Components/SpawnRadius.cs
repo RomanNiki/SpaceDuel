@@ -1,7 +1,7 @@
 ﻿using System;
 using Scellecs.Morpeh;
 
-namespace _Project.Develop.Runtime.Core.Input.Components
+namespace _Project.Develop.Runtime.Core.Buffs.Components
 {
 #if ENABLE_IL2CPP
     using Unity.IL2CPP.CompilerServices;
@@ -10,7 +10,9 @@ namespace _Project.Develop.Runtime.Core.Input.Components
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
     [Serializable]
-    public struct InputPauseQuitEvent : IComponent
+    public struct SpawnRadius : IComponent
     {
+        public float OuterRadius;
+        public float InnerRadius;
     }
 }

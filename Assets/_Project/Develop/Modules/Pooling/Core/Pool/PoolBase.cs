@@ -40,6 +40,7 @@ namespace _Project.Develop.Modules.Pooling.Core.Pool
 
             _inactiveItems.Clear();
             OnDispose();
+            _factory.Dispose();
         }
 
         public async UniTask Load()

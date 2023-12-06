@@ -5,6 +5,6 @@ using UnityEngine;
 namespace _Project.Develop.Runtime.Engine.Providers.Systems.Update
 {
     [CreateAssetMenu(menuName = "SpaceDuel/ECS/Systems/Update/" + nameof(InitFeature))]
-    public class InitFeatureProvider : UpdateFeatureProvider<InitFeature>
+    public sealed class InitFeatureProvider : UpdateFeatureProvider<InitFeature>
     {}
 }

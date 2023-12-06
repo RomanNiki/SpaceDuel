@@ -2,9 +2,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace _Project.Develop.Runtime.Engine.UI.Menu
+namespace _Project.Develop.Runtime.Engine.UI.Controls
 {
-    public class Menu : MonoBehaviour
+    public class ControlsWindowView : MonoBehaviour
     {
         [SerializeField] private Button _startButton;
         public event Action StartButtonClick;
@@ -19,7 +19,7 @@ namespace _Project.Develop.Runtime.Engine.UI.Menu
             _startButton.onClick.RemoveListener(OnStartButtonClick);
         }
 
-        protected virtual void OnStartButtonClick()
+        private void OnStartButtonClick()
         {
             StartButtonClick?.Invoke();
         }

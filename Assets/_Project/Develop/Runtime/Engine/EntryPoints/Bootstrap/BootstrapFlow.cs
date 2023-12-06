@@ -1,14 +1,16 @@
-﻿using _Project.Develop.Runtime.Engine.Common;
+﻿using System.Threading;
+using _Project.Develop.Runtime.Engine.Common;
+using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
 using VContainer.Unity;
 
 namespace _Project.Develop.Runtime.Engine.EntryPoints.Bootstrap
 {
-    public class BootstrapFlow : IStartable
+    public class BootstrapFlow : IAsyncStartable
     {
-        public void Start()
+        public async UniTask StartAsync(CancellationToken cancellation)
         {
-            SceneManager.LoadSceneAsync(Scenes.Loading);
+            await SceneManager.LoadSceneAsync(Scenes.Loading);
         }
     }
 }

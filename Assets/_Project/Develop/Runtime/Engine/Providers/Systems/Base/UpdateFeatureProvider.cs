@@ -6,6 +6,6 @@ namespace _Project.Develop.Runtime.Engine.Providers.Systems.Base
     public class UpdateFeatureProvider<TFeature> : BaseUpdateFeatureProvider
     where TFeature : UpdateFeature, new()
     {
-        public override UpdateFeature GetFeature(FeaturesFactoryArgs args) => new TFeature();
+        public override UpdateFeature GetFeature(FeaturesArgs args) => new TFeature();
     }
 }

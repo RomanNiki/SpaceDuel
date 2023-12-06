@@ -5,6 +5,6 @@ using UnityEngine;
 namespace _Project.Develop.Runtime.Engine.Providers.Systems.Update
 {
     [CreateAssetMenu(menuName = "SpaceDuel/ECS/Systems/Update/" + nameof(DamageFeature))]
-    public class DamageFeatureProvider : UpdateFeatureProvider<DamageFeature>
+    public sealed class DamageFeatureProvider : UpdateFeatureProvider<DamageFeature>
     {}
 }

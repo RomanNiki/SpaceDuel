@@ -22,7 +22,7 @@ namespace _Project.Develop.Runtime.Engine.Services.Factories.SystemsFactories
     [CreateAssetMenu(menuName = "SpaceDuel/Factory/Systems/Default")]
     public sealed class DefaultGameBaseFeatureFactorySo : BaseFeaturesFactorySo
     {
-        public override IEnumerable<UpdateFeature> CreateUpdateFeatures(FeaturesFactoryArgs args)
+        public override IEnumerable<UpdateFeature> CreateUpdateFeatures(FeaturesArgs args)
         {
             return new UpdateFeature[]
             {
@@ -35,13 +35,13 @@ namespace _Project.Develop.Runtime.Engine.Services.Factories.SystemsFactories
                 new TimerFeature(),
                 new WeaponFeature(),
                 new ViewCreateFeature(args.Assets),
-                new MetaFeature(args.UIFactory, args.Score, args.Game),
+                new MetaFeature(args.UIFactory, args.Score, args.Game, args.PauseService),
                 new UIStatisticFeature(),
-                new BuffFeature(),
+                new BuffFeature(args.Random),
             };
         }
 
-        public override IEnumerable<FixedUpdateFeature> CreateFixedUpdateFeatures(FeaturesFactoryArgs args)
+        public override IEnumerable<FixedUpdateFeature> CreateFixedUpdateFeatures(FeaturesArgs args)
         {
             return new FixedUpdateFeature[]
             {
@@ -50,7 +50,7 @@ namespace _Project.Develop.Runtime.Engine.Services.Factories.SystemsFactories
             };
         }
 
-        public override IEnumerable<LateUpdateFeature> CreateLateUpdateFeatures(FeaturesFactoryArgs args)
+        public override IEnumerable<LateUpdateFeature> CreateLateUpdateFeatures(FeaturesArgs args)
         {
             return Array.Empty<LateUpdateFeature>();
         }

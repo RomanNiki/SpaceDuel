@@ -1,29 +1,24 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 
 namespace _Project.Develop.Runtime.Core.Services.Pause.Services
 {
     public class PauseService : IPauseService
     {
-        private ICollection<IPauseHandler> _pauseHandlers;
+        private readonly ICollection<IPauseHandler> _pauseHandlers = new List<IPauseHandler>();
         public bool IsPause { get; private set; }
+        public event Action<bool> PauseStateChanged;
 
-        public PauseService(ICollection<IPauseHandler> pauseHandlers)
-        {
-            _pauseHandlers = pauseHandlers;
-        }
-
-        public PauseService()
-        {
-            _pauseHandlers = new List<IPauseHandler>();
-        }
-
-        public void SetPaused(bool isPaused)
+        public async UniTask SetPaused(bool isPaused)
         {
             IsPause = isPaused;
             foreach (var pauseHandler in _pauseHandlers)
             {
-                pauseHandler.SetPaused(isPaused);
+                await pauseHandler.SetPaused(isPaused);
             }
+
+            PauseStateChanged?.Invoke(isPaused);
         }
 
         public void AddPauseHandler(IPauseHandler pauseHandler) => _pauseHandlers.Add(pauseHandler);

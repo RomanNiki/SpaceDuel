@@ -17,7 +17,7 @@ namespace _Project.Develop.Runtime.Core.Collisions
             var excludeStrategy = new InvisibleStrategy(damageKillSelfStrategy);
             AddSystem(new TriggerSystem<ProjectileTag, ProjectileTag>(excludeStrategy));
             AddSystem(new TriggerSystem<ProjectileTag, PlayerTag>(excludeStrategy));
-            AddSystem(new TriggerSystem<ProjectileTag, BuffTag>(excludeStrategy));
+            AddSystem(new TriggerSystem<ProjectileTag, BuffTag>(new CombineStrategies(new DestroyTargetStrategy(), new KillSenderStrategy())));
             AddSystem(new TriggerSystem<GravityPoint, ProjectileTag>(new DestroyTargetStrategy()));
             AddSystem(new TriggerSystem<GravityPoint, PlayerTag>(new DestroyTargetStrategy()));
             AddSystem(new TriggerSystem<BuffTag, PlayerTag>(new CreateBuffStrategy()));

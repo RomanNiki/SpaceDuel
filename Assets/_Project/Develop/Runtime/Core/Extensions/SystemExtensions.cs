@@ -1,5 +1,4 @@
-﻿using _Project.Develop.Runtime.Core.Extensions.PauseSystems;
-using Scellecs.Morpeh;
+﻿using Scellecs.Morpeh;
 
 namespace _Project.Develop.Runtime.Core.Extensions
 {
@@ -12,10 +11,5 @@ namespace _Project.Develop.Runtime.Core.Extensions
             var entity = world.CreateEntity();
             pool.Add(entity, component);
         }
-
-        public static IFixedSystem AddExternalPause(this IFixedSystem system) => new FixedPauseProxySystem(system);
-
-
-        public static ISystem AddExternalPause(this ISystem system) => new PauseProxySystem(system);
     }
 }

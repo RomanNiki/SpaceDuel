@@ -7,9 +7,9 @@ using UnityEngine;
 namespace _Project.Develop.Runtime.Engine.Providers.Systems.FixedUpdate
 {
     [CreateAssetMenu(menuName = "SpaceDuel/ECS/Systems/FixedUpdate/" + nameof(MoveFeature))]
-    public class MoveFeatureProvider : BaseFixedUpdateFeatureProvider
+    public sealed class MoveFeatureProvider : BaseFixedUpdateFeatureProvider
     {
-        public override FixedUpdateFeature GetFeature(FeaturesFactoryArgs args) =>
+        public override FixedUpdateFeature GetFeature(FeaturesArgs args) =>
             new MoveFeature(args.MoveLoopService);
     }
 }

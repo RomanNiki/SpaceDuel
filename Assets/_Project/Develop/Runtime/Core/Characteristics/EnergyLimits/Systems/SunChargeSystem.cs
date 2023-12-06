@@ -53,7 +53,6 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
                     ref var rotation = ref _rotationPool.Get(entity);
                     var chargeAmount = CalculateChargeCoefficient(position, rotation, sunPosition, gravityPoint) *
                                        chargeRequest;
-
                     if (chargeAmount < MIN_CHARGE_AMOUNT) continue;
 
                     World.SendMessage(new ChargeRequest { Entity = entity, Value = chargeAmount });
