@@ -3,6 +3,6 @@ using _Project.Develop.Runtime.Engine.Providers.MonoProviders.Base;
 
 namespace _Project.Develop.Runtime.Engine.Providers.MonoProviders.EnergyLimits
 {
-    public class AccelerateDischargeMonoProvider : MonoProvider<AccelerateDischargeAmount>
+    public class AccelerateDischargeMonoProvider : MonoProvider<AccelerateDischargeSpeed>
     {}
 }

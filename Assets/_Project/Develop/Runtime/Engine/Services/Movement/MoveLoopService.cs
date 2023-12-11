@@ -14,8 +14,8 @@ namespace _Project.Develop.Runtime.Engine.Services.Movement
 
         public Vector2 LoopPosition(Vector2 position)
         {
-            var screenPos =_camera.WorldToScreenPoint(position);
-
+            var screenPos = _camera.WorldToScreenPoint(position);
+            
             if (screenPos.x > Screen.width)
             {
                 screenPos.x = 0;

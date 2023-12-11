@@ -33,7 +33,7 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
                 ref var dischargeRequest = ref _dischargePool.Get(dischargeRequestEntity);
                 ref var dischargeEntity = ref dischargeRequest.Entity;
                 ref var energy = ref _energyPool.Get(dischargeEntity);
-                SpendEnergy(ref energy, dischargeRequest.Value * deltaTime);
+                SpendEnergy(ref energy, dischargeRequest.Value);
                 World.SendMessage(new EnergyChangedEvent { Entity = dischargeEntity });
                 World.RemoveEntity(dischargeRequestEntity);
             }

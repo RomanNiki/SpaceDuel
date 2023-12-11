@@ -27,6 +27,7 @@ namespace _Project.Develop.Runtime.Engine.EntryPoints.Core
         public void Dispose()
         {
             _pauseService.RemovePauseHandler(_game);
+            _pauseService.Reset();
             _game.Stop();
         }
     }

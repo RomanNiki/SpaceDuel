@@ -1,6 +1,6 @@
-﻿using _Project.Develop.Runtime.Engine.Providers.MonoProviders.Base;
+﻿using _Project.Develop.Runtime.Engine.Common.Components;
+using _Project.Develop.Runtime.Engine.Providers.MonoProviders.Base;
 using _Project.Develop.Runtime.Engine.Sounds;
-using _Project.Develop.Runtime.Engine.Views.Components;
 using Scellecs.Morpeh;
 using UnityEngine;
 

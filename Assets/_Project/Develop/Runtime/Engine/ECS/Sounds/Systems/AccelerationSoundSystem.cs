@@ -1,8 +1,9 @@
 ﻿using _Project.Develop.Runtime.Core.Movement.Components.Events;
-using _Project.Develop.Runtime.Engine.Views.Components;
+using _Project.Develop.Runtime.Engine.Common.Components;
+using _Project.Develop.Runtime.Engine.Sounds;
 using Scellecs.Morpeh;
 
-namespace _Project.Develop.Runtime.Engine.Sounds.Systems
+namespace _Project.Develop.Runtime.Engine.ECS.Sounds.Systems
 {
     public class AccelerationSoundSystem : ISystem
     {

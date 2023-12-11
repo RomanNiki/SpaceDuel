@@ -58,7 +58,7 @@ namespace _Project.Develop.Runtime.Core.Init.Systems
             var ownerPool = World.GetStash<Owner>();
             teamPool.Set(entity, new Team { Value = team });
             ownerPool.Set(entity, owner);
-            World.SendMessage(new SpawnRequest(entity, ObjectId.PlayerUI, position, 0f));
+            World.SendMessage(new SpawnRequest(entity, ObjectId.PlayerStatisticUI, position, 0f));
         }
 
         public void Dispose()

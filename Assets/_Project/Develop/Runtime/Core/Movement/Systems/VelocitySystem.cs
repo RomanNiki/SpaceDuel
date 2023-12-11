@@ -4,6 +4,7 @@ using Scellecs.Morpeh.Native;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
+using UnityEngine;
 
 namespace _Project.Develop.Runtime.Core.Movement.Systems
 {

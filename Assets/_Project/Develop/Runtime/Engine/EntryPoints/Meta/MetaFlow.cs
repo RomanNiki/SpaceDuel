@@ -1,17 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Threading;
 using _Project.Develop.Runtime.Core.Services;
 using _Project.Develop.Runtime.Engine.Services.AssetLoaders;
 using _Project.Develop.Runtime.Engine.Services.Loading.LoadingOperations;
 using _Project.Develop.Runtime.Engine.UI.Menu;
-using Cysharp.Threading.Tasks;
 using UnityEngine.SceneManagement;
 using VContainer.Unity;
 
 namespace _Project.Develop.Runtime.Engine.EntryPoints.Meta
 {
-    public class MetaFlow : IAsyncStartable, IDisposable
+    public class MetaFlow : IStartable, IDisposable
     {
         private readonly IAssets _assets;
         private readonly LoadingScreenAssetLoader _loadingScreenAssetLoader;
@@ -26,7 +24,7 @@ namespace _Project.Develop.Runtime.Engine.EntryPoints.Meta
             _menuView = menuView;
         }
 
-        public async UniTask StartAsync(CancellationToken cancellation)
+        public void Start()
         {
             CreateLoadingQueue();
             _menuView.StartButtonClick += StartGame;

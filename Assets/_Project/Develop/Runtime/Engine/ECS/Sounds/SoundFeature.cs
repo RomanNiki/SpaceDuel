@@ -1,7 +1,7 @@
-﻿using _Project.Develop.Runtime.Engine.Sounds.Systems;
+﻿using _Project.Develop.Runtime.Engine.ECS.Sounds.Systems;
 using Scellecs.Morpeh.Addons.Feature;
 
-namespace _Project.Develop.Runtime.Engine.Sounds
+namespace _Project.Develop.Runtime.Engine.ECS.Sounds
 {
     public class SoundFeature : UpdateFeature
     {

@@ -19,7 +19,7 @@ MonoBehaviour:
   _bulletStartForce:
     Value: 20
   _dischargeContainer:
-    Value: 0.25
+    Value: 0.75
   _muzzle:
     Offset: 2
   _timeBetweenShotsSetup:

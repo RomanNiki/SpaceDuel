@@ -2,13 +2,12 @@
 using _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Components;
 using _Project.Develop.Runtime.Core.Timers.Components;
 using _Project.Develop.Runtime.Engine.Common;
-using _Project.Develop.Runtime.Engine.Views.Components;
+using _Project.Develop.Runtime.Engine.ECS.Effects.Components;
+using Scellecs.Morpeh;
 using UnityEngine;
 
-namespace _Project.Develop.Runtime.Engine.Views.Effects.Systems
+namespace _Project.Develop.Runtime.Engine.ECS.Effects.Systems
 {
-    using Scellecs.Morpeh;
-
     public sealed class VisualizeEnergyByMaterialSystem : ISystem
     {
         private Filter _filter;

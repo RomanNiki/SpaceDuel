@@ -1,7 +1,9 @@
-﻿using System;
+﻿
+using System;
 using Scellecs.Morpeh;
+using UnityEngine;
 
-namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Components
+namespace _Project.Develop.Runtime.Core.Timers.Components
 {
 #if ENABLE_IL2CPP
     using Unity.IL2CPP.CompilerServices;
@@ -10,8 +12,8 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Components
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
     [Serializable]
-    public struct RotateDischargeAmount : IComponent
+    public struct TimerColor : IComponent
     {
-        public float Value;
+        public Color Color;
     }
 }

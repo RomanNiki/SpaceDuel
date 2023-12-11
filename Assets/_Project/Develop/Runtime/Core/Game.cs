@@ -26,6 +26,7 @@ namespace _Project.Develop.Runtime.Core
         public async UniTask Start()
         {
             await _uiFactory.OpenControlsWindow(StartInternal);
+            await _timeScale.Accelerate(1f);
         }
 
         public async UniTaskVoid Restart()
@@ -41,12 +42,11 @@ namespace _Project.Develop.Runtime.Core
             IsRestarting = true;
             try
             {
-                await _timeScale.SlowDown(0.2f);
+                await _timeScale.SlowDown(0.2f, 3f);
                 IsPlaying = false;
                 await UniTask.Yield();
                 _systemsController.DisableSystems();
                 await Start();
-                await _timeScale.Accelerate(1f, 0f);
             }
             catch (Exception e)
             {
@@ -62,6 +62,7 @@ namespace _Project.Develop.Runtime.Core
         {
             IsPlaying = false;
             _systemsController?.DisableSystems();
+            _timeScale.Reset();
         }
 
         private void StartInternal()
@@ -73,19 +74,19 @@ namespace _Project.Develop.Runtime.Core
 
         private async UniTask Pause()
         {
-            await _timeScale.SlowDown(0.0f, 0.1f);
+            await _timeScale.SlowDown(0.0f);
             await _uiFactory.OpenPauseMenu();
         }
 
         private async UniTask UnPause()
         {
             _uiFactory.ClosePauseMenu();
-            await _timeScale.Accelerate(1f, 0.1f);
+            await _timeScale.Accelerate(1f);
         }
 
         public async UniTask SetPaused(bool isPaused)
         {
-            if (isPaused == false)
+            if (isPaused)
             {
                 await Pause();
             }

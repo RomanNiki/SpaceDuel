@@ -2,7 +2,7 @@
 using _Project.Develop.Runtime.Engine.UI.Statistics.Services;
 using Scellecs.Morpeh;
 
-namespace _Project.Develop.Runtime.Engine.UI.Statistics.Systems
+namespace _Project.Develop.Runtime.Engine.ECS.UI.PlayerUI.Systems
 {
 #if ENABLE_IL2CPP
     using Unity.IL2CPP.CompilerServices;

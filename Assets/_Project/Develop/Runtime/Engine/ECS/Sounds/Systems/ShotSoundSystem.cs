@@ -1,9 +1,10 @@
 ﻿using _Project.Develop.Runtime.Core.Weapon.Components;
-using _Project.Develop.Runtime.Engine.Views.Components;
+using _Project.Develop.Runtime.Engine.Common.Components;
+using _Project.Develop.Runtime.Engine.Sounds;
 using Scellecs.Morpeh;
 using UnityEngine;
 
-namespace _Project.Develop.Runtime.Engine.Sounds.Systems
+namespace _Project.Develop.Runtime.Engine.ECS.Sounds.Systems
 {
 #if ENABLE_IL2CPP
     using Unity.IL2CPP.CompilerServices;

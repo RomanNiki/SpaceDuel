@@ -3,8 +3,6 @@ using _Project.Develop.Runtime.Core.Movement;
 using _Project.Develop.Runtime.Core.Services;
 using _Project.Develop.Runtime.Core.Services.Factories;
 using _Project.Develop.Runtime.Core.Services.Meta;
-using _Project.Develop.Runtime.Core.Services.Pause;
-using _Project.Develop.Runtime.Core.Services.Pause.Services;
 using _Project.Develop.Runtime.Engine.Services;
 using _Project.Develop.Runtime.Engine.Services.Factories;
 using _Project.Develop.Runtime.Engine.Services.Factories.SystemsFactories;
@@ -25,9 +23,7 @@ namespace _Project.Develop.Runtime.Engine.EntryPoints.Core
         protected override void Configure(IContainerBuilder builder)
         {
             RegisterMoveLoopService(builder);
-            RegisterPauseService(builder);
             RegisterSystemFactory(builder);
-            RegisterSystemArgs(builder);
             RegisterUIFactory(builder);
             RegisterScore(builder);
             RegisterGame(builder);
@@ -43,15 +39,9 @@ namespace _Project.Develop.Runtime.Engine.EntryPoints.Core
         
         private static void RegisterUIFactory(IContainerBuilder builder) =>
             builder.Register<IUIFactory, UIFactory>(Lifetime.Singleton);
-        
-        private static void RegisterSystemArgs(IContainerBuilder builder) =>
-            builder.Register<FeaturesArgs>(Lifetime.Singleton);
 
         private void RegisterSystemFactory(IContainerBuilder builder) =>
             builder.RegisterInstance<IFeaturesFactory>(_baseFeaturesFactorySo);
-
-        private static void RegisterPauseService(IContainerBuilder builder) =>
-            builder.Register<IPauseService, PauseService>(Lifetime.Singleton);
 
         private static void RegisterScore(IContainerBuilder builder) =>
             builder.Register<IScore, ScoreService>(Lifetime.Singleton);

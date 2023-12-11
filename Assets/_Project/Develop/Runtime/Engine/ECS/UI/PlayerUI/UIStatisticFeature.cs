@@ -1,7 +1,8 @@
-﻿using _Project.Develop.Runtime.Engine.UI.Statistics.Systems;
+﻿using _Project.Develop.Runtime.Engine.ECS.UI.PlayerUI.Systems;
+using _Project.Develop.Runtime.Engine.ECS.UI.PlayerUI.Weapon.Systems;
 using Scellecs.Morpeh.Addons.Feature;
 
-namespace _Project.Develop.Runtime.Engine.UI.Statistics
+namespace _Project.Develop.Runtime.Engine.ECS.UI.Statistics
 {
     public class UIStatisticFeature : UpdateFeature
     {
@@ -9,6 +10,7 @@ namespace _Project.Develop.Runtime.Engine.UI.Statistics
         {
             AddSystem(new EnergyUISystem());
             AddSystem(new HealthUISystem());
+            AddSystem(new WeaponTimerSliderSystem());
         }
     }
 }

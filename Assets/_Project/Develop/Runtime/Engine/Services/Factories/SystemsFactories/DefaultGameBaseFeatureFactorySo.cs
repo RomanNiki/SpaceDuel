@@ -12,45 +12,47 @@ using _Project.Develop.Runtime.Core.Movement;
 using _Project.Develop.Runtime.Core.Timers;
 using _Project.Develop.Runtime.Core.Views;
 using _Project.Develop.Runtime.Core.Weapon;
-using _Project.Develop.Runtime.Engine.Sounds;
-using _Project.Develop.Runtime.Engine.UI.Statistics;
+using _Project.Develop.Runtime.Engine.ECS.Sounds;
+using _Project.Develop.Runtime.Engine.ECS.UI.Statistics;
 using Scellecs.Morpeh.Addons.Feature;
+using Scellecs.Morpeh.Addons.Unity.VContainer;
 using UnityEngine;
+using VContainer;
 
 namespace _Project.Develop.Runtime.Engine.Services.Factories.SystemsFactories
 {
     [CreateAssetMenu(menuName = "SpaceDuel/Factory/Systems/Default")]
     public sealed class DefaultGameBaseFeatureFactorySo : BaseFeaturesFactorySo
     {
-        public override IEnumerable<UpdateFeature> CreateUpdateFeatures(FeaturesArgs args)
+        public override IEnumerable<UpdateFeature> CreateUpdateFeatures(IObjectResolver container)
         {
             return new UpdateFeature[]
             {
-                new InitFeature(),
-                new InputFeature(args.Input),
-                new EnergyFeature(),
-                new DamageFeature(),
-                new EffectEntityFeature(),
-                new SoundFeature(),
-                new TimerFeature(),
-                new WeaponFeature(),
-                new ViewCreateFeature(args.Assets),
-                new MetaFeature(args.UIFactory, args.Score, args.Game, args.PauseService),
-                new UIStatisticFeature(),
-                new BuffFeature(args.Random),
+                container.CreateFeature<InitFeature>(),
+                container.CreateFeature<InputFeature>(),
+                container.CreateFeature<EnergyFeature>(),
+                container.CreateFeature<DamageFeature>(),
+                container.CreateFeature<EffectEntityFeature>(),
+                container.CreateFeature<SoundFeature>(),
+                container.CreateFeature<TimerFeature>(),
+                container.CreateFeature<WeaponFeature>(),
+                container.CreateFeature<ViewCreateFeature>(),
+                container.CreateFeature<MetaFeature>(),
+                container.CreateFeature<UIStatisticFeature>(),
+                container.CreateFeature<BuffFeature>(),
             };
         }
 
-        public override IEnumerable<FixedUpdateFeature> CreateFixedUpdateFeatures(FeaturesArgs args)
+        public override IEnumerable<FixedUpdateFeature> CreateFixedUpdateFeatures(IObjectResolver container)
         {
             return new FixedUpdateFeature[]
             {
-                new MoveFeature(args.MoveLoopService),
-                new CollisionsFeature()
+                container.CreateFeature<MoveFeature>(),
+                container.CreateFeature<CollisionsFeature>(),
             };
         }
 
-        public override IEnumerable<LateUpdateFeature> CreateLateUpdateFeatures(FeaturesArgs args)
+        public override IEnumerable<LateUpdateFeature> CreateLateUpdateFeatures(IObjectResolver container)
         {
             return Array.Empty<LateUpdateFeature>();
         }

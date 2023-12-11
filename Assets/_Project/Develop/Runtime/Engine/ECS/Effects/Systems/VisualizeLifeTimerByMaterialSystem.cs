@@ -1,11 +1,11 @@
 ﻿using _Project.Develop.Runtime.Core.Characteristics.Damage.Components;
 using _Project.Develop.Runtime.Core.Timers.Components;
 using _Project.Develop.Runtime.Engine.Common;
-using _Project.Develop.Runtime.Engine.Views.Components;
+using _Project.Develop.Runtime.Engine.ECS.Effects.Components;
 using Scellecs.Morpeh;
 using UnityEngine;
 
-namespace _Project.Develop.Runtime.Engine.Views.Effects.Systems
+namespace _Project.Develop.Runtime.Engine.ECS.Effects.Systems
 {
     public sealed class VisualizeLifeTimerByMaterialSystem<TTimerType> : ISystem
     where TTimerType : struct, IComponent

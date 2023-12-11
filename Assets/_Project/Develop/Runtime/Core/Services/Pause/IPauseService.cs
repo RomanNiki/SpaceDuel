@@ -3,7 +3,7 @@ using Cysharp.Threading.Tasks;
 
 namespace _Project.Develop.Runtime.Core.Services.Pause
 {
-    public interface IPauseService
+    public interface IPauseService : IResetable
     {
         public event Action<bool> PauseStateChanged;
         public bool IsPause { get; }

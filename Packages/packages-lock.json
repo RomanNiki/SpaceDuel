@@ -81,7 +81,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
-      "version": "1.8.10",
+      "version": "1.8.11",
       "depth": 1,
       "source": "registry",
       "dependencies": {
@@ -124,7 +124,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.ide.rider": {
-      "version": "3.0.26",
+      "version": "3.0.27",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -394,7 +394,7 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "c08a1db0674113d8490babeba3d81b29d510a9ce"
+      "hash": "74abefec059c170b8f5a23a13d458a85b6da6531"
     },
     "com.unity.modules.ai": {
       "version": "1.0.0",

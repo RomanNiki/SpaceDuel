@@ -1,5 +1,5 @@
-﻿using _Project.Develop.Runtime.Engine.Providers.Systems.Base;
-using _Project.Develop.Runtime.Engine.UI.Statistics;
+﻿using _Project.Develop.Runtime.Engine.ECS.UI.Statistics;
+using _Project.Develop.Runtime.Engine.Providers.Systems.Base;
 using UnityEngine;
 
 namespace _Project.Develop.Runtime.Engine.Providers.Systems.Update

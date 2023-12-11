@@ -1,5 +1,7 @@
 ﻿using _Project.Develop.Runtime.Core.Input;
 using _Project.Develop.Runtime.Core.Services;
+using _Project.Develop.Runtime.Core.Services.Pause;
+using _Project.Develop.Runtime.Core.Services.Pause.Services;
 using _Project.Develop.Runtime.Core.Services.Random;
 using _Project.Develop.Runtime.Core.Services.Time;
 using _Project.Develop.Runtime.Engine.Common;
@@ -32,6 +34,7 @@ namespace _Project.Develop.Runtime.Engine.EntryPoints.Bootstrap
             RegisterInput(builder);
             RegisterTime(builder);
             RegisterRandom(builder);
+            RegisterPauseService(builder);
             builder.RegisterEntryPoint<BootstrapFlow>();
         }
 
@@ -61,7 +64,13 @@ namespace _Project.Develop.Runtime.Engine.EntryPoints.Bootstrap
             builder.Register<IInput, KeyboardInput>(Lifetime.Singleton);
         }
 
-        private static void RegisterTime(IContainerBuilder builder) =>
-            builder.Register<ITimeScale, BaseTimeScale>(Lifetime.Singleton);
+        private static void RegisterTime(IContainerBuilder builder)
+        {
+            var timeScale = new BaseTimeScale();
+            builder.RegisterInstance<ITimeScale>(timeScale);
+        }
+
+        private static void RegisterPauseService(IContainerBuilder builder) =>
+            builder.Register<IPauseService, PauseService>(Lifetime.Singleton);
     }
 }

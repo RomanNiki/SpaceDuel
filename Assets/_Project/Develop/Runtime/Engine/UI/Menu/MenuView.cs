@@ -1,4 +1,5 @@
 ﻿using System;
+using Cysharp.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -11,6 +12,7 @@ namespace _Project.Develop.Runtime.Engine.UI.Menu
 
         private void OnEnable()
         {
+            _startButton.OnClickAsync();
             _startButton.onClick.AddListener(OnStartButtonClick);
         }
 

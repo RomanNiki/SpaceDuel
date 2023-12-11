@@ -10,7 +10,7 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Components
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
     [Serializable]
-    public struct AccelerateDischargeAmount : IComponent
+    public struct RotateDischargeSpeed : IComponent
     {
         public float Value;
     }

@@ -1,6 +1,7 @@
 ﻿using _Project.Develop.Runtime.Core.Input.Components;
 using _Project.Develop.Runtime.Core.Services;
 using _Project.Develop.Runtime.Core.Services.Pause;
+using UnityEngine;
 
 namespace _Project.Develop.Runtime.Core.Meta.Systems
 {
@@ -31,7 +32,7 @@ namespace _Project.Develop.Runtime.Core.Meta.Systems
             {
                 if (_game.IsPlaying && _game.IsRestarting == false)
                 {
-                    _pauseService.SetPaused(!_pauseService.IsPause);
+                    _pauseService.SetPaused(_pauseService.IsPause == false);
                 }
             }
         }

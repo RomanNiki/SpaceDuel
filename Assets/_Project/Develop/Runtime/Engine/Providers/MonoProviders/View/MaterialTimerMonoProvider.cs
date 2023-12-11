@@ -1,5 +1,5 @@
-﻿using _Project.Develop.Runtime.Engine.Providers.MonoProviders.Base;
-using _Project.Develop.Runtime.Engine.Views.Components;
+﻿using _Project.Develop.Runtime.Engine.ECS.Effects.Components;
+using _Project.Develop.Runtime.Engine.Providers.MonoProviders.Base;
 using Scellecs.Morpeh;
 using UnityEngine;
 

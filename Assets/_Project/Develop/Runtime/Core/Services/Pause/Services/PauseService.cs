@@ -25,5 +25,10 @@ namespace _Project.Develop.Runtime.Core.Services.Pause.Services
 
 
         public void RemovePauseHandler(IPauseHandler pauseHandler) => _pauseHandlers.Remove(pauseHandler);
+        
+        public void Reset()
+        {
+            IsPause = false;
+        }
     }
 }

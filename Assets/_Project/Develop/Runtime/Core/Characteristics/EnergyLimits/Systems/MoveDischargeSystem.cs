@@ -18,16 +18,16 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
     {
         private const float MIN_ROTATION_FOR_DISCHARGE = 0.2f;
         private Filter _filter;
-        private Stash<RotateDischargeAmount> _rotateDischargeAmountPool;
-        private Stash<AccelerateDischargeAmount> _accelerateDischargeAmountPool;
+        private Stash<RotateDischargeSpeed> _rotateDischargeAmountPool;
+        private Stash<AccelerateDischargeSpeed> _accelerateDischargeAmountPool;
         private Stash<InputMoveData> _inputMovePool;
 
         public override void OnAwake()
         {
-            _filter = World.Filter.With<InputMoveData>().With<AccelerateDischargeAmount>().With<RotateDischargeAmount>()
+            _filter = World.Filter.With<InputMoveData>().With<AccelerateDischargeSpeed>().With<RotateDischargeSpeed>()
                 .Without<NoEnergyBlock>().Build();
-            _accelerateDischargeAmountPool = World.GetStash<AccelerateDischargeAmount>();
-            _rotateDischargeAmountPool = World.GetStash<RotateDischargeAmount>();
+            _accelerateDischargeAmountPool = World.GetStash<AccelerateDischargeSpeed>();
+            _rotateDischargeAmountPool = World.GetStash<RotateDischargeSpeed>();
             _inputMovePool = World.GetStash<InputMoveData>();
         }
 
@@ -47,7 +47,7 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
                     dischargeAmount += _rotateDischargeAmountPool.Get(entity).Value;
                 }
 
-                CreateDischargeRequest(dischargeAmount, entity);
+                CreateDischargeRequest(dischargeAmount * deltaTime, entity);
             }
         }
 

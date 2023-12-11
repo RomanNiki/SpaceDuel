@@ -11,8 +11,7 @@ namespace _Project.Develop.Runtime.Engine.Providers.MonoProviders.Damagers
     {
         [SerializeField] private WeaponEntityFactorySo _weaponFactory;
         [SerializeField] private WeaponEnum _weaponType;
-
-
+        
         public override void Resolve(World world, Entity entity)
         {
             SetWeapon(world, entity);

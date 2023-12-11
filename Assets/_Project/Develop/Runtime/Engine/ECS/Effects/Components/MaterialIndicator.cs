@@ -1,9 +1,8 @@
 ﻿using System;
 using Scellecs.Morpeh;
 using UnityEngine;
-using UnityEngine.Serialization;
 
-namespace _Project.Develop.Runtime.Engine.Views.Components
+namespace _Project.Develop.Runtime.Engine.ECS.Effects.Components
 {
 #if ENABLE_IL2CPP
     using Unity.IL2CPP.CompilerServices;

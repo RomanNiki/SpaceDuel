@@ -1,10 +1,10 @@
 ﻿using _Project.Develop.Runtime.Core.Extensions;
 using _Project.Develop.Runtime.Core.Weapon.Components;
+using _Project.Develop.Runtime.Engine.Common.Components;
 using _Project.Develop.Runtime.Engine.UI.Statistics.Services;
-using _Project.Develop.Runtime.Engine.Views.Components;
 using Scellecs.Morpeh;
 
-namespace _Project.Develop.Runtime.Engine.UI.Statistics.Systems
+namespace _Project.Develop.Runtime.Engine.ECS.UI.PlayerUI.Systems
 {
 #if ENABLE_IL2CPP
     using Unity.IL2CPP.CompilerServices;

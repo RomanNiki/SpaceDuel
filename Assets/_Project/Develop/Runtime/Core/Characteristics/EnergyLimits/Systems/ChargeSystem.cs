@@ -37,7 +37,7 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
                     continue;
                 }
                 ref var energy = ref _energyPool.Get(chargeRequestEntity);
-                var chargeAmount = chargeRequest.Value * deltaTime;
+                var chargeAmount = chargeRequest.Value;
                 var targetEnergy =  Mathf.Min(energy.MaxValue, energy.Value + chargeAmount);
 
                 energy.Value = targetEnergy;

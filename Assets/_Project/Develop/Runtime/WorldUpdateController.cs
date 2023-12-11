@@ -8,7 +8,6 @@ namespace _Project.Develop.Runtime
 {
     public class WorldUpdateController : MonoBehaviour
     {
-        private World _world;
         private IGame _game;
         private ITimeScale _timeScale;
 
@@ -18,19 +17,12 @@ namespace _Project.Develop.Runtime
             _game = game;
             _timeScale = timeScale;
         }
-
-        private void Awake()
-        {
-            _world = World.Default;
-            if (_world != null)
-                _world.UpdateByUnity = false;
-        }
-
+        
         private void Update()
         {
             if (_game is { IsPlaying: true })
             {
-                _world?.Update(Time.deltaTime * _timeScale.TimeScale);
+                WorldExtensions.GlobalUpdate(Time.deltaTime * _timeScale.TimeScale);
             }
         }
 
@@ -38,7 +30,7 @@ namespace _Project.Develop.Runtime
         {
             if (_game is { IsPlaying: true })
             {
-                _world?.FixedUpdate(Time.fixedDeltaTime * _timeScale.TimeScale);
+                WorldExtensions.GlobalFixedUpdate(Time.fixedDeltaTime * _timeScale.TimeScale);
             }
         }
 
@@ -46,9 +38,7 @@ namespace _Project.Develop.Runtime
         {
             if (_game is { IsPlaying: true })
             {
-                var deltaTime = Time.deltaTime * _timeScale.TimeScale;
-                _world?.LateUpdate(deltaTime);
-                _world?.CleanupUpdate(deltaTime);
+                WorldExtensions.GlobalLateUpdate(Time.deltaTime * _timeScale.TimeScale);
             }
         }
     }

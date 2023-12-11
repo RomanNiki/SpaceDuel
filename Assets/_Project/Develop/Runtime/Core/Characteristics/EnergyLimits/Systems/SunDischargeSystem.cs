@@ -39,13 +39,13 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
             {
                 ref var sunPosition = ref _positionPool.Get(sunEntity);
                 ref var gravityPoint = ref _gravityPointPool.Get(sunEntity);
-                ref var chargeRequest = ref _chargeContainerPool.Get(sunEntity).Value;
+                ref var chargeSpeed = ref _chargeContainerPool.Get(sunEntity).Value;
 
                 foreach (var entity in _entityFilter)
                 {
                     ref var position = ref _positionPool.Get(entity);
                     var dischargeAmount = Extensions.WorldExtensions.CalculateDistanceCoefficient(position, sunPosition,
-                        gravityPoint.InnerRadius, gravityPoint.OuterRadius) * chargeRequest;
+                        gravityPoint.InnerRadius, gravityPoint.OuterRadius) * chargeSpeed * deltaTime;
 
                     if (dischargeAmount < MIN_DISCHARGE_AMOUNT) continue;
 

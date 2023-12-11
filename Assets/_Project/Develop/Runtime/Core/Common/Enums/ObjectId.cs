@@ -9,6 +9,7 @@
         Explosion,
         HitMarker,
         EnergyBuff,
-        PlayerUI,
+        PlayerStatisticUI,
+        WeaponReloadUI
     }
 }

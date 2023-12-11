@@ -6,37 +6,36 @@ using Scellecs.Morpeh.Addons.Feature;
 using Scellecs.Morpeh.Addons.Feature.Unity;
 using VContainer;
 
-namespace _Project.Develop.Runtime
+namespace _Project.Develop.Runtime.FeaturesInstallers
 {
     public sealed class GameplayFeaturesInstaller : BaseFeaturesInstaller
     {
         private IFeaturesFactory _featuresFactory;
-        private FeaturesArgs _featuresArgs;
-        private World _world;
+        private IObjectResolver _container;
+        
 
         [Inject]
-        public void Init(IFeaturesFactory featuresFactory, FeaturesArgs featuresArgs)
+        public void Init(IFeaturesFactory featuresFactory, IObjectResolver container)
         {
-            _featuresArgs = featuresArgs;
+            _container = container;
             _featuresFactory = featuresFactory;
         }
     
         protected override void InitializeShared()
         {
-            _world = World.Default;
             foreach (var entity in FindObjectsOfType<EntityProvider>())
             {
-                entity.Resolve(_world, _world.CreateEntity());
+                entity.Resolve(defaultWorld, defaultWorld.CreateEntity());
             }
         }
 
         protected override UpdateFeature[] InitializeUpdateFeatures() =>
-            _featuresFactory.CreateUpdateFeatures(_featuresArgs).ToArray();
+            _featuresFactory.CreateUpdateFeatures(_container).ToArray();
 
         protected override FixedUpdateFeature[] InitializeFixedUpdateFeatures() =>
-            _featuresFactory.CreateFixedUpdateFeatures(_featuresArgs).ToArray();
+            _featuresFactory.CreateFixedUpdateFeatures(_container).ToArray();
 
         protected override LateUpdateFeature[] InitializeLateUpdateFeatures() =>
-            _featuresFactory.CreateLateUpdateFeatures(_featuresArgs).ToArray();
+            _featuresFactory.CreateLateUpdateFeatures(_container).ToArray();
     }
 }
