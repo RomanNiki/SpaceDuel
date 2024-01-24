@@ -16,16 +16,19 @@ using Cysharp.Threading.Tasks;
 using Scellecs.Morpeh;
 using UnityEngine;
 using UnityEngine.AddressableAssets;
+using VContainer;
 
 namespace _Project.Develop.Runtime.Engine.Services.AssetManagement
 {
     public class AssetsPools : IAssets
     {
+        private readonly IObjectResolver _objectResolver;
         private readonly List<AssetPair> _assetReferences = new();
         private readonly Dictionary<ObjectId, IFactory<PoolMonoProvider>> _pools = new();
 
-        public AssetsPools(IEnumerable<AssetPair> assetPairs)
+        public AssetsPools(IEnumerable<AssetPair> assetPairs, IObjectResolver objectResolver)
         {
+            _objectResolver = objectResolver;
             foreach (var assetPair in assetPairs)
             {
                 _assetReferences.Add(assetPair);
@@ -101,7 +104,7 @@ namespace _Project.Develop.Runtime.Engine.Services.AssetManagement
         private async UniTask CreatePool(ObjectId objectId, AssetReference reference, int initializeSize)
         {
             var settings = new PoolBase<PoolMonoProvider>.Settings(initializeSize);
-            var factory = new AddressableViewFactory<PoolMonoProvider>(reference);
+            var factory = new AddressableViewFactory<PoolMonoProvider>(reference, _objectResolver);
             var pool = new MonoPool<PoolMonoProvider>(factory, objectId.ToString(), settings);
             if (pool is ILoadingResource loadingResource)
             {

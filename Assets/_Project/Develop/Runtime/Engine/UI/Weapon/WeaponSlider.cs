@@ -13,7 +13,7 @@ namespace _Project.Develop.Runtime.Engine.UI.Weapon
         [SerializeField] private CanvasGroup _canvasGroup;
         private CancellationTokenSource _tokenSource;
 
-        private void Awake()
+        private void OnEnable()
         {
             _slider.gameObject.SetActive(false);
         }

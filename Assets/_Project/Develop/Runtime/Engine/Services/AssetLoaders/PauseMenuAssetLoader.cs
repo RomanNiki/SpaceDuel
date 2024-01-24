@@ -10,7 +10,7 @@ namespace _Project.Develop.Runtime.Engine.Services.AssetLoaders
             return await LoadAndInstantiateInternal<PauseMenuView>(nameof(PauseMenuView));
         }
 
-        public void DestroyAndUnload()
+        public void UnloadAndDestroy()
         {
             UnloadInternal();
         }

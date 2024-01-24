@@ -1,4 +1,4 @@
-﻿using _Project.Develop.Runtime.Engine.ECS.UI.Statistics;
+﻿using _Project.Develop.Runtime.Engine.ECS.UI.PlayerUI;
 using _Project.Develop.Runtime.Engine.Providers.Systems.Base;
 using UnityEngine;
 

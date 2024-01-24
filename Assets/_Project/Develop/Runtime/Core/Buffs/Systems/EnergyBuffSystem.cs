@@ -31,6 +31,11 @@ namespace _Project.Develop.Runtime.Core.Buffs.Systems
             foreach (var entity in _filter)
             {
                 ref var buffRequest = ref _buffRequestStash.Get(entity);
+                if (buffRequest.Buff.IsNullOrDisposed() || buffRequest.Player.IsNullOrDisposed())
+                {
+                    continue;
+                }
+
                 if (_chargeContainerStash.Has(buffRequest.Buff) == false) continue;
                 ref var chargeContainer = ref _chargeContainerStash.Get(buffRequest.Buff);
                 World.SendMessage(

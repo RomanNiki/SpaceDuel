@@ -13,7 +13,7 @@ using _Project.Develop.Runtime.Core.Timers;
 using _Project.Develop.Runtime.Core.Views;
 using _Project.Develop.Runtime.Core.Weapon;
 using _Project.Develop.Runtime.Engine.ECS.Sounds;
-using _Project.Develop.Runtime.Engine.ECS.UI.Statistics;
+using _Project.Develop.Runtime.Engine.ECS.UI.PlayerUI;
 using Scellecs.Morpeh.Addons.Feature;
 using Scellecs.Morpeh.Addons.Unity.VContainer;
 using UnityEngine;

@@ -9,7 +9,7 @@ namespace _Project.Develop.Runtime.Engine.Services.Loading.LoadingOperations
     {
         private readonly ILoadingResource _assetsLoadProvider;
 
-        public LoadGameAssetsLoadingOperation(ILoadingResource assetsLoadProvider)
+        public LoadGameAssetsLoadingOperation(IAssets assetsLoadProvider)
         {
             _assetsLoadProvider = assetsLoadProvider;
         }

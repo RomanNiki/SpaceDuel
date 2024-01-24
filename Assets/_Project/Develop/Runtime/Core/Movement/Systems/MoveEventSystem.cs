@@ -6,6 +6,7 @@ using _Project.Develop.Runtime.Core.Extensions;
 using _Project.Develop.Runtime.Core.Input.Components;
 using _Project.Develop.Runtime.Core.Movement.Components.Events;
 using Scellecs.Morpeh;
+using UnityEngine;
 
 namespace _Project.Develop.Runtime.Core.Movement.Systems
 {
@@ -18,7 +19,8 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
         private readonly HashSet<TeamEnum> _rotationSet = new();
         private Stash<Team> _teamPool;
         public World World { get; set; }
-
+        private const float RotationThreshold = 0.1f;
+        
         public void OnAwake()
         {
             _filter = World.Filter.With<InputMoveData>().With<Team>().Without<NoEnergyBlock>().Build();
@@ -56,7 +58,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
 
         private void HandleRotationEvent(InputMoveData input, TeamEnum team, Entity entity)
         {
-            if (input.Rotation > 0.1f)
+            if (Mathf.Abs(input.Rotation) > RotationThreshold)
             {
                 if (_rotationSet.Contains(team) == false)
                 {

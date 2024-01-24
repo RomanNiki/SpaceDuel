@@ -1,7 +1,7 @@
 ﻿using _Project.Develop.Runtime.Core.Views.Components;
 using _Project.Develop.Runtime.Engine.Providers.MonoProviders.Base;
+using _Project.Develop.Runtime.Engine.Providers.Views;
 using _Project.Develop.Runtime.Engine.Services.Movement.Strategies;
-using _Project.Develop.Runtime.Engine.Views;
 using Scellecs.Morpeh;
 using UnityEngine;
 

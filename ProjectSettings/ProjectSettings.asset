@@ -654,9 +654,9 @@ PlayerSettings:
   webGLMemoryGeometricGrowthCap: 96
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Android: MORPEH_BURST
+    Android: MORPEH_BURST;MORPEH_ADDONS_VCONTAINER
     Standalone: MORPEH_BURST;MORPEH;MORPEH_DISABLE_AUTOINITIALIZATION;MORPEH_ADDONS_VCONTAINER
-    WebGL: MORPEH;MORPEH_BURST
+    WebGL: MORPEH;MORPEH_BURST;MORPEH_ADDONS_VCONTAINER
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:

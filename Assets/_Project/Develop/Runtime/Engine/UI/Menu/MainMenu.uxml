@@ -1,0 +1,10 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" xsi="http://www.w3.org/2001/XMLSchema-instance" engine="UnityEngine.UIElements" editor="UnityEditor.UIElements" noNamespaceSchemaLocation="../../../../../../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/_Project/Develop/Runtime/Engine/UI/Menu/MainMenu.uss?fileID=7433441132597879392&amp;guid=71e40e775a267e644a61f65d5c86f904&amp;type=3#MainMenu" />
+    <ui:VisualElement name="Container" class="container" style="flex-grow: 1;">
+        <ui:VisualElement name="ViewBox" class="view-box">
+            <ui:Button text="Start" parse-escape-sequences="true" display-tooltip-when-elided="true" name="StartButton" style="background-image: url(&apos;project://database/Assets/Sci-Fi%20UI/_SciFi_GUISkin_/atlas.png?fileID=21300014&amp;guid=56d84991286850f428b4e7df0cca7380&amp;type=3#button1&apos;);" />
+            <ui:Button text="Settings" parse-escape-sequences="true" display-tooltip-when-elided="true" name="SettingsButton" style="background-image: url(&apos;project://database/Assets/Sci-Fi%20UI/_SciFi_GUISkin_/atlas.png?fileID=21300014&amp;guid=56d84991286850f428b4e7df0cca7380&amp;type=3#button1&apos;);" />
+            <ui:Button text="Exit" parse-escape-sequences="true" display-tooltip-when-elided="true" name="ExitButton" style="-unity-slice-left: 0; -unity-slice-top: 0; -unity-slice-right: 0; -unity-slice-bottom: 0; -unity-slice-scale: 1px; background-image: url(&apos;project://database/Assets/Sci-Fi%20UI/_SciFi_GUISkin_/atlas.png?fileID=21300014&amp;guid=56d84991286850f428b4e7df0cca7380&amp;type=3#button1&apos;); -unity-background-image-tint-color: rgb(255, 255, 255);" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

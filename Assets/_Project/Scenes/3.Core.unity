@@ -496,7 +496,7 @@ GameObject:
   - component: {fileID: 630831596}
   - component: {fileID: 630831597}
   m_Layer: 0
-  m_Name: '[SceneContext]'
+  m_Name: '[Context]'
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -530,7 +530,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: _Project.Develop.Runtime.Engine.EntryPoints.Bootstrap.BootstrapScope
+    TypeName: _Project.Develop.Runtime.Engine.ApplicationLifecycle.EntryPoints.Bootstrap.BootstrapScope
   autoRun: 1
   autoInjectGameObjects:
   - {fileID: 1357335889}

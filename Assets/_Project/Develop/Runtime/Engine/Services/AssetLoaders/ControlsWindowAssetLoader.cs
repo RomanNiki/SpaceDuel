@@ -10,7 +10,7 @@ namespace _Project.Develop.Runtime.Engine.Services.AssetLoaders
             return await LoadAndInstantiateInternal<ControlsWindowView>(nameof(ControlsWindowView));
         }
 
-        public void DestroyAndUnload()
+        public void UnloadAndDestroy()
         {
             UnloadInternal();
         }

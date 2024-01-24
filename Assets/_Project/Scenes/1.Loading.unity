@@ -207,7 +207,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 81.8
+  m_fontSize: 81.85
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -872,7 +872,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
-    TypeName: _Project.Develop.Runtime.Engine.EntryPoints.Bootstrap.BootstrapScope
+    TypeName: _Project.Develop.Runtime.Engine.ApplicationLifecycle.EntryPoints.Bootstrap.BootstrapScope
   autoRun: 1
   autoInjectGameObjects: []
 --- !u!4 &1227116237

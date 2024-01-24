@@ -28,7 +28,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
 
         public void OnAwake()
         {
-            _filter = World.Filter.With<Position>().Build();
+            _filter = World.Filter.With<Position>().With<Velocity>().Build();
             _positionPool = World.GetStash<Position>();
         }
 

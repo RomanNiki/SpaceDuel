@@ -2,7 +2,7 @@
 using _Project.Develop.Runtime.Engine.ECS.UI.PlayerUI.Weapon.Systems;
 using Scellecs.Morpeh.Addons.Feature;
 
-namespace _Project.Develop.Runtime.Engine.ECS.UI.Statistics
+namespace _Project.Develop.Runtime.Engine.ECS.UI.PlayerUI
 {
     public class UIStatisticFeature : UpdateFeature
     {

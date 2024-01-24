@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using _Project.Develop.Runtime.Core.Extensions;
-using _Project.Develop.Runtime.Core.Input;
 using _Project.Develop.Runtime.Core.Input.Components;
 using _Project.Develop.Runtime.Core.Services;
 using _Project.Develop.Runtime.Core.Services.Pause;
@@ -39,7 +38,7 @@ namespace _Project.Develop.Runtime.Engine.UI.Menu.Controllers
             _loadingOperations.Clear();
         }
 
-        private void StartGame()
+        private static void StartGame()
         {
             World.Default.SendMessage(new InputMenuEvent());
         }

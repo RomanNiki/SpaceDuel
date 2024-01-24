@@ -10,7 +10,7 @@ namespace _Project.Develop.Runtime.Engine.Services.AssetLoaders
             return await LoadAndInstantiateInternal<GameplayHud>(nameof(GameplayHud));
         }
 
-        public void DestroyAndUnload()
+        public void UnloadAndDestroy()
         {
             UnloadInternal();
         }
