@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2c7961dbc950486eb97919aa4dc67501, type: 3}
+  m_Script: {fileID: 11500000, guid: f5c87dd191de2dc4080f52a0fe306de3, type: 3}
   m_Name: Sound Feature Provider
   m_EditorClassIdentifier: 

@@ -9,18 +9,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d31e00a0f94705ab090514465595a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 24b2ff0f64110554aa795935e6b1de81, type: 3}
   m_Name: MineWeapon
   m_EditorClassIdentifier: 
   _shootType:
     ObjectId: 3
-  _entityFactory: {fileID: 11400000, guid: 4176fd45c0ab27744a50df2e6a0f52f4, type: 2}
-  _shot: {fileID: 8300000, guid: 66d25f21cb2a816489a2bfbe5cf805f6, type: 3}
+  _entityFactory: {fileID: 11400000, guid: 880043a0a95344a4cbb00d4f39893124, type: 2}
+  _shot: {fileID: 8300000, guid: 1dc2f6240e094c84799dfd456800eb5d, type: 3}
   _bulletStartForce:
     Value: 0
+  _timerColor: {r: 0.9339623, g: 0.42372498, b: 0.14538093, a: 1}
   _dischargeContainer:
-    Value: 20
+    Value: 40
   _muzzle:
-    Offset: 0
+    Offset: -1
   _timeBetweenShotsSetup:
     TimeSec: 3

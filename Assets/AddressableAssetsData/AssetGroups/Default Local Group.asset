@@ -15,11 +15,76 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_Data:
     m_SerializedData: []
-  m_GUID: 61c7719200c5d6c489177e3c0436334d
-  m_SerializeEntries: []
+  m_GUID: fbbefbb1fb22af644adccda2bbda56d1
+  m_SerializeEntries:
+  - m_GUID: c1b2bf7f6ff6d0940922acaf38bb0396
+    m_Address: GameplayHud
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96bf148359e881e45b41a925932b5d93
+    m_Address: LoadingScreen
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dafa3873183d2c441abb1547da09b2d5
+    m_Address: ControlsWindowView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 215434a35045e1841a44338e3e34d2b9
+    m_Address: RedPlayerEntity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a9c91d7c0fe5704480cfdf2b369decb
+    m_Address: BluePlayerEntity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cd5798e67d14f4f4491f19f3163a45dc
+    m_Address: PlayerUI
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 6a8368e9f1acf3140bc3055f4afa627e
+    m_Address: MineEntity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e634ff28c51e8634f843dff08c3cff91
+    m_Address: HitEntity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: cf52af01c3265bf4382e7af3bdf365b3
+    m_Address: ExplosionEntity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96a0d16bc370d1744a9c33c455c961ec
+    m_Address: BulletEntity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 41d43675a473a7e4dbffd0040dfcae28
+    m_Address: SunEntity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: ac9e1f8028ab8064db3207e5627ce7cd
+    m_Address: EnergyBuffEntity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1844aee7186f134a93475708f2cd4f6
+    m_Address: PauseMenuView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
-  m_Settings: {fileID: 11400000, guid: b542045fbaf0c624ebce8876aed210bd, type: 2}
+  m_Settings: {fileID: 11400000, guid: 3547a5558c17dab4da41afa7d8ffb15b, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: e0ac308ffe1ef7e4dbec94eb1d19255f, type: 2}
-    - {fileID: 11400000, guid: c9d3991866f374342a5b6f87a337362f, type: 2}
+    - {fileID: 11400000, guid: e739c1ee6e623d7478de6e753e674f26, type: 2}
+    - {fileID: 11400000, guid: e64c1a0846f36794da1a917cde8cfc76, type: 2}

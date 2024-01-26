@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4811426383697376346}
-  - component: {fileID: 6357793808036865840}
-  - component: {fileID: 7343949793493106734}
-  - component: {fileID: 7067136153088894774}
-  - component: {fileID: 7092263165040725782}
+  - component: {fileID: 4532128810042365513}
+  - component: {fileID: 2899825141369082195}
+  - component: {fileID: 3613411867283612449}
+  - component: {fileID: 2216933706114072027}
   m_Layer: 0
   m_Name: BuffSpawner
   m_TagString: Untagged
@@ -35,7 +35,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6357793808036865840
+--- !u!114 &4532128810042365513
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -44,23 +44,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7353854165067018487}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1d65a7f8972377943bb43566593e30d8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &7343949793493106734
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7353854165067018487}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8ca4142b3a284ca3958a54505536fa21, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b63e9ec307d46e4bb5bdcb76159b1f3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _transform: {fileID: 4811426383697376346}
---- !u!114 &7067136153088894774
+--- !u!114 &2899825141369082195
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -69,13 +57,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7353854165067018487}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca7f59e7672f4d35bf688875be0710fe, type: 3}
+  m_Script: {fileID: 11500000, guid: e07f45e41cd7ed74c982ca53f158088a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedComponent:
     OuterRadius: 19.75
     InnerRadius: 4
---- !u!114 &7092263165040725782
+--- !u!114 &3613411867283612449
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,8 +72,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 7353854165067018487}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 20be573844014dd3a5bbacaa6ced20c9, type: 3}
+  m_Script: {fileID: 11500000, guid: c33b2d58ae689a64c8524883d516f929, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _buffSpawner:
     SpawnIntervalSec: 10
+--- !u!114 &2216933706114072027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7353854165067018487}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6a6d597ffa4b2314b8ba1bb03fd6d078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: UISpace
-  m_Shader: {fileID: -6465566751694194690, guid: 21c20da8f35f5664cbc7d28c0e8e494e, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: b04b59119803496438eb0f6f5cabbcd1, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []

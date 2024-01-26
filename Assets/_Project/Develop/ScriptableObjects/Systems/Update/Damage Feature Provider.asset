@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4173144c5c994c3a929c9a09bad54537, type: 3}
+  m_Script: {fileID: 11500000, guid: fe27b113b420a5748a10dd6a643c6b39, type: 3}
   m_Name: Damage Feature Provider
   m_EditorClassIdentifier: 

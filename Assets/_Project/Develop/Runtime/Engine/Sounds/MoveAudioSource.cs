@@ -77,7 +77,6 @@ namespace _Project.Develop.Runtime.Engine.Sounds
             if (_isRotateSoundPlay) return;
             _audioSource.PlayOneShot(_rotateClip, _rotationVolumeFactor);
             _isRotateSoundPlay = true;
-
             WaitEndOfRotationSound(_rotateClip.length + RotationSoundDelay, _disableTokenSource.Token).Forget();
         }
 

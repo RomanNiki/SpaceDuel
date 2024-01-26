@@ -182,8 +182,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Space Duel
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 01c5b63789794b5458feb651c14addc2, type: 2}
+  m_sharedMaterial: {fileID: -8349199678530337949, guid: 01c5b63789794b5458feb651c14addc2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 81.85
+  m_fontSize: 79.95
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -317,8 +317,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Loading...
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 01c5b63789794b5458feb651c14addc2, type: 2}
+  m_sharedMaterial: {fileID: -8349199678530337949, guid: 01c5b63789794b5458feb651c14addc2, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -401,13 +401,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 122772595}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0f3fe0ea95678042bbfa582f9375aed, type: 3}
+  m_Script: {fileID: 11500000, guid: f438531f354ead44ea7e9843596159cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _textHolder: {fileID: 122772597}
   _text: Loading
-  _maxDotsCount: 3
-  _updateRateSec: 0.5
+  _maxDotsCount: 4
+  _updateRateSec: 0.3
 --- !u!1 &196915295
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,14 +562,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.33333334}
+  m_Color: {r: 0.1981132, g: 0.1981132, b: 0.1981132, a: 0.33333334}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300002, guid: 56d84991286850f428b4e7df0cca7380, type: 3}
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -851,7 +851,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1227116237}
-  - component: {fileID: 1227116236}
+  - component: {fileID: 1227116238}
   m_Layer: 0
   m_Name: '[Context]'
   m_TagString: Untagged
@@ -859,22 +859,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1227116236
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1227116235}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7c76bc09a6594bcbabe7748ee04ff67e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentReference:
-    TypeName: _Project.Develop.Runtime.Engine.ApplicationLifecycle.EntryPoints.Bootstrap.BootstrapScope
-  autoRun: 1
-  autoInjectGameObjects: []
 --- !u!4 &1227116237
 Transform:
   m_ObjectHideFlags: 0
@@ -890,6 +874,22 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1227116238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1227116235}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04aa6bb1a24003b488280d64e63b198c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentReference:
+    TypeName: _Project.Develop.Runtime.Engine.ApplicationLifecycle.EntryPoints.Bootstrap.BootstrapScope
+  autoRun: 1
+  autoInjectGameObjects: []
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

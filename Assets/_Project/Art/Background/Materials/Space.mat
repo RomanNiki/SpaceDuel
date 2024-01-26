@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Space
-  m_Shader: {fileID: -6465566751694194690, guid: 7b23bb4c86b60e0479c2d5eeaea3ffc8, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: e7d027c733c249e4e82e9e120886605c, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []

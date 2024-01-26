@@ -9,17 +9,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e9d31e00a0f94705ab090514465595a2, type: 3}
+  m_Script: {fileID: 11500000, guid: 24b2ff0f64110554aa795935e6b1de81, type: 3}
   m_Name: BulletWeapon
   m_EditorClassIdentifier: 
   _shootType:
     ObjectId: 2
-  _entityFactory: {fileID: 11400000, guid: 7a0f87f302cb32d4a863b943155d5bf1, type: 2}
-  _shot: {fileID: 8300000, guid: 38ba1d730903e954e9815e05e0a01675, type: 3}
+  _entityFactory: {fileID: 11400000, guid: ddc775cc8c1195840a8263e3966a217f, type: 2}
+  _shot: {fileID: 8300000, guid: 8fde6dc0436f4d24da034c5a6fe163ac, type: 3}
   _bulletStartForce:
-    Value: 20
+    Value: 12.5
+  _timerColor: {r: 0.6013968, g: 0.9150943, b: 0.41006586, a: 1}
   _dischargeContainer:
-    Value: 0.75
+    Value: 2
   _muzzle:
     Offset: 2
   _timeBetweenShotsSetup:

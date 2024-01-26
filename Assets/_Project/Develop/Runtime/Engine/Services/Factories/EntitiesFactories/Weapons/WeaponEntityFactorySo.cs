@@ -3,6 +3,7 @@ using _Project.Develop.Runtime.Core.Services.Factories;
 using _Project.Develop.Runtime.Core.Timers.Components;
 using _Project.Develop.Runtime.Core.Weapon.Components;
 using _Project.Develop.Runtime.Engine.Common.Components;
+using _Project.Develop.Runtime.Engine.Services.Factories.EntitiesFactories.Projectiles;
 using Scellecs.Morpeh;
 using UnityEngine;
 
@@ -12,7 +13,7 @@ namespace _Project.Develop.Runtime.Engine.Services.Factories.EntitiesFactories.W
     public class WeaponEntityFactorySo : EntityFactoryFromSo
     {
         [SerializeField] private ShootObjectType _shootType;
-        [SerializeField] private EntityFactoryFromSo _entityFactory;
+        [SerializeField] private ProjectileEntityFactorySo _entityFactory;
         [SerializeField] private AudioClip _shot;
         [SerializeField] private BulletStartForce _bulletStartForce = new() { Value = 15f };
         [SerializeField] private Color _timerColor = Color.yellow;

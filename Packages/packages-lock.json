@@ -14,14 +14,14 @@
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "5cc97c7f0085624b6ef57853d70b404440060cef"
+      "hash": "0ef6c59385c2fd6bc0a1a446bfe63c4f14c7d901"
     },
     "com.scellecs.morpeh": {
       "version": "https://github.com/scellecs/morpeh.git#stage-2023.1",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "a2da21f4d35c3e3a15c545616d5f0cd935a5e947"
+      "hash": "0b4644c3b2c82a2ac4fa781f408f2eedf6d2f596"
     },
     "com.unity.2d.sprite": {
       "version": "1.0.0",
@@ -81,11 +81,12 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.burst": {
-      "version": "1.8.11",
+      "version": "1.8.12",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.mathematics": "1.2.1"
+        "com.unity.mathematics": "1.2.1",
+        "com.unity.modules.jsonserialize": "1.0.0"
       },
       "url": "https://packages.unity.com"
     },
@@ -209,7 +210,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.render-pipelines.core": {
-      "version": "14.0.9",
+      "version": "14.0.10",
       "depth": 1,
       "source": "builtin",
       "dependencies": {
@@ -220,14 +221,14 @@
       }
     },
     "com.unity.render-pipelines.universal": {
-      "version": "14.0.9",
+      "version": "14.0.10",
       "depth": 0,
       "source": "builtin",
       "dependencies": {
         "com.unity.mathematics": "1.2.1",
         "com.unity.burst": "1.8.9",
-        "com.unity.render-pipelines.core": "14.0.9",
-        "com.unity.shadergraph": "14.0.9",
+        "com.unity.render-pipelines.core": "14.0.10",
+        "com.unity.shadergraph": "14.0.10",
         "com.unity.render-pipelines.universal-config": "14.0.9"
       }
     },
@@ -276,11 +277,11 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.shadergraph": {
-      "version": "14.0.9",
+      "version": "14.0.10",
       "depth": 1,
       "source": "builtin",
       "dependencies": {
-        "com.unity.render-pipelines.core": "14.0.9",
+        "com.unity.render-pipelines.core": "14.0.10",
         "com.unity.searcher": "4.9.2"
       }
     },
@@ -352,12 +353,12 @@
       }
     },
     "com.unity.visualeffectgraph": {
-      "version": "14.0.9",
+      "version": "14.0.10",
       "depth": 0,
       "source": "builtin",
       "dependencies": {
-        "com.unity.shadergraph": "14.0.9",
-        "com.unity.render-pipelines.core": "14.0.9"
+        "com.unity.shadergraph": "14.0.10",
+        "com.unity.render-pipelines.core": "14.0.10"
       }
     },
     "com.unity.visualscripting": {

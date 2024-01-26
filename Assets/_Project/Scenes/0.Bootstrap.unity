@@ -164,7 +164,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 227715192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 28c967e5208b412d8ad87fb2e060f0e8, type: 3}
+  m_Script: {fileID: 11500000, guid: fa74900b27950a845ab30b8687e18a9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   parentReference:
@@ -174,61 +174,60 @@ MonoBehaviour:
   _poolsAssets:
   - Id: 0
     AssetReference:
-      m_AssetGUID: 82f853de679aea8498f5d9d954c8668c
+      m_AssetGUID: 215434a35045e1841a44338e3e34d2b9
       m_SubObjectName: 
       m_SubObjectType: 
-      m_EditorAssetChanged: 1
+      m_EditorAssetChanged: 0
     InitializeSize: 1
   - Id: 1
     AssetReference:
-      m_AssetGUID: f9d75800178d26a44928025befb05aae
+      m_AssetGUID: 2a9c91d7c0fe5704480cfdf2b369decb
       m_SubObjectName: 
       m_SubObjectType: 
-      m_EditorAssetChanged: 1
+      m_EditorAssetChanged: 0
     InitializeSize: 1
   - Id: 2
     AssetReference:
-      m_AssetGUID: ac5fd1bd5dbf8c24ebb3464f1243e2dd
+      m_AssetGUID: 96a0d16bc370d1744a9c33c455c961ec
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 0
     InitializeSize: 50
   - Id: 3
     AssetReference:
-      m_AssetGUID: 50c5c2832914d4d4d8f067f5acaabff9
+      m_AssetGUID: 6a8368e9f1acf3140bc3055f4afa627e
       m_SubObjectName: 
       m_SubObjectType: 
-      m_EditorAssetChanged: 0
-    InitializeSize: 10
+      m_EditorAssetChanged: 1
+    InitializeSize: 15
   - Id: 4
     AssetReference:
-      m_AssetGUID: 4a654479b18155344ab2f4bcccb274a8
+      m_AssetGUID: cf52af01c3265bf4382e7af3bdf365b3
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 1
     InitializeSize: 20
   - Id: 5
     AssetReference:
-      m_AssetGUID: fe19f7d6f949188418ba2fb25df8c489
+      m_AssetGUID: e634ff28c51e8634f843dff08c3cff91
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 1
-    InitializeSize: 70
+    InitializeSize: 120
   - Id: 6
     AssetReference:
-      m_AssetGUID: 97379c1fae971974584f7fc08139001c
+      m_AssetGUID: ac9e1f8028ab8064db3207e5627ce7cd
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 1
-    InitializeSize: 5
+    InitializeSize: 4
   - Id: 7
     AssetReference:
-      m_AssetGUID: 760f143c85d2cca46946d18d74f037e4
+      m_AssetGUID: cd5798e67d14f4f4491f19f3163a45dc
       m_SubObjectName: 
       m_SubObjectType: 
       m_EditorAssetChanged: 1
     InitializeSize: 2
-  _audioMixerConfigurator: {fileID: 1021304267}
 --- !u!1 &1021304266
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +237,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1021304268}
-  - component: {fileID: 1021304267}
+  - component: {fileID: 1021304269}
   m_Layer: 0
   m_Name: AuidoMixerConfigurator
   m_TagString: Untagged
@@ -246,22 +245,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1021304267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021304266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22f99b1c77464bba95ac89cb49335f45, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mixer: {fileID: 24100000, guid: bcac07355bcc2c449860552b4e988360, type: 2}
-  _mixerVarMasterVolume: MasterVolume
-  _mixerVarMusicVolume: MusicVolume
-  _mixerVarEffectsVolume: EffectsVolume
 --- !u!4 &1021304268
 Transform:
   m_ObjectHideFlags: 0
@@ -277,6 +260,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1021304269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1021304266}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8beeedeae2dff494a86779f5d599a38a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

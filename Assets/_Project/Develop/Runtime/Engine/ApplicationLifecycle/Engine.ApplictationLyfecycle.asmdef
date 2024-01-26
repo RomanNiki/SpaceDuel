@@ -2,13 +2,13 @@
     "name": "Engine.ApplictationLyfecycle",
     "rootNamespace": "",
     "references": [
-        "GUID:855debaf050962242996264c19c63259",
+        "GUID:a93bf8ac0c1b84a4890de7ae7d2c9838",
+        "GUID:08a693b9a5fb8c8429296f0dd7ff4288",
+        "GUID:ea7a63879e9e418429d3f9a1d2fa7fd3",
         "GUID:f51ebe6a0ceec4240a699833d6309b23",
         "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
-        "GUID:8220cac33e924784fb07ecb343c81b5d",
-        "GUID:1ee70bf659e1d4a45bb6c582e9ff3392",
         "GUID:3377deebfb0acde45876d12c6e3d27cc",
-        "GUID:6f3a3f7499c87d44180bb56a59b5aa0b"
+        "GUID:7d442588603025b4aa87fba1ee47a329"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

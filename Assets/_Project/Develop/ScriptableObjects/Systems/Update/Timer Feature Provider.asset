@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5413bef0f67f4020a1c417b50fa32471, type: 3}
+  m_Script: {fileID: 11500000, guid: 8783e1dfad508be4a955fd5c11b3a94c, type: 3}
   m_Name: Timer Feature Provider
   m_EditorClassIdentifier: 

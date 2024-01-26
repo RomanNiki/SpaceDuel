@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: ControlsViewMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: cf6ab1d2ea47bf149b7361654c04a8f1, type: 3}
+  m_Shader: {fileID: -6465566751694194690, guid: 90a181310ac93d24b91dbe5f4f7be226, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []

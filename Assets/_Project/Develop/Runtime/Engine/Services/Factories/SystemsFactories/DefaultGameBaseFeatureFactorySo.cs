@@ -12,6 +12,7 @@ using _Project.Develop.Runtime.Core.Movement;
 using _Project.Develop.Runtime.Core.Timers;
 using _Project.Develop.Runtime.Core.Views;
 using _Project.Develop.Runtime.Core.Weapon;
+using _Project.Develop.Runtime.Engine.ECS.Effects;
 using _Project.Develop.Runtime.Engine.ECS.Sounds;
 using _Project.Develop.Runtime.Engine.ECS.UI.PlayerUI;
 using Scellecs.Morpeh.Addons.Feature;
@@ -40,6 +41,7 @@ namespace _Project.Develop.Runtime.Engine.Services.Factories.SystemsFactories
                 container.CreateFeature<MetaFeature>(),
                 container.CreateFeature<UIStatisticFeature>(),
                 container.CreateFeature<BuffFeature>(),
+                container.CreateFeature<ViewEffectFeature>()
             };
         }
 

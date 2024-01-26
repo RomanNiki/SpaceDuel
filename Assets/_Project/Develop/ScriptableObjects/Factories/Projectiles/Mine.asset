@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f16e308d24e763f4d8621c2609014c56, type: 3}
+  m_Script: {fileID: 11500000, guid: 2be015c3f38ebf6468a6f1ce0ff8c373, type: 3}
   m_Name: Mine
   m_EditorClassIdentifier: 
   _health: 1
@@ -17,6 +17,6 @@ MonoBehaviour:
   _friction:
     Value: 0.001
   _mass:
-    Value: 0.1
+    Value: 10
   _startEnergy: 100
   _invisibleTimeSec: 1

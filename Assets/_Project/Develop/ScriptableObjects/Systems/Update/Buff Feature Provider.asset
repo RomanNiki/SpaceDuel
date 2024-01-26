@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ac7f1dbbd3347fd9a3051940b83e99d, type: 3}
+  m_Script: {fileID: 11500000, guid: 21f84f50e4fc8ab47894e6476a701172, type: 3}
   m_Name: Buff Feature Provider
   m_EditorClassIdentifier: 

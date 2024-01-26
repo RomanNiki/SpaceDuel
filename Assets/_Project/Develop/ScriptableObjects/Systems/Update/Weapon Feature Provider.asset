@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f6e3a05edd94bd98e93a5867bb6f159, type: 3}
+  m_Script: {fileID: 11500000, guid: c920d76d5c0bd364684da428ed8196f9, type: 3}
   m_Name: Weapon Feature Provider
   m_EditorClassIdentifier: 

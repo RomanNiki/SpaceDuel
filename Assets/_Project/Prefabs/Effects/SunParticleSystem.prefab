@@ -108,7 +108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc4d76f733087744991913c9d19d5274, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_LensFlareData: {fileID: 11400000, guid: 632ff411dbbf5d54593d6e684940a2bf, type: 2}
+  m_LensFlareData: {fileID: 11400000, guid: 9ddc9c6d58fd4cf45be6f818bc482de8, type: 2}
   intensity: 0.5
   maxAttenuationDistance: 50
   maxAttenuationScale: 100
@@ -5022,7 +5022,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3f4648efeef0558429b3bc53961253a8, type: 2}
+  - {fileID: 2100000, guid: 3e11f9c25bb24c245b9917cbb8952790, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -9855,7 +9855,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: de18fe29bc3abf84994bf79c94d85b3f, type: 2}
+  - {fileID: 2100000, guid: a9b51b87e55ed9e48996ee9aeb37db93, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -14685,7 +14685,7 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 2271368c52aab3f42b1b239ecbe99c83, type: 2}
+  - {fileID: 2100000, guid: eaa54ad6faede1546bb9079e8a64dd72, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

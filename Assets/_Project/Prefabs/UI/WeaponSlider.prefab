@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 50, y: 0.27000046}
+  m_AnchoredPosition: {x: 0.25, y: -0.25}
   m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &6631606131761844891
@@ -190,7 +190,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e7c298966b0f0944ebaa047e6f909359, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5cf146e1119511f4e8f83501f590a8de, type: 3}
   m_Type: 3
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -209,8 +209,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2435017750227125628}
-  - component: {fileID: 7583986685850631115}
   - component: {fileID: 8145507057425868859}
+  - component: {fileID: 725969294539402479}
   m_Layer: 5
   m_Name: WeaponSlider
   m_TagString: Untagged
@@ -238,21 +238,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0.5, y: 0.5}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &7583986685850631115
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6279386447263127550}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8866d00017ba424584eb3215250e5b0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _slider: {fileID: 6631606131761844891}
-  _fadeDuration: 1
-  _canvasGroup: {fileID: 8145507057425868859}
 --- !u!225 &8145507057425868859
 CanvasGroup:
   m_ObjectHideFlags: 0
@@ -261,10 +246,25 @@ CanvasGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6279386447263127550}
   m_Enabled: 1
-  m_Alpha: 0
+  m_Alpha: 1
   m_Interactable: 0
   m_BlocksRaycasts: 1
   m_IgnoreParentGroups: 0
+--- !u!114 &725969294539402479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6279386447263127550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c38d46c8f143a18479a64070bb5ae6d4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _slider: {fileID: 6631606131761844891}
+  _fadeDuration: 1
+  _canvasGroup: {fileID: 8145507057425868859}
 --- !u!1 &7798009688843803369
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,7 +330,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: e7c298966b0f0944ebaa047e6f909359, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5cf146e1119511f4e8f83501f590a8de, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

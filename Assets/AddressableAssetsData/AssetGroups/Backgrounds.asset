@@ -15,16 +15,16 @@ MonoBehaviour:
   m_GroupName: Backgrounds
   m_Data:
     m_SerializedData: []
-  m_GUID: 0c92308d6929478418984e3e8991b711
+  m_GUID: 27f72c9831dff3042892600d7b913868
   m_SerializeEntries:
-  - m_GUID: 79cfab75f149e19489df568f8c379bd3
+  - m_GUID: 48b2e4c878be79847b09ec049b7b3163
     m_Address: Background1
     m_ReadOnly: 0
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
-  m_Settings: {fileID: 11400000, guid: b542045fbaf0c624ebce8876aed210bd, type: 2}
+  m_Settings: {fileID: 11400000, guid: 3547a5558c17dab4da41afa7d8ffb15b, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 6722b7a4ed692724880fda4a901ba4b5, type: 2}
-    - {fileID: 11400000, guid: b98f17028b1249146a7e5fdbb7311c99, type: 2}
+    - {fileID: 11400000, guid: 629d8edb75b73cc43b4ba798c121f4f4, type: 2}
+    - {fileID: 11400000, guid: 162c63f3255d7d54f9b53e99025423de, type: 2}

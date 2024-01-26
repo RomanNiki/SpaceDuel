@@ -677,6 +677,7 @@
     "m_OutputNode": {
         "m_Id": ""
     },
+    "m_SubDatas": [],
     "m_ActiveTargets": [
         {
             "m_Id": "1a2555ed339449edb9fcbe3478a2b0b7"
@@ -3091,7 +3092,7 @@
         "m_Position": {
             "serializedVersion": "2",
             "x": -1301.0,
-            "y": 229.9999542236328,
+            "y": 230.0,
             "width": 208.0,
             "height": 302.0
         }
@@ -3120,7 +3121,7 @@
     },
     "m_SourceType": 0,
     "m_FunctionName": "loop",
-    "m_FunctionSource": "dd73220de7e4444eae3493fb555482e7",
+    "m_FunctionSource": "fca5feca5a7995945be11cee26de0e6f",
     "m_FunctionBody": " half s = 0.01, fade = 1.;\r\n half3 clr = 0.;\n for (int r = 0; r < volsteps; r++)\r\n                {\r\n                    half3 p = from + s * dir * 0.5;\r\n                    p = abs(_Tile - p - _Tile * 2. * floor(p / _Tile * 2.));\r\n                    half pa, a = pa = 0.;\r\n                    for (int i = 0; i < _Iterations; i++)\r\n                    {\r\n                        p = abs(p);\r\n                        p = p * (1.0 / dot(p, p)) + (-_FormUParam);\r\r\n                        a += abs(length(p) - pa);\r\n                        pa = length(p);\r\n                    }\r\n                    half dm = max(0., _DarkMatter - a * a * .001);\r\n                    a *= a * a;\r\n                    if (r > 6) fade *= 1. - dm;\r\n\r\n                    clr += fade;\r\n                    clr += (half3(s, s * s, s * s * s) * a * _Brightness + 1.) * fade;\r\n                    fade *= _DistFading;\r\n                    s += _StepSize;\r\n                }\nreturn clr;"
 }
 

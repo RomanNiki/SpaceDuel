@@ -2,8 +2,8 @@
     "name": "Pooling.Engine",
     "rootNamespace": "",
     "references": [
-        "GUID:6f3a3f7499c87d44180bb56a59b5aa0b",
-        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:7d442588603025b4aa87fba1ee47a329"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

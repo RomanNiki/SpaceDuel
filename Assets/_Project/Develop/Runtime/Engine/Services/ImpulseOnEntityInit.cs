@@ -5,15 +5,17 @@ using UnityEngine;
 
 namespace _Project.Develop.Runtime.Engine.Services
 {
+    [RequireComponent(typeof(EntityProvider))]
     [RequireComponent(typeof(CinemachineImpulseSource))]
     public class ImpulseOnEntityInit : MonoBehaviour
     {
         private static readonly Vector2 ImpulseVelocityFactor = new(-2, 2);
-        [SerializeField] private EntityProvider _entityProvider;
+        private EntityProvider _entityProvider;
         private CinemachineImpulseSource _impulseSource;
         private readonly IRandom _random = FastRandom.Singleton;
         private void Awake()
         {
+            _entityProvider = GetComponent<EntityProvider>();
             _impulseSource = GetComponent<CinemachineImpulseSource>();
         }
 

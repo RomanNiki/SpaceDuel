@@ -65,7 +65,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: a761bbc1843f4354c9f7a81d3ae87dfe, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 0fe5c7aa1b751424db87efcb6ed30dff, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -220,8 +220,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Press to <color=green>Start</color> '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 13dd88372c835994a9f3226434e97a84, type: 2}
-  m_sharedMaterial: {fileID: 5923868730526217874, guid: 13dd88372c835994a9f3226434e97a84, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b372e58d7863f5b479d36e6cee680cf7, type: 2}
+  m_sharedMaterial: {fileID: 5923868730526217874, guid: b372e58d7863f5b479d36e6cee680cf7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -398,8 +398,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Primary weapon shoot
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 13dd88372c835994a9f3226434e97a84, type: 2}
-  m_sharedMaterial: {fileID: 5923868730526217874, guid: 13dd88372c835994a9f3226434e97a84, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b372e58d7863f5b479d36e6cee680cf7, type: 2}
+  m_sharedMaterial: {fileID: 5923868730526217874, guid: b372e58d7863f5b479d36e6cee680cf7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -530,7 +530,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: f3ad42d06ef0f9140a79982f51073639, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 1ad78314b1064e64ab77288e051d0fad, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -641,7 +641,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 9043a3cf82c26ba43a40b27f92694d72, type: 3}
+  m_Sprite: {fileID: 21300000, guid: acd8b0ea8382d424ebac674ff6de8245, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -718,8 +718,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Secondary weapon shoot
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 13dd88372c835994a9f3226434e97a84, type: 2}
-  m_sharedMaterial: {fileID: 5923868730526217874, guid: 13dd88372c835994a9f3226434e97a84, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b372e58d7863f5b479d36e6cee680cf7, type: 2}
+  m_sharedMaterial: {fileID: 5923868730526217874, guid: b372e58d7863f5b479d36e6cee680cf7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -850,7 +850,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 807c1f74ef7a44e49971e33a988987b2, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9293d4ff06ac0b041b58b1975f2c287e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1076,7 +1076,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: fb595f6c83428fc47a4362107bb98193, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7b47199398e308844968263ef32aa71d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1151,7 +1151,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ad16522fb7fbc1b4892f1b0c04169c6c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 50cf7a1344d6d00468d596852dafaaa6, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1228,8 +1228,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Rotate spaceship
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 13dd88372c835994a9f3226434e97a84, type: 2}
-  m_sharedMaterial: {fileID: 5923868730526217874, guid: 13dd88372c835994a9f3226434e97a84, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b372e58d7863f5b479d36e6cee680cf7, type: 2}
+  m_sharedMaterial: {fileID: 5923868730526217874, guid: b372e58d7863f5b479d36e6cee680cf7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1396,7 +1396,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b9f5142fd5d4ed341b9f1037a9c0b429, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 4f818e0c45ae45d4a91986f7215ed3a2, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1473,8 +1473,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Accelerate spaceship
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 13dd88372c835994a9f3226434e97a84, type: 2}
-  m_sharedMaterial: {fileID: 5923868730526217874, guid: 13dd88372c835994a9f3226434e97a84, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: b372e58d7863f5b479d36e6cee680cf7, type: 2}
+  m_sharedMaterial: {fileID: 5923868730526217874, guid: b372e58d7863f5b479d36e6cee680cf7, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1552,7 +1552,7 @@ GameObject:
   - component: {fileID: 492028706742772373}
   - component: {fileID: 4494977446128839074}
   - component: {fileID: 3697893461581105538}
-  - component: {fileID: -3703075431999447578}
+  - component: {fileID: 1436268833932908352}
   m_Layer: 5
   m_Name: ControlsWindow
   m_TagString: Untagged
@@ -1644,7 +1644,7 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &-3703075431999447578
+--- !u!114 &1436268833932908352
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1653,7 +1653,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4998902392023004286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86d75b536af54ddfbba26593cf30b004, type: 3}
+  m_Script: {fileID: 11500000, guid: ea1fa53420483834c87cf7e079739b7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _startButton: {fileID: 8951929913642131521}
@@ -1831,7 +1831,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1a26b9e8a65458f4c8b67f9dfcfa6b9c, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bf14bfe7da01092479a4ab32c19c29a8, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2019,7 +2019,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b9af9d6803344264bb7f175374723f17, type: 3}
+  m_Sprite: {fileID: 21300000, guid: af8c95a81d226e7488bdfd645ad62e8b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2094,7 +2094,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0b8ee353429f66742b3b01d68c941c91, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f92882e4dc5b1e840bf29e3fb597eabc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2161,7 +2161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 2100000, guid: 1aba4fefa6a7adc4bbe1cb22726a6dd2, type: 2}
+  m_Material: {fileID: 2100000, guid: 5e0b068987b563845bde40ab4adc7014, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -2169,8 +2169,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 02a93a09bf646c9429194f9f3fb54740, type: 3}
-  m_Type: 0
+  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4

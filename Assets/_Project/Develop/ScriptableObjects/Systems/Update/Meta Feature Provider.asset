@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea530e21893147d78bb451dad2172393, type: 3}
+  m_Script: {fileID: 11500000, guid: 55de17663755dee4584999735ced637a, type: 3}
   m_Name: Meta Feature Provider
   m_EditorClassIdentifier: 
