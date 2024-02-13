@@ -1,7 +1,6 @@
 ﻿using _Project.Develop.Runtime.Core.Input.Components;
 using _Project.Develop.Runtime.Core.Services;
 using _Project.Develop.Runtime.Core.Services.Pause;
-using UnityEngine;
 
 namespace _Project.Develop.Runtime.Core.Meta.Systems
 {

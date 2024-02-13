@@ -38,7 +38,6 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
                 ref var owner = ref _ownerPool.Get(weaponEntity).Entity;
 
                 if (owner.IsNullOrDisposed()) continue;
-
                 World.SendMessage(new DischargeRequest
                     { Entity = owner, Value = _dischargeContainerPool.Get(weaponEntity).Value });
             }

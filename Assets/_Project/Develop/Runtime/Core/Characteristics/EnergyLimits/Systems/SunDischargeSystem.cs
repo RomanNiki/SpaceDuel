@@ -48,7 +48,6 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
                         gravityPoint.InnerRadius, gravityPoint.OuterRadius) * chargeSpeed * deltaTime;
 
                     if (dischargeAmount < MIN_DISCHARGE_AMOUNT) continue;
-
                     World.SendMessage(new DischargeRequest { Entity = entity, Value = dischargeAmount });
                 }
             }

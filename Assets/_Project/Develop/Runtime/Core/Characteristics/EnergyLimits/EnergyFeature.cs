@@ -10,6 +10,7 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits
         {
             RegisterEvent<EnergyChangedEvent>();
             RegisterRequest<ChargeRequest>();
+            RegisterRequest<DischargeRequest>();
             AddSystem(new NoEnergyGravityResistSystem());
             AddSystem(new MoveDischargeSystem());
             AddSystem(new WeaponEnergyDischargeSystem());

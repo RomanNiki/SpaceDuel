@@ -16,17 +16,21 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
     {
         private Filter _filter;
         private Stash<GravityResistTag> _gravityResistPool;
+        private Stash<Energy> _energyPool;
 
         public override void OnAwake()
         {
-            _filter = World.Filter.With<GravityResistTag>().With<NoEnergyBlock>().Build();
+            _filter = World.Filter.With<GravityResistTag>().With<Energy>().Build();
             _gravityResistPool = World.GetStash<GravityResistTag>();
+            _energyPool = World.GetStash<Energy>();
         }
 
         public override void OnUpdate(float deltaTime)
         {
             foreach (var entity in _filter)
             {
+                if (_energyPool.Get(entity).HasEnergy)
+                    continue;
                 _gravityResistPool.Remove(entity);
             }
         }

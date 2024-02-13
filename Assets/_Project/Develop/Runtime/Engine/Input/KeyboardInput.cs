@@ -1,6 +1,7 @@
 ﻿using System;
 using _Project.Develop.Runtime.Core.Common.Enums;
 using _Project.Develop.Runtime.Core.Input;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace _Project.Develop.Runtime.Engine.Input

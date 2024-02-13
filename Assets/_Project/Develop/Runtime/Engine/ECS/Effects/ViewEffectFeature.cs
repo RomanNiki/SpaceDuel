@@ -11,6 +11,7 @@ namespace _Project.Develop.Runtime.Engine.ECS.Effects
             AddSystem(new VisualizeLifeTimerByMaterialSystem<InvisibleTimer>());
             AddSystem(new VisualizeLifeTimerByMaterialSystem<LifeTimer>());
             AddSystem(new VisualizeEnergyByMaterialSystem());
+            AddSystem(new AccelerateEffectActivateSystem());
         }
     }
 }

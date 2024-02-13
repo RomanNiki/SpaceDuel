@@ -21,10 +21,10 @@ namespace _Project.Develop.Runtime.Engine.Services.Loading
         private float _targetProgress;
         private CancellationToken _token;
 
-        private async void Awake()
+        private void Awake()
         {
             DontDestroyOnLoad(this);
-            await Toggle(true);
+            Toggle(true).Forget();
         }
 
         private void OnEnable()

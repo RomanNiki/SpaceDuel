@@ -13,20 +13,22 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
-    
+
     public sealed class MoveDischargeSystem : UpdateSystem
     {
-        private const float MIN_ROTATION_FOR_DISCHARGE = 0.2f;
+        private const float MinRotationForDischarge = 0.2f;
         private Filter _filter;
         private Stash<RotateDischargeSpeed> _rotateDischargeAmountPool;
         private Stash<AccelerateDischargeSpeed> _accelerateDischargeAmountPool;
         private Stash<InputMoveData> _inputMovePool;
+        private Stash<Energy> _energyPool;
 
         public override void OnAwake()
         {
             _filter = World.Filter.With<InputMoveData>().With<AccelerateDischargeSpeed>().With<RotateDischargeSpeed>()
-                .Without<NoEnergyBlock>().Build();
+                .With<Energy>().Build();
             _accelerateDischargeAmountPool = World.GetStash<AccelerateDischargeSpeed>();
+            _energyPool = World.GetStash<Energy>();
             _rotateDischargeAmountPool = World.GetStash<RotateDischargeSpeed>();
             _inputMovePool = World.GetStash<InputMoveData>();
         }
@@ -35,6 +37,12 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
         {
             foreach (var entity in _filter)
             {
+                ref var energy = ref _energyPool.Get(entity);
+                if (energy.HasEnergy == false)
+                {
+                    continue;
+                }
+
                 var input = _inputMovePool.Get(entity);
                 var dischargeAmount = 0f;
                 if (input.Accelerate)
@@ -42,7 +50,7 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
                     dischargeAmount += _accelerateDischargeAmountPool.Get(entity).Value;
                 }
 
-                if (Mathf.Abs(input.Rotation) >= MIN_ROTATION_FOR_DISCHARGE)
+                if (Mathf.Abs(input.Rotation) >= MinRotationForDischarge)
                 {
                     dischargeAmount += _rotateDischargeAmountPool.Get(entity).Value;
                 }
@@ -54,7 +62,7 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
         private void CreateDischargeRequest(float dischargeAmount, Entity entity)
         {
             if (dischargeAmount <= 0f) return;
-            World.SendMessage(new DischargeRequest{Value = dischargeAmount, Entity = entity});
+            World.SendMessage(new DischargeRequest { Value = dischargeAmount, Entity = entity });
         }
     }
 }

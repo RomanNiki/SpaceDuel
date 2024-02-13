@@ -18,15 +18,16 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
         private readonly HashSet<TeamEnum> _movingSet = new();
         private readonly HashSet<TeamEnum> _rotationSet = new();
         private Stash<Team> _teamPool;
+        private Stash<Energy> _energyPool;
         public World World { get; set; }
         private const float RotationThreshold = 0.1f;
-        
+
         public void OnAwake()
         {
-            _filter = World.Filter.With<InputMoveData>().With<Team>().Without<NoEnergyBlock>().Build();
-            _stopFilter = World.Filter.With<InputMoveData>().With<Team>().With<NoEnergyBlock>().Build();
+            _filter = World.Filter.With<InputMoveData>().With<Team>().With<Energy>().Build();
             _inputMoveDataPool = World.GetStash<InputMoveData>();
             _teamPool = World.GetStash<Team>();
+            _energyPool = World.GetStash<Energy>();
         }
 
         public void OnUpdate(float deltaTime)
@@ -35,23 +36,25 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
             {
                 ref var input = ref _inputMoveDataPool.Get(entity);
                 ref var team = ref _teamPool.Get(entity).Value;
-                HandleMoveEvents(input, team, entity);
-                HandleRotationEvent(input, team, entity);
-            }
-
-            foreach (var entity in _stopFilter)
-            {
-                ref var team = ref _teamPool.Get(entity).Value;
-                World.SendMessage(new StopAccelerationEvent() { Entity = entity });
-                World.SendMessage(new StopRotationEvent() { Entity = entity });
-                if (_movingSet.Contains(team))
+                
+                if (_energyPool.Get(entity).HasEnergy)
                 {
-                    _movingSet.Remove(team);
+                    HandleMoveEvents(input, team, entity);
+                    HandleRotationEvent(input, team, entity);
                 }
-
-                if (_rotationSet.Contains(team))
+                else
                 {
-                    _rotationSet.Remove(team);
+                    World.SendMessage(new StopAccelerationEvent() { Entity = entity });
+                    World.SendMessage(new StopRotationEvent() { Entity = entity });
+                    if (_movingSet.Contains(team))
+                    {
+                        _movingSet.Remove(team);
+                    }
+
+                    if (_rotationSet.Contains(team))
+                    {
+                        _rotationSet.Remove(team);
+                    }
                 }
             }
         }
@@ -60,9 +63,8 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
         {
             if (Mathf.Abs(input.Rotation) > RotationThreshold)
             {
-                if (_rotationSet.Contains(team) == false)
+                if (_rotationSet.Add(team))
                 {
-                    _rotationSet.Add(team);
                     World.SendMessage(new StartRotationEvent { Entity = entity });
                 }
             }
@@ -80,9 +82,8 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
         {
             if (input.Accelerate)
             {
-                if (_movingSet.Contains(team) == false)
+                if (_movingSet.Add(team))
                 {
-                    _movingSet.Add(team);
                     World.SendMessage(new StartAccelerationEvent { Entity = entity });
                 }
             }

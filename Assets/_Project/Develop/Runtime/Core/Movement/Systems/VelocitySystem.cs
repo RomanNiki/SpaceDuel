@@ -1,10 +1,12 @@
 ﻿using _Project.Develop.Runtime.Core.Movement.Components;
 using Scellecs.Morpeh;
+#if UNITY_WEBGL == false
 using Scellecs.Morpeh.Native;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
-using UnityEngine;
+#endif
+
 
 namespace _Project.Develop.Runtime.Core.Movement.Systems
 {
@@ -31,7 +33,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
 
         public void OnUpdate(float deltaTime)
         {
-#if MORPEH_BURST
+#if UNITY_WEBGL == false
             var filter = _filter.AsNative();
             World.JobHandle = new VelocityJob()
             {
@@ -56,8 +58,8 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
         {
         }
 
-#if MORPEH_BURST
-        
+#if UNITY_WEBGL == false
+
         [BurstCompile]
         private struct VelocityJob : IJobParallelFor
         {

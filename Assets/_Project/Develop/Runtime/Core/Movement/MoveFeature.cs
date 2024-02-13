@@ -1,4 +1,5 @@
-﻿using _Project.Develop.Runtime.Core.Movement.Components.Events;
+﻿using _Project.Develop.Runtime.Core.Movement.Components;
+using _Project.Develop.Runtime.Core.Movement.Components.Events;
 using _Project.Develop.Runtime.Core.Movement.Systems;
 using Scellecs.Morpeh.Addons.Feature;
 
@@ -30,6 +31,7 @@ namespace _Project.Develop.Runtime.Core.Movement
             AddSystem(new MoveClampSystem(_loopService));     
             AddSystem(new FollowSystem());
             AddSystem(new ExecuteMoveSystem());
+            RegisterRequest<ForceRequest>();
         }
     }
 }

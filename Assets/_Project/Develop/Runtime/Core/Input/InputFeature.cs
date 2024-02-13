@@ -26,6 +26,5 @@ namespace _Project.Develop.Runtime.Core.Input
             RegisterRequest<InputShootStartedEvent>();
             RegisterRequest<InputShootCanceledEvent>();
         }
-        
     }
 }

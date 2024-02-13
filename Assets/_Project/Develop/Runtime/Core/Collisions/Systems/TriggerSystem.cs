@@ -1,6 +1,7 @@
 ﻿using _Project.Develop.Runtime.Core.Collisions.Components;
 using _Project.Develop.Runtime.Core.Collisions.Strategies;
 using Scellecs.Morpeh;
+using Scellecs.Morpeh.Addons.EntityPool;
 
 namespace _Project.Develop.Runtime.Core.Collisions.Systems
 {
@@ -48,7 +49,7 @@ namespace _Project.Develop.Runtime.Core.Collisions.Systems
                 if (IsCollideBetween(sender, target) == false) continue;
       
                 _strategy.OnEnter(World, sender, target);
-                World.RemoveEntity(entity);
+                World.PoolEntity(entity);
             }
         }
 

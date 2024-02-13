@@ -1,9 +1,11 @@
 ﻿using _Project.Develop.Runtime.Core.Movement.Components;
 using Scellecs.Morpeh;
+#if UNITY_WEBGL == false
 using Scellecs.Morpeh.Native;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
+#endif
 
 namespace _Project.Develop.Runtime.Core.Movement.Systems
 {
@@ -31,7 +33,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
 
         public void OnUpdate(float deltaTime)
         {
-#if MORPEH_BURST
+#if UNITY_WEBGL == false
             var filter = _filter.AsNative();
             var job = new AccelerateJobReference()
             {
@@ -46,19 +48,18 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
             {
                 ref var forceRequest = ref _forceRequestPool.Get(entity);
                 ref var velocityEntity = ref forceRequest.Entity;
+                if (velocityEntity.IsNullOrDisposed()) continue;
                 ref var velocity = ref _velocityPool.Get(velocityEntity);
-
                 velocity.Value += forceRequest.Value;
             }
 #endif
-            _forceRequestPool.RemoveAll();
         }
 
         public void Dispose()
         {
         }
 
-#if MORPEH_BURST
+#if UNITY_WEBGL == false
         [BurstCompile]
         private struct AccelerateJobReference : IJobParallelFor
         {

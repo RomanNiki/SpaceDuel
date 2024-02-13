@@ -1,6 +1,7 @@
 ﻿using _Project.Develop.Runtime.Engine.Common;
 using _Project.Develop.Runtime.Engine.Infrastructure.Audio;
 using UnityEngine;
+using VContainer;
 
 namespace _Project.Develop.Runtime.Engine.Sounds
 {
@@ -9,18 +10,15 @@ namespace _Project.Develop.Runtime.Engine.Sounds
         private GameAudioMixer _mixer;
         public static AudioMixerConfigurator Instance { get; private set; }
 
-        private void Awake()
+        [Inject]
+        public void Construct()
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-
-        private void Start()
-        {
             _mixer = GameAudioMixer.Instance;
+            DontDestroyOnLoad(gameObject);
             Configure();
         }
-
+        
         public void Configure()
         {
             _mixer.SetVolume(SoundTypeEnum.Master, GamePrefs.GetMasterVolume());

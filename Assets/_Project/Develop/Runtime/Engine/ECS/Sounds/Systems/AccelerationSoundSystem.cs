@@ -47,6 +47,13 @@ namespace _Project.Develop.Runtime.Engine.ECS.Sounds.Systems
                 }
             }
             
+            ProcessAccelerateSound();
+
+            _acceleratingHashSet.RemoveWhere(x => x.IsNullOrDisposed());
+        }
+
+        private void ProcessAccelerateSound()
+        {
             foreach (var entity in _acceleratingHashSet)
             {
                 if (entity.IsNullOrDisposed())
@@ -56,8 +63,6 @@ namespace _Project.Develop.Runtime.Engine.ECS.Sounds.Systems
 
                 _moveAudioSourcePool.Get(entity).Value.StartAcceleratingSound();
             }
-
-            _acceleratingHashSet.RemoveWhere(x => x.IsNullOrDisposed());
         }
 
         public void Dispose()

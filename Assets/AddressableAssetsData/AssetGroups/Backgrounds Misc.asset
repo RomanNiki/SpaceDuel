@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Backgrounds Misc
+  m_EditorClassIdentifier: 
+  m_GroupName: Backgrounds Misc
+  m_Data:
+    m_SerializedData: []
+  m_GUID: e6e9d260e05d3b44f829d5dd99008ae8
+  m_SerializeEntries:
+  - m_GUID: a2f28747beb1bb94b8a5cb9ac85d4e12
+    m_Address: Assets/_Project/Art/Background/Materials/MAT_Space.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e7d027c733c249e4e82e9e120886605c
+    m_Address: Assets/_Project/Art/Background/Materials/SG_Space.shadergraph
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: b04b59119803496438eb0f6f5cabbcd1
+    m_Address: Assets/_Project/Art/Background/Materials/SH_SpaceUI.shadergraph
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: a143560e573d73043baa1544f33dd7fb
+    m_Address: Assets/_Project/Art/Background/Materials/MAT_UISpace.mat
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3547a5558c17dab4da41afa7d8ffb15b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 31dae07fa5e3a72438a17e2b4ca1dbde, type: 2}
+    - {fileID: 11400000, guid: 5ec5c8c8f296f7f40991e9d70b9ef451, type: 2}

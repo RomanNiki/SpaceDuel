@@ -28,6 +28,7 @@ namespace _Project.Develop.Runtime.Engine.UI.Controls
         }
         
         private void OnShotClick(TeamEnum teamEnum) => OnStart();
+        
         private void OnStart() => _onStart?.Invoke();
     }
 }

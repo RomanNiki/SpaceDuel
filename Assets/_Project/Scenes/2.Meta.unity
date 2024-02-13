@@ -155,10 +155,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1041780799}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.034207135, y: 0.12200001}
-  m_AnchorMax: {x: 0.9711554, y: 0.856761}
-  m_AnchoredPosition: {x: -11.272278, y: 1.4999847}
-  m_SizeDelta: {x: -169.2591, y: -3.7474003}
+  m_AnchorMin: {x: 0.18200001, y: 0.15268603}
+  m_AnchorMax: {x: 0.8277404, y: 0.856628}
+  m_AnchoredPosition: {x: -11.772278, y: 0.49998474}
+  m_SizeDelta: {x: -96.259094, y: -1.7474003}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &24209135
 MonoBehaviour:
@@ -174,7 +174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -207,7 +207,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 38.9
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -243,7 +243,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -72.59631, y: 0, z: -95.18152, w: 0}
+  m_margin: {x: -38.01593, y: 0, z: -59.322205, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -524,10 +524,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1246578117}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.032414265, y: 0.143}
-  m_AnchorMax: {x: 0.95874107, y: 0.8792957}
-  m_AnchoredPosition: {x: -0.19787598, y: -2}
-  m_SizeDelta: {x: -211.5458, y: -6.2539997}
+  m_AnchorMin: {x: 0.16800001, y: 0.12768602}
+  m_AnchorMax: {x: 0.83900005, y: 0.833314}
+  m_AnchoredPosition: {x: -2.197876, y: 0}
+  m_SizeDelta: {x: -147.5458, y: -4.2539997}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &908618401
 MonoBehaviour:
@@ -543,7 +543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -576,7 +576,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 36.75
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -612,7 +612,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -106.3656, y: 0, z: -103.41113, w: 0}
+  m_margin: {x: -69.739075, y: 0, z: -75.5636, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1838,10 +1838,10 @@ RectTransform:
   m_Children: []
   m_Father: {fileID: 1021584865}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.029577674, y: 0.12885216}
-  m_AnchorMax: {x: 0.97357774, y: 0.8711479}
-  m_AnchoredPosition: {x: -1.657959, y: -0.29162598}
-  m_SizeDelta: {x: -222.8816, y: -7.0765}
+  m_AnchorMin: {x: 0.16100001, y: 0.15937205}
+  m_AnchorMax: {x: 0.86600006, y: 0.8558339}
+  m_AnchoredPosition: {x: -4.657959, y: -0.791626}
+  m_SizeDelta: {x: -162.8816, y: -4.0765}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1747962999
 MonoBehaviour:
@@ -1857,7 +1857,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1890,7 +1890,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 72
+  m_fontSize: 36.4
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1926,7 +1926,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -109.70093, y: 0, z: -111.313965, w: 0}
+  m_margin: {x: -74.94116, y: 0, z: -85.03754, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

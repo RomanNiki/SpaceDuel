@@ -12,6 +12,7 @@ namespace _Project.Develop.Runtime.Engine.Infrastructure.Audio
         }
         
         public static GameAudioMixer Instance { get; } = new();
+        
         public event Action<SoundTypeEnum> VolumeChanged;
 
         public float GetVolume(SoundTypeEnum typeEnum)

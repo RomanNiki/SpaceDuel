@@ -1,6 +1,7 @@
 ﻿using _Project.Develop.Runtime.Core.Characteristics.Damage.Components;
 using _Project.Develop.Runtime.Core.Extensions;
 using Scellecs.Morpeh;
+using Scellecs.Morpeh.Addons.EntityPool;
 using UnityEngine;
 
 namespace _Project.Develop.Runtime.Core.Characteristics.Damage.Systems
@@ -40,7 +41,7 @@ namespace _Project.Develop.Runtime.Core.Characteristics.Damage.Systems
                 ref var health = ref _healthPool.Get(damageRequestEntity);
                 health.Value = Mathf.Clamp(health.Value - damageRequest.Damage, health.MinValue, health.MaxValue);
                 World.SendMessage(new HealthChangedEvent { Entity = damageRequestEntity });
-                World.RemoveEntity(entity);
+                World.PoolEntity(entity);
             }
         }
 

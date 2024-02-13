@@ -1,10 +1,6 @@
 using System;
 using _Project.Develop.Runtime.Engine.Providers.MonoProviders.Base;
 using Scellecs.Morpeh;
-using TriInspector;
-#if UNITY_EDITOR
-using Scellecs.Morpeh.Editor;
-#endif
 
 namespace _Project.Develop.Runtime.Engine.Providers
 {
@@ -16,10 +12,6 @@ namespace _Project.Develop.Runtime.Engine.Providers
 #endif
     public class EntityProvider : EntityProviderBase, IDisposable
     {
-#if UNITY_EDITOR
-        [PropertyOrder(100)] [ShowInInspector] [InlineProperty] [HideLabel] [Title("Debug Info", HorizontalLine = true)]
-        private readonly EntityViewer _entityViewer = new();
-#endif
         private IProvider[] _providers;
         public World World { get; private set; }
         public Entity Entity { get; private set; }
@@ -49,10 +41,6 @@ namespace _Project.Develop.Runtime.Engine.Providers
 
             Entity = entity;
             World = world;
-
-#if UNITY_EDITOR
-            _entityViewer.getter = () => Entity;
-#endif
             
             foreach (var provider in _providers)
             {

@@ -42,9 +42,16 @@ namespace _Project.Develop.Runtime.Engine.ECS.Sounds.Systems
                 ref var playerEntity = ref _stopRotationEventPool.Get(entity).Entity;
                 _rotatingHashSet.Remove(playerEntity);
                 if (playerEntity.IsNullOrDisposed()) continue;
-                _moveAudioSourcePool.Get(playerEntity).Value.StartRotatingSound();
+                _moveAudioSourcePool.Get(playerEntity).Value.StopRotatingSound();
             }
 
+            ProcessRotateSound();
+
+            _rotatingHashSet.RemoveWhere(x => x.IsNullOrDisposed());
+        }
+
+        private void ProcessRotateSound()
+        {
             foreach (var entity in _rotatingHashSet)
             {
                 if (entity.IsNullOrDisposed())
@@ -52,10 +59,8 @@ namespace _Project.Develop.Runtime.Engine.ECS.Sounds.Systems
                     continue;
                 }
 
-                _moveAudioSourcePool.Get(entity).Value.PlayOneShotRotatingSound();
+                _moveAudioSourcePool.Get(entity).Value.StartRotatingSound();
             }
-
-            _rotatingHashSet.RemoveWhere(x => x.IsNullOrDisposed());
         }
 
         public void Dispose()

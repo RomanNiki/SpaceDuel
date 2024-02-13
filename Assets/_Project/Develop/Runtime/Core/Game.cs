@@ -61,7 +61,7 @@ namespace _Project.Develop.Runtime.Core
         public void Stop()
         {
             IsPlaying = false;
-            _systemsController?.DisableSystems();
+            _systemsController.DisableSystems();
             _timeScale.Reset();
         }
 
@@ -74,14 +74,14 @@ namespace _Project.Develop.Runtime.Core
 
         private async UniTask Pause()
         {
-            await _timeScale.SlowDown(0.0f);
+            _timeScale.SetTimeScale(0f);
             await _uiFactory.OpenPauseMenu();
         }
 
         private async UniTask UnPause()
         {
             _uiFactory.ClosePauseMenu();
-            await _timeScale.Accelerate(1f);
+            _timeScale.SetTimeScale(1f);
         }
 
         public async UniTask SetPaused(bool isPaused)

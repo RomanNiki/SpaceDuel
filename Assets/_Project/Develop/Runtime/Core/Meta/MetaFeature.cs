@@ -4,6 +4,7 @@ using _Project.Develop.Runtime.Core.Services;
 using _Project.Develop.Runtime.Core.Services.Factories;
 using _Project.Develop.Runtime.Core.Services.Meta;
 using _Project.Develop.Runtime.Core.Services.Pause;
+using _Project.Develop.Runtime.Core.Services.Time;
 using Scellecs.Morpeh.Addons.Feature;
 
 namespace _Project.Develop.Runtime.Core.Meta
@@ -14,13 +15,15 @@ namespace _Project.Develop.Runtime.Core.Meta
         private readonly IGame _game;
         private readonly IUIFactory _uiFactory;
         private readonly IPauseService _pauseService;
+        private readonly ITimeScale _timeScale;
 
-        public MetaFeature(IUIFactory uiFactory, IScore score, IGame game, IPauseService pauseService)
+        public MetaFeature(IUIFactory uiFactory, IScore score, IGame game, IPauseService pauseService, ITimeScale timeScale)
         {
             _uiFactory = uiFactory;
             _score = score;
             _game = game;
             _pauseService = pauseService;
+            _timeScale = timeScale;
         }
         
         protected override void Initialize()
@@ -30,6 +33,7 @@ namespace _Project.Develop.Runtime.Core.Meta
             AddSystem(new GamePlayHudLifecycleSystem(_uiFactory));
             AddSystem(new PlayerDeathScoreIncreaseSystem(_score));
             AddSystem(new GameOverSystem(_game));
+            AddSystem(new PlayersNoEnergySystem(_timeScale));
         }
     }
 }

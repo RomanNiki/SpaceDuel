@@ -1,13 +1,14 @@
 ﻿using _Project.Develop.Runtime.Core.Services;
+using Scellecs.Morpeh;
 using Scellecs.Morpeh.Addons.Feature.Unity;
 
 namespace _Project.Develop.Runtime.Engine.Services
 {
-    public class SystemsController : ISystemsController
+    public sealed class SystemsController : ISystemsController
     {
-        private readonly BaseFeaturesInstaller _baseFeaturesInstaller;
+        private readonly BaseInstaller _baseFeaturesInstaller;
         
-        public SystemsController(BaseFeaturesInstaller baseFeaturesInstaller)
+        public SystemsController(BaseInstaller baseFeaturesInstaller)
         {
             _baseFeaturesInstaller = baseFeaturesInstaller;
         }

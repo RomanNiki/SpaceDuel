@@ -10,6 +10,7 @@ namespace _Project.Develop.Runtime.Engine.Providers.MonoProviders.View
     [RequireComponent(typeof(EntityProvider))]
     public class ViewObjectMonoProvider : MonoProviderBase
     {
+        [SerializeField] private ParticleSystem _particleSystem;
         private EntityProvider _entityProvider;
         private Rigidbody _rigidbody;
 
@@ -30,7 +31,19 @@ namespace _Project.Develop.Runtime.Engine.Providers.MonoProviders.View
             {
                 moveStrategy = new TranslateMoveStrategy(transform);
             }
-            var viewObject = new UnityViewObject(_entityProvider, moveStrategy);
+
+            UnityViewObject viewObject;
+
+            if (_particleSystem != null)
+            {
+                viewObject = new UnityViewObject(_entityProvider,
+                    new MoveWithParticleFacade(moveStrategy, _particleSystem));
+            }
+            else
+            {
+                viewObject = new UnityViewObject(_entityProvider, moveStrategy);
+            }
+
             world.GetStash<ViewObject>().Set(entity, new ViewObject { Value = viewObject });
         }
     }

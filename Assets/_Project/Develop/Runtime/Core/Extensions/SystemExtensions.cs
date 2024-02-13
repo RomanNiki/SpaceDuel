@@ -1,4 +1,5 @@
 ﻿using Scellecs.Morpeh;
+using Scellecs.Morpeh.Addons.EntityPool;
 
 namespace _Project.Develop.Runtime.Core.Extensions
 {
@@ -8,7 +9,7 @@ namespace _Project.Develop.Runtime.Core.Extensions
             where T : struct, IComponent
         {
             var pool = world.GetStash<T>();
-            var entity = world.CreateEntity();
+            var entity =  world.GetPooledEntity();
             pool.Add(entity, component);
         }
     }

@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Projectiles
+  m_EditorClassIdentifier: 
+  m_GroupName: Projectiles
+  m_Data:
+    m_SerializedData: []
+  m_GUID: 93e9728aec056864fa677a4142fc6c9d
+  m_SerializeEntries:
+  - m_GUID: 6a8368e9f1acf3140bc3055f4afa627e
+    m_Address: MineEntity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96a0d16bc370d1744a9c33c455c961ec
+    m_Address: BulletEntity
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 3547a5558c17dab4da41afa7d8ffb15b, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 149a3c7ef93795a4fa1ea6542fa2fa9c, type: 2}
+    - {fileID: 11400000, guid: 77b0684b6b0a8fe408fe0d982b35b4ae, type: 2}

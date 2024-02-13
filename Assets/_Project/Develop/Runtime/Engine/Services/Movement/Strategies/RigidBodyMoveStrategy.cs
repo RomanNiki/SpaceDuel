@@ -11,7 +11,6 @@ namespace _Project.Develop.Runtime.Engine.Services.Movement.Strategies
             _rigidBody = rigidbody;
         }
 
-        public void MoveTo(Vector3 position) =>
-            _rigidBody.MovePosition(position);
+        public void MoveTo(Vector3 position) => _rigidBody.MovePosition(position);
     }
 }

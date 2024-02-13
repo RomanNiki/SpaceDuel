@@ -7,14 +7,14 @@
       "dependencies": {
         "com.unity.localization": "1.0.0"
       },
-      "hash": "86fed7a83099b9d8f5b9f82b5c146873023a6e5c"
+      "hash": "57e726cc4f2c8d3488011f312d5b22dab2b19dc5"
     },
     "com.cysharp.unitask": {
       "version": "https://github.com/Cysharp/UniTask.git?path=src/UniTask/Assets/Plugins/UniTask",
       "depth": 0,
       "source": "git",
       "dependencies": {},
-      "hash": "0ef6c59385c2fd6bc0a1a446bfe63c4f14c7d901"
+      "hash": "809d23edae0df58fd0f61b4b6f67855c59d1b2fb"
     },
     "com.scellecs.morpeh": {
       "version": "https://github.com/scellecs/morpeh.git#stage-2023.1",
@@ -313,7 +313,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.textmeshpro": {
-      "version": "3.0.6",
+      "version": "3.0.7",
       "depth": 0,
       "source": "registry",
       "dependencies": {

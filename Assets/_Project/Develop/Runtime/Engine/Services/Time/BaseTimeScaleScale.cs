@@ -15,7 +15,7 @@ namespace _Project.Develop.Runtime.Engine.Services.Time
             _defaultTimeScale = TimeScale = defaultTimeScale;
         }
 
-        public async UniTask SlowDown(float target, float duration = 3f)
+        public async UniTask SlowDown(float target, float duration)
         {
             if (target > TimeScale)
             {
@@ -25,7 +25,7 @@ namespace _Project.Develop.Runtime.Engine.Services.Time
             await Lerp(target, duration);
         }
 
-        public async UniTask Accelerate(float target, float duration = 3f)
+        public async UniTask Accelerate(float target, float duration)
         {
             TimeScale = duration switch
             {
@@ -36,14 +36,19 @@ namespace _Project.Develop.Runtime.Engine.Services.Time
 
             if (target < TimeScale)
                 throw new ArgumentException("Current value can't be more then current target");
-            
+
 
             await Lerp(target, duration);
         }
 
+        public void SetTimeScale(float target)
+        {
+            TimeScale = target;
+        }
+
         private async UniTask Lerp(float target, float duration)
         {
-            if (duration < 0.01f || Math.Abs(TimeScale - target) < 0.01f)
+            if (Mathf.Approximately(duration, 0f) || Mathf.Approximately(TimeScale, target))
             {
                 TimeScale = target;
                 return;
@@ -61,6 +66,7 @@ namespace _Project.Develop.Runtime.Engine.Services.Time
 
         public void Reset()
         {
+            TimeScale = _defaultTimeScale;
             TimeScale = _defaultTimeScale;
         }
     }

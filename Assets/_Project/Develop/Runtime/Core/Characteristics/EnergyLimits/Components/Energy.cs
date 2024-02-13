@@ -20,11 +20,13 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Components
             Value = maxCurrentValue;
             BaseValue = maxCurrentValue;
             MinValue = minValue;
+            HasEnergy = true;
         }
 
         [field: SerializeField] public float MaxValue { get; set; }
         [field: SerializeField] public float Value { get; set; }
         [field: SerializeField] public float BaseValue { get; set; }
         [field: SerializeField] public float MinValue { get; set; }
+        public bool HasEnergy;
     }
 }

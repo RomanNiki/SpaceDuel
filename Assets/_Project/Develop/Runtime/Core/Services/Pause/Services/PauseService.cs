@@ -22,8 +22,7 @@ namespace _Project.Develop.Runtime.Core.Services.Pause.Services
         }
 
         public void AddPauseHandler(IPauseHandler pauseHandler) => _pauseHandlers.Add(pauseHandler);
-
-
+        
         public void RemovePauseHandler(IPauseHandler pauseHandler) => _pauseHandlers.Remove(pauseHandler);
         
         public void Reset()

@@ -46,7 +46,7 @@ namespace _Project.Develop.Runtime.Engine.UI.Menu
 
         private void Awake()
         {
-#if !MORPEH_BURST
+#if UNITY_WEBGL
             _endButtonButton.gameObject.SetActive(false);
 #endif
             DisablePanels();

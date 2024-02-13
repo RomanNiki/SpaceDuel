@@ -11,7 +11,7 @@ namespace _Project.Develop.Runtime.Engine.UI.Statistics.Services
         {
             if (maxValue != 0)
             {
-                _slider.value = value / maxValue;
+                _slider.SetValueWithoutNotify(value / maxValue);
             }
         }
     }

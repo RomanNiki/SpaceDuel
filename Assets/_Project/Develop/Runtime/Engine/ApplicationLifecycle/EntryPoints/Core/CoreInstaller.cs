@@ -7,7 +7,7 @@ using _Project.Develop.Runtime.Engine.Services;
 using _Project.Develop.Runtime.Engine.Services.Factories.SystemsFactories;
 using _Project.Develop.Runtime.Engine.Services.Movement;
 using _Project.Develop.Runtime.Engine.UI.Factories;
-using Scellecs.Morpeh.Addons.Feature.Unity;
+using Scellecs.Morpeh;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -17,7 +17,7 @@ namespace _Project.Develop.Runtime.Engine.ApplicationLifecycle.EntryPoints.Core
     public class CoreInstaller : LifetimeScope
     {
         [SerializeField] private BaseFeaturesFactorySo _baseFeaturesFactorySo;
-        [SerializeField] private BaseFeaturesInstaller _featuresInstaller;
+        [SerializeField] private BaseInstaller _featuresInstaller;
         [SerializeField] private Camera _camera;
 
         protected override void Configure(IContainerBuilder builder)
@@ -31,8 +31,8 @@ namespace _Project.Develop.Runtime.Engine.ApplicationLifecycle.EntryPoints.Core
             builder.RegisterEntryPoint<CoreFlow>();
         }
         
-        private void RegisterGame(IContainerBuilder builder) =>
-            builder.Register<IGame, Game>(Lifetime.Singleton).WithParameter(_featuresInstaller);
+        private static void RegisterGame(IContainerBuilder builder) =>
+            builder.Register<IGame, Game>(Lifetime.Singleton);
 
         private void RegisterSystemController(IContainerBuilder builder) =>
             builder.Register<ISystemsController, SystemsController>(Lifetime.Singleton).WithParameter(_featuresInstaller);

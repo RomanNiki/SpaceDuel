@@ -21,7 +21,6 @@ namespace _Project.Develop.Runtime.Core.Weapon.Systems
     {
         private Filter _shotFilter;
         private Stash<Owner> _ownerPool;
-        private Stash<NoEnergyBlock> _energyBlockPool;
         private Stash<ShootingRequest> _shootingPool;
         private Stash<Position> _positionPool;
         private Stash<Rotation> _rotationPool;
@@ -30,13 +29,14 @@ namespace _Project.Develop.Runtime.Core.Weapon.Systems
         private Stash<EntityFactoryRef<IEntityFactory>> _entityFactory;
         private Stash<Muzzle> _muzzlePool;
         private Stash<Velocity> _velocityPool;
+        private Stash<Energy> _energyPool;
+        private Stash<DischargeContainer> _dischargeContainerPool;
         public World World { get; set; }
 
         public void OnAwake()
         {
             _shotFilter = World.Filter.With<ShootingRequest>().Build();
             _ownerPool = World.GetStash<Owner>();
-            _energyBlockPool = World.GetStash<NoEnergyBlock>();
             _shootingPool = World.GetStash<ShootingRequest>();
             _positionPool = World.GetStash<Position>();
             _rotationPool = World.GetStash<Rotation>();
@@ -45,6 +45,8 @@ namespace _Project.Develop.Runtime.Core.Weapon.Systems
             _shootTypePool = World.GetStash<ShootObjectType>();
             _entityFactory = World.GetStash<EntityFactoryRef<IEntityFactory>>();
             _muzzlePool = World.GetStash<Muzzle>();
+            _energyPool = World.GetStash<Energy>();
+            _dischargeContainerPool = World.GetStash<DischargeContainer>();
         }
 
         public void OnUpdate(float deltaTime)
@@ -61,9 +63,11 @@ namespace _Project.Develop.Runtime.Core.Weapon.Systems
                 if (ownerEntity.IsNullOrDisposed())
                     continue;
 
-                if (_energyBlockPool.Has(ownerEntity))
+                if (_energyPool.Get(ownerEntity).HasEnergy == false)
                     continue;
 
+                if (_energyPool.Get(ownerEntity).Value < _dischargeContainerPool.Get(weaponEntity).Value)
+                    continue;
 
                 ref var shootType = ref _shootTypePool.Get(weaponEntity);
                 ref var bulletForce = ref _startForcePool.Get(weaponEntity).Value;

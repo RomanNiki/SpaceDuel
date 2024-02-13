@@ -3,11 +3,13 @@ using _Project.Develop.Runtime.Core.Extensions;
 using _Project.Develop.Runtime.Core.Movement.Components;
 using _Project.Develop.Runtime.Core.Movement.Components.Gravity;
 using Scellecs.Morpeh;
+using UnityEngine;
+#if UNITY_WEBGL == false
 using Scellecs.Morpeh.Native;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
-using UnityEngine;
+#endif
 
 namespace _Project.Develop.Runtime.Core.Movement.Systems
 {
@@ -40,7 +42,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
 
         public void OnUpdate(float deltaTime)
         {
-#if MORPEH_BURST == false
+#if UNITY_WEBGL
             foreach (var gravityPointEntity in _gravityFilter)
             {
                 ref var gravityPointPosition = ref _positionPool.Get(gravityPointEntity);
@@ -111,7 +113,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
         {
         }
 
-#if MORPEH_BURST
+#if UNITY_WEBGL == false
         [BurstCompile]
         private struct GravityJob : IJobParallelFor
         {

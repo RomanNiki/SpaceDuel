@@ -31,7 +31,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
 
         public void OnUpdate(float deltaTime)
         {
-#if MORPEH_BURST
+#if UNITY_WEBGL == false
             var filter = _filter.AsNative();
             var job = new FrictionJob()
             {
@@ -61,14 +61,14 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
         }
 
 #if MORPEH_BURST
-        
+
         [BurstCompile]
         private struct FrictionJob : IJobParallelFor
         {
             [ReadOnly] public NativeFilter Entities;
             public NativeStash<Friction> FrictionComponents;
             public NativeStash<Velocity> VelocityComponents;
-        
+
             public void Execute(int index)
             {
                 var entityId = Entities[index];

@@ -59,7 +59,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -92,7 +92,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 67.3
+  m_fontSize: 65.65
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -194,7 +194,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -269,7 +269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -845,7 +845,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -920,7 +920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1054,7 +1054,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1296,7 +1296,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 627963567611072590, guid: 6cedb7a54f471024db5e8cee613b6bbb, type: 3}
       propertyPath: m_fontSize
-      value: 40.2
+      value: 41.15
       objectReference: {fileID: 0}
     - target: {fileID: 1086094541869599927, guid: 6cedb7a54f471024db5e8cee613b6bbb, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1304,7 +1304,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1473237679451675049, guid: 6cedb7a54f471024db5e8cee613b6bbb, type: 3}
       propertyPath: m_fontSize
-      value: 37.2
+      value: 38.05
       objectReference: {fileID: 0}
     - target: {fileID: 1547166710263716085, guid: 6cedb7a54f471024db5e8cee613b6bbb, type: 3}
       propertyPath: m_Pivot.x
@@ -1404,7 +1404,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2118204003925210974, guid: 6cedb7a54f471024db5e8cee613b6bbb, type: 3}
       propertyPath: m_fontSize
-      value: 58.75
+      value: 57.1
       objectReference: {fileID: 0}
     - target: {fileID: 2153485385620883962, guid: 6cedb7a54f471024db5e8cee613b6bbb, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1480,7 +1480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7477108507725934615, guid: 6cedb7a54f471024db5e8cee613b6bbb, type: 3}
       propertyPath: m_fontSize
-      value: 40.75
+      value: 41.7
       objectReference: {fileID: 0}
     - target: {fileID: 7739873404384340697, guid: 6cedb7a54f471024db5e8cee613b6bbb, type: 3}
       propertyPath: m_AnchoredPosition.x

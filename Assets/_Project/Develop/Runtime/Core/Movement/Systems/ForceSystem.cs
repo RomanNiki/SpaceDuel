@@ -3,11 +3,13 @@ using _Project.Develop.Runtime.Core.Extensions;
 using _Project.Develop.Runtime.Core.Input.Components;
 using _Project.Develop.Runtime.Core.Movement.Components;
 using Scellecs.Morpeh;
+using UnityEngine;
+#if UNITY_WEBGL == false
 using Scellecs.Morpeh.Native;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
-using UnityEngine;
+#endif
 
 namespace _Project.Develop.Runtime.Core.Movement.Systems
 {
@@ -25,23 +27,25 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
         private Stash<Rotation> _rotationPool;
         private Stash<Mass> _massPool;
         private Stash<Speed> _speedPool;
+        private Stash<Energy> _energyPool;
 
         public World World { get; set; }
 
         public void OnAwake()
         {
             _filter = World.Filter.With<InputMoveData>().With<Velocity>().With<Rotation>().With<Mass>()
-                .Without<NoEnergyBlock>().Build();
+                .With<Energy>().Build();
 
             _inputMoveDataPool = World.GetStash<InputMoveData>();
             _rotationPool = World.GetStash<Rotation>();
             _massPool = World.GetStash<Mass>();
             _speedPool = World.GetStash<Speed>();
+            _energyPool = World.GetStash<Energy>();
         }
 
         public void OnUpdate(float deltaTime)
         {
-#if MORPEH_BURST
+#if UNITY_WEBGL == false
             var filter = _filter.AsNative();
             var forceRequestOutput = new NativeArray<ForceRequest>(filter.length, Allocator.TempJob);
             var job = new ForceJobReference()
@@ -52,6 +56,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
                 MassPool = _massPool.AsNative(),
                 RotationPool = _rotationPool.AsNative(),
                 InputMoveDataPool = _inputMoveDataPool.AsNative()
+                EnergyPool = _energyPool.AsNative()
             };
             World.JobHandle = job.Schedule(filter.length, 64, World.JobHandle);
             World.JobsComplete();
@@ -64,6 +69,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
 #else
             foreach (var entity in _filter)
             {
+                if (_energyPool.Get(entity).HasEnergy == false) continue;
                 if (_inputMoveDataPool.Get(entity).Accelerate == false) continue;
 
                 ref var rotation = ref _rotationPool.Get(entity);
@@ -80,8 +86,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
         {
         }
 
-#if MORPEH_BURST
-        
+#if UNITY_WEBGL == false
         [BurstCompile]
         private struct ForceJobReference : IJobParallelFor
         {
@@ -90,11 +95,13 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
             public NativeStash<Rotation> RotationPool;
             public NativeStash<Mass> MassPool;
             public NativeStash<Speed> SpeedPool;
+            public NativeStash<Energy> EnergyPool;
             public NativeArray<ForceRequest> ForceRequests;
 
             public void Execute(int index)
             {
                 var entity = Entities[index];
+                if (EnergyPool.Get(entity).HasEnergy == false) return;
                 if (InputMoveDataPool.Get(entity).Accelerate == false) return;
 
                 ref var rotation = ref RotationPool.Get(entity);

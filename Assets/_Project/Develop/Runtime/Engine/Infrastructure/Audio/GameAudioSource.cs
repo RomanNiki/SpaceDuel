@@ -11,6 +11,8 @@ namespace _Project.Develop.Runtime.Engine.Infrastructure.Audio
 
         private readonly GameAudioMixer _gameAudioMixer = GameAudioMixer.Instance;
         public float VolumeFactor => _volumeFactor;
+
+        public bool IsPlaying => _audioSource.isPlaying; 
         
         private void OnValidate()
         {

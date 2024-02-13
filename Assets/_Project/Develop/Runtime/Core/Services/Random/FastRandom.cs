@@ -27,9 +27,7 @@ namespace _Project.Develop.Runtime.Core.Services.Random
         {
             NewSeed(RandomSeed.Crypto());
         }
-
-        /// <inheritdoc />
-        /// <remarks>If the seed value is zero, it is set to one.</remarks>
+        
         public void NewSeed(int seed)
         {
             if (seed == 0)

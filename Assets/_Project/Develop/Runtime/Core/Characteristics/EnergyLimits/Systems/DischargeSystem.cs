@@ -1,6 +1,7 @@
 ﻿using _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Components;
 using _Project.Develop.Runtime.Core.Extensions;
 using Scellecs.Morpeh;
+using Scellecs.Morpeh.Addons.EntityPool;
 using Scellecs.Morpeh.Addons.Systems;
 using UnityEngine;
 
@@ -33,13 +34,12 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
                 ref var dischargeRequest = ref _dischargePool.Get(dischargeRequestEntity);
                 ref var dischargeEntity = ref dischargeRequest.Entity;
                 ref var energy = ref _energyPool.Get(dischargeEntity);
-                SpendEnergy(ref energy, dischargeRequest.Value);
+                ChangeEnergy(ref energy, dischargeRequest.Value);
                 World.SendMessage(new EnergyChangedEvent { Entity = dischargeEntity });
-                World.RemoveEntity(dischargeRequestEntity);
             }
         }
 
-        private static void SpendEnergy(ref Energy energy, in float energyLoss) =>
+        private static void ChangeEnergy(ref Energy energy, in float energyLoss) =>
             energy.Value = Mathf.Max(0.00f, energy.Value - energyLoss);
     }
 }

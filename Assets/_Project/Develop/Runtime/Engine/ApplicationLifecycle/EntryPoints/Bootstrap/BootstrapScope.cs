@@ -13,6 +13,8 @@ using _Project.Develop.Runtime.Engine.Input;
 using _Project.Develop.Runtime.Engine.Services.AssetLoaders;
 using _Project.Develop.Runtime.Engine.Services.AssetManagement;
 using _Project.Develop.Runtime.Engine.Services.Time;
+using _Project.Develop.Runtime.Engine.Sounds.Ambient;
+using _Project.Develop.Runtime.Engine.Sounds.Ambient.Interfaces;
 using UnityEngine;
 using VContainer;
 using VContainer.Unity;
@@ -22,6 +24,7 @@ namespace _Project.Develop.Runtime.Engine.ApplicationLifecycle.EntryPoints.Boots
     public class BootstrapScope : LifetimeScope
     {
         [SerializeField] private AssetPair[] _poolsAssets;
+        [SerializeField] private AmbientSoundController _ambientSoundController;
         
         protected override void Awake()
         {
@@ -39,7 +42,13 @@ namespace _Project.Develop.Runtime.Engine.ApplicationLifecycle.EntryPoints.Boots
             RegisterRandom(builder);
             RegisterPauseService(builder);
             RegisterSignals(builder);
+            RegisterAmbientController(builder);
             builder.RegisterEntryPoint<BootstrapFlow>();
+        }
+
+        private void RegisterAmbientController(IContainerBuilder builder)
+        {
+            builder.RegisterInstance<IAmbientSoundController>(_ambientSoundController);
         }
 
         private static void RegisterSignals(IContainerBuilder builder)
@@ -74,8 +83,7 @@ namespace _Project.Develop.Runtime.Engine.ApplicationLifecycle.EntryPoints.Boots
 
         private static void RegisterTime(IContainerBuilder builder)
         {
-            var timeScale = new BaseTimeScale();
-            builder.RegisterInstance<ITimeScale>(timeScale);
+            builder.Register<ITimeScale, BaseTimeScale>(Lifetime.Singleton).WithParameter(1f);
         }
 
         private static void RegisterPauseService(IContainerBuilder builder) =>

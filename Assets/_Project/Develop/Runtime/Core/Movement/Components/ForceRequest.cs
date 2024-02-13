@@ -13,10 +13,10 @@ namespace _Project.Develop.Runtime.Core.Movement.Components
     [Serializable]
     public struct ForceRequest : IComponent
     {
-#if MORPEH_BURST == false
-        public Entity Entity;
-#else
+#if UNITY_WEBGL == false
         public EntityId EntityId;
+#else
+        public Entity Entity;
 #endif
         public Vector2 Value;
     }

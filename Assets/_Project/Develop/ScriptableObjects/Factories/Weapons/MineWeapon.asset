@@ -20,7 +20,7 @@ MonoBehaviour:
     Value: 0
   _timerColor: {r: 0.9339623, g: 0.42372498, b: 0.14538093, a: 1}
   _dischargeContainer:
-    Value: 40
+    Value: 50
   _muzzle:
     Offset: -1
   _timeBetweenShotsSetup:
