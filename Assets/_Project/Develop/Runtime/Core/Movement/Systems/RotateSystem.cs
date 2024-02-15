@@ -49,7 +49,8 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
                 Entities = filter,
                 RotationSpeedComponents = _rotationSpeedPool.AsNative(),
                 InputComponents = _inputDataPool.AsNative(),
-                RotationComponents = _rotationPool.AsNative()
+                RotationComponents = _rotationPool.AsNative(),
+                EnergyComponents = _energyPool.AsNative(),
             };
 
             World.JobHandle = job.Schedule(filter.length, 64, World.JobHandle);
@@ -94,7 +95,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
             public void Execute(int index)
             {
                 var entityId = Entities[index];
-                if (EnergyComponents.Get(entity).HasEnergy == false)
+                if (EnergyComponents.Get(entityId).HasEnergy == false)
                     return;
                 ref var inputData = ref InputComponents.Get(entityId);
                 if (MathF.Abs(inputData.Rotation) < 0.1f)

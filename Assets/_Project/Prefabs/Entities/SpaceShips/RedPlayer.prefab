@@ -193,7 +193,8 @@ MonoBehaviour:
   _audioSource: {fileID: 800504291324308397}
   _soundType: 2
   _playOnAwake: 0
-  _volumeFactor: 1
+  <VolumeFactor>k__BackingField: 1
+  _gameAudioMixer: {fileID: 11400000, guid: 4e5c4591f24fd9748b24db6db6f6a360, type: 2}
 --- !u!114 &6962313559900930359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,7 +233,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audioClip: {fileID: 8300000, guid: c8a24ee0d2738e14cab711f435317144, type: 3}
-  _volumeFactor: 0.821
+  _volumeFactor: 0.8
   _audioSource: {fileID: 8825756638146011304}
   _delay: 0.4
 --- !u!1 &2008832569725114053
@@ -471,6 +472,7 @@ MonoBehaviour:
     <Value>k__BackingField: 100
     <BaseValue>k__BackingField: 100
     <MinValue>k__BackingField: 0
+    HasEnergy: 0
 --- !u!114 &6117352905751499016
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -512,7 +514,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedComponent:
-    Value: 100
+    Value: 140
 --- !u!114 &6938755020596041245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1010,7 +1012,8 @@ MonoBehaviour:
   _audioSource: {fileID: 4371005914791618141}
   _soundType: 2
   _playOnAwake: 0
-  _volumeFactor: 1
+  <VolumeFactor>k__BackingField: 1
+  _gameAudioMixer: {fileID: 11400000, guid: 4e5c4591f24fd9748b24db6db6f6a360, type: 2}
 --- !u!114 &7119111465008922943
 MonoBehaviour:
   m_ObjectHideFlags: 0

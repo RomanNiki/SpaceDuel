@@ -1,47 +1,82 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using _Project.Develop.Runtime.Engine.Infrastructure.Audio.Interfaces;
+using UnityEngine;
 
 namespace _Project.Develop.Runtime.Engine.Infrastructure.Audio
 {
-    public class GameAudioMixer
+    [CreateAssetMenu(menuName = "SpaceDuel/AudioMixer", fileName = nameof(GameAudioMixer))]
+    public class GameAudioMixer : ScriptableObject
     {
-        private readonly Dictionary<SoundTypeEnum, float> _volumes = new();
-
-        private GameAudioMixer()
-        {
-        }
-        
-        public static GameAudioMixer Instance { get; } = new();
-        
+        [SerializeField] private bool _usePlayerPrefs;
+        [SerializeField] private List<VolumeData> _volumeDataList;
         public event Action<SoundTypeEnum> VolumeChanged;
+        private ISoundService _soundService;
 
-        public float GetVolume(SoundTypeEnum typeEnum)
+        private void Awake()
         {
-            if (_volumes.TryGetValue(SoundTypeEnum.Master, out var masterVolume))
-            {
-                if (SoundTypeEnum.Master != typeEnum)
-                {
-                    return _volumes[typeEnum] * masterVolume;
-                }
+            _soundService = new SoundService(_usePlayerPrefs);
+            Configure();
+        }
 
-                return masterVolume;
+        private void Configure()
+        {
+            _soundService.Load(_volumeDataList);
+        }
+
+        public float GetVolume(SoundTypeEnum typeEnum, bool scaled = true)
+        {
+            var masterVolume = _volumeDataList.First(v => v.Type == SoundTypeEnum.Master).Volume;
+
+            if (typeEnum == SoundTypeEnum.Master) return masterVolume;
+
+            var specificVolume = _volumeDataList.First(v => v.Type == typeEnum).Volume;
+            if (scaled)
+            {
+                return specificVolume * masterVolume;
             }
 
-            return _volumes[typeEnum];
+            return specificVolume;
         }
 
         public void SetVolume(SoundTypeEnum typeEnum, float targetVolume)
         {
-            if (_volumes.TryGetValue(typeEnum, out _))
+            var existingVolume = _volumeDataList.FirstOrDefault(v => v.Type == typeEnum);
+            if (existingVolume != null)
             {
-                _volumes[typeEnum] = targetVolume;
+                existingVolume.Volume = targetVolume;
             }
             else
             {
-                _volumes.Add(typeEnum, targetVolume);
+                _volumeDataList.Add(new VolumeData { Type = typeEnum, Volume = targetVolume });
             }
 
             VolumeChanged?.Invoke(typeEnum);
+        }
+
+        private void OnDestroy()
+        {
+            _soundService?.Save(_volumeDataList);
+            _soundService?.Dispose();
+        }
+    }
+
+    [Serializable]
+    public class VolumeData
+    {
+        public SoundTypeEnum Type;
+        [Range(0f, 1f)] public float Volume;
+        public string Key = "MasterVolume";
+
+        public VolumeData()
+        {
+        }
+
+        public VolumeData(SoundTypeEnum type)
+        {
+            Type = type;
+            Volume = 0.5f;
         }
     }
 }

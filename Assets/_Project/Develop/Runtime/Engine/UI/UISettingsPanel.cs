@@ -1,5 +1,4 @@
-﻿using _Project.Develop.Runtime.Engine.Common;
-using _Project.Develop.Runtime.Engine.Sounds;
+﻿using _Project.Develop.Runtime.Engine.Infrastructure.Audio;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -10,22 +9,17 @@ namespace _Project.Develop.Runtime.Engine.UI
         [SerializeField] private Slider _masterVolumeSlider;
         [SerializeField] private Slider _musicVolumeSlider;
         [SerializeField] private Slider _effectsVolumeSlider;
-        private AudioMixerConfigurator _audioMixerConfigurator;
-
-        private void Start()
-        {
-            _audioMixerConfigurator = AudioMixerConfigurator.Instance;
-        }
+        [SerializeField] private GameAudioMixer _mixer;
 
         private void OnEnable()
         {
-            _masterVolumeSlider.value = GamePrefs.GetMasterVolume();
+            _masterVolumeSlider.value = _mixer.GetVolume(SoundTypeEnum.Master, false);
             _masterVolumeSlider.onValueChanged.AddListener(OnMasterVolumeSliderChanged);
-           
-            _musicVolumeSlider.value = GamePrefs.GetMusicVolume();
-            _musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeSliderChanged);   
-            
-            _effectsVolumeSlider.value = GamePrefs.GetEffectsVolume();
+
+            _musicVolumeSlider.value = _mixer.GetVolume(SoundTypeEnum.Music, false);
+            _musicVolumeSlider.onValueChanged.AddListener(OnMusicVolumeSliderChanged);
+
+            _effectsVolumeSlider.value = _mixer.GetVolume(SoundTypeEnum.Effects, false);
             _effectsVolumeSlider.onValueChanged.AddListener(OnEffectsVolumeSliderChanged);
         }
 
@@ -38,21 +32,17 @@ namespace _Project.Develop.Runtime.Engine.UI
 
         private void OnMasterVolumeSliderChanged(float newValue)
         {
-            GamePrefs.SetMasterVolume(newValue);
-            _audioMixerConfigurator.Configure();
+            _mixer.SetVolume(SoundTypeEnum.Master, newValue);
         }
 
         private void OnMusicVolumeSliderChanged(float newValue)
         {
-            GamePrefs.SetMusicVolume(newValue);
-            _audioMixerConfigurator.Configure();
-        } 
-        
+            _mixer.SetVolume(SoundTypeEnum.Music, newValue);
+        }
+
         private void OnEffectsVolumeSliderChanged(float newValue)
         {
-            GamePrefs.SetEffectsVolume(newValue);
-            _audioMixerConfigurator.Configure();
+            _mixer.SetVolume(SoundTypeEnum.Effects, newValue);
         }
-        
     }
 }

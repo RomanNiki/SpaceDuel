@@ -55,8 +55,8 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
                 ForceRequests = forceRequestOutput,
                 MassPool = _massPool.AsNative(),
                 RotationPool = _rotationPool.AsNative(),
-                InputMoveDataPool = _inputMoveDataPool.AsNative()
-                EnergyPool = _energyPool.AsNative()
+                InputMoveDataPool = _inputMoveDataPool.AsNative(),
+                EnergyPool = _energyPool.AsNative(),
             };
             World.JobHandle = job.Schedule(filter.length, 64, World.JobHandle);
             World.JobsComplete();

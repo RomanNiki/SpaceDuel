@@ -123,8 +123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _serializedComponent:
-    InitialTimeSec: 4
-    TimeLeftSec: 4
+    InitialTimeSec: 8
+    TimeLeftSec: 8
 --- !u!114 &7871518090867575227
 MonoBehaviour:
   m_ObjectHideFlags: 0

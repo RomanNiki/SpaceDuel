@@ -171,7 +171,7 @@ MonoBehaviour:
     TypeName: 
   autoRun: 1
   autoInjectGameObjects:
-  - {fileID: 1021304266}
+  - {fileID: 877365214}
   _poolsAssets:
   - Id: 0
     AssetReference:
@@ -263,7 +263,8 @@ MonoBehaviour:
   _audioSource: {fileID: 663317341}
   _soundType: 1
   _playOnAwake: 0
-  _volumeFactor: 1
+  <VolumeFactor>k__BackingField: 1
+  _gameAudioMixer: {fileID: 11400000, guid: 4e5c4591f24fd9748b24db6db6f6a360, type: 2}
 --- !u!82 &663317341
 AudioSource:
   m_ObjectHideFlags: 0
@@ -276,7 +277,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.007972799
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -431,50 +432,6 @@ Transform:
   - {fileID: 1478478173}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1021304266
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1021304268}
-  - component: {fileID: 1021304269}
-  m_Layer: 0
-  m_Name: AuidoMixerConfigurator
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1021304268
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021304266}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 562.88116, y: 253.25867, z: -7.227927}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1021304269
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1021304266}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0c978548fcb34fb4ba5384b420a825af, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1478478170
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,7 +465,8 @@ MonoBehaviour:
   _audioSource: {fileID: 1478478172}
   _soundType: 1
   _playOnAwake: 0
-  _volumeFactor: 1
+  <VolumeFactor>k__BackingField: 1
+  _gameAudioMixer: {fileID: 11400000, guid: 4e5c4591f24fd9748b24db6db6f6a360, type: 2}
 --- !u!82 &1478478172
 AudioSource:
   m_ObjectHideFlags: 0
@@ -521,7 +479,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.18255982
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -625,5 +583,4 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 227715193}
-  - {fileID: 1021304268}
   - {fileID: 877365216}

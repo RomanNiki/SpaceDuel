@@ -76,7 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _buffSpawner:
-    SpawnIntervalSec: 10
+    SpawnIntervalSec: 14
 --- !u!114 &2216933706114072027
 MonoBehaviour:
   m_ObjectHideFlags: 0

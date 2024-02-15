@@ -7,13 +7,17 @@ namespace _Project.Develop.Runtime.Engine.Infrastructure.Audio
         [SerializeField] private AudioSource _audioSource;
         [SerializeField] private SoundTypeEnum _soundType;
         [SerializeField] private bool _playOnAwake;
-        [Range(0f, 1f)] [SerializeField] private float _volumeFactor = 1f;
+        [field: SerializeField, Range(0f, 1f)] public float VolumeFactor { get; private set; } = 1f;
 
-        private readonly GameAudioMixer _gameAudioMixer = GameAudioMixer.Instance;
-        public float VolumeFactor => _volumeFactor;
+        [SerializeField] private GameAudioMixer _gameAudioMixer;
+        private bool _isGameAudioMixerNotNull;
+        public bool IsPlaying => _audioSource.isPlaying;
 
-        public bool IsPlaying => _audioSource.isPlaying; 
-        
+        private void Awake()
+        {
+            _isGameAudioMixerNotNull = _gameAudioMixer != null;
+        }
+
         private void OnValidate()
         {
             if (_audioSource != null)
@@ -28,7 +32,11 @@ namespace _Project.Develop.Runtime.Engine.Infrastructure.Audio
         private void OnEnable()
         {
             UpdateVolume();
-            _gameAudioMixer.VolumeChanged += OnVolumeChanged;
+            if (_gameAudioMixer != null)
+            {
+                _gameAudioMixer.VolumeChanged += OnVolumeChanged;
+            }
+
             if (_playOnAwake)
             {
                 Play();
@@ -37,31 +45,51 @@ namespace _Project.Develop.Runtime.Engine.Infrastructure.Audio
 
         private void UpdateVolume()
         {
-            _audioSource.volume = _gameAudioMixer.GetVolume(_soundType) * _volumeFactor;
+            if (_gameAudioMixer != null)
+            {
+                _audioSource.volume = _gameAudioMixer.GetVolume(_soundType) * VolumeFactor;
+            }
+            else
+            {
+                _audioSource.volume = VolumeFactor;
+            }
         }
 
         private void OnVolumeChanged(SoundTypeEnum soundType)
         {
-            if (soundType == _soundType)
-            {
-                UpdateVolume();
-            }
+            UpdateVolume();
         }
 
         private void OnDisable()
         {
-            _gameAudioMixer.VolumeChanged -= OnVolumeChanged;
+            if (_gameAudioMixer != null)
+            {
+                _gameAudioMixer.VolumeChanged -= OnVolumeChanged;
+            }
         }
 
-        private float GetVolume(SoundTypeEnum soundType) =>
-            _gameAudioMixer.GetVolume(soundType);
+        private float GetVolume(SoundTypeEnum soundType)
+        {
+            if (_gameAudioMixer != null)
+            {
+                return _gameAudioMixer.GetVolume(soundType) * VolumeFactor;
+            }
+
+            return VolumeFactor;
+        }
+
 
         public void SetVolumeFactor(float volumeFactor)
         {
-            _volumeFactor = Mathf.Clamp01(volumeFactor);
-            _audioSource.volume = _gameAudioMixer.GetVolume(_soundType) * _volumeFactor;
+            VolumeFactor = Mathf.Clamp01(volumeFactor);
+            var volume = VolumeFactor;
+            if (_isGameAudioMixerNotNull)
+            {
+                volume *= _gameAudioMixer.GetVolume(_soundType);
+            }
+            _audioSource.volume = volume;
         }
-        
+
         public void PlayOneShot(AudioClip clip)
         {
             PlayOneShot(clip, GetVolume(_soundType));

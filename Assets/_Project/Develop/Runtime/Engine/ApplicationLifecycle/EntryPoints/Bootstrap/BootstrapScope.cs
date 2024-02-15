@@ -8,6 +8,8 @@ using _Project.Develop.Runtime.Core.Services.Random;
 using _Project.Develop.Runtime.Core.Services.Time;
 using _Project.Develop.Runtime.Engine.Common;
 using _Project.Develop.Runtime.Engine.Common.Messages;
+using _Project.Develop.Runtime.Engine.Infrastructure.Audio;
+using _Project.Develop.Runtime.Engine.Infrastructure.Audio.Interfaces;
 using _Project.Develop.Runtime.Engine.Infrastructure.Signals;
 using _Project.Develop.Runtime.Engine.Input;
 using _Project.Develop.Runtime.Engine.Services.AssetLoaders;
@@ -45,7 +47,7 @@ namespace _Project.Develop.Runtime.Engine.ApplicationLifecycle.EntryPoints.Boots
             RegisterAmbientController(builder);
             builder.RegisterEntryPoint<BootstrapFlow>();
         }
-
+        
         private void RegisterAmbientController(IContainerBuilder builder)
         {
             builder.RegisterInstance<IAmbientSoundController>(_ambientSoundController);

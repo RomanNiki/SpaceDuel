@@ -48,7 +48,8 @@ MonoBehaviour:
   _audioSource: {fileID: 3402599156052732149}
   _soundType: 2
   _playOnAwake: 1
-  _volumeFactor: 1
+  <VolumeFactor>k__BackingField: 1
+  _gameAudioMixer: {fileID: 11400000, guid: 4e5c4591f24fd9748b24db6db6f6a360, type: 2}
 --- !u!82 &3402599156052732149
 AudioSource:
   m_ObjectHideFlags: 0

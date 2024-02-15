@@ -42,7 +42,7 @@ AudioSource:
   m_GameObject: {fileID: 6947280736328334179}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: 0}
+  OutputAudioMixerGroup: {fileID: -1744587326284367278, guid: aef430b660e6b3b4cb8ada86c6f0358f, type: 2}
   m_audioClip: {fileID: 8300000, guid: 7e7eea037f2a1f64dacc47f9fa3d51d7, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
@@ -144,7 +144,8 @@ MonoBehaviour:
   _audioSource: {fileID: 233802510018546051}
   _soundType: 2
   _playOnAwake: 1
-  _volumeFactor: 1
+  <VolumeFactor>k__BackingField: 1
+  _gameAudioMixer: {fileID: 11400000, guid: 4e5c4591f24fd9748b24db6db6f6a360, type: 2}
 --- !u!1001 &1876087632918110568
 PrefabInstance:
   m_ObjectHideFlags: 0
