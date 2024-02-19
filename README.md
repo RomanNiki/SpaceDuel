@@ -4,6 +4,7 @@ A simple example of kspaceduel game using [Entity Component System (ECS)](https:
 <p style="text-align: center">
   <img width="600" src="Docs~/Gameplay.gif" alt="Gameplay">
 </p>
+
 ## How To Play
 ### Part 1: Game Overview
 In the arcade game "Space Duel," players each take control of a spaceship with various capabilities. These ships can execute maneuvers such as turning, accelerating, firing projectiles, and deploying mines. However, these actions consume energy, and each spaceship has a limited energy reserve.
