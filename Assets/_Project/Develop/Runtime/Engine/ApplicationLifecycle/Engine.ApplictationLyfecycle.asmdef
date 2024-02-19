@@ -1,0 +1,22 @@
+{
+    "name": "Engine.ApplictationLyfecycle",
+    "rootNamespace": "",
+    "references": [
+        "GUID:a93bf8ac0c1b84a4890de7ae7d2c9838",
+        "GUID:08a693b9a5fb8c8429296f0dd7ff4288",
+        "GUID:ea7a63879e9e418429d3f9a1d2fa7fd3",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
+        "GUID:3377deebfb0acde45876d12c6e3d27cc",
+        "GUID:7d442588603025b4aa87fba1ee47a329"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

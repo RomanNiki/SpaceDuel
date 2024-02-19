@@ -15,47 +15,11 @@ MonoBehaviour:
   m_GroupName: Default Local Group
   m_Data:
     m_SerializedData: []
-  m_GUID: c620c6e900a9735448f85bad5ee46373
-  m_SerializeEntries:
-  - m_GUID: 8f586378b4e144a9851e7b34d9b748ee
-    m_Address: Fonts & Materials/LiberationSans SDF
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 2e498d1c8094910479dc3e1b768306a4
-    m_Address: Fonts & Materials/LiberationSans SDF - Fallback
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: d7f26134233a9b74ab5c3351d4ae475c
-    m_Address: Assets/Sounds/Shot2.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 7d6c806927fa60046b55b62941b65fd8
-    m_Address: Assets/Sounds/Rocket.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: ed947d6eb5fde0f43b27b85d7687783a
-    m_Address: Assets/Sounds/BombPlace.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 768f9c7c1c9fbf44a89bbbae492cdad3
-    m_Address: Assets/Sounds/Shot.mp3
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: 2fab373aff35de44faae6fd333baa113
-    m_Address: PauseMenu
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: f09f8f698030e0040b733c9a0befb98a
-    m_Address: Assets/Sci-Fi UI/_SciFi_GUISkin_/Skin_Assets/font/zekton free SDF.asset
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: b6799aa1b36dbc342b29093123f63bf2
-    m_Address: LoadingScreen
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+  m_GUID: fbbefbb1fb22af644adccda2bbda56d1
+  m_SerializeEntries: []
   m_ReadOnly: 0
-  m_Settings: {fileID: 11400000, guid: e0df372616e9dd1438e54318ff94b096, type: 2}
+  m_Settings: {fileID: 11400000, guid: 3547a5558c17dab4da41afa7d8ffb15b, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 38b41769b0e4a8e4abe988ae23e72bda, type: 2}
-    - {fileID: 11400000, guid: b364589209a434c4e94bd99bddef32bc, type: 2}
+    - {fileID: 11400000, guid: e739c1ee6e623d7478de6e753e674f26, type: 2}
+    - {fileID: 11400000, guid: e64c1a0846f36794da1a917cde8cfc76, type: 2}

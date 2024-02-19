@@ -15,23 +15,36 @@ MonoBehaviour:
   m_GroupName: UI
   m_Data:
     m_SerializedData: []
-  m_GUID: 815a6a277ea0fbb418493f33f607e06e
+  m_GUID: 407cc86ff73e8ee438589098a53b58d7
   m_SerializeEntries:
-  - m_GUID: 32033f24a09e0f04f9e21088c92a7deb
+  - m_GUID: cd5798e67d14f4f4491f19f3163a45dc
     m_Address: PlayerUI
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: c7d01813663b376468d489c9a1c1eb0f
-    m_Address: GameScore
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: dafa3873183d2c441abb1547da09b2d5
+    m_Address: ControlsWindowView
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: 97c958f8f03a52a4f8cb1b7f27e7357e
-    m_Address: PrepareScreen
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 96bf148359e881e45b41a925932b5d93
+    m_Address: LoadingScreen
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c1b2bf7f6ff6d0940922acaf38bb0396
+    m_Address: GameplayHud
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d1844aee7186f134a93475708f2cd4f6
+    m_Address: PauseMenuView
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
-  m_Settings: {fileID: 11400000, guid: e0df372616e9dd1438e54318ff94b096, type: 2}
+  m_Settings: {fileID: 11400000, guid: 3547a5558c17dab4da41afa7d8ffb15b, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: a1289522868560d4e9799ba042427eb3, type: 2}
-    - {fileID: 11400000, guid: 50f55f8e79fb37142bad695459bf7cdb, type: 2}
+    - {fileID: 11400000, guid: 2c121ca8d33d56f46b9f76eeaed75369, type: 2}
+    - {fileID: 11400000, guid: 9d3023233368055489c5b6eeb6831211, type: 2}

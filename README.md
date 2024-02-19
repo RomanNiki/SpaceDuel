@@ -1,14 +1,38 @@
-Игра-аркада “Космическая дуэль” 
+# SpaceDuel
+A simple example of kspaceduel game using [Entity Component System (ECS)](https://en.wikipedia.org/wiki/Entity_component_system) implementation by [Morpeh](https://github.com/scellecs/morpeh) for gameplay logic and Unity Engine for rendering, physics, resource management and other.
+# Gameplay
+<p style="text-align: center">
+  <img width="600" src="Docs/Gameplay.gif" alt="Gameplay">
+</p>
+## How To Play
+### Part 1: Game Overview
+In the arcade game "Space Duel," players each take control of a spaceship with various capabilities. These ships can execute maneuvers such as turning, accelerating, firing projectiles, and deploying mines. However, these actions consume energy, and each spaceship has a limited energy reserve.
 
-Каждый игрок управляет одним кораблем. Корабль может поворачиваться, ускоряться, стрелять и закладывать мины.
-У каждого корабля есть определенное количество энергии. Кораблю требуется энергия для поворотов, ускорения, стрельбы и закладывания мин. 
-Корабль получает ее при помощи своих солнечных батарей. Количество энергии, которую корабль получает, зависит от расстояния и направления,
-в котором находится солнце.  Корабль получает больше энергии вблизи солнца и меньше около границы. Он получает полное количество энергии, 
-если солнце светит прямо на батареи, часть энергии, если оно светит под углом и, совсем не получает ее, если солнце светит на торец батареи. 
-Если у корабля закончилась энергия, он теряет управление и не может стрелять. Столкновение со своими или чужими снарядами и минами уменьшает здоровье корабля.
-Если столкнутся два корабля, то более слабый корабль будет уничтожен, и здоровье более сильного уменьшится на значение здоровья слабого корабля,
-плюс некоторое значение (Ущерб при аварии). Корабль уничтожается, когда он влетает в солнце. Снаряды летают вокруг солнца как корабли. 
-У мин есть некоторое количество энергии, чтобы оставаться на одном месте. Когда энергия заканчивается, мина падает на солнце.
-Минам, расположенным около солнца, требуется больше энергии, чем расположенным вдали от него. 
-Мины могут быть уничтожены снарядами.
-Время от времени на поле боя появляются заправки.
+### Part 2: Energy Management
+To replenish energy, spaceships rely on solar panels. The amount of energy a ship receives depends on its proximity and orientation to the sun. When closer to the sun, a ship gains more energy, whereas it receives less energy near the battlefield's borders. The optimal energy gain occurs when the sun's rays directly hit the ship's batteries. Energy intake is reduced at oblique angles and becomes nonexistent when the sun shines at the ends of the batteries.
+
+### Part 3: Consequences of Energy Depletion
+Running out of energy leads to a loss of control, rendering the ship unable to fire or perform maneuvers. Additionally, collisions with projectiles, mines, or other ships can damage a spaceship, depleting its health. In the event of two ships colliding, the weaker ship is destroyed, while the stronger one sustains damage equal to the weaker ship's health value plus an additional amount known as "Crash Damage."
+
+### Part 4: Hazards and Solar Dynamics
+A ship meets its demise if it flies directly into the sun. Projectiles, including shells, follow paths similar to the ships as they orbit the sun. Mines have their own energy reserves to remain stationary, and when that energy is exhausted, they fall into the sun. Mines positioned closer to the sun require more energy to maintain their position and are more susceptible to solar attraction.
+
+### Part 5: Interactions and Power-ups
+Projectiles can destroy mines, adding an element of strategy and timing to the gameplay. Periodically, refueling stations emerge on the battlefield, offering an opportunity for players to replenish their energy and continue their space duel.
+
+### Control
+- **W** / **Up Arrow** - accelerate spaceship.
+- **AD** / **Left Arrow/ Right Arrow** - turn direction
+- **Space** / **<** - primary weapon shot
+- **Left Ctrl** / **>** - secondary weapon shot
+All control logic is encapsulated in a class system [InputSystem](Assets/_Project/Develop/Runtime/Core/Input/Systems/InputSystem.cs).
+
+# Architecture
+An important issue is how the core logic communicates with the engine's external logic. For dependency inversion uses interfaces within the core assembly referenced by the engine assembly. Thus, the core assembly does not know anything about the game engine used. ECS dictates a flat architecture and there is nothing special in core assembly. 
+
+# Screenshots
+<p style="text-align: center">
+  <img width="600" src="Docs/Screen_0.png" alt="Menu">
+  <img width="600" src="Docs/Screen_1.png" alt="Gameplay">
+  <img width="600" src="Docs/Screen_2.png" alt="Gameplay">
+</p>

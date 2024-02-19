@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b2ff0f64110554aa795935e6b1de81, type: 3}
+  m_Name: MineWeapon
+  m_EditorClassIdentifier: 
+  _shootType:
+    ObjectId: 3
+  _entityFactory: {fileID: 11400000, guid: 880043a0a95344a4cbb00d4f39893124, type: 2}
+  _shot: {fileID: 8300000, guid: 1dc2f6240e094c84799dfd456800eb5d, type: 3}
+  _bulletStartForce:
+    Value: 0
+  _timerColor: {r: 0.9339623, g: 0.42372498, b: 0.14538093, a: 1}
+  _dischargeContainer:
+    Value: 50
+  _muzzle:
+    Offset: -1
+  _timeBetweenShotsSetup:
+    TimeSec: 3

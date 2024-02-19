@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24b2ff0f64110554aa795935e6b1de81, type: 3}
+  m_Name: BulletWeapon
+  m_EditorClassIdentifier: 
+  _shootType:
+    ObjectId: 2
+  _entityFactory: {fileID: 11400000, guid: ddc775cc8c1195840a8263e3966a217f, type: 2}
+  _shot: {fileID: 8300000, guid: 8fde6dc0436f4d24da034c5a6fe163ac, type: 3}
+  _bulletStartForce:
+    Value: 12.5
+  _timerColor: {r: 0.6013968, g: 0.9150943, b: 0.41006586, a: 1}
+  _dischargeContainer:
+    Value: 12.5
+  _muzzle:
+    Offset: 2
+  _timeBetweenShotsSetup:
+    TimeSec: 0.2

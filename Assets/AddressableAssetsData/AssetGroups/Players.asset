@@ -15,19 +15,21 @@ MonoBehaviour:
   m_GroupName: Players
   m_Data:
     m_SerializedData: []
-  m_GUID: 67ebe76cbd2007f40a60ddc950e1314f
+  m_GUID: 98cfbb7de1e3d3f4882a49d38c7400ce
   m_SerializeEntries:
-  - m_GUID: 60b3c6785d4fdda48b29f6956be9d2e1
-    m_Address: BluePlayer
+  - m_GUID: 215434a35045e1841a44338e3e34d2b9
+    m_Address: RedPlayerEntity
     m_ReadOnly: 0
     m_SerializedLabels: []
-  - m_GUID: c63c6b00826ef6f4c8b1e71547bd4740
-    m_Address: RedPlayer
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 2a9c91d7c0fe5704480cfdf2b369decb
+    m_Address: BluePlayerEntity
     m_ReadOnly: 0
     m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
-  m_Settings: {fileID: 11400000, guid: e0df372616e9dd1438e54318ff94b096, type: 2}
+  m_Settings: {fileID: 11400000, guid: 3547a5558c17dab4da41afa7d8ffb15b, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 436ee5071a5b1484cae994372d74dc2c, type: 2}
-    - {fileID: 11400000, guid: cd894f2896d248d4aa2217e27447ca4c, type: 2}
+    - {fileID: 11400000, guid: 5222a3bb50ec73f4594f6a577f89def8, type: 2}
+    - {fileID: 11400000, guid: 53ce74a51bb3b2d4c9faf029bb0adc11, type: 2}
