@@ -1,7 +1,9 @@
 # SpaceDuel
 A simple example of kspaceduel game using [Entity Component System (ECS)](https://en.wikipedia.org/wiki/Entity_component_system) implementation by [Morpeh](https://github.com/scellecs/morpeh) for gameplay logic and Unity Engine for rendering, physics, resource management and other.
 # Gameplay
-#TODO: Create and Add gameplay gif
+<p style="text-align: center">
+  <img width="600" src="Docs/Gameplay.gif" alt="Gameplay">
+</p>
 ## How To Play
 ### Part 1: Game Overview
 In the arcade game "Space Duel," players each take control of a spaceship with various capabilities. These ships can execute maneuvers such as turning, accelerating, firing projectiles, and deploying mines. However, these actions consume energy, and each spaceship has a limited energy reserve.
@@ -23,7 +25,14 @@ Projectiles can destroy mines, adding an element of strategy and timing to the g
 - **AD** / **Left Arrow/ Right Arrow** - turn direction
 - **Space** / **<** - primary weapon shot
 - **Left Ctrl** / **>** - secondary weapon shot
-All control logic is encapsulated in a class system [InputSystem](Assets/Scripts/Engine/Input/Systems/InputSystem.cs).
+All control logic is encapsulated in a class system [InputSystem](Assets/_Project/Develop/Runtime/Core/Input/Systems/InputSystem.cs).
 
 # Architecture
 An important issue is how the core logic communicates with the engine's external logic. For dependency inversion uses interfaces within the core assembly referenced by the engine assembly. Thus, the core assembly does not know anything about the game engine used. ECS dictates a flat architecture and there is nothing special in core assembly. 
+
+# Screenshots
+<p style="text-align: center">
+  <img width="600" src="Docs/Screen_0.png" alt="Menu">
+  <img width="600" src="Docs/Screen_1.png" alt="Gameplay">
+  <img width="600" src="Docs/Screen_2.png" alt="Gameplay">
+</p>
