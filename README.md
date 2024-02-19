@@ -2,7 +2,7 @@
 A simple example of kspaceduel game using [Entity Component System (ECS)](https://en.wikipedia.org/wiki/Entity_component_system) implementation by [Morpeh](https://github.com/scellecs/morpeh) for gameplay logic and Unity Engine for rendering, physics, resource management and other.
 # Gameplay
 <p style="text-align: center">
-  <img width="600" src="Docs/Gameplay.gif" alt="Gameplay">
+  <img width="600" src="Docs~/Gameplay.gif" alt="Gameplay">
 </p>
 ## How To Play
 ### Part 1: Game Overview
@@ -32,7 +32,7 @@ An important issue is how the core logic communicates with the engine's external
 
 # Screenshots
 <p style="text-align: center">
-  <img width="600" src="Docs/Screen_0.png" alt="Menu">
-  <img width="600" src="Docs/Screen_1.png" alt="Gameplay">
-  <img width="600" src="Docs/Screen_2.png" alt="Gameplay">
+  <img width="600" src="Docs~/Screen_0.png" alt="Menu">
+  <img width="600" src="Docs~/Screen_1.png" alt="Gameplay">
+  <img width="600" src="Docs~/Screen_2.png" alt="Gameplay">
 </p>
