@@ -32,8 +32,8 @@ namespace _Project.Develop.Runtime.Core.Meta.Systems
         {
             if (_filter.IsEmpty())
                 return;
-             
-            _game.Restart().Forget();
+
+            _game.Restart();
         }
 
         public void Dispose()

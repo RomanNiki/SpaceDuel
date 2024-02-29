@@ -1,4 +1,5 @@
 ﻿using System;
+using _Project.Develop.Runtime.Core.Common;
 using _Project.Develop.Runtime.Core.Extensions;
 using _Project.Develop.Runtime.Core.Movement.Components;
 using _Project.Develop.Runtime.Core.Movement.Components.Gravity;
@@ -22,7 +23,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
     [Serializable]
     public sealed class GravitySystem : IFixedSystem
     {
-        private const float G = 0.06674f; //6,7 * 10^-11
+       
         private Filter _gravityFilter;
         private Filter _movableFilter;
         private Stash<Position> _positionPool;
@@ -59,7 +60,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
                     if (IsInBounds(distance, gravityPoint))
                         continue;
 
-                    var massProduct = pointMass.Value * mass.Value * G;
+                    var massProduct = pointMass.Value * mass.Value * GameConfig.G;
                     var force = CalculateForce(distance, gravityPoint, massProduct, targetDirection, mass);
 
                     World.SendMessage(new ForceRequest { Value = force, Entity = movableEntity });
@@ -98,7 +99,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
         {
             var radiusRatio = 1 - Mathf.Clamp01(distance / gravityPoint.OuterRadius);
             var unscaledForceMagnitude = massProduct * radiusRatio / Mathf.Pow(distance, 2);
-            var forceMagnitude = G * unscaledForceMagnitude;
+            var forceMagnitude = GameConfig.G * unscaledForceMagnitude;
             var forceDirection = targetDirection.normalized;
             var force = forceDirection * forceMagnitude / mass.Value;
             return force;
@@ -139,7 +140,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
                 if (IsInBounds(distance, gravityPointComponent))
                     return;
 
-                var massProduct = MassComponents.Get(gravityId).Value * mass.Value * G;
+                var massProduct = MassComponents.Get(gravityId).Value * mass.Value * GameConfig.G;
                 var force = CalculateForce(distance, gravityPointComponent, massProduct, targetDirection, mass);
                 ForceRequests[index] = new ForceRequest { Value = force, EntityId = entityId };
             }

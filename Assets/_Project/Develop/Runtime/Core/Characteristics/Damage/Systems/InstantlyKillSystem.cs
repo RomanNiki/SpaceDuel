@@ -11,30 +11,44 @@ namespace _Project.Develop.Runtime.Core.Characteristics.Damage.Systems
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
-    
+
     public sealed class InstantlyKillSystem : ISystem
     {
-        private Filter _killFilter;
+        private Filter _requestsFilter;
+        private Stash<DeadTag> _deadTagPool;
+        private Stash<KillRequest> _killPool;
         private Stash<Health> _healthPool;
-        private Stash<KillSelfRequest> _killSelfRequestPool;
         private Stash<Position> _positionPool;
-
         public World World { get; set; }
-        
+
         public void OnAwake()
         {
-            _killFilter = World.Filter.With<KillSelfRequest>().With<Health>().Without<DeadTag>().Build();
+            _requestsFilter = World.Filter.With<KillRequest>().Build();
+            _deadTagPool = World.GetStash<DeadTag>();
             _healthPool = World.GetStash<Health>();
-            _killSelfRequestPool = World.GetStash<KillSelfRequest>();
+            _killPool = World.GetStash<KillRequest>();
             _positionPool = World.GetStash<Position>();
         }
-        
+
         public void OnUpdate(float deltaTime)
         {
-            foreach (var entity in _killFilter)
+            foreach (var request in _requestsFilter)
             {
-                World.SendMessage(new DamageRequest(_healthPool.Get(entity).Value, _positionPool.Get(entity).Value, entity));
-                _killSelfRequestPool.Remove(entity);
+                ref var entityToKill = ref _killPool.Get(request).EntityToKill;
+                if (entityToKill.IsNullOrDisposed())
+                    continue;
+                if (_deadTagPool.Has(entityToKill))
+                    continue;
+
+                if (_healthPool.Has(entityToKill))
+                {
+                    World.SendMessage(new DamageRequest(_healthPool.Get(entityToKill).Value,
+                        _positionPool.Get(entityToKill).Value, entityToKill));
+                }
+                else
+                {
+                    _deadTagPool.Add(entityToKill);
+                }
             }
         }
 

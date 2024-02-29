@@ -1,4 +1,5 @@
 ﻿using _Project.Develop.Runtime.Core.Characteristics.Damage.Components;
+using _Project.Develop.Runtime.Core.Extensions;
 using Scellecs.Morpeh;
 
 namespace _Project.Develop.Runtime.Core.Collisions.Strategies
@@ -7,11 +8,7 @@ namespace _Project.Develop.Runtime.Core.Collisions.Strategies
     {
         public void OnEnter(World world, Entity sender, Entity target)
         {
-            var killSelfRequest = world.GetStash<KillSelfRequest>();
-            if (killSelfRequest.Has(sender) == false)
-            {
-                killSelfRequest.Add(sender);
-            }
+            world.SendMessage(new KillRequest() { EntityToKill = sender, });
         }
     }
 }

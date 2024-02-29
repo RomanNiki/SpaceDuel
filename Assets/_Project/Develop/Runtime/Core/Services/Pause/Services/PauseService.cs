@@ -10,12 +10,12 @@ namespace _Project.Develop.Runtime.Core.Services.Pause.Services
         public bool IsPause { get; private set; }
         public event Action<bool> PauseStateChanged;
 
-        public async UniTask SetPaused(bool isPaused)
+        public void SetPaused(bool isPaused)
         {
             IsPause = isPaused;
             foreach (var pauseHandler in _pauseHandlers)
             {
-                await pauseHandler.SetPaused(isPaused);
+                pauseHandler.SetPaused(isPaused);
             }
 
             PauseStateChanged?.Invoke(isPaused);

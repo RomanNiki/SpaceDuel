@@ -1,4 +1,5 @@
 ﻿using _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Components;
+using _Project.Develop.Runtime.Core.Common;
 using _Project.Develop.Runtime.Core.Extensions;
 using _Project.Develop.Runtime.Core.Input.Components;
 using Scellecs.Morpeh;
@@ -16,7 +17,7 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
 
     public sealed class MoveDischargeSystem : UpdateSystem
     {
-        private const float MinRotationForDischarge = 0.2f;
+      
         private Filter _filter;
         private Stash<RotateDischargeSpeed> _rotateDischargeAmountPool;
         private Stash<AccelerateDischargeSpeed> _accelerateDischargeAmountPool;
@@ -50,7 +51,7 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
                     dischargeAmount += _accelerateDischargeAmountPool.Get(entity).Value;
                 }
 
-                if (Mathf.Abs(input.Rotation) >= MinRotationForDischarge)
+                if (Mathf.Abs(input.Rotation) >= GameConfig.MinRotationForDischarge)
                 {
                     dischargeAmount += _rotateDischargeAmountPool.Get(entity).Value;
                 }

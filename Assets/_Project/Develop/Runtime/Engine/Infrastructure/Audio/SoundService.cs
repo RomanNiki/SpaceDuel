@@ -7,6 +7,7 @@ namespace _Project.Develop.Runtime.Engine.Infrastructure.Audio
     public class SoundService : ISoundService
     {
         private readonly bool _usePlayerPrefs;
+        
         public SoundService(bool usePlayerPrefs)
         {
             _usePlayerPrefs = usePlayerPrefs;

@@ -1,4 +1,5 @@
 ﻿using _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Components;
+using _Project.Develop.Runtime.Core.Common;
 using _Project.Develop.Runtime.Core.Extensions;
 using _Project.Develop.Runtime.Core.Movement.Components;
 using _Project.Develop.Runtime.Core.Movement.Components.Gravity;
@@ -17,7 +18,7 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
 
     public sealed class SunDischargeSystem : UpdateSystem
     {
-        private const float MIN_DISCHARGE_AMOUNT = 0.01f;
+
         private Filter _entityFilter;
         private Filter _sunFilter;
         private Stash<Position> _positionPool;
@@ -47,7 +48,7 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
                     var dischargeAmount = Extensions.WorldExtensions.CalculateDistanceCoefficient(position, sunPosition,
                         gravityPoint.InnerRadius, gravityPoint.OuterRadius) * chargeSpeed * deltaTime;
 
-                    if (dischargeAmount < MIN_DISCHARGE_AMOUNT) continue;
+                    if (dischargeAmount < GameConfig.MinDischargeAmount) continue;
                     World.SendMessage(new DischargeRequest { Entity = entity, Value = dischargeAmount });
                 }
             }

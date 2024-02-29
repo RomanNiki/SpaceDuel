@@ -17,9 +17,9 @@ namespace YG
         public bool[] openLevels = new bool[3];
 
         // Ваши сохранения
-
-        // ...
-
+        public float MasterVolume;
+        public float MusicVolume;
+        public float EffectsVolume;
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны
 
 

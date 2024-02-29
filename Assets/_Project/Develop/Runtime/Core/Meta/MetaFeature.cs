@@ -33,7 +33,7 @@ namespace _Project.Develop.Runtime.Core.Meta
             AddSystem(new GamePlayHudLifecycleSystem(_uiFactory));
             AddSystem(new PlayerDeathScoreIncreaseSystem(_score));
             AddSystem(new GameOverSystem(_game));
-            AddSystem(new PlayersNoEnergySystem(_timeScale));
+            AddSystem(new PlayersNoEnergySystem(_timeScale, _game, _pauseService));
         }
     }
 }

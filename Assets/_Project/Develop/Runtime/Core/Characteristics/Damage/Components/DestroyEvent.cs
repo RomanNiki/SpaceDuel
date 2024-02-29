@@ -1,9 +1,7 @@
-﻿
-using System;
+﻿using System;
 using Scellecs.Morpeh;
-using UnityEngine;
 
-namespace _Project.Develop.Runtime.Core.Timers.Components
+namespace _Project.Develop.Runtime.Core.Characteristics.Damage.Components
 {
 #if ENABLE_IL2CPP
     using Unity.IL2CPP.CompilerServices;
@@ -12,8 +10,8 @@ namespace _Project.Develop.Runtime.Core.Timers.Components
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
     [Serializable]
-    public struct TimerColor : IComponent
+    public struct DestroyEvent : IComponent
     {
-        public Color Color;
+        public Entity EntityToDestroy;
     }
 }

@@ -6,7 +6,7 @@ using VContainer;
 
 namespace _Project.Develop.Runtime
 {
-    public class WorldUpdateController : MonoBehaviour
+    public class WorldUpdater : MonoBehaviour
     {
         private IGame _game;
         private ITimeScale _timeScale;

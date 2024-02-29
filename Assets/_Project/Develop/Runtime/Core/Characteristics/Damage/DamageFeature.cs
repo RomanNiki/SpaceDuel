@@ -11,15 +11,16 @@ namespace _Project.Develop.Runtime.Core.Characteristics.Damage
         {
             RegisterEvent<HealthChangedEvent>();
             RegisterEvent<GameOverEvent>();
-            RegisterRequest<DamageRequest>();
+            RegisterEvent<DestroyEvent>();
             AddSystem(new DestroySystem());
             AddSystem(new InstantlyKillSystem());
-            AddSystem(new KillWithoutHealthSystem());
             AddSystem(new DamageSystem());
             AddSystem(new CheckDeathSystem());
             AddSystem(new CheckOwnerDeathSystem());
             AddSystem(new PlayerDiedSystem());
             AddSystem(new DeathSystem());
+            RegisterRequest<DamageRequest>();
+            RegisterRequest<KillRequest>();
         }
     }
 }

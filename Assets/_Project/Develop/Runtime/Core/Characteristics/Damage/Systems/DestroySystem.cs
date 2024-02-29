@@ -1,6 +1,8 @@
 ﻿using _Project.Develop.Runtime.Core.Characteristics.Damage.Components;
 using _Project.Develop.Runtime.Core.Views.Components;
 using Scellecs.Morpeh;
+using Scellecs.Morpeh.Addons.EntityPool;
+using UnityEngine;
 
 namespace _Project.Develop.Runtime.Core.Characteristics.Damage.Systems
 {
@@ -13,29 +15,35 @@ namespace _Project.Develop.Runtime.Core.Characteristics.Damage.Systems
     
     public sealed class DestroySystem : ISystem
     {
-        private Filter _viewDestroyFilter;
-        private Filter _destroyEntityFilter;
+        private Filter _destroyRequestFilter;
         private Stash<ViewObject> _viewPool;
-
+        private Stash<DestroyRequest> _destroyRequestPool;
         public World World { get; set; }
 
         public void OnAwake()
         {
-            _viewDestroyFilter = World.Filter.With<DestroySelfRequest>().With<ViewObject>().Build();
-            _destroyEntityFilter = World.Filter.With<DestroySelfRequest>().Without<ViewObject>().Build();
+            _destroyRequestFilter = World.Filter.With<DestroyRequest>().Build();
+            _destroyRequestPool = World.GetStash<DestroyRequest>();
             _viewPool = World.GetStash<ViewObject>();
         }
 
         public void OnUpdate(float deltaTime)
         {
-            foreach (var entity in _viewDestroyFilter)
+            foreach (var requestEntity in _destroyRequestFilter)
             {
-                _viewPool.Get(entity).Value.Dispose();
-            }
+                ref var entityToDestroy = ref _destroyRequestPool.Get(requestEntity).EntityToDestroy;
+                if (entityToDestroy.IsNullOrDisposed())
+                    continue;
 
-            foreach (var entity in _destroyEntityFilter)
-            {
-                World.RemoveEntity(entity);
+                if (_viewPool.Has(entityToDestroy))
+                {
+                    _viewPool.Get(entityToDestroy).Value.Dispose();
+                }
+                else
+                {
+                    World.RemoveEntity(entityToDestroy);
+                }
+                World.PoolEntity(requestEntity);
             }
         }
 

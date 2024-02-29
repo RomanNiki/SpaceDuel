@@ -18,23 +18,33 @@ namespace _Project.Develop.Runtime.Core.Effects.Systems
         where TDestroyedTag : struct, IComponent
         where TEffectTag : struct, IComponent
     {
-        private Filter _filter;
+        private Filter _destroyEventFilter;
         private Stash<Position> _positionPool;
         private Stash<TEffectTag> _effectTagPool;
+        private Stash<TDestroyedTag> _destroyedTagPool;
+        private Stash<DestroyEvent> _destroyEventPool;
         public World World { get; set; }
 
         public void OnAwake()
         {
-            _filter = World.Filter.With<TDestroyedTag>().With<DestroySelfRequest>().Build();
+            _destroyEventFilter = World.Filter.With<DestroyEvent>().Build();
+            _destroyEventPool = World.GetStash<DestroyEvent>();
             _positionPool = World.GetStash<Position>();
             _effectTagPool = World.GetStash<TEffectTag>();
+            _destroyedTagPool = World.GetStash<TDestroyedTag>();
         }
 
         public void OnUpdate(float deltaTime)
         {
-            foreach (var entity in _filter)
+            foreach (var requestEntity in _destroyEventFilter)
             {
-                ref var explosionPosition = ref _positionPool.Get(entity);
+                ref var entityToDestroy = ref _destroyEventPool.Get(requestEntity).EntityToDestroy;
+                if (entityToDestroy.IsNullOrDisposed())
+                    continue;
+                if (_destroyedTagPool.Has(entityToDestroy) == false)
+                    continue;
+                
+                ref var explosionPosition = ref _positionPool.Get(entityToDestroy);
                 CreateEffectEntity(explosionPosition.Value);
             }
         }

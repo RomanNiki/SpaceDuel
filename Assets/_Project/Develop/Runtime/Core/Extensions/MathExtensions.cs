@@ -1,7 +1,5 @@
 ﻿using UnityEngine;
 
-using UnityEngine;
-
 namespace _Project.Develop.Runtime.Core.Extensions
 {
     public static class MathExtensions

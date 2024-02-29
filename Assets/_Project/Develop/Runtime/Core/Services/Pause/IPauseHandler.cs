@@ -1,9 +1,7 @@
-﻿using Cysharp.Threading.Tasks;
-
-namespace _Project.Develop.Runtime.Core.Services.Pause
+﻿namespace _Project.Develop.Runtime.Core.Services.Pause
 {
     public interface IPauseHandler
     {
-        UniTask SetPaused(bool isPaused);
+        void SetPaused(bool isPaused);
     }
 }

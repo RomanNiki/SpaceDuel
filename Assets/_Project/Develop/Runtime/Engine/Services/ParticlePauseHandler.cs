@@ -1,5 +1,4 @@
 ﻿using _Project.Develop.Runtime.Core.Services.Pause;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 
@@ -30,7 +29,7 @@ namespace _Project.Develop.Runtime.Engine.Services
             _pauseService.RemovePauseHandler(this);
         }
 
-        public async UniTask SetPaused(bool isPaused)
+        public void SetPaused(bool isPaused)
         {
             if (isPaused)
             {

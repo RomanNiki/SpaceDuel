@@ -21,7 +21,7 @@ namespace _Project.Develop.Runtime.Engine.Sounds.Ambient
             DontDestroyOnLoad(this);
         }
 
-        public async UniTask SetPaused(bool isPaused)
+        public void SetPaused(bool isPaused)
         {
             var ambientEnum = isPaused ? AmbientEnum.Pause : AmbientEnum.Game;
             if (TryGetValue(ambientEnum, out var clip))

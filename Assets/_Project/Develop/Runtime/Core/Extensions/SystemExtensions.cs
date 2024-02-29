@@ -10,7 +10,7 @@ namespace _Project.Develop.Runtime.Core.Extensions
         {
             var pool = world.GetStash<T>();
             var entity =  world.GetPooledEntity();
-            pool.Add(entity, component);
+            pool.Set(entity, component);
         }
     }
 }

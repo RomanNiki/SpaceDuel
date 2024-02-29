@@ -8,7 +8,7 @@ namespace _Project.Develop.Runtime.Core.Services.Pause
         public event Action<bool> PauseStateChanged;
         public bool IsPause { get; }
 
-        public UniTask SetPaused(bool isPaused);
+        public void SetPaused(bool isPaused);
 
         public void AddPauseHandler(IPauseHandler pauseHandler);
 

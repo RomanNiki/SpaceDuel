@@ -10,7 +10,8 @@ namespace _Project.Develop.Runtime.Core.Characteristics.Damage.Components
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
     [Serializable]
-    public struct KillSelfRequest : IComponent
+    public struct KillRequest : IComponent
     {
+        public Entity EntityToKill;
     }
 }

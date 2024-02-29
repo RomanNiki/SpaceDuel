@@ -13,7 +13,6 @@ namespace _Project.Develop.Runtime.FeaturesInstallers
         private IFeaturesFactory _featuresFactory;
         private IObjectResolver _container;
         
-
         [Inject]
         public void Init(IFeaturesFactory featuresFactory, IObjectResolver container)
         {

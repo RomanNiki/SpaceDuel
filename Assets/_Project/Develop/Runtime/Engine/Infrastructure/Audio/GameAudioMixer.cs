@@ -19,7 +19,7 @@ namespace _Project.Develop.Runtime.Engine.Infrastructure.Audio
             _soundService = new SoundService(_usePlayerPrefs);
             Configure();
         }
-
+        
         private void Configure()
         {
             _soundService.Load(_volumeDataList);

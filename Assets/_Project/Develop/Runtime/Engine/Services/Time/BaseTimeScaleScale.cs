@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Globalization;
+using _Project.Develop.Runtime.Core.Common;
 using _Project.Develop.Runtime.Core.Services.Time;
 using Cysharp.Threading.Tasks;
 using UnityEngine;
@@ -10,7 +12,7 @@ namespace _Project.Develop.Runtime.Engine.Services.Time
         private readonly float _defaultTimeScale;
         public float TimeScale { get; private set; }
 
-        public BaseTimeScale(float defaultTimeScale = 1f)
+        public BaseTimeScale(float defaultTimeScale = GameConfig.DefaultTimeScale)
         {
             _defaultTimeScale = TimeScale = defaultTimeScale;
         }
@@ -22,7 +24,7 @@ namespace _Project.Develop.Runtime.Engine.Services.Time
                 throw new ArgumentException("Target value can't be more then current value");
             }
 
-            await Lerp(target, duration);
+            await Fade(target, duration);
         }
 
         public async UniTask Accelerate(float target, float duration)
@@ -38,7 +40,7 @@ namespace _Project.Develop.Runtime.Engine.Services.Time
                 throw new ArgumentException("Current value can't be more then current target");
 
 
-            await Lerp(target, duration);
+            await Fade(target, duration);
         }
 
         public void SetTimeScale(float target)
@@ -46,7 +48,7 @@ namespace _Project.Develop.Runtime.Engine.Services.Time
             TimeScale = target;
         }
 
-        private async UniTask Lerp(float target, float duration)
+        private async UniTask Fade(float target, float duration)
         {
             if (Mathf.Approximately(duration, 0f) || Mathf.Approximately(TimeScale, target))
             {
@@ -60,13 +62,12 @@ namespace _Project.Develop.Runtime.Engine.Services.Time
                 TimeScale = Mathf.Lerp(TimeScale, target, normalizedTime);
                 await UniTask.Yield();
             }
-
+            
             TimeScale = target;
         }
 
         public void Reset()
         {
-            TimeScale = _defaultTimeScale;
             TimeScale = _defaultTimeScale;
         }
     }

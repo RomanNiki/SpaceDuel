@@ -1,7 +1,6 @@
 ﻿using System;
 using _Project.Develop.Runtime.Core.Services.Pause;
 using _Project.Develop.Runtime.Engine.Infrastructure.Audio;
-using Cysharp.Threading.Tasks;
 using UnityEngine;
 using VContainer;
 
@@ -26,7 +25,7 @@ namespace _Project.Develop.Runtime.Engine.Sounds
             _pauseService.RemovePauseHandler(this);
         }
 
-        public async UniTask SetPaused(bool isPaused)
+        public void SetPaused(bool isPaused)
         {
             Pause?.Invoke(isPaused);
             Paused = isPaused;

@@ -19,27 +19,28 @@ namespace _Project.Develop.Runtime.Core
             _uiFactory = uiFactory;
             _timeScale = timeScale;
         }
-
+        
+        public event Action Starting;
         public bool IsRestarting { get; private set; }
         public bool IsPlaying { get; private set; }
 
         public async UniTask Start()
         {
+            Starting?.Invoke();
             await _uiFactory.OpenControlsWindow(StartInternal);
             await _timeScale.Accelerate(1f);
         }
 
-        public async UniTaskVoid Restart()
+        public void Restart()
         {
             if (IsRestarting == false)
-            {
-                await RestartAsync();
-            }
+                RestartAsync().Forget();
         }
-
-        private async UniTask RestartAsync()
+        
+        private async UniTaskVoid RestartAsync()
         {
             IsRestarting = true;
+            
             try
             {
                 await _timeScale.SlowDown(0.2f, 3f);
@@ -72,27 +73,27 @@ namespace _Project.Develop.Runtime.Core
             IsPlaying = true;
         }
 
-        private async UniTask Pause()
+        private void Pause()
         {
             _timeScale.SetTimeScale(0f);
-            await _uiFactory.OpenPauseMenu();
+            _uiFactory.OpenPauseMenu().Forget();
         }
 
-        private async UniTask UnPause()
+        private void UnPause()
         {
             _uiFactory.ClosePauseMenu();
             _timeScale.SetTimeScale(1f);
         }
 
-        public async UniTask SetPaused(bool isPaused)
+        public void SetPaused(bool isPaused)
         {
             if (isPaused)
             {
-                await Pause();
+                Pause();
             }
             else
             {
-                await UnPause();
+                UnPause();
             }
         }
     }

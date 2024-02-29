@@ -1,4 +1,5 @@
-﻿using _Project.Develop.Runtime.Core.Movement.Components;
+﻿using _Project.Develop.Runtime.Core.Common;
+using _Project.Develop.Runtime.Core.Movement.Components;
 using Scellecs.Morpeh;
 using UnityEngine;
 
@@ -13,7 +14,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
 
     public sealed class MoveClampSystem : IFixedSystem
     {
-        private const float MAXIMUM_POSITION_DEVIATION = 0.1f;
+     
         private readonly IMoveLoopService _loopService;
         private Stash<Position> _positionPool;
         private Filter _filter;
@@ -51,7 +52,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
             var y1 = loopedPos.y;
             var y2 = position.y;
             
-            return Mathf.Abs(x1 - x2) <= MAXIMUM_POSITION_DEVIATION && Mathf.Abs(y1 - y2) <= MAXIMUM_POSITION_DEVIATION;
+            return Mathf.Abs(x1 - x2) <= GameConfig.MaximumPositionDeviation && Mathf.Abs(y1 - y2) <= GameConfig.MaximumPositionDeviation;
         }
 
         public void Dispose()

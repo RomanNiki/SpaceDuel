@@ -20,7 +20,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
         private Stash<Team> _teamPool;
         private Stash<Energy> _energyPool;
         public World World { get; set; }
-        private const float RotationThreshold = 0.1f;
+
 
         public void OnAwake()
         {
@@ -61,7 +61,7 @@ namespace _Project.Develop.Runtime.Core.Movement.Systems
 
         private void HandleRotationEvent(InputMoveData input, TeamEnum team, Entity entity)
         {
-            if (Mathf.Abs(input.Rotation) > RotationThreshold)
+            if (Mathf.Abs(input.Rotation) > GameConfig.RotationThreshold)
             {
                 if (_rotationSet.Add(team))
                 {

@@ -16,7 +16,6 @@ namespace _Project.Develop.Runtime.Engine.Services.Factories.EntitiesFactories.W
         [SerializeField] private ProjectileEntityFactorySo _entityFactory;
         [SerializeField] private AudioClip _shot;
         [SerializeField] private BulletStartForce _bulletStartForce = new() { Value = 15f };
-        [SerializeField] private Color _timerColor = Color.yellow;
 
         [SerializeField] private DischargeContainer _dischargeContainer =
             new() { Value = .25f };
@@ -36,7 +35,6 @@ namespace _Project.Develop.Runtime.Engine.Services.Factories.EntitiesFactories.W
             world.AddComponentToEntity(entity, _shootType);
             world.AddComponentToEntity(entity, new EntityFactoryRef<IEntityFactory> { Factory = _entityFactory });
             world.AddComponentToEntity(entity, new UnityComponent<AudioClip>(_shot));
-            world.AddComponentToEntity(entity, new TimerColor { Color = _timerColor });
 
             return entity;
         }

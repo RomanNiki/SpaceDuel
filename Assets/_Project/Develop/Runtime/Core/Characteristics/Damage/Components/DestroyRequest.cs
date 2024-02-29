@@ -1,6 +1,7 @@
 ﻿using System;
+using Scellecs.Morpeh;
 
-namespace _Project.Develop.Runtime.Core.Timers.Components
+namespace _Project.Develop.Runtime.Core.Characteristics.Damage.Components
 {
 #if ENABLE_IL2CPP
     using Unity.IL2CPP.CompilerServices;
@@ -9,7 +10,8 @@ namespace _Project.Develop.Runtime.Core.Timers.Components
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
     [Serializable]
-    public struct TimerSunGravityResist
+    public struct DestroyRequest : IComponent
     {
+        public Entity EntityToDestroy;
     }
 }

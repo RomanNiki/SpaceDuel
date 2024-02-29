@@ -1,4 +1,5 @@
 ﻿using _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Components;
+using _Project.Develop.Runtime.Core.Common;
 using _Project.Develop.Runtime.Core.Extensions;
 using _Project.Develop.Runtime.Core.Movement.Components;
 using _Project.Develop.Runtime.Core.Movement.Components.Gravity;
@@ -19,8 +20,7 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
 
     public sealed class SunChargeSystem : UpdateSystem
     {
-        private const float MIN_CHARGE_AMOUNT = 0.01f;
-        private const float MIN_ROTATION_COEFICIENT = 0.01f;
+
         private Filter _entityFilter;
         private Filter _sunFilter;
         private Stash<Rotation> _rotationPool;
@@ -53,7 +53,7 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
                     ref var rotation = ref _rotationPool.Get(entity);
                     var chargeAmount = CalculateChargeCoefficient(position, rotation, sunPosition, gravityPoint) *
                                        chargeSpeed * deltaTime;
-                    if (chargeAmount < MIN_CHARGE_AMOUNT) continue;
+                    if (chargeAmount < GameConfig.MinChargeAmount) continue;
 
                     World.SendMessage(new ChargeRequest { Entity = entity, Value = chargeAmount });
                 }
@@ -65,7 +65,7 @@ namespace _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Systems
         {
             var rotationCoefficient = Vector3.Dot(playerRotation.LookDir,
                 sunPosition.Value - playerPosition.Value.normalized);
-            if (rotationCoefficient > MIN_ROTATION_COEFICIENT)
+            if (rotationCoefficient > GameConfig.MinRotationCoefficient)
             {
                 return rotationCoefficient * WorldExtensions.CalculateDistanceCoefficient(playerPosition, sunPosition,
                     gravityPoint.InnerRadius, gravityPoint.OuterRadius);
