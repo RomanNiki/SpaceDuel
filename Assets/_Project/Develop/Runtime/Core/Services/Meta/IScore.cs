@@ -10,6 +10,5 @@ namespace _Project.Develop.Runtime.Core.Services.Meta
         event Action<int> RedScoreChanged;
         void IncreaseBlue();
         void IncreaseRed();
-        void Reset();
     }
 }

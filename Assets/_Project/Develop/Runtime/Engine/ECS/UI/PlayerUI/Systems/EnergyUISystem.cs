@@ -1,5 +1,5 @@
 ﻿using _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Components;
-using _Project.Develop.Runtime.Engine.UI.Statistics.Services;
+using _Project.Develop.Runtime.Engine.UI.Statistics.Sliders;
 using Scellecs.Morpeh;
 
 namespace _Project.Develop.Runtime.Engine.ECS.UI.PlayerUI.Systems

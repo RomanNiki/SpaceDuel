@@ -35,13 +35,10 @@ namespace _Project.Develop.Runtime.Core.Characteristics.Damage.Systems
                 ref var damageRequest = ref _damageRequestPool.Get(entity);
                 var damageRequestEntity = damageRequest.Entity;
                 if (damageRequestEntity.IsNullOrDisposed())
-                {
                     continue;
-                }
                 ref var health = ref _healthPool.Get(damageRequestEntity);
                 health.Value = Mathf.Clamp(health.Value - damageRequest.Damage, health.MinValue, health.MaxValue);
                 World.SendMessage(new HealthChangedEvent { Entity = damageRequestEntity });
-                World.PoolEntity(entity);
             }
         }
 

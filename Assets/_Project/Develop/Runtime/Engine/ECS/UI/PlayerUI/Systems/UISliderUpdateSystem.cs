@@ -1,7 +1,7 @@
 ﻿using _Project.Develop.Runtime.Core.Extensions;
 using _Project.Develop.Runtime.Core.Weapon.Components;
 using _Project.Develop.Runtime.Engine.Common.Components;
-using _Project.Develop.Runtime.Engine.UI.Statistics.Services;
+using _Project.Develop.Runtime.Engine.UI.Statistics.Sliders;
 using Scellecs.Morpeh;
 
 namespace _Project.Develop.Runtime.Engine.ECS.UI.PlayerUI.Systems

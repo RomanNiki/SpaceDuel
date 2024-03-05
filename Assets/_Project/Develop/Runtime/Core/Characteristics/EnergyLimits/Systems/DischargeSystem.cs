@@ -1,7 +1,6 @@
 ﻿using _Project.Develop.Runtime.Core.Characteristics.EnergyLimits.Components;
 using _Project.Develop.Runtime.Core.Extensions;
 using Scellecs.Morpeh;
-using Scellecs.Morpeh.Addons.EntityPool;
 using Scellecs.Morpeh.Addons.Systems;
 using UnityEngine;
 

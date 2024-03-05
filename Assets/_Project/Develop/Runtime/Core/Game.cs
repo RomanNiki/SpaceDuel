@@ -20,15 +20,15 @@ namespace _Project.Develop.Runtime.Core
             _timeScale = timeScale;
         }
         
-        public event Action Starting;
+        public event Action GameStarting;
         public bool IsRestarting { get; private set; }
         public bool IsPlaying { get; private set; }
 
         public async UniTask Start()
         {
-            Starting?.Invoke();
+            GameStarting?.Invoke();
             await _uiFactory.OpenControlsWindow(StartInternal);
-            await _timeScale.Accelerate(1f);
+            _timeScale.Reset();
         }
 
         public void Restart()
@@ -44,9 +44,7 @@ namespace _Project.Develop.Runtime.Core
             try
             {
                 await _timeScale.SlowDown(0.2f, 3f);
-                IsPlaying = false;
-                await UniTask.Yield();
-                _systemsController.DisableSystems();
+                Stop();
                 await Start();
             }
             catch (Exception e)

@@ -20,13 +20,5 @@ namespace _Project.Develop.Runtime.Core.Services.Meta
             RedScore++;
             RedScoreChanged?.Invoke(RedScore);
         }
-        
-        public void Reset()
-        {
-            BlueScore = 0;
-            RedScore = 0;
-            BlueScoreChanged?.Invoke(BlueScore);
-            RedScoreChanged?.Invoke(RedScore);
-        }
     }
 }

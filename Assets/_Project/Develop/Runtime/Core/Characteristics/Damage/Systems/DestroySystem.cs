@@ -1,8 +1,6 @@
 ﻿using _Project.Develop.Runtime.Core.Characteristics.Damage.Components;
 using _Project.Develop.Runtime.Core.Views.Components;
 using Scellecs.Morpeh;
-using Scellecs.Morpeh.Addons.EntityPool;
-using UnityEngine;
 
 namespace _Project.Develop.Runtime.Core.Characteristics.Damage.Systems
 {
@@ -12,7 +10,7 @@ namespace _Project.Develop.Runtime.Core.Characteristics.Damage.Systems
     [Il2CppSetOption(Option.NullChecks, false)]
     [Il2CppSetOption(Option.ArrayBoundsChecks, false)]
 #endif
-    
+
     public sealed class DestroySystem : ISystem
     {
         private Filter _destroyRequestFilter;
@@ -43,8 +41,9 @@ namespace _Project.Develop.Runtime.Core.Characteristics.Damage.Systems
                 {
                     World.RemoveEntity(entityToDestroy);
                 }
-                World.PoolEntity(requestEntity);
             }
+
+            _destroyRequestPool.RemoveAll();
         }
 
         public void Dispose()

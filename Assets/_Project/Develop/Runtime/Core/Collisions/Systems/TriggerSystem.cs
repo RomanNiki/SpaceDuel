@@ -38,9 +38,9 @@ namespace _Project.Develop.Runtime.Core.Collisions.Systems
 
         public void OnUpdate(float deltaTime)
         {
-            foreach (var entity in _filter)
+            foreach (var triggerEnterEntity in _filter)
             {
-                ref var triggerRequest = ref _triggerEnterRequestPool.Get(entity);
+                ref var triggerRequest = ref _triggerEnterRequestPool.Get(triggerEnterEntity);
                 if (triggerRequest.Sender.IsNullOrDisposed() || triggerRequest.Target.IsNullOrDisposed())
                     continue;
                 var sender = triggerRequest.Sender;
@@ -49,7 +49,8 @@ namespace _Project.Develop.Runtime.Core.Collisions.Systems
                 if (IsCollideBetween(sender, target) == false) continue;
       
                 _strategy.OnEnter(World, sender, target);
-                World.PoolEntity(entity);
+                
+                _triggerEnterRequestPool.Remove(triggerEnterEntity);
             }
         }
 

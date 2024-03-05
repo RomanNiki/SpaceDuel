@@ -14,8 +14,8 @@ namespace _Project.Develop.Runtime.Engine.UI
         public void UnSubscribe()
         {
             if (_score == null) return;
-            _score.BlueScoreChanged -= UpdateBlueScore;
-            _score.RedScoreChanged -= UpdateRedScore;
+            _score.BlueScoreChanged -= OnBlueScoreChanged;
+            _score.RedScoreChanged -= OnRedScoreChanged;
         }
 
         public void Subscribe(IScore score)
@@ -23,12 +23,12 @@ namespace _Project.Develop.Runtime.Engine.UI
             _score = score;
             _blueScore.text = score.BlueScore.ToString();
             _redScore.text = score.RedScore.ToString();
-            score.BlueScoreChanged += UpdateBlueScore;
-            score.RedScoreChanged += UpdateRedScore;
+            score.BlueScoreChanged += OnBlueScoreChanged;
+            score.RedScoreChanged += OnRedScoreChanged;
         }
 
-        private void UpdateRedScore(int score) => _redScore.text = score.ToString();
+        private void OnRedScoreChanged(int score) => _redScore.text = score.ToString();
 
-        private void UpdateBlueScore(int score) => _blueScore.text = score.ToString();
+        private void OnBlueScoreChanged(int score) => _blueScore.text = score.ToString();
     }
 }

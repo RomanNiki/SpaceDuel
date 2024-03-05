@@ -6,7 +6,7 @@ namespace _Project.Develop.Runtime.Core.Services
 {
     public interface IGame : IPauseHandler
     {
-        event Action Starting;
+        event Action GameStarting;
         bool IsPlaying { get; }
         bool IsRestarting { get; }
         UniTask Start();

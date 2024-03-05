@@ -1,21 +1,21 @@
-﻿using Cysharp.Threading.Tasks;
+﻿using _Project.Develop.Runtime.Engine.UI.Statistics.Sliders;
 using UnityEngine;
 
 namespace _Project.Develop.Runtime.Engine.UI.Weapon
 {
     public class WeaponsSliders : MonoBehaviour
     {
-        [SerializeField] private WeaponSlider _primarySlider;
-        [SerializeField] private WeaponSlider _secondarySlider;
+        [SerializeField] private BaseStatisticSlider _primarySlider;
+        [SerializeField] private BaseStatisticSlider _secondarySlider;
 
-        public async UniTaskVoid SetPrimarySliderData(float value)
+        public void SetPrimarySliderData(float value, float maxValue)
         {
-            await _primarySlider.SetSliderValue(value);
+            _primarySlider.UpdateSliderData(value, maxValue, true);
         }
 
-        public async UniTaskVoid SetSecondarySliderData(float value)
+        public void SetSecondarySliderData(float value, float maxValue)
         {
-            await _secondarySlider.SetSliderValue(value);
+            _secondarySlider.UpdateSliderData(value, maxValue, true);
         }
     }
 }

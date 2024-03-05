@@ -5,6 +5,7 @@ using _Project.Develop.Runtime.Core.Weapon.Components;
 using _Project.Develop.Runtime.Engine.Common.Components;
 using _Project.Develop.Runtime.Engine.UI.Weapon;
 using Scellecs.Morpeh;
+using UnityEngine;
 
 namespace _Project.Develop.Runtime.Engine.ECS.UI.PlayerUI.Weapon.Systems
 {
@@ -43,14 +44,13 @@ namespace _Project.Develop.Runtime.Engine.ECS.UI.PlayerUI.Weapon.Systems
                     ref var timer = ref _timerPool.Get(weaponEntity);
                     ref var weaponsSliders = ref _weaponsSlidersPool.Get(sliderEntity);
                     ref var weaponType = ref _weaponTypePool.Get(weaponEntity);
-                    var value = MathF.Round(1 - timer.TimeLeftSec / timer.InitialTimeSec, 1);
                     switch (weaponType.Value)
                     {
                         case WeaponEnum.Primary:
-                            weaponsSliders.Value.SetPrimarySliderData(value).Forget();
+                            weaponsSliders.Value.SetPrimarySliderData(timer.TimeLeftSec, timer.InitialTimeSec);
                             break;
                         case WeaponEnum.Secondary:
-                            weaponsSliders.Value.SetSecondarySliderData(value).Forget();
+                            weaponsSliders.Value.SetSecondarySliderData(timer.TimeLeftSec, timer.InitialTimeSec);
                             break;
                         default:
                             throw new ArgumentOutOfRangeException();
